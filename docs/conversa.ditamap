@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bookmap PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd" >
+<bookmap xml:lang="en-US">
+    <booktitle>
+        <mainbooktitle>
+            <ph>Conversa User Guide</ph>
+            <image href="images/logo.png" placement="break"/>
+        </mainbooktitle>
+        <booktitlealt class="- topic/ph bookmap/booktitlealt ">
+            <ph>Copyright © 2016-2019 Maxprograms</ph>
+        </booktitlealt>
+    </booktitle>
+    <frontmatter>
+        <booklists>
+            <toc/>
+        </booklists>
+    </frontmatter>
+    
+    <chapter>
+        <topicmeta>
+            <navtitle>Introduction</navtitle>
+        </topicmeta>
+        <topicref href="concepts/conversa.dita"/>
+    </chapter>
+
+    <chapter>
+        <topicmeta>
+            <navtitle>Publishing DITA Maps</navtitle>
+        </topicmeta>
+        <topicref href="tasks/publish_map.dita"/>
+        <topicref href="concepts/useful_tips.dita"/>
+    </chapter>
+
+    <chapter>
+        <topicmeta>
+            <navtitle>Configuration</navtitle>
+        </topicmeta>
+        <topicref href="concepts/program_settings.dita"/>
+        <topicref href="concepts/external_tools.dita"/>
+        <topicref href="concepts/xml_catalog.dita"/>
+        <topicref href="concepts/xsl_parameters.dita">
+            <topicref href="references/common_parameters.dita"/>
+            <topicref href="references/fo_parameters.dita">
+                <topicref href="references/pageHeaderFooter.dita"/>
+            </topicref>
+            <topicref href="references/html_parameters.dita"/>
+            <topicref href="references/epub_parameters.dita"/>
+            <topicref href="concepts/help_parameters.dita">
+                <topicref href="references/common_help_parameters.dita"/>
+                <topicref href="references/web_help_parameters.dita"/>
+                <topicref href="references/html_help_parameters.dita"/>
+                <topicref href="references/eclipse_help_parameters.dita"/>
+            </topicref>
+        </topicref>
+
+    </chapter>
+    <backmatter>
+        <booklists>
+            <indexlist/>
+        </booklists>
+    </backmatter>
+</bookmap>

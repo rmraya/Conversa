@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+  <!-- Useful when writing custom XSLT stylesheets which import 
+       the stock ones. Example: 
+       <xsl:import href="ditac-xsl:fo/fo.xsl"/> -->
+
+  <rewriteURI uriStartString="ditac-xsl:" rewritePrefix="../xsl/" />
+
+  <nextCatalog catalog="v1.0.1/catalog_dtd.xml"/>
+
+  <nextCatalog catalog="v1.1/catalog_dtd.xml"/>
+  <nextCatalog catalog="v1.1/catalog_xsd.xml"/>
+
+  <nextCatalog catalog="v1.2/catalog_dtd.xml"/>
+  <nextCatalog catalog="v1.2/catalog_xsd.xml"/>
+
+  <nextCatalog catalog="v1.3/catalog_dtd.xml"/>
+  <nextCatalog catalog="v1.3/catalog_xsd.xml"/>
+  <nextCatalog catalog="v1.3/catalog_rng.xml"/>
+
+  <nextCatalog catalog="LwDITA/v1.0/catalog_dtd.xml"/>
+
+</catalog>

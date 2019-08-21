@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="Untitled11">
+  <title>Web Help Parameters</title>
+  <shortdesc></shortdesc>
+  <refbody>
+    <section>
+      <p>The table below lists the parameters specific to the stylesheets that generate Web
+      Help.</p>
+      <p id="pseudoParam">Parameters marked using this icon <image alt="Pseudo parameter"
+        href="../images/pseudoParam.png"/> are <term>pseudo-parameters</term>. They may or may
+        not be passed to the XSLT stylesheets, but it is important thing to remember that they
+        are also interpreted by ditac itself. As a consequence, you cannot specify them in an XSLT
+        stylesheet which customizes the stock ones.</p>
+      <simpletable relcolwidth="1* 1* 2*">
+        <sthead>
+          <stentry>Parameter</stentry>
+          
+          <stentry>Value</stentry>
+          
+          <stentry>Description</stentry>
+        </sthead>
+        
+        <strow>
+          <stentry id="wh-collapse-toc"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-collapse-toc</tt><indexterm>wh-collapse-toc,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+            <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+          
+          <stentry><p>Specifies whether the TOC should be initially
+            collapsed.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-index-numbers"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-index-numbers</tt><indexterm>wh-index-numbers,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+            <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+          
+          <stentry><p>Specifies whether words looking like numbers are to be
+            indexed.</p><p>Examples of such number-like words: <tt>3.14</tt>,
+              <tt>3,14</tt>, <tt>3times4equals12</tt>, <tt>+1</tt>, <tt>-1.0</tt>,
+              <tt>3px</tt>, <tt>1,2cm</tt>, <tt>100%</tt>, <tt>1.0E+6</tt>,
+              <tt>1,000.00$</tt>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-jquery"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-jquery</tt><indexterm>wh-jquery,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Relative or absolute URI. A relative URI is relative to
+            the URI of a page of the Web Help.</p><p>Default value: absolute URI
+              of the corresponding file found on the Google CDN.</p></stentry>
+          
+          <stentry><p>Specifies the location of the JavaScript file containing
+            <xref format="html" href="http://jquery.com/"
+              scope="external">jQuery</xref> .</p><p>Example:
+                <tt>'http://ajax.aspnetcdn.com/ajax/¬
+                  jQuery/jquery-1.10.1.min.js'</tt>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-jquery-css"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-jquery-css</tt><indexterm>wh-jquery-css,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Relative or absolute URI. A relative URI is relative to
+            the URI of a page of the Web Help.</p><p>Default value: absolute URI
+              of the corresponding file found on the Google CDN.</p></stentry>
+          
+          <stentry><p>Specifies the location of the CSS stylesheet of <xref
+            format="html" href="http://jqueryui.com/" scope="external">jQuery
+            UI</xref> .</p><p>Example: <tt>'http://ajax.aspnetcdn.com/ajax/¬
+              jquery.ui/1.10.3/themes/redmond/jquery-ui.css'</tt>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-jquery-custom-theme"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-jquery-custom-theme</tt><indexterm>wh-jquery-custom-theme,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Filename or absolute URI of a <tt>.zip</tt> file created
+            using JQueryUI <xref format="html"
+              href="http://jqueryui.com/themeroller/"
+              scope="external">ThemeRoller</xref>. A relative filename is relative
+            to the current working directory.</p><p>No default.</p></stentry>
+          
+          <stentry><p>Specifies a <tt>.zip</tt> file created using JQueryUI
+            <xref format="html" href="http://jqueryui.com/themeroller/"
+              scope="external">ThemeRoller</xref> containing a custom JQueryUI
+            theme. Example:
+            <filepath>jquery-ui-1.12.1.custom.zip</filepath>.</p><p>The files
+              comprising the custom theme are copied to
+              <filepath>_wh/jquery/</filepath>, where <filepath>_wh/</filepath> is
+              the directory containing the other Web Help files.</p><p>Ignored if
+                parameter <tt>wh-jquery-css</tt> has been used to specify the CSS
+                stylesheet of jQuery UI.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-jquery-theme"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-jquery-theme</tt><indexterm>wh-jquery-theme,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>The name of a theme. Examples: <tt>'redmond'</tt>,
+            <tt>'cupertino'</tt>.</p><p>Default value:
+              <tt>'smoothness'</tt>.</p></stentry>
+          
+          <stentry><p>Specifies the name of the <xref format="html"
+            href="http://jqueryui.com/" scope="external">jQuery UI</xref> theme
+            used by the compiler.</p><p>Ignored if parameter
+              <tt>wh-jquery-css</tt> has been used to specify the CSS stylesheet
+              of jQuery UI.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-jquery-ui"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-jquery-ui</tt><indexterm>wh-jquery-ui,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Relative or absolute URI. A relative URI is relative to
+            the URI of a page of the Web Help.</p><p>Default value: absolute URI
+              of the corresponding file found on the Google CDN.</p></stentry>
+          
+          <stentry><p>Specifies the location of the JavaScript file containing
+            <xref format="html" href="http://jqueryui.com/"
+              scope="external">jQuery UI</xref> .</p><p>Example:
+                <tt>'http://ajax.aspnetcdn.com/ajax/¬
+                  jquery.ui/1.10.3/jquery-ui.min.js'</tt>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-local-jquery"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-local-jquery</tt><indexterm>wh-local-jquery,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>yes or no.</p><p>Default value: no.</p></stentry>
+          
+          <stentry><p>Specifies whether to copy all jQuery files to the
+            directory containing the other Web Help files. By default, the
+            jQuery files are accessed from the Web (typically from a
+            CDN).</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-layout"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-layout</tt><indexterm>wh-layout,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>The name of a layout.</p><p>Default value:
+            classic.</p></stentry>
+          
+          <stentry><p>Selects a layout for the generated Web Help.</p><p>For
+            now, only 2 layouts are supported: <tt>classic</tt> and
+            <tt>simple</tt>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-use-stemming"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-use-stemming</tt><indexterm>wh-use-stemming,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>yes or no.</p><p>Default value: yes.</p></stentry>
+          
+          <stentry><p>Specifies whether stemming should be used to implement
+            the search by contents facility. By default, stemming is used
+            whenever possible, that is,</p><ul>
+              <li>when the main language of the document can be
+                determined;</li>
+              
+              <li>when this main language is one of: Danish, Dutch, English,
+                Finnish, French, German, Hungarian, Italian, Norwegian,
+                Portuguese, Russian, Spanish, Swedish, Romanian, Turkish.</li>
+            </ul><p>The main language of the document is specified by the
+              <tt>xml:lang</tt> attribute found on the root element of DITA map
+              being converted, if not declared it is assumed to be
+              "<tt>en</tt>".</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-user-css"><image alt="Pseudo parameter" href="../images/pseudoParam.png"
+          /><tt>wh-user-css</tt><indexterm>wh-user-css, parameter</indexterm></stentry>
+          
+          <stentry><p>Relative or absolute URI of a CSS file. A relative URI
+            is relative to the current working directory.</p></stentry>
+          
+          <stentry><p>Specifies the user's CSS stylesheet which is to be added
+            to each page of the Web Help.</p><p>This file is copied to
+              <i><tt>output_directory</tt></i><tt>/_wh/user/</tt>.</p><p>Sample
+                user's CSS: <filepath>docs/wh_resources/header_footer.css</filepath>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-user-footer"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-user-footer</tt><indexterm>wh-user-footer,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Relative or absolute URI of an XHTML file. A relative
+            URI is relative to the current working directory.</p></stentry>
+          
+          <stentry><p>Specifies the user's footer which is to be added to each
+            page of the Web Help.</p><p>The content of the <tt>body</tt> element
+              of <tt>wh-user-footer</tt> is inserted as is in the
+              <tt>&lt;div id="wh-footer"&gt;</tt> found in a page of the Web
+              Help.</p><p>Same remark as for parameter <tt>wh-user-header</tt>
+                about the resources referenced by a user's footer.</p><p>Sample
+                  user's footer: <filepath>docs/wh_resources/footer.html</filepath>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-user-header"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"/><tt>wh-user-header</tt><indexterm>wh-user-header,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Relative or absolute URI of an XHTML file. A relative
+            URI is relative to the current working directory.</p></stentry>
+          
+          <stentry><p>Specifies the user's header which is to be added to each
+            page of the Web Help.</p><p>The content of the <tt>body</tt> element
+              of <tt>wh-user-header</tt> is inserted as is in the
+              <tt>&lt;div id="wh-header"&gt;</tt> found in a page of the Web
+              Help.</p><p>If a user's header references resources (e.g. image
+                files), then these resources must either be referenced using
+                absolute URLs or these resources must be found in a user's resource
+                directory and parameter <tt>wh-user-resources</tt> must be
+                specified.</p><p>Example:</p><ul>
+                  <li>The user's resource directory is called <tt>user2/</tt> and
+                    contains <tt>user2/logo100x50.png</tt>.</li>
+                  
+                  <li>ditac is passed parameters: <tt>-p user-resources user2</tt>
+                    and <tt>-p user-header header2.html</tt>.</li>
+                  
+                  <li><p><tt>header2.html</tt> looks like this:</p><pre>&lt;html&gt;
+...
+&lt;body&gt;
+...
+&lt;img src="<b>_wh/user/user2</b>/¬
+logo100x50.png" /&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;</pre><p>Notice the path used to reference
+  <tt>logo100x50.png</tt>.</p></li>
+                </ul><p>Sample user's header: <filepath>docs/wh_resources/header.html</filepath>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry id="wh-user-resources"><image alt="Pseudo parameter"
+            href="../images/pseudoParam.png"
+          /><tt>wh-user-resources</tt><indexterm>wh-user-resources,
+            parameter</indexterm></stentry>
+          
+          <stentry><p>Filename or absolute "<tt>file:</tt>" URI of a
+            <i>directory</i>. URI schemes other than "<tt>file</tt>" (e.g.
+            "<tt>http</tt>") are not supported for this parameter. A relative
+            filename is relative to the current working directory.</p></stentry>
+          
+          <stentry><p>Specifies a user's resource directory which is to be
+            recursively copied to
+            <tt><i>output_directory</i>/_wh/user/</tt>.</p><p>This directory
+              typically contains image files referenced by the user's header,
+              footer or CSS stylesheet.</p><p>Sample user's resource directory:
+                <filepath>wh_resources/header_footer_files/</filepath>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="whc-index-basename"><tt>whc-index-basename</tt><indexterm>whc-index-basename,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>URL basename.</p><p>Default value:
+            <tt>'whc_index.xml'</tt>.</p></stentry>
+          
+          <stentry><p>Basename of the Index XML input file of XMLmind Web Help
+            Compiler.</p><p>In principle, there is no need for an end-user to
+              specify this parameter.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="whc-toc-basename"><tt>whc-toc-basename</tt><indexterm>whc-toc-basename,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>URL basename.</p><p>Default value:
+            <tt>'whc_toc.xml'</tt>.</p></stentry>
+          
+          <stentry><p>Basename of the TOC XML input file of XMLmind Web Help
+            Compiler.</p><p>In principle, there is no need for an end-user to
+              specify this parameter.</p></stentry>
+        </strow>
+      </simpletable></section>
+    
+    
+  </refbody>
+</reference>

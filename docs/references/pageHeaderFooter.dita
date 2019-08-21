@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN"
+"reference.dtd">
+<reference id="pageHeaderFooter">
+  <title>Page headers and footers</title>
+
+  <refbody>
+    <section id="header_footer_spec"><title>Specifying a header or a
+    footer</title><p>The header or the footer of a generated PDF, RTF, etc,
+    page has 3 columns.</p>
+      <fig>
+        <title>Layout of a header</title>
+
+        <image align="center" href="../images/header_layout.png" otherprops="html">
+          <alt>Header Layout</alt>
+        </image>
+      <image align="center" href="../images/header_layout.png" otherprops="pdf" scale="70"/>
+    </fig><p>The width of these columns may be specified using the <tt><xref
+    href="fo_parameters.dita#foparameters/header-left-width">header-left-width</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/header-center-width">header-center-width</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/header-right-width">header-right-width</xref></tt>
+    parameters for the header and the <tt><xref
+      href="fo_parameters.dita#foparameters/footer-left-width">footer-left-width</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/footer-center-width">footer-center-width</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/footer-right-width">footer-right-width</xref></tt>
+    parameters for the footer.</p><p>The width of a column is specified as an
+    integer which is larger than or equal to 1. This value is the
+    <term>proportional width of the column</term>. For example, if the left
+    column has a width equal to 2 and the right column has a width equal to 4,
+    this simply means that the right column is twice (4/2 = 2) as wide as the
+    left column.</p><p>The contents of these columns may be specified using
+    the <tt><xref
+      href="fo_parameters.dita#foparameters/header-left">header-left</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/header-center">header-center</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/header-right">header-right</xref></tt>
+    parameters for the header and the <tt><xref
+      href="fo_parameters.dita#foparameters/footer-left">footer-left</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/footer-center">footer-center</xref></tt>,
+    <tt><xref
+      href="fo_parameters.dita#foparameters/footer-right">footer-right</xref></tt>
+    parameters for the footer.</p><p>When <tt>header-left</tt>,
+    <tt>header-center</tt>, <tt>header-right</tt> are all specified as the
+    empty string, no header is generated. When <tt>footer-left</tt>,
+    <tt>footer-center</tt>, <tt>footer-right</tt> are all specified as the
+    empty string, no footer is generated.</p><p>The content of a column is
+    basically a mix of text and variables. Example: "<tt>Page {{page-number}}
+    of {{page-count}}</tt>".</p><p>Supported variables are:</p><dl>
+        <dlentry id="document-title_variable">
+          <dt><tt>{{document-title}}</tt></dt>
+
+          <dd>The title of the document<indexterm>{{document-title}}, page
+          header/footer
+          variable<index-sort-as>document-title</index-sort-as></indexterm>.</dd>
+        </dlentry>
+
+        <dlentry id="document-date_variable">
+          <dt><tt>{{document-date}}</tt></dt>
+
+          <dd>The publication date of the
+          document<indexterm>{{document-date}}, page header/footer
+          variable<index-sort-as>document-date</index-sort-as></indexterm>.<p>The
+          value of the variable comes from the last <tt>created</tt> or
+          <tt>revised</tt> element found in the
+          <tt>topicmeta</tt>/<tt>critdates</tt> or
+          <tt>bookmeta</tt>/<tt>critdates</tt> element of the map. More
+          precisely, it comes the value of attribute <tt>golive</tt>,
+          <tt>modified</tt> or <tt>date</tt>, considered in that order. The
+          value of this attribute must be something like
+          <i>YYYY</i>-<i>MM</i>-<i>DD</i>, because it is parsed and then
+          formatted according to the <tt>xml:lang</tt> of the map. For
+          example, if <tt>golive="2014-02-23"</tt>, with
+          <tt>xml:lang="en"</tt>, it gives: "<tt>February 02, 2014</tt>" and
+          with <tt>xml:lang="fr"</tt>, it gives: "<tt>02 Février 2014</tt>".
+          If the map has no <tt>critdates</tt> element, then the current date
+          is used. If the value of attribute <tt>golive</tt>,
+          <tt>modified</tt> or <tt>date</tt> is not specified as
+          <i>YYYY</i>-<i>MM</i>-<i>DD</i>, then this value is used as
+          is.</p></dd>
+        </dlentry>
+
+        <dlentry id="chapter-title_variable">
+          <dt><tt>{{chapter-title}}</tt></dt>
+
+          <dd>The title of the current <tt>part</tt>, <tt>chapter</tt>,
+          <tt>appendices</tt> or <tt>appendix</tt>
+          <indexterm>{{chapter-title}}, page header/footer
+          variable<index-sort-as>chapter-title</index-sort-as></indexterm>.
+          Empty if the map being converted is not a <tt>bookmap</tt>.</dd>
+        </dlentry>
+
+        <dlentry id="section1-title_variable">
+          <dt><tt>{{section1-title}}</tt></dt>
+
+          <dd>The title of the current <tt>part</tt>, <tt>chapter</tt>,
+          <tt>appendices</tt> or <tt>appendix</tt> or <term>section 1</term>
+          <indexterm>{{section1-title}}, page header/footer
+          variable<index-sort-as>section1-title</index-sort-as></indexterm>. A
+          section 1 is specified by a non-typed <tt>topicref</tt> (that is,
+          not a <tt>part</tt>, <tt>chapter</tt>, <tt>preface</tt>,
+          <tt>appendix</tt>, <tt>dedication</tt>, etc) which is a direct child
+          of a <tt>map</tt> or <tt>bookmap</tt>.</dd>
+        </dlentry>
+
+        <dlentry id="topic-title_variable">
+          <dt><tt>{{topic-title}}</tt></dt>
+
+          <dd>The title of the current topic<indexterm>{{topic-title}}, page
+          header/footer
+          variable<index-sort-as>topic-title</index-sort-as></indexterm>. All
+          topics are guaranteed to have a corresponding
+          <tt>{{topic-title}}</tt>. Even automatically generated topics such
+          as <tt>toc</tt> or <tt>indexlist</tt> have a corresponding
+          <tt>{{topic-title}}</tt><fn>The <tt>{{topic-title}}</tt> of a
+          <tt>toc</tt> is "<b>Table of Contents</b>", properly localized. The
+          <tt>{{topic-title}}</tt> of a <tt>indexlist</tt> is "<b>Index</b>",
+          properly localized.</fn>.</dd>
+        </dlentry>
+
+        <dlentry id="page-number_variable">
+          <dt><tt>{{page-number}}</tt></dt>
+
+          <dd>Current page number within the current document division (front
+          matter, body matter or back matter) <indexterm>{{page-number}}, page
+          header/footer
+          variable<index-sort-as>page-number</index-sort-as></indexterm>.</dd>
+        </dlentry>
+
+        <dlentry id="page-count_variable">
+          <dt><tt>{{page-count}}</tt></dt>
+
+          <dd>Total number of pages of the current document division (front
+          matter, body matter or back matter)<indexterm>{{page-count}}, page
+          header/footer
+          variable<index-sort-as>page-count</index-sort-as></indexterm>.</dd>
+        </dlentry>
+
+        <dlentry id="break_variable">
+          <dt><tt>{{break}}</tt></dt>
+
+          <dd>A line break<indexterm>{{break}}, page header/footer
+          variable<index-sort-as>break</index-sort-as></indexterm>.</dd>
+        </dlentry>
+
+        <dlentry id="image_URI_variable">
+          <dt><tt>{{image(URI)}}</tt></dt>
+
+          <dd>An image having specified URI<indexterm>{{image(URI)}}, page
+          header/footer
+          variable<index-sort-as>image(URI)</index-sort-as></indexterm>. A
+          relative URI is resolved against the current working directory.
+          Example: "<tt>{{image(artwork/logo.svg)}}</tt>".</dd>
+        </dlentry>
+
+        <dlentry id="page-sequence_variable">
+          <dt><tt>{{page-sequence}}</tt></dt>
+
+          <dd>Not for production use. Inserts in the header/footer the name of
+          the current page sequence <indexterm>{{page-sequence}}, page
+          header/footer
+          variable<index-sort-as>page-sequence</index-sort-as></indexterm>.
+          This allows to learn which name to use in a <term>conditional header
+          or footer</term>. See <xref
+          href="#pageHeaderFooter/conditional_header_footer">below</xref>.</dd>
+        </dlentry>
+      </dl></section>
+
+    <section id="conditional_header_footer"><title>Conditional headers and
+    footers</title><p>The default value of <tt>header-center</tt> is
+    <tt>'{{document-title}}'</tt>. This means that each page of the generated
+    PDF, RTF, etc, file will have the document title centered on its top. But
+    what if you want the pages containing the Table of Contents have a
+    "<b>Contents</b>" header? Is there a way to specify: use "<b>Contents</b>"
+    for the pages containing the Table of Contents and use the title of the
+    document for any other page? </p><p>This is done by specifying the
+    following conditional value for parameter <xref
+      href="fo_parameters.dita#foparameters/header-center"><tt>header-center</tt></xref>:
+    <tt>'toc:: Contents;; {{document-title}}'</tt>.</p><p>A conditional value
+    may contain one or more cases separated by "<tt>;;</tt>". Each case is
+    tested against the page being generated. The first case which matches the
+    page being generated is the one which is selected.</p><lines><i>conditional_value</i> --&gt; <i>case</i> [ "<b>;;</b>" <i>case</i> ]*
+
+<i>case</i> --&gt; [ <i>condition</i> "<b>::</b>" ]* <i>value</i>
+
+<i>condition</i> --&gt; [ <i>test_page_sequence</i> ]?
+                     &amp; [ S <i>test_page_layout</i> ]?
+                     &amp; [ S <i>test_page_side</i> ]?</lines><p>Let's
+    suppose you also want the the pages containing the Index have a
+    "<b>Index</b>" header. Specifying <tt>'toc:: Contents;;
+    {{document-title}};; indexList:: Index'</tt> won't work as expected
+    because the second case (having no condition at all) matches any page,
+    including the Index pages. You need to specify: <tt>'toc:: Contents;;
+    indexlist:: Index;; {{document-title}}'</tt>.</p><p>Let's remember that
+    variable <xref
+    href="#pageHeaderFooter/topic-title_variable"><tt>{{topic-title}}</tt></xref>
+    is substituted with the title of the current topic, including
+    automatically generated topics such <tt>toc</tt> and
+    <tt>indexlist</tt>.<indexterm>{{topic-title}}, page header/footer
+    variable<index-sort-as>topic-title</index-sort-as></indexterm></p><p>Therefore
+    our conditional value is better expressed as: <tt>'toc:: indexlist::
+    {{topic-title}};; {{document-title}}'</tt>. Notice how a case may have
+    several conditions. Suffice for any of these conditions to match the page
+    being generated for the case to be selected.</p><p>Even better, specify
+    <tt>'toc||indexlist:: {{topic-title}};; {{document-title}}'</tt>. String
+    "<tt>||</tt>" may be used to separate alternative values to be tested
+    against the page being generated.</p><lines><i>test_page_sequence</i> --&gt; <i>page_sequence</i> [ "<b>||</b>" <i>page_sequence</i> ]*
+
+<i>page_sequence</i> --&gt; "<b>abbrevlist</b>" | "<b>amendments</b>" | "<b>appendices</b>" | "<b>appendix</b>"
+                              | "<b>backmattersection</b>" | "<b>bibliolist</b>" | "<b>bookabstract</b>" | "<b>booklist</b>" 
+                              | "<b>chapter</b>" | "<b>colophon</b>" | "<b>dedication</b>" | "<b>draftintro</b>" 
+                              | "<b>figurelist</b>" | "<b>glossarylist</b>" | "<b>indexlist</b>" | "<b>notices</b>" 
+                              | "<b>part</b>" | "<b>preface</b>" | "<b>section1</b>" | "<b>tablelist</b>" 
+                              | "<b>toc</b>" | "<b>trademarklist</b>"</lines><note
+    type="tip"><p>It's not difficult to guess that the name of the page
+    sequence corresponding to the Table of Contents is <tt>toc</tt> and that
+    the name of the page sequence corresponding to the Index is
+    <tt>indexlist</tt>. However the simplest way to learn what is the name of
+    the page sequence being generated is to reference variable <xref
+    href="#pageHeaderFooter/page-sequence_variable"><tt>{{page-sequence}}</tt></xref>
+    in the specification of a header or a footer.<indexterm>{{page-sequence}},
+    page header/footer
+    variable<index-sort-as>page-sequence</index-sort-as></indexterm></p></note><p>Now
+    let's suppose that we want to suppress the document title on the first
+    page of a part, chapter or appendix. This is specified as follows:
+    <tt>'first part||chapter||appendix:: ;; toc||indexlist:: {{topic-title}};;
+    {{document-title}}'</tt>.</p><p>For now, we have only described a
+    condition about the page sequence being generated: TOC, Index, etc. In
+    fact, a condition may test up to 3 facets of the page being
+    generated:</p><ul compact="yes">
+        <li>The page sequence to which belongs the page being generated.</li>
+
+        <li>Whether the page being generated is part of a one-sided or a
+        two-sided document.</li>
+
+        <li>Whether the page being generated is the first page of its
+        sequence. When the the page being generated is <i>not</i> the first
+        page of its sequence, if the page being generated has an odd or an
+        even page number.</li>
+      </ul><lines><i>test_page_layout</i> --&gt; <i>page_layout</i> [ "<b>||</b>" <i>page_layout</i> ]*
+
+<i>page_layout</i> --&gt; "<b>two-sides</b>" | "<b>one-side</b>"
+
+<i>test_page_side</i> --&gt; <i>page_side</i> [ "<b>||</b>" <i>page_side</i> ]*
+
+<i>page_side</i> --&gt; "<b>first</b>" | "<b>odd</b>" | "<b>even</b>"</lines><note
+    type="remember"><p>When the document has one side, there is no difference
+    between <tt>even</tt> and <tt>odd</tt>. That is, <tt>even</tt>,
+    <tt>odd</tt>, <tt>even||odd</tt> all simply mean: other than
+    <tt>first</tt>.</p></note><p>The order of the tests is not significant.
+    For example, <tt>'first part||chapter||appendix'</tt> is equivalent to
+    <tt>'part||chapter||appendix first'</tt>.</p><p>Therefore <tt>'first
+    part||chapter||appendix:: ;; toc||indexlist:: {{topic-title}};;
+    {{document-title}}'</tt> reads as follows:</p><ol compact="yes">
+        <li>Use the empty string for the first page of a part, chapter or
+        appendix.</li>
+
+        <li>Use the topic title for the pages containing the Table of
+        Contents. This title is "<b>Table of Contents</b>", but localized
+        according to the main language of the DITA document being
+        converted.</li>
+
+        <li>Use the topic title for the pages containing the Index. This title
+        is "<b>Index</b>", but localized according to the main language of the
+        DITA document being converted.</li>
+
+        <li>For any other page, use the title of the DITA document.</li>
+      </ol><note>Everything explained in this section applies not only to the
+    contents of a column of a header or footer, but also to the proportional
+    width of a column of a header or footer. Example:
+    <tt>-p footer-right-width "first||odd:: 4;; even:: 1"</tt>.</note></section>
+  </refbody>
+</reference>

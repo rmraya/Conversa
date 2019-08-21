@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head><meta charset="UTF-8" />
+      <title>Web Help Parameters</title><link href="resources/webhelp.css" rel="stylesheet" type="text/css" /><meta content="" name="description" />
+      <meta content="XMLmind DITA Converter 3.6.0" name="generator" />
+   <script charset="UTF-8" defer="defer" src="_wh/snowball_en.min.js" type="text/javascript"></script><link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript">
+    </script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
+    </script><script charset="UTF-8" src="_wh/wh.min.js" type="text/javascript">
+    </script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript">
+    </script></head>
+   
+<body>
+    
+
+    <div id="wh-body">
+      <div id="wh-navigation">
+        <ul id="wh-tabs">
+          <li id="wh-toc-tab"><a href="#wh-toc-pane"><span>Contents</span></a></li>
+          <li id="wh-index-tab"><a href="#wh-index-pane"><span>Index</span></a></li>
+          <li id="wh-search-tab"><a href="#wh-search-pane"><span>Search</span></a></li>
+        </ul>
+        <div id="wh-toc-pane">
+          <div id="wh-toc-form">
+            <span id="wh-toc-control"><a href="#">Collapse 
+            All</a><a href="#">Expand All</a></span>
+            <button id="wh-toc-previous">Previous</button>
+            <button id="wh-toc-next">Next</button>
+            <button id="wh-toc-print">Print</button>
+          </div>
+          <script charset="UTF-8" src="_wh/toc.js" type="text/javascript">
+          </script>
+        </div>
+        <div id="wh-index-pane">
+          <div id="wh-index-form">
+            <input id="wh-index-field" type="text" />
+          </div>
+          <script charset="UTF-8" src="_wh/index.js" type="text/javascript">
+          </script>
+        </div>
+        <div id="wh-search-pane">
+          <div id="wh-search-form">
+            <input id="wh-search-field" type="text" /><button id="wh-search-button">Search</button><span id="wh-highlight-group"><input checked="checked" id="wh-highlight-toggle" type="checkbox" /><label for="wh-highlight-toggle" id="wh-highlight-icon"><span class="ui-icon ui-icon-flag"></span></label></span>
+          </div>
+          <div id="wh-search-results">
+          </div>
+        </div>
+      </div>
+      <div id="wh-separator">
+      </div>
+      <div id="wh-content">
+      
+      <section class="reference" id="Untitled11" lang="en-US" xml:lang="en-US">
+         <h2 class="section3-title">Web Help Parameters</h2>
+         <p class="shortdesc"></p>
+         <div class="refbody">
+            <section class="section" id="Untitled11__I_u5hkek_">
+               
+               <div class="p">The table below lists the parameters specific to the stylesheets that generate Web
+                  Help.
+               </div>
+               
+               <div class="p" id="Untitled11__pseudoParam">Parameters marked using this icon <img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /> are <dfn class="term">pseudo-parameters</dfn>. They may or may
+                  not be passed to the XSLT stylesheets, but it is important thing to remember that
+                  they
+                  are also interpreted by ditac itself. As a consequence, you cannot specify them in
+                  an XSLT
+                  stylesheet which customizes the stock ones.
+               </div>
+               
+               <div class="simpletable-container">
+                  <table border="1" class="simpletable">
+                     <colgroup style="width: 25%;"></colgroup>
+                     <colgroup style="width: 25%;"></colgroup>
+                     <colgroup style="width: 50%;"></colgroup>
+                     <thead>
+                        <tr class="sthead table-header-style">
+                           <td class="stentry">Parameter</td>
+                           <td class="stentry">Value</td>
+                           <td class="stentry">Description</td>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-collapse-toc"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-collapse-toc</span><a id="Untitled11__I_9zsnmu_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether the TOC should be initially
+                                 collapsed.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-index-numbers"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-index-numbers</span><a id="Untitled11__I_e8ncfd_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether words looking like numbers are to be
+                                 indexed.
+                              </div>
+                              <div class="p">Examples of such number-like words: <span class="tt">3.14</span>,
+                                 <span class="tt">3,14</span>, <span class="tt">3times4equals12</span>, <span class="tt">+1</span>, <span class="tt">-1.0</span>,
+                                 <span class="tt">3px</span>, <span class="tt">1,2cm</span>, <span class="tt">100%</span>, <span class="tt">1.0E+6</span>,
+                                 <span class="tt">1,000.00$</span>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-jquery"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-jquery</span><a id="Untitled11__I_j82l4i_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Relative or absolute URI. A relative URI is relative to
+                                 the URI of a page of the Web Help.
+                              </div>
+                              <div class="p">Default value: absolute URI
+                                 of the corresponding file found on the Google CDN.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies the location of the JavaScript file containing
+                                 <a class="xref" href="http://jquery.com/" target="_blank">jQuery</a> .
+                              </div>
+                              <div class="p">Example:
+                                 <span class="tt">'http://ajax.aspnetcdn.com/ajax/¬
+                                    jQuery/jquery-1.10.1.min.js'</span>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-jquery-css"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-jquery-css</span><a id="Untitled11__I_o8lhe7_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Relative or absolute URI. A relative URI is relative to
+                                 the URI of a page of the Web Help.
+                              </div>
+                              <div class="p">Default value: absolute URI
+                                 of the corresponding file found on the Google CDN.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies the location of the CSS stylesheet of <a class="xref" href="http://jqueryui.com/" target="_blank">jQuery
+                                    UI</a> .
+                              </div>
+                              <div class="p">Example: <span class="tt">'http://ajax.aspnetcdn.com/ajax/¬
+                                    jquery.ui/1.10.3/themes/redmond/jquery-ui.css'</span>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-jquery-custom-theme"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-jquery-custom-theme</span><a id="Untitled11__I_72byle_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Filename or absolute URI of a <span class="tt">.zip</span> file created
+                                 using JQueryUI <a class="xref" href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a>. A relative filename is relative
+                                 to the current working directory.
+                              </div>
+                              <div class="p">No default.</div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies a <span class="tt">.zip</span> file created using JQueryUI
+                                 <a class="xref" href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a> containing a custom JQueryUI
+                                 theme. Example:
+                                 <code class="filepath">jquery-ui-1.12.1.custom.zip</code>.
+                              </div>
+                              <div class="p">The files
+                                 comprising the custom theme are copied to
+                                 <code class="filepath">_wh/jquery/</code>, where <code class="filepath">_wh/</code> is
+                                 the directory containing the other Web Help files.
+                              </div>
+                              <div class="p">Ignored if
+                                 parameter <span class="tt">wh-jquery-css</span> has been used to specify the CSS
+                                 stylesheet of jQuery UI.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-jquery-theme"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-jquery-theme</span><a id="Untitled11__I_e3x9fx_"></a></td>
+                           <td class="stentry">
+                              <div class="p">The name of a theme. Examples: <span class="tt">'redmond'</span>,
+                                 <span class="tt">'cupertino'</span>.
+                              </div>
+                              <div class="p">Default value:
+                                 <span class="tt">'smoothness'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies the name of the <a class="xref" href="http://jqueryui.com/" target="_blank">jQuery UI</a> theme
+                                 used by the compiler.
+                              </div>
+                              <div class="p">Ignored if parameter
+                                 <span class="tt">wh-jquery-css</span> has been used to specify the CSS stylesheet
+                                 of jQuery UI.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-jquery-ui"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-jquery-ui</span><a id="Untitled11__I_q1o3mh_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Relative or absolute URI. A relative URI is relative to
+                                 the URI of a page of the Web Help.
+                              </div>
+                              <div class="p">Default value: absolute URI
+                                 of the corresponding file found on the Google CDN.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies the location of the JavaScript file containing
+                                 <a class="xref" href="http://jqueryui.com/" target="_blank">jQuery UI</a> .
+                              </div>
+                              <div class="p">Example:
+                                 <span class="tt">'http://ajax.aspnetcdn.com/ajax/¬
+                                    jquery.ui/1.10.3/jquery-ui.min.js'</span>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-local-jquery"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-local-jquery</span><a id="Untitled11__I_aknc78_"></a></td>
+                           <td class="stentry">
+                              <div class="p">yes or no.</div>
+                              <div class="p">Default value: no.</div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether to copy all jQuery files to the
+                                 directory containing the other Web Help files. By default, the
+                                 jQuery files are accessed from the Web (typically from a
+                                 CDN).
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-layout"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-layout</span><a id="Untitled11__I_cuklm6_"></a></td>
+                           <td class="stentry">
+                              <div class="p">The name of a layout.</div>
+                              <div class="p">Default value:
+                                 classic.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Selects a layout for the generated Web Help.</div>
+                              <div class="p">For
+                                 now, only 2 layouts are supported: <span class="tt">classic</span> and
+                                 <span class="tt">simple</span>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-use-stemming"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-use-stemming</span><a id="Untitled11__I_y89iht_"></a></td>
+                           <td class="stentry">
+                              <div class="p">yes or no.</div>
+                              <div class="p">Default value: yes.</div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether stemming should be used to implement
+                                 the search by contents facility. By default, stemming is used
+                                 whenever possible, that is,
+                              </div>
+                              <ul class="ul">
+                                 <li class="li">when the main language of the document can be
+                                    determined;
+                                 </li>
+                                 <li class="li">when this main language is one of: Danish, Dutch, English,
+                                    Finnish, French, German, Hungarian, Italian, Norwegian,
+                                    Portuguese, Russian, Spanish, Swedish, Romanian, Turkish.
+                                 </li>
+                              </ul>
+                              <div class="p">The main language of the document is specified by the
+                                 <span class="tt">xml:lang</span> attribute found on the root element of DITA map
+                                 being converted, if not declared it is assumed to be
+                                 &quot;<span class="tt">en</span>&quot;.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-user-css"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-css</span><a id="Untitled11__I_rsxw97_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Relative or absolute URI of a CSS file. A relative URI
+                                 is relative to the current working directory.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies the user's CSS stylesheet which is to be added
+                                 to each page of the Web Help.
+                              </div>
+                              <div class="p">This file is copied to
+                                 <i class="i"><span class="tt">output_directory</span></i><span class="tt">/_wh/user/</span>.
+                              </div>
+                              <div class="p">Sample
+                                 user's CSS: <code class="filepath">docs/wh_resources/header_footer.css</code>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-user-footer"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-footer</span><a id="Untitled11__I_epgewi_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Relative or absolute URI of an XHTML file. A relative
+                                 URI is relative to the current working directory.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies the user's footer which is to be added to each
+                                 page of the Web Help.
+                              </div>
+                              <div class="p">The content of the <span class="tt">body</span> element
+                                 of <span class="tt">wh-user-footer</span> is inserted as is in the
+                                 <span class="tt">&lt;div id=&quot;wh-footer&quot;&gt;</span> found in a page of the Web
+                                 Help.
+                              </div>
+                              <div class="p">Same remark as for parameter <span class="tt">wh-user-header</span>
+                                 about the resources referenced by a user's footer.
+                              </div>
+                              <div class="p">Sample
+                                 user's footer: <code class="filepath">docs/wh_resources/footer.html</code>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-user-header"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-header</span><a id="Untitled11__I_5eu1s_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Relative or absolute URI of an XHTML file. A relative
+                                 URI is relative to the current working directory.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies the user's header which is to be added to each
+                                 page of the Web Help.
+                              </div>
+                              <div class="p">The content of the <span class="tt">body</span> element
+                                 of <span class="tt">wh-user-header</span> is inserted as is in the
+                                 <span class="tt">&lt;div id=&quot;wh-header&quot;&gt;</span> found in a page of the Web
+                                 Help.
+                              </div>
+                              <div class="p">If a user's header references resources (e.g. image
+                                 files), then these resources must either be referenced using
+                                 absolute URLs or these resources must be found in a user's resource
+                                 directory and parameter <span class="tt">wh-user-resources</span> must be
+                                 specified.
+                              </div>
+                              <div class="p">Example:</div>
+                              <ul class="ul">
+                                 <li class="li">The user's resource directory is called <span class="tt">user2/</span> and
+                                    contains <span class="tt">user2/logo100x50.png</span>.
+                                 </li>
+                                 <li class="li">ditac is passed parameters: <span class="tt">-p user-resources user2</span>
+                                    and <span class="tt">-p user-header header2.html</span>.
+                                 </li>
+                                 <li class="li">
+                                    <div class="p"><span class="tt">header2.html</span> looks like this:
+                                    </div><pre class="pre">&lt;html&gt;
+...
+&lt;body&gt;
+...
+&lt;img src=&quot;<b class="b">_wh/user/user2</b>/¬
+logo100x50.png&quot; /&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;</pre><div class="p">Notice the path used to reference
+                                       <span class="tt">logo100x50.png</span>.
+                                    </div>
+                                 </li>
+                              </ul>
+                              <div class="p">Sample user's header: <code class="filepath">docs/wh_resources/header.html</code>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-user-resources"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-resources</span><a id="Untitled11__I_er44fh_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Filename or absolute &quot;<span class="tt">file:</span>&quot; URI of a
+                                 <i class="i">directory</i>. URI schemes other than &quot;<span class="tt">file</span>&quot; (e.g.
+                                 &quot;<span class="tt">http</span>&quot;) are not supported for this parameter. A relative
+                                 filename is relative to the current working directory.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies a user's resource directory which is to be
+                                 recursively copied to
+                                 <span class="tt"><i class="i">output_directory</i>/_wh/user/</span>.
+                              </div>
+                              <div class="p">This directory
+                                 typically contains image files referenced by the user's header,
+                                 footer or CSS stylesheet.
+                              </div>
+                              <div class="p">Sample user's resource directory:
+                                 <code class="filepath">wh_resources/header_footer_files/</code>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__whc-index-basename"><span class="tt">whc-index-basename</span><a id="Untitled11__I_hrrmob_"></a></td>
+                           <td class="stentry">
+                              <div class="p">URL basename.</div>
+                              <div class="p">Default value:
+                                 <span class="tt">'whc_index.xml'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Basename of the Index XML input file of XMLmind Web Help
+                                 Compiler.
+                              </div>
+                              <div class="p">In principle, there is no need for an end-user to
+                                 specify this parameter.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__whc-toc-basename"><span class="tt">whc-toc-basename</span><a id="Untitled11__I_sbne28_"></a></td>
+                           <td class="stentry">
+                              <div class="p">URL basename.</div>
+                              <div class="p">Default value:
+                                 <span class="tt">'whc_toc.xml'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Basename of the TOC XML input file of XMLmind Web Help
+                                 Compiler.
+                              </div>
+                              <div class="p">In principle, there is no need for an end-user to
+                                 specify this parameter.
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </section>
+         </div>
+      </section>
+   </div>
+    </div>
+
+    
+  </body></html>

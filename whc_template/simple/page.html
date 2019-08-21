@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- =====================================================================
+     Notes:
+
+     * All the elements after head/title are added at the end of the 
+       head element of a page decorated by whc.
+
+     * Elements expected to be found by whc:
+
+       head/script id="wh-jquery" pointing to jquery.js
+
+       Empty body/div id="wh-header"
+       Empty body//div id="wh-content"
+       Empty body/div id="wh-footer"
+
+       body//div id="wh-navigation-form" specifying the "Search" panel.
+       body//div id="wh-XXX-pane" specifying the XXX panel
+       where XXX is "toc" and "search".
+
+     * Web browsers really expect script and div to have a closing tag
+       even when these elements are empty. So make sure to add a new line
+       between <script> and </script> and between <div> and </div>.
+     ===================================================================== -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+    <title>Page</title>
+
+    <link href="_wh/wh.css" 
+          rel="stylesheet" type="text/css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" 
+            type="text/javascript" id="wh-jquery">
+    </script>
+    <script src="_wh/wh.min.js" 
+            type="text/javascript" charset="UTF-8">
+    </script>
+    <script defer="defer" src="_wh/search.js" 
+            type="text/javascript" charset="UTF-8">
+    </script>
+  </head>
+
+  <body>
+    <div id="wh-header">
+    </div>
+
+    <div id="wh-body">
+      <div id="wh-navigation">
+        <div id="wh-navigation-form">
+          <span id="wh-search-group">
+            <span id="wh-do-search"
+            title="Search"></span><input id="wh-search-field"
+            type="text" placeholder="Search"/><span id="wh-cancel-search"
+            title="Stop searching"></span>
+          </span>
+        </div>
+        <div id="wh-toc-pane">
+          <script src="_wh/toc.js" 
+                  type="text/javascript" charset="UTF-8"></script>
+        </div>
+        <div id="wh-search-pane">
+          <div id="wh-search-results">
+          </div>
+        </div>
+      </div>
+      <div id="wh-content">
+      </div>
+    </div>
+
+    <div id="wh-footer">
+    </div>
+  </body>
+</html>

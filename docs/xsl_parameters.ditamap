@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <topicref href="references/common_parameters.dita"/>
+    <topicref href="references/fo_parameters.dita">
+        <topicref href="references/pageHeaderFooter.dita"/>
+    </topicref>
+    <topicref href="references/html_parameters.dita"/>
+    <topicref href="references/epub_parameters.dita"/>
+    <topicref href="concepts/help_parameters.dita">
+        <topicref href="references/common_help_parameters.dita"/>
+        <topicref href="references/web_help_parameters.dita"/>
+        <topicref href="references/html_help_parameters.dita"/>
+        <topicref href="references/eclipse_help_parameters.dita"/>
+    </topicref>
+</map>

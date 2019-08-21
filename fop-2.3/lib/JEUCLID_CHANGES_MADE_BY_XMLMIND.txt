@@ -1,0 +1,113 @@
+Compiled jeuclid-parent-3.1.9 with the following changes. 
+Ran: ant in jeuclid-core
+
+* When converting MathML to SVG (for example, for use by RenderX XEP which
+  does not natively support MathML), the "JEuclid image toolkit plug-in"
+  add-on generated SVG files missing an xmlns="http://www.w3.org/2000/svg"
+  namespace declaration
+
+jeuclid-core/src/main/java/net/sourceforge/jeuclid/converter/
+===============================================================
+--- BatikConverter.java.ORI	2015-10-21 10:55:23.732980191 +0200
++++ BatikConverter.java	2015-10-21 11:14:18.092173617 +0200
+@@ -63,8 +63,8 @@
+         final DocumentWithDimension svgDocDim = this.convert(doc, context);
+         if (svgDocDim != null) {
+             try {
+-                final Transformer transformer = TransformerFactory
+-                        .newInstance().newTransformer();
++                final Transformer transformer =
++                    newTransformerFactory().newTransformer();
+                 final DOMSource source = new DOMSource(svgDocDim
+                         .getDocument());
+                 final StreamResult result = new StreamResult(outStream);
+@@ -77,6 +77,29 @@
+         return null;
+     }
+ 
++    private static TransformerFactory newTransformerFactory() 
++        throws TransformerException {
++        // Do not use Saxon 6.5 identity transform. It does not handle
++        // namespaces correctly.
++
++        TransformerFactory factory = null;
++
++        try {
++            /* Use the bundled implementation class name, XSLTC. */
++            factory = TransformerFactory.newInstance(
++              "com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl",
++              /*classLoader*/ null);
++            //System.err.println("Using " + factory.getClass().getName());
++        } catch (Exception ignored) {}
++
++        if (factory == null) {
++            factory = TransformerFactory.newInstance();
++            //System.err.println("Fallback to " + factory.getClass().getName());
++        }
++
++        return factory;
++    }
++
+     /** {@inheritDoc} */
+     public DocumentWithDimension convert(final Node doc,
+             final LayoutContext context) {
+===============================================================
+
+===============================================================
+--- ConverterRegistry.java.ORI	2015-10-21 10:41:49.546358512 +0200
++++ ConverterRegistry.java	2015-10-21 10:44:21.375498529 +0200
+@@ -52,10 +52,9 @@
+      */
+     @SuppressWarnings("unchecked")
+     protected ConverterRegistry() {
+-        final Iterator<ConverterDetector> it = Service
+-                .providers(ConverterDetector.class);
++        final Iterator<Object> it = Service.providers(ConverterDetector.class);
+         while (it.hasNext()) {
+-            final ConverterDetector det = it.next();
++            final ConverterDetector det = (ConverterDetector) it.next();
+             det.detectConversionPlugins(this);
+         }
+     }
+===============================================================
+
+* In order to make the code run on Java 9 without NoClassDefFoundError, 
+replaced all references to org.w3c.dom.events.CustomEvent (interface) by 
+org.apache.batik.dom.events.DOMCustomEvent (implementation).
+
+Java 9 does not support having the org.w3c.dom.events package split between 
+two modules: "unamed" module, batik-all.jar (or batik-ext.jar) 
+found in $CLASSPATH and Java 9's "java.xml" module.
+
+jeuclid-core/src/main/java/net/sourceforge/jeuclid/elements/presentation/token/
+===============================================================
+--- Mo.java.ORI 2010-02-12 15:10:32.000000000 +0100
++++ Mo.java     2017-11-13 09:08:40.523541364 +0100
+@@ -47,7 +47,6 @@
+ import org.apache.batik.dom.events.DOMCustomEvent;
+ import org.w3c.dom.Attr;
+ import org.w3c.dom.Node;
+-import org.w3c.dom.events.CustomEvent;
+ import org.w3c.dom.events.Event;
+ import org.w3c.dom.events.EventListener;
+ import org.w3c.dom.events.EventTarget;
+@@ -313,7 +312,7 @@
+                 this.setDefaultMathAttribute(Mo.ATTR_STRETCHY,
+                         Mo.VALUE_STRETCHY_VERTICAL);
+             }
+-            final CustomEvent evt = new DOMCustomEvent();
++            final DOMCustomEvent evt = new DOMCustomEvent();
+             evt.initCustomEventNS(null, Mo.MOEVENT, true, false, null);
+             this.dispatchEvent(evt);
+             this.inChangeHook = false;
+===============================================================
+
+Also 
+
+- added a .HIDE suffix to FreeHep*.java 
+- removed line:
+
+net.sourceforge.jeuclid.converter.FreeHepDetector
+
+from jeuclid-core/src/main/resources/META-INF/services/
+net.sourceforge.jeuclid.converter.ConverterDetector

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="lib" path="lib/ditac.jar"/>
+	<classpathentry kind="lib" path="lib/dtd.jar"/>
+	<classpathentry kind="lib" path="lib/flexmark.jar"/>
+	<classpathentry kind="lib" path="lib/json.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.11.3.jar"/>
+	<classpathentry kind="lib" path="lib/mapdb.jar"/>
+	<classpathentry kind="lib" path="lib/openxliff.jar"/>
+	<classpathentry kind="lib" path="lib/relaxng.jar"/>
+	<classpathentry kind="lib" path="lib/resolver.jar"/>
+	<classpathentry kind="lib" path="lib/saxon9.jar"/>
+	<classpathentry kind="lib" path="lib/snowball.jar"/>
+	<classpathentry kind="lib" path="lib/whcmin.jar"/>
+	<classpathentry kind="lib" path="lib/xslthl.jar"/>
+	<classpathentry kind="lib" path="lib/mac64/swt.jar"/>
+</classpath>

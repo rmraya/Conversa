@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<group xml:base="xnal/rng/">
+<!--DITA XNAL Domain-->
+
+  <!-- System ID (URL) catalog entries -->
+  <system systemId="urn:oasis:names:tc:dita:rng:xnalDomain.rng:1.3"
+          uri="xnalDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:xnalDomain.rng"
+          uri="xnalDomain.rng"/>
+
+  <!-- Public ID (URN) catalog entries -->
+  <uri name="urn:oasis:names:tc:dita:rng:xnalDomain.rng:1.3"
+       uri="xnalDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:xnalDomain.rng"
+       uri="xnalDomain.rng"/>
+</group>
+
+<group xml:base="machineryIndustry/rng/">
+<!--DITA Machinery Task Shell-->
+
+  <!-- System ID (URL) catalog entries -->
+  <system systemId="urn:oasis:names:tc:dita:spec:machinery:rng:machinerytask.rng:1.3"
+          uri="machineryTask.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:spec:machinery:rng:machinerytask.rng"
+          uri="machineryTask.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:spec:machinery:rng:machineryTaskbodyConstraintMod.rng:1.3"
+          uri="machineryTaskbodyConstraintMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:spec:machinery:rng:machineryTaskbodyConstraintMod.rng"
+          uri="machineryTaskbodyConstraintMod.rng"/>
+
+  <!-- Public ID (URN) catalog entries -->
+  <uri name="urn:oasis:names:tc:dita:spec:machinery:rng:machinerytask.rng:1.3"
+       uri="machineryTask.rng"/>
+  <uri name="urn:oasis:names:tc:dita:spec:machinery:rng:machinerytask.rng"
+       uri="machineryTask.rng"/>
+  <uri name="urn:oasis:names:tc:dita:spec:machinery:rng:machineryTaskbodyConstraintMod.rng:1.3"
+       uri="machineryTaskbodyConstraintMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:spec:machinery:rng:machineryTaskbodyConstraintMod.rng"
+       uri="machineryTaskbodyConstraintMod.rng"/>
+</group>
+
+<group xml:base="ditaval/rng/">
+<!--DITA BASE-->
+
+  <!-- System ID (URL) catalog entries -->
+  <system systemId="urn:oasis:names:tc:dita:rng:ditaval.rng:1.3"
+          uri="ditaval.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:ditaval.rng"
+          uri="ditaval.rng"/>
+
+  <!-- Public ID (URN) catalog entries -->
+  <uri name="urn:oasis:names:tc:dita:rng:ditaval.rng:1.3"
+       uri="ditaval.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:ditaval.rng" uri="ditaval.rng"/>
+</group>
+
+<group xml:base="technicalContent/rng/">
+<!--DITA Abbreviated Form Domain-->
+
+  <!-- System ID (URL) catalog entries -->
+  <system systemId="urn:oasis:names:tc:dita:rng:abbreviateDomain.rng:1.3"
+          uri="abbreviateDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:abbreviateDomain.rng"
+          uri="abbreviateDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:concept.rng:1.3"
+          uri="concept.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:concept.rng"
+          uri="concept.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:conceptMod.rng:1.3"
+          uri="conceptMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:conceptMod.rng"
+          uri="conceptMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:ditabase.rng:1.3"
+          uri="ditabase.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:ditabase.rng"
+          uri="ditabase.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:equationDomain.rng:1.3"
+          uri="equationDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:equationDomain.rng"
+          uri="equationDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:generalTask.rng:1.3"
+          uri="generalTask.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:generalTask.rng"
+          uri="generalTask.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossary.rng:1.3"
+          uri="glossary.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossary.rng"
+          uri="glossary.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossaryMod.rng:1.3"
+          uri="glossaryMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossaryMod.rng"
+          uri="glossaryMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossentry.rng:1.3"
+          uri="glossentry.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossentry.rng"
+          uri="glossentry.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossentryMod.rng:1.3"
+          uri="glossentryMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossentryMod.rng"
+          uri="glossentryMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossgroup.rng:1.3"
+          uri="glossgroup.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossgroup.rng"
+          uri="glossgroup.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossgroupMod.rng:1.3"
+          uri="glossgroupMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossgroupMod.rng"
+          uri="glossgroupMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossrefDomain.rng:1.3"
+          uri="glossrefDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:glossrefDomain.rng"
+          uri="glossrefDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:map.rng:1.3" uri="map.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:map.rng" uri="map.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:markupDomain.rng:1.3"
+          uri="markupDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:markupDomain.rng"
+          uri="markupDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mathmlDomain.rng:1.3"
+          uri="mathmlDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mathmlDomain.rng"
+          uri="mathmlDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mathmlDomainProxy.rng:1.3"
+          uri="mathmlDomainProxy.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mathmlDomainProxy.rng"
+        uri="mathmlDomainProxy.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:programmingDomain.rng:1.3"
+          uri="programmingDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:programmingDomain.rng"
+          uri="programmingDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:reference.rng:1.3"
+          uri="reference.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:reference.rng"
+          uri="reference.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:referenceMod.rng:1.3"
+          uri="referenceMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:referenceMod.rng"
+          uri="referenceMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:releaseManagementDomain.rng:1.3"
+          uri="releaseManagementDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:releaseManagementDomain.rng"
+          uri="releaseManagementDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:softwareDomain.rng:1.3"
+          uri="softwareDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:softwareDomain.rng"
+          uri="softwareDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:strictTaskbodyConstraintMod.rng:1.3"
+          uri="strictTaskbodyConstraintMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:strictTaskbodyConstraintMod.rng"
+          uri="strictTaskbodyConstraintMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:svgDomain.rng:1.3"
+          uri="svgDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:svgDomain.rng"
+          uri="svgDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:task.rng:1.3" uri="task.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:task.rng" uri="task.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:taskMod.rng:1.3"
+          uri="taskMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:taskMod.rng"
+          uri="taskMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:taskreqDomain.rng:1.3"
+          uri="taskreqDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:taskreqDomain.rng"
+          uri="taskreqDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:topic.rng:1.3"
+          uri="topic.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:topic.rng" uri="topic.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:troubleshooting.rng:1.3"
+          uri="troubleshooting.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:troubleshooting.rng"
+          uri="troubleshooting.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:troubleshootingMod.rng:1.3"
+          uri="troubleshootingMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:troubleshootingMod.rng"
+          uri="troubleshootingMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:uiDomain.rng:1.3"
+          uri="uiDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:uiDomain.rng"
+          uri="uiDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:xmlDomain.rng:1.3"
+          uri="xmlDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:xmlDomain.rng"
+          uri="xmlDomain.rng"/>
+
+  <!-- Public ID (URN) catalog entries -->
+  <uri name="urn:oasis:names:tc:dita:rng:abbreviateDomain.rng:1.3"
+       uri="abbreviateDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:abbreviateDomain.rng"
+       uri="abbreviateDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:concept.rng:1.3"
+       uri="concept.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:concept.rng" uri="concept.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:conceptMod.rng:1.3"
+       uri="conceptMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:conceptMod.rng"
+       uri="conceptMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:ditabase.rng:1.3"
+       uri="ditabase.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:ditabase.rng" uri="ditabase.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:equationDomain.rng:1.3"
+       uri="equationDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:equationDomain.rng"
+       uri="equationDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:generalTask.rng:1.3"
+       uri="generalTask.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:generalTask.rng"
+       uri="generalTask.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossary.rng:1.3"
+       uri="glossary.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossary.rng" uri="glossary.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossaryMod.rng:1.3"
+       uri="glossaryMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossaryMod.rng"
+       uri="glossaryMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossentry.rng:1.3"
+       uri="glossentry.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossentry.rng"
+       uri="glossentry.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossentryMod.rng:1.3"
+       uri="glossentryMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossentryMod.rng"
+       uri="glossentryMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossgroup.rng:1.3"
+       uri="glossgroup.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossgroup.rng"
+       uri="glossgroup.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossgroupMod.rng:1.3"
+       uri="glossgroupMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossgroupMod.rng"
+       uri="glossgroupMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossrefDomain.rng:1.3"
+       uri="glossrefDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:glossrefDomain.rng"
+       uri="glossrefDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:map.rng:1.3" uri="map.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:map.rng" uri="map.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:markupDomain.rng:1.3"
+       uri="markupDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:markupDomain.rng"
+       uri="markupDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:mathmlDomain.rng:1.3"
+       uri="mathmlDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:mathmlDomain.rng"
+       uri="mathmlDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:programmingDomain.rng:1.3"
+       uri="programmingDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:programmingDomain.rng"
+       uri="programmingDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:reference.rng:1.3"
+       uri="reference.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:reference.rng"
+       uri="reference.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:referenceMod.rng:1.3"
+       uri="referenceMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:referenceMod.rng"
+       uri="referenceMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:releaseManagementDomain.rng:1.3"
+       uri="releaseManagementDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:releaseManagementDomain.rng"
+       uri="releaseManagementDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:softwareDomain.rng:1.3"
+       uri="softwareDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:softwareDomain.rng"
+       uri="softwareDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:strictTaskbodyConstraintMod.rng:1.3"
+       uri="strictTaskbodyConstraintMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:strictTaskbodyConstraintMod.rng"
+       uri="strictTaskbodyConstraintMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:svgDomain.rng:1.3"
+       uri="svgDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:svgDomain.rng"
+       uri="svgDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:task.rng:1.3" uri="task.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:task.rng" uri="task.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:taskMod.rng:1.3"
+       uri="taskMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:taskMod.rng" uri="taskMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:taskreqDomain.rng:1.3"
+       uri="taskreqDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:taskreqDomain.rng"
+       uri="taskreqDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:topic.rng:1.3" uri="topic.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:topic.rng" uri="topic.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:troubleshooting.rng:1.3"
+       uri="troubleshooting.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:troubleshooting.rng"
+       uri="troubleshooting.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:troubleshootingMod.rng:1.3"
+       uri="troubleshootingMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:troubleshootingMod.rng"
+       uri="troubleshootingMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:uiDomain.rng:1.3"
+       uri="uiDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:uiDomain.rng"
+       uri="uiDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:xmlDomain.rng:1.3"
+       uri="xmlDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:xmlDomain.rng"
+       uri="xmlDomain.rng"/>
+</group>
+
+<group xml:base="bookmap/rng/">
+<!--DITA Book Map Shell-->
+
+  <!-- System ID (URL) catalog entries -->
+  <system systemId="urn:oasis:names:tc:dita:rng:bookmap.rng:1.3"
+          uri="bookmap.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:bookmap.rng"
+          uri="bookmap.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:bookmapMod.rng:1.3"
+          uri="bookmapMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:bookmapMod.rng"
+          uri="bookmapMod.rng"/>
+  <!-- Public ID (URN) catalog entries -->
+  <uri name="urn:oasis:names:tc:dita:rng:bookmap.rng:1.3"
+       uri="bookmap.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:bookmap.rng" uri="bookmap.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:bookmapMod.rng:1.3"
+       uri="bookmapMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:bookmapMod.rng"
+       uri="bookmapMod.rng"/>
+</group>
+
+<group xml:base="base/rng/">
+<!--DITA Base Map Shell-->
+
+  <!-- System ID (URL) catalog entries -->
+  <system systemId="urn:oasis:names:tc:dita:rng:basemap.rng:1.3"
+          uri="basemap.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:basemap.rng"
+          uri="basemap.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:basetopic.rng:1.3"
+          uri="basetopic.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:basetopic.rng"
+          uri="basetopic.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:commonElementsMod.rng:1.3"
+          uri="commonElementsMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:commonElementsMod.rng"
+          uri="commonElementsMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:delayResolutionDomain.rng:1.3"
+          uri="delayResolutionDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:delayResolutionDomain.rng"
+          uri="delayResolutionDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:deliveryTargetAttDomain.rng:1.3"
+          uri="deliveryTargetAttDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:deliveryTargetAttDomain.rng"
+          uri="deliveryTargetAttDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:ditavalrefDomain.rng:1.3"
+          uri="ditavalrefDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:ditavalrefDomain.rng"
+          uri="ditavalrefDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:hazardDomain.rng:1.3"
+          uri="hazardstatementDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:hazardDomain.rng"
+          uri="hazardstatementDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:highlightDomain.rng:1.3"
+          uri="highlightDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:highlightDomain.rng"
+          uri="highlightDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:indexingDomain.rng:1.3"
+          uri="indexingDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:indexingDomain.rng"
+          uri="indexingDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mapGroupMod.rng:1.3"
+          uri="mapGroupDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mapGroupMod.rng"
+          uri="mapGroupDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mapMod.rng:1.3"
+          uri="mapMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:mapMod.rng" uri="mapMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:metaDeclMod.rng:1.3"
+          uri="metaDeclMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:metaDeclMod.rng"
+          uri="metaDeclMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:tblDeclMod.rng:1.3"
+          uri="tblDeclMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:tblDeclMod.rng"
+          uri="tblDeclMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:topicMod.rng:1.3"
+          uri="topicMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:topicMod.rng"
+          uri="topicMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:utilitiesDomain.rng:1.3"
+          uri="utilitiesDomain.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:rng:utilitiesDomain.rng"
+          uri="utilitiesDomain.rng"/>
+
+  <!-- Public ID (URN) catalog entries -->
+  <uri name="urn:oasis:names:tc:dita:rng:basemap.rng:1.3"
+       uri="basemap.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:basemap.rng" uri="basemap.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:basetopic.rng:1.3"
+       uri="basetopic.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:basetopic.rng"
+       uri="basetopic.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:commonElementsMod.rng:1.3"
+       uri="commonElementsMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:commonElementsMod.rng"
+       uri="commonElementsMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:delayResolutionDomain.rng:1.3"
+       uri="delayResolutionDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:delayResolutionDomain.rng"
+       uri="delayResolutionDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:deliveryTargetAttDomain.rng:1.3"
+       uri="deliveryTargetAttDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:deliveryTargetAttDomain.rng"
+       uri="deliveryTargetAttDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:ditavalrefDomain.rng:1.3"
+       uri="ditavalrefDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:ditavalrefDomain.rng"
+       uri="ditavalrefDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:hazardDomain.rng:1.3"
+       uri="hazardstatementDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:hazardDomain.rng"
+       uri="hazardstatementDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:highlightDomain.rng:1.3"
+       uri="highlightDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:highlightDomain.rng"
+       uri="highlightDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:indexingDomain.rng:1.3"
+       uri="indexingDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:indexingDomain.rng"
+       uri="indexingDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:mapGroupMod.rng:1.3"
+       uri="mapGroupDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:mapGroupMod.rng"
+       uri="mapGroupDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:mapMod.rng:1.3" uri="mapMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:mapMod.rng" uri="mapMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:metaDeclMod.rng:1.3"
+       uri="metaDeclMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:metaDeclMod.rng"
+       uri="metaDeclMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:tblDeclMod.rng:1.3"
+       uri="tblDeclMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:tblDeclMod.rng"
+       uri="tblDeclMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:topicMod.rng:1.3"
+       uri="topicMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:topicMod.rng" uri="topicMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:utilitiesDomain.rng:1.3"
+       uri="utilitiesDomain.rng"/>
+  <uri name="urn:oasis:names:tc:dita:rng:utilitiesDomain.rng"
+       uri="utilitiesDomain.rng"/>
+</group>
+
+<group xml:base="subjectScheme/rng/">
+<!--DITA Subject Classification Domain-->
+
+  <!-- System ID (URL) catalog entries -->
+  <system systemId="urn:oasis:tc:tc:dita:spec:classification:rng:classifyDomain.rng:1.3"
+          uri="classifyDomain.rng"/>
+  <system systemId="urn:oasis:tc:tc:dita:spec:classification:rng:classifyDomain.rng"
+          uri="classifyDomain.rng"/>
+  <system systemId="urn:oasis:tc:tc:dita:spec:classification:rng:classifyMap.rng:1.3"
+          uri="classifyMap.rng"/>
+  <system systemId="urn:oasis:tc:tc:dita:spec:classification:rng:classifyMap.rng"
+          uri="classifyMap.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:spec:classification:rng:subjectScheme.rng:1.3"
+          uri="subjectScheme.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:spec:classification:rng:subjectScheme.rng"
+          uri="subjectScheme.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:spec:classification:rng:subjectSchemeMod.rng:1.3"
+          uri="subjectSchemeMod.rng"/>
+  <system systemId="urn:oasis:names:tc:dita:spec:classification:rng:subjectSchemeMod.rng"
+          uri="subjectSchemeMod.rng"/>
+
+  <!-- Public ID (URN) catalog entries -->
+  <uri name="urn:oasis:tc:tc:dita:spec:classification:rng:classifyDomain.rng:1.3"
+       uri="classifyDomain.rng"/>
+  <uri name="urn:oasis:tc:tc:dita:spec:classification:rng:classifyDomain.rng"
+       uri="classifyDomain.rng"/>
+  <uri name="urn:oasis:tc:tc:dita:spec:classification:rng:classifyMap.rng:1.3"
+       uri="classifyMap.rng"/>
+  <uri name="urn:oasis:tc:tc:dita:spec:classification:rng:classifyMap.rng"
+       uri="classifyMap.rng"/>
+  <uri name="urn:oasis:names:tc:dita:spec:classification:rng:subjectScheme.rng:1.3"
+       uri="subjectScheme.rng"/>
+  <uri name="urn:oasis:names:tc:dita:spec:classification:rng:subjectScheme.rng"
+       uri="subjectScheme.rng"/>
+  <uri name="urn:oasis:names:tc:dita:spec:classification:rng:subjectSchemeMod.rng:1.3"
+       uri="subjectSchemeMod.rng"/>
+  <uri name="urn:oasis:names:tc:dita:spec:classification:rng:subjectSchemeMod.rng"
+       uri="subjectSchemeMod.rng"/>
+</group>
+
+</catalog>
+

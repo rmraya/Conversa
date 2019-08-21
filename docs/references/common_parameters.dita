@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="commonParameters">
+  <title>Common Parameters</title>
+  <shortdesc></shortdesc>
+  <refbody>
+    <section>
+      <p>The parameters described below apply to all XSL styleheets used by Conversa.</p>
+    </section>   
+    <simpletable relcolwidth="1* 1* 2*">
+        <sthead>
+          <stentry>Parameter</stentry>
+
+          <stentry>Value</stentry>
+
+          <stentry>Description</stentry>
+        </sthead>
+
+        <strow>
+          <stentry
+          id="appendix-number-format"><tt>appendix-number-format</tt><indexterm>appendix-number-format,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'I'</tt>, <tt>'i'</tt>,
+          <tt>'A'</tt>, <tt>'a'</tt>, <tt>'1'</tt>.</p><p>Default value:
+          <tt>'A'</tt>.</p></stentry>
+
+          <stentry><p>The number format of topics referenced in a bookmap as
+          <tt>appendix</tt>. By default, such topics are numbered as follows:
+          <b>Appendix A.</b> <i>Title of first appendix</i>, <b>Appendix
+          B.</b> <i>Title of second appendix</i>, etc.</p></stentry>
+        </strow>
+
+      <strow>
+        <stentry
+          id="cause-number-format"><tt>cause-number-format</tt><indexterm>cause-number-format,
+            parameter</indexterm></stentry>
+        
+        <stentry><p>Allowed values are: <tt>'I'</tt>, <tt>'i'</tt>,
+          <tt>'A'</tt>, <tt>'a'</tt>, <tt>'1'</tt>.</p><p>Default value:
+            <tt>'A'</tt>.</p></stentry>
+        
+        <stentry><p>In a <xmlelement>troubleshooting</xmlelement> topic,
+          multiple <xmlelement>remedy</xmlelement> elements having no title
+          are given numbers formatted using this format.</p></stentry>
+      </strow>
+      
+        <strow>
+          <stentry id="center"><tt>center</tt><indexterm>center,
+          parameter</indexterm></stentry>
+
+          <stentry><p>List of element names separated by
+          whitespace.</p><p>Example: <tt>'fig simpletable
+          table'</tt>.</p><p>Default value: <tt>''</tt>.</p></stentry>
+
+          <stentry><p>Specifies which elements are to be centered horizontally
+          on the page.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="extended-toc"><tt>extended-toc</tt><indexterm>extended-toc,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'frontmatter'</tt>,
+          <tt>'backmatter'</tt>, <tt>'both'</tt>,
+          <tt>'none'</tt>.</p><p>Default value: <tt>'none'</tt>.</p></stentry>
+
+          <stentry><p>Allows to add <tt>frontmatter</tt> and
+          <tt>backmatter</tt> <tt>topicref</tt>s to the <b>Table of
+          Contents</b> (TOC) of a document.</p><p>Note that the <tt>toc</tt>,
+          <tt>navtitle</tt>, <tt>locktitle</tt>, etc, attributes are applied
+          normally to <tt>frontmatter</tt> and <tt>backmatter</tt>
+          <tt>topicref</tt>s when an extended TOC is generated.</p></stentry>
+        </strow>
+
+      <strow>
+        <stentry
+          id="equation-number-after"><tt>equation-number-after</tt><indexterm>equation-number-after,
+            parameter</indexterm></stentry>
+        
+        <stentry><p>String.</p><p>Default value: <tt>')'</tt>.</p></stentry>
+        
+        <stentry><p>Text added after the contents of a
+          <xmlelement>equation-number</xmlelement> element.</p></stentry>
+      </strow>
+      
+      <strow>
+        <stentry
+          id="equation-number-before"><tt>equation-number-before</tt><indexterm>equation-number-before,
+            parameter</indexterm></stentry>
+        
+        <stentry><p>String.</p><p>Default value: <tt>'('</tt>.</p></stentry>
+        
+        <stentry><p>Text added before the contents of a
+          <xmlelement>equation-number</xmlelement> element.</p></stentry>
+      </strow>
+      
+        <strow>
+          <stentry
+          id="external-resource-base"><tt>external-resource-base</tt><indexterm>external-resource-base,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>''</tt>, an URL ending with
+          "<tt>/</tt>" or <tt>'#REMOVE'</tt>.</p><p>Default value:
+          <tt>'#REMOVE'</tt> for EPUB 2<indexterm>EPUB 2, output
+          format</indexterm> and EPUB 3<indexterm>EPUB 3, output
+          format</indexterm>, <tt>''</tt> for all the other output
+          formats.</p></stentry>
+
+          <stentry><p>Specifies how to resolve <tt>xref</tt> or <tt>link</tt>
+          elements having an <i>external</i> <tt>scope</tt> attribute and a
+          <i>relative</i> <tt>href</tt> attribute. Example of such
+          <tt>xref</tt> elements: <tt>&lt;xref scope="external" format="java"
+          href="src/Test.java"&gt;Test.java&lt;/xref&gt;</tt>.</p><dl
+              compact="yes">
+              <dlentry>
+                <dt><tt>''</tt></dt>
+
+                <dd>Do not resolve the <tt>href</tt> attribute. In this case,
+                the external resource files are expected to be copied
+                &#8220;by hand&#8221; to the output directory.</dd>
+              </dlentry>
+
+              <dlentry>
+                <dt>An URL ending with "<tt>/</tt>"</dt>
+
+                <dd>This URL is prepended to the value of the <tt>href</tt>
+                attribute.</dd>
+              </dlentry>
+
+              <dlentry>
+                <dt><tt>'#REMOVE'</tt></dt>
+
+                <dd>The <tt>xref</tt> or <tt>link</tt> element is processed as
+                if it did not have an <tt>href</tt> attribute.</dd>
+              </dlentry>
+            </dl></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="highlight-source"><tt>highlight-source</tt><indexterm>highlight-source,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+          <tt>'no'</tt>.</p><p>Default value: <tt>'yes'</tt>.</p></stentry>
+
+          <stentry><p>Allows to turn off syntax highlighting in elements
+          specializing <tt>pre</tt>.<indexterm>syntax
+          highlighting</indexterm></p><p>By default, syntax highlighting is
+          turned on for all elements specializing <tt>pre</tt> and having an
+          <tt>outputclass</tt> attribute equals to <tt>language-c</tt>,
+          <tt>language-cpp</tt>, <tt>language-csharp</tt>,
+          <tt>language-delphi</tt>, <tt>language-ini</tt>,
+          <tt>language-java</tt>, language-javascript, <tt>language-m2</tt>,
+          <tt>language-perl</tt>, <tt>language-php</tt>,
+          <tt>language-python</tt>, <tt>language-ruby</tt>,
+          <tt>language-tcl</tt>.<indexterm>outputclass,
+          attribute</indexterm></p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="index-range-separator"><tt>index-range-separator</tt><indexterm>index-range-separator,
+          parameter</indexterm></stentry>
+
+          <stentry><p>String.</p><p>Default value: <tt>'&amp;#x2013;'</tt> (EN
+          DASH).</p></stentry>
+
+          <stentry><p>The string used to separate the first page number from
+          the last page number in a page range of an indexed term. Example:
+          <tt>index-range-separator='&lt;--&gt;'</tt>:</p><pre><b>C</b>
+Cat 54, 87&lt;--&gt;90</pre></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="link-auto-text"><tt>link-auto-text</tt><indexterm>link-auto-text,
+          parameter</indexterm></stentry>
+
+          <stentry><p>List of values separated by whitespace. Allowed values
+          are: <tt>'number'</tt> and <tt>'text'</tt>.</p><p>Default value:
+          <tt>'number text'</tt>.</p></stentry>
+
+          <stentry><p>This parameter specifies which text to generate for a
+          <tt>link</tt> element, when this <tt>link</tt> element has no
+          <tt>linktext</tt> child element or when this <tt>linktext</tt> child
+          element is empty.</p><p>Similar to above parameter <xref
+            href="#commonParameters/xref-auto-text">xref-auto-text</xref> but for
+          <tt>link</tt> elements.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="note-icon-list"><tt>note-icon-list</tt><indexterm>note-icon-list,
+          parameter</indexterm></stentry>
+
+          <stentry><p>List of <tt>type</tt> attribute values separated by
+          whitespace.</p><p>Default value: <tt>'attention caution danger
+          fastpath important note notes remember restriction
+          tip'</tt>.</p></stentry>
+
+          <stentry><p>Specifies the type (attribute <tt>type</tt>) of the
+          <tt>note</tt> elements for which icons should be used rather than
+          text in order to represent note labels.</p><p>Ignored unless
+          <tt>use-note-icon='yes'</tt>.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry id="number"><tt>number</tt><indexterm>number,
+          parameter</indexterm></stentry>
+
+          <stentry><p>List of values separated by whitespace. Allowed values
+          are: <tt>'topic'</tt>, <tt>'chapter-only'</tt>, <tt>'table'</tt>,
+          <tt>'fig'</tt>, <tt>'example'</tt>, <tt>'all'</tt>.</p><p>Default
+          value: <tt>''</tt> (number nothing).</p></stentry>
+
+          <stentry><p>Specifies which elements are to be numbered.
+          </p><p><tt>'all'</tt> is a short form for <tt>'topic table
+          fig'</tt>.</p><p><tt>'chapter-only'</tt> means: number topics, but
+          only those referenced in a bookmap as <tt>part</tt>,
+          <tt>chapter</tt> and <tt>appendix</tt>.</p><note type="note">Please
+          note that <tt>'all'</tt> does not include <tt>'example'</tt>. If you
+          want to number all formal elements including examples, then you must
+          specify <tt>'all example'</tt>.</note></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="number-separator1"><tt>number-separator1</tt><indexterm>number-separator1,
+          parameter</indexterm></stentry>
+
+          <stentry><p>String.</p><p>Default value: <tt>'.'</tt>.</p></stentry>
+
+          <stentry><p>The string used to separate the hierarchical number of
+          topics acting as sections.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="number-separator2"><tt>number-separator2</tt><indexterm>number-separator2,
+          parameter</indexterm></stentry>
+
+          <stentry><p>String.</p><p>Default value: <tt>'-'</tt>.</p></stentry>
+
+          <stentry><p>The string used to separate the hierarchical number of
+          figures, tables and examples.</p><p>When possible, the number of
+          figure, table or example is made relative to the number of the
+          ancestor chapter or appendix. This gives for example (for
+          descendants of chapter 5): <b>Figure 5-1.</b> <i>Title of first
+          figure of chapter 5</i>, <b>Figure 5-2.</b> <i>Title of second
+          figure of chapter 5</i>, etc.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="mark-important-steps"><tt>mark-important-steps</tt><indexterm>mark-important-steps,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+          <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+
+          <stentry>Generates a "Required" (respectively "Optional") label for
+          <tt>step</tt> and <tt>substep</tt> elements having an
+          <tt>importance</tt> attribute set to "<tt>required</tt>" (resp.
+          "<tt>optional</tt>").</stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="part-number-format"><tt>part-number-format</tt><indexterm>part-number-format,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'I'</tt>, <tt>'i'</tt>,
+          <tt>'A'</tt>, <tt>'a'</tt>, <tt>'1'</tt>.</p><p>Default value:
+          <tt>'I'</tt>.</p></stentry>
+
+          <stentry><p>The number format of topics referenced in a bookmap as
+          <tt>part</tt>. By default, such topics are numbered as follows:
+          <b>Part I.</b> <i>Title of first part</i>, <b>Part II.</b> <i>Title
+          of second part</i>, etc.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+            id="prepend-chapter-to-section-number"><tt>prepend-chapter-to-&#x200B;section-number</tt><indexterm>prepend-chapter-to-&#x200B;section-number,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+          <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+
+          <stentry><p>Normally topics which are descendants of chapters (that
+          is, topics referenced in a bookmap as <tt>chapter</tt>) are numbered
+          as follows: <b>1.</b> <i>Title of first section</i>, <b>1.1.</b>
+          <i>Title of first subsection</i>, etc.</p><p>Specifying
+          <tt>prepend-chapter-to-section-number='yes'</tt> prepends the number
+          of the chapter ancestor to the section number. This gives for
+          example (for descendants of chapter 5): <b>5.1.</b> <i>Title of
+          first section</i>, <b>5.1.1.</b> <i>Title of first subsection</i>,
+          etc.</p></stentry>
+        </strow>
+
+      <strow>
+        <stentry
+          id="remedy-number-format"><tt>remedy-number-format</tt><indexterm>remedy-number-format,
+            parameter</indexterm></stentry>
+        
+        <stentry><p>Allowed values are: <tt>'I'</tt>, <tt>'i'</tt>,
+          <tt>'A'</tt>, <tt>'a'</tt>, <tt>'1'</tt>.</p><p>Default value:
+            <tt>'A'</tt>.</p></stentry>
+        
+        <stentry><p>In a <xmlelement>troubleshooting</xmlelement> topic,
+          multiple <xmlelement>remedy</xmlelement> elements having no title
+          are given numbers formatted using this format.</p></stentry>
+      </strow>
+      
+        <strow>
+          <stentry
+          id="show-draft-comments"><tt>show-draft-comments</tt><indexterm>show-draft-comments,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+          <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+
+          <stentry><p>Specifies whether <tt>draft-comments</tt> elements
+          should be rendered.</p></stentry>
+        </strow>
+
+      <strow>
+        <stentry
+          id="troubleSolution-number-format"><tt>troubleSolution-number-format</tt><indexterm>troubleSolution-number-format,
+            parameter</indexterm></stentry>
+        
+        <stentry><p>Allowed values are: <tt>'I'</tt>, <tt>'i'</tt>,
+          <tt>'A'</tt>, <tt>'a'</tt>, <tt>'1'</tt>.</p><p>Default value:
+            <tt>'1'</tt>.</p></stentry>
+        
+        <stentry><p>In a <xmlelement>troubleshooting</xmlelement> topic,
+          multiple <xmlelement>troubleSolution</xmlelement> elements having no
+          title are given numbers formatted using this format. </p></stentry>
+      </strow>
+      
+        <strow>
+          <stentry
+          id="text-file-encoding"><tt>text-file-encoding</tt><indexterm>text-file-encoding,
+          parameter</indexterm></stentry>
+
+          <stentry><p>An encoding name such as UTF-8 or
+          ISO-8859-1.</p><p>Default value: <tt>''</tt>.</p></stentry>
+
+          <stentry><p>Encoding of the text file referenced by
+          <tt>coderef</tt>/<tt>@href</tt>. An empty string means: to be
+          determined automatically.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="title-after"><tt>title-after</tt><indexterm>title-after,
+          parameter</indexterm></stentry>
+
+          <stentry><p>List of element names separated by
+          whitespace.</p><p>Example: <tt>'fig table'</tt>.</p><p>Default
+          value: <tt>''</tt>.</p></stentry>
+
+          <stentry><p>Specifies which elements should have their titles
+          displayed after their bodies.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry id="title-page"><tt>title-page</tt><indexterm>title-page,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'auto'</tt>, <tt>'none'</tt> or
+          the URI of a custom title page.</p><p>Default value:
+          <tt>'auto'</tt>.</p></stentry>
+
+          <stentry><p>Specifies the kind of ``title page'' (contains the title
+          of the document, its author, etc) to be generated before the actual
+          contents of the document.</p><dl>
+              <dlentry>
+                <dt><tt>'auto'</tt></dt>
+
+                <dd>Automatically generate a title page based on the title and
+                metadata of the map.</dd>
+              </dlentry>
+
+              <dlentry>
+                <dt><tt>'none'</tt></dt>
+
+                <dd>Do not generate a title page.</dd>
+              </dlentry>
+
+              <dlentry>
+                <dt><i>URI of a custom title page</i></dt>
+
+                <dd>Specifies the URI of a custom title page. If the URI is
+                relative, it is relative to the current working directory of
+                the user.<p>This custom title page is an XHTML file for
+                XHTML-based formats (XHTML, HTML Help, etc). This custom title
+                page is an XSL-FO file for FO-based formats (PDF, RTF, etc).
+                Such custom title pages are generally hand-written.</p><ul>
+                    <li>The child nodes of the <tt>body</tt> element of the
+                    custom XHTML title page are wrapped in a <tt>div</tt>
+                    contained in the XHTML/HTML file being generated by the
+                    XSLT stylesheet.<p>Do not add a <tt>&lt;!DOCTYPE&gt;</tt>
+                    to such custom XHTML title page because otherwise, the
+                    XSLT stylesheet may fail loading it.</p><p>See <filepath>docs/samples/titlepage.xhtml</filepath> sample custom XHTML title
+                    page.</p></li>
+
+                    <li>The child nodes of the first
+                    <tt>fo:flow[@flow-name='xsl-region-body']</tt> element of
+                    the custom XSL-FO title page are wrapped in a
+                    <tt>fo:block</tt> contained the XSL-FO file being
+                      generated by the XSLT stylesheet.<p>See <filepath>docs/samples/titlepage.fo</filepath> sample custom
+                    XSL-FO title page.</p></li>
+                  </ul></dd>
+              </dlentry>
+            </dl></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="title-prefix-separator1"><tt>title-prefix-separator1</tt><indexterm>title-prefix-separator1,
+          parameter</indexterm></stentry>
+
+          <stentry><p>String.</p><p>Default value: <tt>'.
+          '</tt>.</p></stentry>
+
+          <stentry><p>The string used to separate the number of an formal
+          object from its title.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="use-note-icon"><tt>use-note-icon</tt><indexterm>use-note-icon,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+          <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+
+          <stentry><p>Specifies whether icons should be used rather than text
+          in order to represent the label of a <tt>note</tt>
+          element.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="watermark-image"><tt>watermark-image</tt><indexterm>watermark-image,
+          parameter</indexterm></stentry>
+
+          <stentry><p>URI. If the URI is relative, it is relative to the
+          current working directory of the user.</p><p>No default
+          value.</p></stentry>
+
+          <stentry><p>Specifies an image file which is to be used as a
+          watermark in all the pages comprising the output document. See also
+          parameter <xref
+            href="fo_parameters.dita#foparameters/watermark"><tt>watermark</tt></xref>.</p><p>If you
+          need this feature when generating RTF, DOCX or ODT, please make sure to use
+          <xref format="html" href="http://www.xmlmind.com/foconverter/"
+          scope="external">XMLmind XSL-FO Converter</xref>
+          v5.3+<indexterm>XFC, XSL-FO processor</indexterm>.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="xref-auto-text"><tt>xref-auto-text</tt><indexterm>xref-auto-text,
+          parameter</indexterm></stentry>
+
+          <stentry><p>List of values separated by whitespace. Allowed values
+          are: <tt>'number'</tt> and <tt>'text'</tt>.</p><p>Default value:
+          <tt>'number'</tt>.</p></stentry>
+
+          <stentry><p>This parameter specifies which text to generate for an
+          <tt>xref</tt> element, when this <tt>xref</tt> element contains no
+          text at all<fn>This implies that the <tt>xref-auto-text</tt>
+          parameter is ignored when an <tt>xref</tt> element contains some
+          text.</fn>.</p><p>Let's suppose that an <tt>xref</tt> element
+          containing no text at all points to a topic titled
+          "<tt>Installation</tt>".</p><p>Because the <tt>xref</tt> element
+          points to an element having a <tt>title</tt> child element, ditac
+          may use this title as a starting point for the generated
+          text.</p><p>Now let's suppose that topics are numbered and that the
+          number of the "<tt>Installation</tt>" topic is "<tt>Chapter
+          5</tt>".</p><p>The text generated for this <tt>xref</tt> element is
+          thus:</p><dl>
+              <dlentry>
+                <dt>If <tt>xref-auto-text='number'</tt></dt>
+
+                <dd><tt>Chapter 5</tt></dd>
+              </dlentry>
+
+              <dlentry>
+                <dt>If <tt>xref-auto-text='text'</tt></dt>
+
+                <dd><tt>Installation</tt></dd>
+              </dlentry>
+
+              <dlentry>
+                <dt>If <tt>xref-auto-text='number text'</tt></dt>
+
+                <dd><tt>Chapter 5. Installation</tt></dd>
+              </dlentry>
+            </dl><p>Note that this specification is just a hint because ditac
+          needs anyway to generate some text. For example, if topics are not
+          numbered and <tt>xref-auto-text='number'</tt>, the generated text
+          will be "<tt>Installation</tt>".</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry id="xsl-resources-directory"><image alt="Pseudo parameter"
+          href="../images/pseudoParam.png"/><tt>xsl-resources-&#x200B;directory</tt><indexterm>xsl-resources-directory,
+          parameter</indexterm></stentry>
+
+          <stentry><p>URL. A relative URL is relative to the output
+          directory.</p><p>Default value: <tt>'resources/'</tt> resolved
+          against the directory which contains the XSLT
+          stylesheets.</p></stentry>
+
+          <stentry><p>Most XSLT stylesheets generate files which reference
+          resources such as icons or CSS stylesheets. This parameter specifies
+          the target directory which is to contain such resources.</p><p>If
+          this directory does not exist, it is automatically created.</p><p>If
+          this directory does not already contain the resources needed by the
+          XSLT stylesheets, such resources are automatically copied to this
+          directory.</p><p>The default value of this parameter is something
+          like <filepath>file:/opt/ditac/xsl/xhtml/resources/</filepath> for
+          the stylesheets generating XHTML. URL
+          <filepath>file:/opt/ditac/xsl/xhtml/resources/</filepath> specifies
+          an existing directory containing <filepath>basic.css</filepath>,
+          <filepath>note.png</filepath>, <filepath>important.png</filepath>,
+          etc. This means that by default, no directory is created and no
+          resource is copied.</p><p>If the value of this parameter is an
+          absolute URI, then ditac assumes that no resource directory is to be
+          created and no resource is to be copied because this has already
+          been done by the user.</p><note type="important"><ul>
+              <li>Explicitly specifying something like
+              <tt>xsl-resources-directory='res'</tt> is almost <i>always
+              required</i> when generating files having an XHTML/HTML based
+              format (XHTML, HTML Help, etc).</li>
+
+              <li>Explicitly specifying something like
+              <tt>xsl-resources-directory='res'</tt> is almost <i>never
+              required</i> when generating files converted from XSL-FO (PDF,
+              RTF, etc).</li>
+            </ul></note></stentry>
+        </strow>
+      </simpletable>
+  </refbody>
+</reference>

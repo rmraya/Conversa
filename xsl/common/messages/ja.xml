@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages xml:lang="ja-JP">
+  <!-- Troubleshooting -->
+  <message name="condition">現象</message>
+  <message name="troubleSolution">解決方法</message>
+  <message name="cause">原因</message>
+  <message name="remedy">対処法</message>
+  <message name="responsibleParty">担当者</message>
+
+  <!-- Task requirements -->
+  <message name="prelreqs">開始要件</message>
+  <message name="closereqs">終了要件</message>
+  <message name="reqconds">条件</message>
+  <message name="reqpers">人員</message>
+  <message name="supequip">サポート機器</message>
+  <message name="supplies">消耗品</message>
+  <message name="spares">予備部品</message>
+  <message name="safety">安全条件</message>
+  <message name="personnel">人数</message>
+  <message name="perscat">カテゴリ</message>
+  <message name="perskill">技術レベル</message>
+  <message name="esttime">予定時間</message>
+  <message name="noconds">なし。</message>
+  <message name="nosupeq">なし。</message>
+  <message name="nosupply">なし。</message>
+  <message name="nospares">なし。</message>
+  <message name="nosafety">なし。</message>
+
+  <!-- Task sections -->
+  <message name="prereq">事前条件</message>
+  <message name="context">この手順について</message>
+  <message name="steps">操作手順</message>
+  <message name="result">結果</message>
+  <message name="postreq">次に実施すること</message>
+  <message name="optional">オプション</message>
+  <message name="required">必須</message>
+
+  <!-- Choicetable default header -->
+  <message name="option">オプション</message>
+  <message name="description">説明</message>
+
+  <!-- Title of a related-links section -->
+  <message name="relatedLinks">関連リンク</message>
+  <message name="relatedConcepts">関連コンセプト</message>
+  <message name="relatedTasks">関連タスク</message>
+  <message name="relatedReference">関連リファレンス</message>
+
+  <!-- Formal objects -->
+  <message name="figure">図</message>
+  <message name="table">表</message>
+  <message name="example">例</message>
+  <message name="equation">式</message>
+
+  <!-- Note labels -->
+  <message name="note">注</message>
+  <message name="tip">ヒント</message>
+  <message name="fastpath">便利な方法</message>
+  <message name="important">重要</message>
+  <message name="attention">注意事項</message>
+  <message name="caution">注意</message>
+  <message name="danger">危険</message>
+  <message name="remember">留意事項</message>
+  <message name="restriction">制限事項</message>
+  <message name="notice">注意</message>
+  <message name="warning">警告</message>
+  <message name="trouble">トラブルシューティング</message>
+
+  <!-- Glossary labels -->
+  <message name="abbreviation">略語</message>
+  <message name="acronym">頭字語</message>
+  <message name="shortForm">短縮形</message>
+  <message name="synonym">類義語</message>
+  <message name="alternateFor">代替語</message>
+
+  <!-- Navigation icons -->
+  <message name="firstPage">先頭ページ</message>
+  <message name="previousPage">前ページ</message>
+  <message name="nextPage">次ページ</message>
+  <message name="lastPage">最終ページ</message>
+  <message name="previousTopic">前トピック</message>
+  <message name="parentTopic">親トピック</message>
+  <message name="childTopic">子トピック</message>
+  <message name="nextTopic">次トピック</message>
+  <message name="siblingTopic">兄弟トピック</message>
+  <message name="childTopics">子トピック</message>
+
+  <message name="newWindow">新しいウィンドウを開く</message>
+
+  <!-- Document sections -->
+  <message name="cover">表紙</message>
+  <message name="titlePage">タイトルページ</message>
+  <message name="toc">目次</message>
+  <message name="figurelist">図目次</message>
+  <message name="tablelist">表目次</message>
+  <message name="examplelist">例目次</message>
+  <message name="equationlist">式目次</message>
+  <message name="abbrevlist">略語一覧</message>
+  <message name="trademarklist">商標一覧</message>
+  <message name="bibliolist">参考文献</message>
+  <message name="glossarylist">用語集</message>
+  <message name="indexlist">索引</message>
+  <message name="notices">ご注意</message>
+  <message name="dedication">謝辞</message>
+  <message name="colophon">奥付</message>
+  <message name="bookabstract">摘要</message>
+  <message name="draftintro">草稿について</message>
+  <message name="preface">はじめに</message>
+  <message name="part">第%{N}編</message>
+  <message name="chapter">第%{N}章</message>
+  <message name="appendices">付録</message>
+  <message name="appendix">付録</message>
+  <message name="amendments">改訂履歴</message>
+  <message name="section"></message>
+
+  <!-- Index -->
+  <message name="backToTop">Back to the top of this page</message>
+  <message name="symbols">記号・数字</message>
+  <message name="see">参照：</message>
+  <message name="seeAlso">その他参照：</message>
+
+  <!-- Punctuation -->
+  <message name="openQuote">「</message>
+  <message name="closeQuote">」</message>
+  <message name="colonSeparator">: </message>
+  <message name="semiColonSeparator">; </message>
+  <message name="commaSeparator">、</message>
+  <message name="periodSeparator">。</message>
+
+  <!-- XRefs -->
+  <message name="page-ref-before">（</message>
+  <message name="page-ref-after">ページ）</message>
+
+    <!-- NEC Add -->
+   <message name="cite.before">『</message>
+   <message name="cite.after">』</message>
+   <message name="term.before">「</message>
+   <message name="term.after">」</message>
+   <message name="uicontrol.before">[</message>
+   <message name="uicontrol.after">]</message>
+
+</messages>
+

@@ -1,0 +1,167 @@
+XSLT syntax highlighting 2.1.3
+------------------------------
+
+This is an implementation of syntax highlighting as an extension module for
+XSLT processors (Xalan, Saxon), so if you have e.g. article about programming
+written in DocBook, code examples can be automatically syntax highlighted
+during the XSLT processing phase.
+
+See:
+
+* https://sourceforge.net/projects/xslthl/
+
+* https://sourceforge.net/p/xslthl/wiki/Home/
+
+* https://sourceforge.net/p/xslthl/code/HEAD/tree/tags/v2_1_3/
+
+
+
+-----------------------
+Changes made by XMLmind
+-----------------------
+
+* Added src/net/sf/xslthl/ConnectorSaxonHE.java (Saxon 9.7+ Home Edition).
+
+* Commented out src/net/sf/xslthl/ConnectorSaxonB.java (obsolete),
+ConnectorSaxonEE.java (commerical product).
+
+* In src/net/sf/xslthl/Config.java, made the following change:
+
+------------------------------------------------------------------------------
+$ diff -u Config.java.ORI Config.java
+
+--- Config.java.ORI	2017-07-07 15:00:09.429802068 +0200
++++ Config.java	2017-07-07 15:26:05.088000540 +0200
+@@ -408,11 +408,26 @@
+ 			// Find the configuration filename
+ 			if (configFilename == null || "".equals(configFilename)) {
+ 				logger.config("No config file specified, falling back to default behavior");
+-				if (System.getProperty(CONFIG_PROPERTY) != null) {
+-					configFilename = System.getProperty(CONFIG_PROPERTY);
+-				} else {
+-					configFilename = "xslthl-config.xml";
+-				}
++                                configFilename = System.getProperty(CONFIG_PROPERTY);
++                                if (configFilename == null || configFilename.length() == 0) {
++                                    configFilename = null;
++
++                                    File configFile = new File("xslthl-config.xml");
++                                    if (configFile.isFile()) {
++                                        configFilename = configFile.toURI().toASCIIString();
++                                    }
++
++                                    if (configFilename == null) {
++                                        URL configURL = Config.class.getResource(
++                                            "/highlighters/xslthl-config.xml");
++                                        if (configURL != null) {
++                                            configFilename = configURL.toExternalForm();
++                                        }
++                                    }
++                                }
++                                if (configFilename == null) {
++                                    configFilename = "xslthl-config.xml";
++                                }
+ 			}
+ 
+ 			logger.info(String.format("Loading Xslthl configuration from %s",
+------------------------------------------------------------------------------
+
+This change allows to build a self-contained xslthl.jar, containing folder
+highlighters/.
+
+* In src/net/sf/xslthl/Version.java, made the following change:
+
+------------------------------------------------------------------------------
+$ diff -u Version.java.ORI Version.java
+
+--- Version.java.ORI	2017-07-07 15:31:09.574739428 +0200
++++ Version.java	2017-07-07 15:31:39.955413528 +0200
+@@ -25,12 +25,6 @@
+  */
+ package net.sf.xslthl;
+ 
+-import java.io.IOException;
+-import java.io.InputStream;
+-import java.util.Properties;
+-import java.util.logging.Level;
+-import java.util.logging.Logger;
+-
+ /**
+  * Version information for xslthl
+  */
+@@ -39,37 +33,6 @@
+ 	 * @return the version string
+ 	 */
+ 	public static String getVersion() {
+-		return VersionInternal.versionString;
+-	}
+-
+-	/**
+-	 * Internal class responsible for loading
+-	 */
+-	private static class VersionInternal {
+-		private static Logger LOG = Logger.getLogger("net.sf.xslthl");
+-
+-		private static String versionString = "undefined";
+-
+-		static {
+-			Properties prop = new Properties();
+-			InputStream is = VersionInternal.class
+-			        .getResourceAsStream("META-INF/maven/net.sf.xslthl/xslthl/pom.properties");
+-			if (is != null) {
+-				try {
+-					prop.load(is);
+-					versionString = prop.getProperty("version", versionString);
+-
+-				} catch (Exception e) {
+-					LOG.log(Level.WARNING,
+-					        "Unable to get version information. "
+-					                + e.getMessage(), e);
+-				} finally {
+-					try {
+-						is.close();
+-					} catch (IOException e) {
+-					}
+-				}
+-			}
+-		}
++		return "2.1.3_01";
+ 	}
+ }
+------------------------------------------------------------------------------
+
+* In src/net/sf/xslthl/CharIter.java, made the following change:
+
+------------------------------------------------------------------------------
+$ diff -u CharIter.java.ORI CharIter.java
+
+--- CharIter.java.ORI   2017-07-07 15:00:09.429802068 +0200
++++ CharIter.java       2017-07-07 15:15:29.862615293 +0200
+@@ -148,7 +148,10 @@
+         * @return the current character
+         */
+        public Character current() {
+-               return buffer.charAt(position);
++            if (position < length) {
++                return buffer.charAt(position);
++            }
++            return null;
+        }
+ 
+        /**
+------------------------------------------------------------------------------
+
+Without this change, XMLHighlighter.highlight raised a 
+StringIndexOutOfBoundsException when the XML text to be highlighted 
+contained nested elements like for example in:
+
+---
+<pre>&lt;db:xref <i>linkend='foo'</i>/&gt;</pre>
+---
+
+In the above example, the text to be highlighted is basically
+"<db:xref linkend='foo'/>". However, this text also contains 
+a <i> nested element, which triggered the bug.
+
+If you are interesting in getting the source code of these changes, 
+please send an email to hussein AT xmlmind DOT com.

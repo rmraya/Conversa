@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="Untitled14">
+ <title>Useful Tips</title>
+ <conbody>
+  <section>
+   <title>Adding Bookmarks to PDF</title>
+   <p>Set the <tt><xref href="../references/fo_parameters.dita#foparameters/pdf-outline"
+     >pdf-outline</xref></tt> parameter to <tt>yes</tt> in the <uicontrol>XSL-FO</uicontrol> section of
+    the <uicontrol>XSL Parameters</uicontrol> tab of the <uicontrol>Preferences</uicontrol> dialog
+    to add bookmarks in PDF output.</p>
+  </section>
+  <section>
+   <title>Paper Size</title>
+   <p>Default paper size for PDF, RTF, DOCX and ODT is 'A4'. Paper size used in formats that depend 
+    on XSL-FO is controlled by the <tt><xref href="../references/fo_parameters.dita#foparameters/paper-type"
+     >paper-type</xref></tt> parameter in the stylesheet for XSL-FO.</p>
+  </section>
+  <section>
+   <title>Eclipse Help for Multiple Plugins</title>
+   <p>XSL settings can only contain the information of one plugin at a time. Save your current set of 
+    XSL parameters using the <uicontrol>Export XSL Parameters</uicontrol> option of the 
+    <uicontrol>XSL Parameters</uicontrol> tab of the <uicontrol>Preferences</uicontrol> dialog after 
+    configuring each plugin and load those settings using the <uicontrol>Import XSL Parameters</uicontrol> 
+    button before publishing the corresponding Eclipse help. </p>
+  </section>
+ </conbody>
+</concept>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="Untitled2">
+ <title>External Tools</title>
+ <conbody>
+  <section>
+   <title>Default XSL-FO Processor for PDF</title>
+   <p>Conversa generates XSL-FO files that can be converted to PDF format using the following XSL
+    transformation engines:</p>
+   <ul>
+    <li>Built-in Apache FOP 2.3</li>
+    <li>External Apache FOP</li>
+    <li>Antenna House XSL Formatter</li>
+    <li>RenderX XEP </li>
+   </ul>
+   <p>Use the <uicontrol>External Tools</uicontrol> tab of the <uicontrol>Preferences</uicontrol>
+    dialog to configure the default XSLT engine.</p>
+   <image href="../images/third_party.png" align="center" otherprops="html">
+    <alt>Preferences dialog showing the <uicontrol>External Tools</uicontrol> tab</alt>
+   </image>
+   <image href="../images/third_party.png" align="center" otherprops="pdf" scale="50"/>
+  </section>
+  
+  <section>
+   <title>External Tools</title>
+   <p>If you want to generate PDF using XSLT engines other than the built-in Apache FOP, you must
+    indicate the paths to the  XSLT engine executables in the corresponding text boxes. Use the
+    apropriate <uicontrol>Browse...</uicontrol> button to locate the executables in the file
+    system.</p>
+   <p>XMLmind XSL-FO converter is required to generate RTF, DOCX or ODT files from a DITA map. Enter
+    the location of <filepath>fo2rtf.bat</filepath> (Windows) or <filepath>fo2rtf</filepath> (Mac OS
+    X or Linux) in the <uicontrol>XMLmind XSL-FO Converter</uicontrol> text box or use the
+    corresponding <uicontrol>Browse...</uicontrol> button to locate the program in the file system. </p>
+   <p>Microsoft Help Compiler is required to generate Html Help (Windows help) using conversa. Enter
+    the location of <filepath>hhc.exe</filepath> in the <uicontrol>Microsoft Help
+     Compiler</uicontrol> text box or use the <uicontrol>Browse...</uicontrol> button next to it to
+    select the location from the file system.</p>
+  </section>  
+  
+ </conbody>
+</concept>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Jing version 20030619</title>
+  </head>
+
+  <body><p>The <code>relaxng.jar</code> file included in <a
+  href="http://www.xmlmind.com/xmleditor/">XMLmind XML Editor</a>
+  (<abbr>XXE</abbr>) distribution and in <a
+  href="http://www.xmlmind.com/ditac/">XMLmind DITA Converter</a> (ditac)
+  distribution has been built by XMLmind using the <a
+  href="http://www.thaiopensource.com/relaxng/jing.html">Jing</a>
+  distribution.</p><p>Here's exactly what has been done by XMLmind in order to
+  reduce the size of <code>jing.jar</code> and to remove its dependencies to
+  all the third-party jar files described in Jing's original <a
+  href="#readme">readme.html</a>:</p><ol>
+      <li>Removed everything except the following packages:<pre>org/relaxng/datatype
+org/relaxng/datatype/helpers
+
+com/thaiopensource/util
+
+com/thaiopensource/xml/util
+com/thaiopensource/xml/sax
+
+com/thaiopensource/relaxng/parse
+com/thaiopensource/relaxng/parse/sax
+com/thaiopensource/relaxng/parse/compact
+
+com/thaiopensource/validate
+
+com/thaiopensource/datatype
+com/thaiopensource/datatype/xsd              <i>(only in ditac relaxng.jar)</i>
+com/thaiopensource/datatype/xsd/regex        <i>(only in ditac relaxng.jar)</i>
+com/thaiopensource/datatype/xsd/regex/jdk1_4 <i>(only in ditac relaxng.jar)</i>
+
+com/thaiopensource/relaxng/impl
+
+com/thaiopensource/relaxng/util</pre><p>This means removing Jing support
+      for:</p><ul>
+          <li>W3C XML Schema (based on Xerces-J),</li>
+
+          <li>Schematron,</li>
+
+          <li>Namespace Routing Language and its predecessor: Modular
+          Namespaces (<abbr>MNS</abbr>),</li>
+
+          <li>autodetection of schema languages using the namespace URI of the
+          document element,</li>
+
+          <li>Java API for RELAX Verifiers (<abbr>JARV</abbr>).</li>
+        </ul><p>Jing implementation of a datatype library for the W3C XML
+      Schema Part 2 datatypes has been removed in <abbr>XXE</abbr>
+      <code>relaxng.jar</code> but not in ditac
+      <code>relaxng.jar</code>.</p></li>
+
+      <li>In order to be able to enforce the order of the above packages:<ul>
+          <li>Moved
+          <code>com/thaiopensource/validate/rng/RngProperty.java</code>,
+          <code>CompactSchemaReader.java</code>,
+          <code>SAXSchemaReader.java</code> to
+          <code>com/thaiopensource/relaxng/impl/</code>.</li>
+
+          <li>Moved <code>com/thaiopensource/relaxng/SchemaFactory.java</code>
+          and <code>com/thaiopensource/validate/ValidationDriver.java</code>
+          to <code>com/thaiopensource/relaxng/util/</code>.</li>
+
+          <li>Previously code that needed a default <code>SchemaReader</code>
+          created an <code>AutoSchemaReader</code>. This code has been
+          modified to use <code>SAXSchemaReader.getInstance()</code>.</li>
+        </ul><p>After this, each package can be compiled one after the other
+      in the above order by executing the following simple command in the
+      directory of each package.</p><pre>javac -d ~/src/relaxng/class -classpath ~/src/relaxng/class:. *.java</pre></li>
+
+      <li>Being able to access the start pattern of the simplified form of a
+      schema is needed to support Relax NG in <abbr>XXE</abbr>: <ul>
+          <li>Added public method <code>getStartPattern</code> to
+          <code>com.thaiopensource.relaxng.impl.PatternSchema</code>.</li>
+
+          <li>Added public method <code>getIdTypeMap</code> to
+          <code>com.thaiopensource.relaxng.impl.IdTypeMapSchema</code> and
+          <code>FeasibleIdTypeMapSchema</code>.</li>
+
+          <li>Added public methods <code>getSchema1</code> and
+          <code>getSchema2</code> to
+          <code>com.th<code>AttributePattern</code>aiopensource.relaxng.impl.CombineSchema</code>.</li>
+        </ul></li>
+
+      <li>Translating <code>com.thaiopensource.relaxng.impl.NameClass</code>
+      and <code>com.thaiopensource.relaxng.impl.Pattern</code> to an internal
+      form is needed in order to support Relax NG in <abbr>XXE</abbr>:<ul>
+          <li>Made all classes derived from
+          <code>com.thaiopensource.relaxng.impl.NameClass</code> public.</li>
+
+          <li>Added <code>get</code> methods for important instance variables
+          in all theses classes.</li>
+
+          <li>Made all classes derived from
+          <code>com.thaiopensource.relaxng.impl.Pattern</code> public.</li>
+
+          <li>Made method <code>accept(PatternVisitor)</code> public.</li>
+
+          <li>Added <code>get</code> methods for important instance variables
+          in all theses classes.</li>
+        </ul></li>
+
+      <li>Making the <code>getLocator</code> method public in
+      <code>com.thaiopensource.relaxng.impl.ElementPattern</code> and in
+      <code>com.thaiopensource.relaxng.impl.AttributePattern</code> is needed
+      in order to implement a document type cache.</li>
+
+      <li>Added a "<code>String defaultValue</code>" instance variable to
+      <code>AttributePattern</code> and a corresponding <code>get</code>
+      method.<p>Unlike "<code>Locator loc</code>", this instance variable
+      fully participates in defining the pattern, that is, it is used to
+      compute the hash code of the <code>AttributePattern</code> and it is
+      used by <code>samePattern()</code>.</p><p>In order to initialize this
+      new instance variable from the annotation, the following classes have
+      been modified:</p><ul>
+          <li><code>com.thaiopensource.relaxng.impl.SchemaBuilderImpl</code>:
+          added <code>AnnotationsImpl</code>.</li>
+
+          <li><code>com.thaiopensource.relaxng.impl.SchemaPatternBuilder</code>:
+          modified <code>makeAttribute</code>().</li>
+        </ul></li>
+
+      <li>Made classes
+      <code>com.thaiopensource.relaxng.impl.StringDatatype</code>,
+      <code>TokenDatatype</code> public.</li>
+
+      <li>Unlike <code>jing.jar</code>, <abbr>XXE</abbr>
+      <code>relaxng.jar</code> does not declare any service in its
+      <code>META-INF/services/</code>. <p>(<code>xxe.jar</code> has a
+      <code>META-INF/services/org.relaxng.datatype.DatatypeLibraryFactory</code>
+      which tells Jing to use <abbr>XXE</abbr> own implementation of W3C XML
+      Schema datatypes.)</p><p>Ditac <code>relaxng.jar</code> has just Jing's
+      <code>META-INF/services/org.relaxng.datatype.DatatypeLibraryFactory</code>.</p></li>
+    </ol><p><a id="readme">What follows</a> is the original
+  <code>readme.html</code> file as included in the Jing
+  distribution.</p><hr /><h1>Jing version 20030619</h1><p>Copyright © 2001,
+  2002, 2003 Thai Open Source Software Center Ltd. Jing can be freely copied
+  subject to these <a href="relaxng.LICENSE">conditions</a>.</p><p>This
+  directory contains version 20030619 of Jing, a validator for RELAX NG and
+  other schema languages.</p><p>The directory <code>bin</code> contains
+  <code>.jar</code> files, ready for use with a a Java runtime.</p><p>Version
+  1.4 of the Java Runtime Environment (JRE), is recommended, which can be
+  downloaded <a href="http://java.sun.com/j2se/1.4/download.html">here</a>,
+  since this is what this version of Jing has been tested with. Version 1.1 or
+  later should also work, although some functionality may be present only with
+  version 1.2 or later.</p><p>Jing is a command-line application. Once you
+  have installed JRE 1.4, you can run Jing by using the command:</p><pre>java -jar <var>path-to-dist</var>/jing-20030619/bin/jing.jar <var>file</var>.rng <var>file</var>.xml</pre><p>If
+  <code><var>file</var>.rng</code> is a correct schema and
+  <code><var>file</var>.xml</code> is valid with respect to
+  <code><var>file</var>.rng</code>, then Jing will generate no output.
+  Otherwise, it will generate one or more error messages.</p><p>Apart from
+  <code>jing.jar</code>, the <code>bin</code> directory contains some
+  third-party jar files, which are used for XML parsing (under a pre-1.4 JRE
+  that does not provide the Java XML parsing extension) and for validating
+  with schema languages other than RELAX NG:</p><dl>
+      <dt><code>saxon.jar</code></dt>
+
+      <dd>Comes from the <a href="http://saxon.sourceforge.net/">Saxon</a>
+      6.5.2 distribution. Used for Schematron validation.</dd>
+
+      <dt><code>xercesImpl.jar</code></dt>
+
+      <dt><code>xml-apis.jar</code></dt>
+
+      <dd>Come from the <a
+      href="http://xml.apache.org/xerces2-j/">Xerces-J</a> 2.4.0 distribution.
+      Used for W3C XML Schema validation and for XML parsing. Xerces-J's
+      license requires the following acknowledgment. "This product includes
+      software developed by the Apache Software Foundation
+      (http://www.apache.org/)."</dd>
+
+      <dt><code>isorelax.jar</code></dt>
+
+      <dd>Comes from <a href="http://sourceforge.net/projects/iso-relax/">ISO
+      RELAX</a> 2003/01/08 distribution. Provides a bridge to validators that
+      use the JARV interface.</dd>
+    </dl><p>When you use <code>jing.jar</code> with the <code>-jar</code>
+  option, the above <code>.jar</code> files will be used automatically,
+  provided they are in the same directory as <code>jing.jar</code> and
+  provided they have not been renamed. When using the <code>-jar</code>
+  option, the JRE will ignore any additional class path entries specified by
+  the <code>-cp</code> or <code>-classpath</code> options or by the
+  <code>CLASSPATH</code> environment variable.</p><p>If you do not want use
+  the <code>-jar</code> option (perhaps because you want to use additional
+  <code>.jar</code> files not shipped with Jing), then you must explicitly
+  include all the needed <code>.jar</code> files with a <code>-cp</code> or
+  <code>-classpath</code> option or with the <code>CLASSPATH</code>
+  environment variable, and specify a class name of
+  <code>com.thaiopensource.relaxng.util.Driver</code>. For example, using a
+  Bourne-compatible shell, you could do:</p><pre>d=<var>path-to-dist</var>/jing-20030619/bin
+CLASSPATH=$d/jing.jar:$d/xercesImpl.jar:$d/xml-apis.jar:$d/saxon.jar:$d/isorelax.jar
+export CLASSPATH
+java com.thaiopensource.relaxng.util.Driver <var>file</var>.rng <var>file</var>.xml</pre><p>For
+  more information about the features and usage of Jing, see this <a
+  href="http://www.thaiopensource.com/relaxng/jing.html">document</a>.</p><p>The
+  source code is in the file <code>src.zip</code>.</p></body>
+</html>

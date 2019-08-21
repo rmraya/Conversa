@@ -1,0 +1,330 @@
+/* jquery.toc.css ========================================================= */
+/*
+ * Copyright (c) 2017 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+.toc-toc, 
+.toc-toc ul {
+    padding: 0;
+    margin: 0;
+}
+
+.toc-toc ul {
+    padding-left: 2ex;
+}
+
+.toc-toc li {
+    list-style-type: none;
+    list-style-image: none;
+    background-repeat: no-repeat;
+    background-position: 0 0.25ex;
+    padding: 0.25ex 0 0.25ex 16px;
+    margin: 0;
+}
+
+/* 
+ * Icon set #1: toc-leaf2.png, toc-collapsed.gif, toc-expanded.gif
+ * Icon set #2: toc-leaf2.png, toc-collapsed2.png, toc-expanded2.png
+ */
+
+.toc-toc li {
+    /* Comment out the following line if you don't want leaf entries 
+       to have a bullet. */
+    background-image: url(icons/toc-leaf2.png);
+}
+
+.toc-toc li.toc-collapsed {
+    background-image: url(icons/toc-collapsed2.png);
+}
+
+.toc-toc li.toc-expanded {
+    background-image: url(icons/toc-expanded2.png);
+}
+
+.toc-toc li > * { 
+    margin: 0;
+}
+
+.toc-toc li > a:link,
+.toc-toc li > a:visited,
+.toc-toc li > a {
+    color: inherit;
+    text-decoration: none;
+}
+/* Common wh.css ========================================================== */
+/*
+ * Copyright (c) 2017 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+html, 
+body {
+    width: 100%; 
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Structure
+ * ---------------------------------------------------------------------------
+ */
+
+#wh-header,
+#wh-footer {
+    overflow: hidden;
+}
+
+#wh-body {
+    height: 100px; /*computed*/
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    /*
+     * Needed to prevent layout flickering during whInitPage/whLayout.
+     */
+    visiblity: hidden;
+    opacity: 0;
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Navigation
+ * ---------------------------------------------------------------------------
+ */
+
+#wh-navigation {
+    float: left;
+    width: 25em;
+    height: 100px; /*computed*/
+    overflow: hidden;
+}
+
+#wh-toc-pane,
+#wh-index-pane,
+#wh-search-pane {
+    height: 100px; /*computed*/
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#wh-toc,
+#wh-index,
+#wh-search-results {
+    height: 100px; /*computed*/
+    overflow: auto;
+}
+
+/*
+ * --------------------------------------
+ * TOC (also styled by jquery.toc.css)
+ * --------------------------------------
+ */
+
+#wh-toc a.wh-toc-selected {
+    background-color: #E0F0FF;
+    padding: 1px;
+}
+
+#wh-toc a:hover { 
+    cursor: pointer; 
+    text-decoration: underline;
+}
+
+/*
+ * --------------------------------------
+ * Search
+ * --------------------------------------
+ */
+
+#wh-search-result-header {
+    padding-bottom: 0.5ex;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: gray;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#wh-search-result-list {
+    padding: 0;
+    margin: 0;
+}
+
+#wh-search-result-list > li {
+    list-style-type: none;
+    list-style-image: none;
+    background-repeat: no-repeat;
+    background-position: 0 0.25ex;
+    background-image: url(icons/toc-leaf.gif);
+    padding: 0.25ex 0 0.25ex 16px;
+    margin: 0;
+}
+
+#wh-search-result-list > li.wh-odd-item {
+    background-color: #FFFFE0;
+}
+
+#wh-search-result-list > li > a {
+    text-decoration: none;
+}
+
+#wh-search-result-list > li > a:hover {
+    cursor: pointer; 
+    text-decoration: underline;
+}
+
+span.wh-highlighted {
+    background-color: #FFF040;
+    padding: 1px;
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Content
+ * ---------------------------------------------------------------------------
+ */
+
+#wh-content {	
+    width: 100px; /*computed*/
+    height: 100px; /*computed*/
+    overflow: auto;
+    /*border-color computed*/
+    border-style: solid;
+    border-width: 1px;
+    padding: 0.5em;
+}
+/* simple wh.css ========================================================= */
+/*
+ * Copyright (c) 2017-2018 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+@font-face {
+  font-family: search-field-icons;
+  src: url('data:application/octet-stream;base64,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') format('woff');
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Navigation
+ * ---------------------------------------------------------------------------
+ */
+
+#wh-navigation {
+    font-size: 90%;
+    border-width: 1px;
+    border-color: #8E8E93;
+    border-style: solid none solid none;
+}
+
+#wh-toc,
+#wh-search-results {
+    padding: 0.5em;
+}
+
+/*
+ * --------------------------------------
+ * Search
+ * --------------------------------------
+ */
+
+#wh-navigation-form {
+    text-align: center;
+    background-color: #C9C9CE;
+    padding: 1ex;
+    border-bottom: 1px solid #B5B5B5;
+}
+
+#wh-search-group {
+    white-space: nowrap;
+    background-color: white;
+    -moz-border-radius: 0.5ex;
+    -webkit-border-radius: 0.5ex;
+    border-radius: 0.5ex;
+    padding: 0.5ex;
+}
+
+#wh-search-field {
+    font-family: sans-serif;
+    border-style: none;
+    border-width: 0;
+}
+
+#wh-search-field:focus {
+    outline: none;
+}
+
+#wh-search-field::-webkit-input-placeholder {
+    color: #B9B9B9;
+    text-align: center;
+}
+
+#wh-search-field::-moz-placeholder {
+    color: #B9B9B9;
+    text-align: center;
+}
+
+#wh-search-field:-ms-input-placeholder {
+    color: #B9B9B9;
+    text-align: center;
+}
+
+#wh-search-field::placeholder {
+    color: #B9B9B9;
+    text-align: center;
+}
+
+/* Remove "X" from the following input[type=text] in IE and Edge. */
+#wh-search-field::-ms-clear,
+#wh-search-field::-ms-reveal {
+    display: none;
+    width : 0;
+    height: 0;
+}
+
+#wh-do-search,
+#wh-cancel-search {
+    font-family: search-field-icons;
+    font-size: 1.2em;
+    padding: 0 0.4ex;
+    color: #B9B9B9;
+    cursor: default;
+}
+
+#wh-cancel-search {
+    visiblity: hidden;
+    opacity: 0;
+}
+
+#wh-do-search:hover,
+#wh-cancel-search:hover {
+    color: #8080FF;
+}
+
+#wh-search-pane {
+    display: none;
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Content
+ * ---------------------------------------------------------------------------
+ */
+
+#wh-content {
+    border-width: 1px;
+    border-color: #8E8E93;
+    border-style: solid none solid solid;
+}

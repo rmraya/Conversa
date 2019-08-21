@@ -1,0 +1,68 @@
+  The contents of the following directories of the distribution of XMLmind
+  DITA Converter are subject to the Mozilla Public License Version 2.0 (the
+  "License"):
+
+    * bin/
+
+    * lib/ditac.jar, whcmin.jar
+
+    * doc/
+
+    * xsl/
+
+    * src/
+
+    * docsrc/
+
+  You may not use these files except in compliance with the License. You'll
+  find this License in LEGAL/MPL-2.0.html or in http://www.mozilla.org/MPL/2.0/.
+
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+  the specific language governing rights and limitations under the License.
+
+  By downloading, modifying, distributing, using and/or accessing any files in
+  this directory, you agree to the terms and conditions of the applicable
+  license agreement.
+
+==============================================================================
+
+  XMLmind Web Help Compiler (whc for short) is free, open source, 
+  software licensed under the terms of either the MIT License or 
+  the GNU General Public License (GPL) Version 2.
+  See http://www.xmlmind.com/ditac/whc.shtml
+
+==============================================================================
+
+  The following components have not been developed by XMLmind Software:
+
+      * lib/resolver.jar
+
+      * lib/saxon9.jar
+
+      * lib/relaxng.jar
+
+      * lib/xslthl.jar
+
+      * lib/snowball.jar
+
+      * lib/flexmark.jar (vsch/flexmark-java and its dependency: 
+                          robinst/autolink-java)
+
+  For each component, there are two files in the LEGAL/ directory:
+
+      [<component_name>.README] a text or HTML file describing the component.
+
+      [<component_name>.LICENSE] a text or HTML file containing the license
+          attached to the component.
+
+==============================================================================
+
+  Some distributions of XMLmind DITA Converter have a plus/ directory
+  containing complete distributions for the following XSL-FO processors:
+
+      * Apache FOP
+        https://xmlgraphics.apache.org/fop/
+
+  The distributions contained in the plus/ directory are self-contained and
+  as such, have their own README and license files.

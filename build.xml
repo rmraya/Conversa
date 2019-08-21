@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="compile" name="Conversa">
+    <property name="target" value="11"/>
+    <property name="source" value="11"/>
+    <property name="build.compiler" value="javac10+"/>
+    <path id="Conversa.classpath">
+        <pathelement location="lib/ditac.jar"/>
+        <pathelement location="lib/dtd.jar"/>
+        <pathelement location="lib/flexmark.jar"/>
+        <pathelement location="lib/json.jar"/>
+        <pathelement location="lib/jsoup-1.11.3.jar"/>
+        <pathelement location="lib/mapdb.jar"/>
+        <pathelement location="lib/openxliff.jar"/>
+        <pathelement location="lib/relaxng.jar"/>
+        <pathelement location="lib/resolver.jar"/>
+        <pathelement location="lib/saxon9.jar"/>
+        <pathelement location="lib/snowball.jar"/>
+        <pathelement location="lib/whcmin.jar"/>
+        <pathelement location="lib/xslhttl.jar"/>
+        <pathelement location="lib/mac64/swt.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target name="compile" depends="clean,init">
+        <description>Build jar file</description>
+        <delete file="lib/conversa.jar"/>
+        <javac srcdir="src" destdir="bin" classpathref="Conversa.classpath" modulepathref="Conversa.classpath" includeAntRuntime="false"/>
+        <jar destfile="lib/conversa.jar" basedir="bin"/>
+    </target>
+</project>

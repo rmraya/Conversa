@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="Untitled12">
+  <title>HTML Help Parameters</title>
+  <shortdesc></shortdesc>
+  <refbody>
+    <section>
+      <p>The following table lists the parameters specific to the stylesheets that generate HTML
+      Help.</p>
+      <p>Notice that there should be no need no need for an end-user to specify any of these parameters.</p>
+      <simpletable relcolwidth="1* 1* 2*">
+          <sthead>
+            <stentry>Parameter</stentry>
+            
+            <stentry>Value</stentry>
+            
+            <stentry>Description</stentry>
+          </sthead>
+          
+          <strow>
+            <stentry
+              id="hhc-basename"><tt>hhc-basename</tt><indexterm>hhc-basename,
+                parameter</indexterm></stentry>
+            
+            <stentry><p>URL basename.</p><p>Default value:
+              <tt>'toc.hhc'</tt>.</p></stentry>
+            
+            <stentry><p>Basename of the HTML Help contents file.</p></stentry>
+          </strow>
+          
+          <strow>
+            <stentry><tt>hhp-template</tt><indexterm>hhp-template,
+              parameter</indexterm></stentry>
+            
+            <stentry><p>URL basename.</p><p>Default value:
+              <tt>'template.hhp'</tt> resolved against the directory which
+              contains the XSLT stylesheets.</p></stentry>
+            
+            <stentry><p>URL of the file containing the template of the HTML Help
+              project file. This plain text file encoded in UTF-8 contains
+              variables such as <varname>%compiledFile%</varname>,
+              <varname>%contentsFile%</varname>,
+              <varname>%defaultTopic%</varname>, etc, which are substituted with
+              their values.</p></stentry>
+          </strow>
+          
+         <strow>
+            <stentry
+              id="hhx-basename"><tt>hhx-basename</tt><indexterm>hhx-basename,
+                parameter</indexterm></stentry>
+            
+            <stentry><p>URL basename.</p><p>Default value:
+              <tt>'index.hhx'</tt>.</p></stentry>
+            
+            <stentry><p>Basename of the HTML Help index file. </p></stentry>
+          </strow>
+        </simpletable>
+        </section>
+    
+    
+  </refbody>
+</reference>

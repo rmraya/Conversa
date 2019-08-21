@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd" >
+<concept id="advanced_configuration" xml:lang="en-US" >
+ <title>Preferences Dialog</title>
+ <conbody class="- topic/body  concept/conbody ">
+  <p>Conversa default settings can be changed in the <uicontrol>Preferences</uicontrol><indexterm>Preferences dialog</indexterm> dialog.</p>
+  <ul>
+   <li>To open the <uicontrol>Preferences</uicontrol> dialog on Windows or Linux, select 
+    <uicontrol>Preferences</uicontrol> in <uicontrol>Settings</uicontrol> menu.</li>
+   <li>To open the <uicontrol>Preferences</uicontrol> dialog on Mac OS X, select
+     <uicontrol>Preferences</uicontrol> in Apple  menu.</li>
+  </ul>
+ </conbody>
+</concept>

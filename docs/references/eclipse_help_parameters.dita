@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="eclipseParams">
+  <title>Eclipse Help Parameters</title>
+  <shortdesc></shortdesc>
+  <refbody>
+    <section>
+      <p>The following table lists the parameters specific to the stylesheets that generate 
+      Eclipse Help</p>
+      <simpletable relcolwidth="1* 1* 2*">
+        <sthead>
+          <stentry>Parameter</stentry>
+          
+          <stentry>Value</stentry>
+          
+          <stentry>Description</stentry>
+        </sthead>
+        
+        <strow>
+          <stentry id="plugin-id"><tt>plugin-id</tt><indexterm>plugin-id,
+            parameter</indexterm></stentry>
+          
+          <stentry><p>String</p><p>No default value.</p></stentry>
+          
+          <stentry><p>An ID uniquely identifying the plug-in, typically a
+            Java-like fully qualified name. Example:
+            <tt>'com.acme.widget.userguide'</tt>.</p><note
+              type="important"><p>The subdirectory of
+                <filepath>plugins/</filepath> containing the plug-in must have the
+                same basename as the value of parameter
+                <tt>plugin-id</tt>.</p></note></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="plugin-index-basename"><tt>plugin-index-basename</tt><indexterm>plugin-index-basename</indexterm></stentry>
+          
+          <stentry><p>URL basename.</p><p>Default value:
+            <tt>'index.xml'</tt>.</p></stentry>
+          
+          <stentry><p>Basename of the index file.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="plugin-name"><tt>plugin-name</tt><indexterm>plugin-name,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>String</p><p>No default value.</p></stentry>
+          
+          <stentry><p>The name of the plug-in, typically the title of the
+            document. Example: <tt>'ACME Widget User&amp;apos;s
+              Guide'</tt>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="plugin-provider"><tt>plugin-provider</tt><indexterm>plugin-provider,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>String</p><p>No default value.</p></stentry>
+          
+          <stentry><p>The author, company or organization which has
+            contributed the plug-in. Example: <tt>'ACME
+              Corp.'</tt>.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="plugin-toc-basename"><tt>plugin-toc-basename</tt><indexterm>plugin-toc-basename,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>URL basename.</p><p>Default value:
+            <tt>'toc.xml'</tt>.</p></stentry>
+          
+          <stentry><p>Basename of the table of contents file.</p></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="plugin-version"><tt>plugin-version</tt><indexterm>plugin-version,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>String</p><p>Default value:
+            <tt>'1.0.0'</tt>.</p></stentry>
+          
+          <stentry><p>The version of the plug-in.</p></stentry>
+        </strow>
+      </simpletable></section>
+    
+  </refbody>
+</reference>

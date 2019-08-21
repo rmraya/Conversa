@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messages xml:lang="nb">
+<!--LHS-opplysning om omsetjingsversjon:
+  * Denne versjonen: 2017.09.18 (topic = tema)
+  *   Førre versjon: 2017.07.16
+  *   Førre versjon: 2017.07.06
+  *   Førre versjon: 2017.05.22-13:41
+  *  Første versjon: 2017.05.18 (topic = emne)-->
+<!-- Troubleshooting -->
+  <message name="condition">Forutsetning</message>
+  <message name="troubleSolution">Løysing</message>
+  <message name="cause">Årsak</message>
+  <message name="remedy">Middel</message>
+  <message name="responsibleParty">Ansvarlig part</message>
+<!-- Task requirements -->
+  <message name="prelreqs">Krav til forberedelse</message>
+<!--prelreqs: (I LHS-versjon 1:) Påkrevd før igangsetting;
+  Krav før start;Igangsetjingkrav; Inngangskrav; Forhåndskrav;Krav på forhånd;Forberedende krav;
+  Forberedelsekrav; Krav til forberedelse; Begynnelsekrav; Preliminære krav; Innledende krav; Åpningskrav;
+  Sakåpningskrav; Forberedende krav-->
+  <message name="closereqs">Krav til avslutning</message>
+<!--closereqs: (I LHS-versjon 1:) Påkrevd før avslutning; Krav før avslutting;Avsluttingskrav;Utgangskrav;
+  Avsluttende krav; Krav til slutt;  Krav til avslutting; Sluttkrav; Sluttekrav; Lukkekrav; Saklukkingskrav; 
+  Krav for å kunne avslutte; Ferdigstillelseskrav; Forlatingskrav; Ferdigstillelseskrav; 
+  Ferdigjøringskrav; Lukkekrav; Avsluttende krav-->
+  <message name="reqconds">Tilstandskrav</message>
+<!--reqconds (LHS-versjon 1:) Vilkår; (Engelsk original:) Conditions;-->
+  <message name="reqpers">Personell</message>
+  <message name="supequip">Hjelpeutstyr</message>
+  <message name="supplies">Forsyninger</message>
+  <message name="spares">Reservedeler</message>
+  <message name="safety">Sikkerhetsforhold</message>
+  <message name="personnel">Mengde</message>
+  <message name="perscat">Kategori</message>
+  <message name="perskill">Ferdighetsnivå</message>
+  <message name="esttime">Normaltid</message>
+  <message name="noconds">Ingen.</message>
+  <message name="nosupeq">Ingen.</message>
+  <message name="nosupply">Ingen.</message>
+  <message name="nospares">Ingen.</message>
+  <message name="nosafety">Ingen.</message>
+<!-- Task sections -->
+  <message name="prereq">Før du begynner</message>
+  <message name="context">Om denne oppgava</message>
+  <message name="steps">Framgangsmåte</message>
+  <message name="result">Resultat</message>
+  <message name="postreq">Hva er neste oppgave nå?</message>
+<!--postreq (LHS-versjon 1:) Neste handling;-->
+  <message name="optional">Valgfri handling</message>
+  <message name="required">Påkrevd handling</message>
+<!-- Choicetable default header -->
+  <message name="option">Valg</message>
+  <message name="description">Omtale</message>
+<!-- Title of a related-links section -->
+  <message name="relatedLinks">Tilknyttet informasjon</message>
+  <message name="relatedConcepts">Tilknyttete konsept</message>
+  <message name="relatedTasks">Tilknyttete oppgaver</message>
+  <message name="relatedReference">Tilknyttet referanse</message>
+<!-- Formal objects -->
+  <message name="figure">Figur</message>
+  <message name="table">Tabell</message>
+  <message name="example">Eksempel</message>
+  <message name="equation">Likning</message>
+<!-- Note labels -->
+  <message name="note">Merknad</message>
+  <message name="tip">Vink</message>
+  <message name="fastpath">Snarveg</message>
+  <message name="important">Viktig</message>
+  <message name="attention">Vær obs!</message>
+  <message name="caution">FORSIKTIG!</message>
+  <message name="danger">FARE!</message>
+  <message name="remember">Hugs!</message>
+  <message name="restriction">Tilleggskrav</message>
+  <message name="notice">MERK!</message>
+  <message name="warning">ADVARSEL!</message>
+  <message name="trouble">Feilløysing</message>
+<!-- Glossary labels -->
+  <message name="abbreviation">Forkorting</message>
+  <message name="acronym">Akronym</message>
+  <message name="shortForm">Korttform</message>
+  <message name="synonym">Synonym</message>
+  <message name="alternateFor">Alternativ til</message>
+<!-- Navigation icons -->
+  <message name="firstPage">Første side</message>
+  <message name="previousPage">Forrige side</message>
+  <message name="nextPage">Neste side</message>
+  <message name="lastPage">Siste side</message>
+<!--topic: 
+2017-09-18: LHS
+ * Justerte «topic» til «tema» - fordi det kan fungere bra for både skriving
+   og lesing og fordi det har en viss presedens som lokalisering av «topic».
+2017-07-16: LHS
+ * Justerte «sak» til «saktekst»
+2017-07-05: LHS: 
+ * Gikk over fra «emne» til «sak», fordi det ligg nærmere «topic» i tyding. 
+ * For de som redigerer denne fila på eiga hand, kan jeg tilrå «utgreiing» 
+   som alternativ til «sak». Et anna alternativ er å nytte «punkt».
+ * Grunngiving: I DITA-tekster er alle punkt på innhaldslista i prinsippet
+   ei sak/utgreiing. Men ikke alle punkt på ei sakliste kan kalles et emne.
+
+Alternativ til «topic» for dei som redigerer denne fila på eiga hand:
+
+              «sak» *
+             «tema» *
+           «stykke» *
+           «topikk» *
+          «saktema» *
+         «tematikk» *
+        «sakstykke» *
+        «tematekst» *
+        «utgreiing» *
+       «sakavsnitt» *
+      «topikktekst» *
+     «topikkstykke» *
+    «topikkavsnitt» *
+
+Kva er det beste uttrykk for «topic» på norsk?
+
+ * Det kan tenkjast at det bør vera (litt) ulike uttrykk for det å redigera/skriva
+   eit «topikkstykke» og det å bla/navigera i eit dokument som er generert ved
+   hjelp av at ulike «topikkstykke» er kopla saman til eit dokument.
+
+ * Ved blading/navigering i eit dokument passar det å seia «neste tema»,
+   «neste tematikk», «neste sak», «neste utgreiing», «neste stykke».
+
+ * Med ved redigering er det viktig at forfattaren/forfattarane meir eller mindre
+   intuitivt forstår den topikkorienterte/temaorienterte/sakorienterte skrivemåten
+   og at dei dermed får ei kjensle av at dei jobbar med «topikkeiningar».
+
+ * Det siste /kan/ gjera at det er best, for eit redigeringsprogram, å operera med
+   eit ord som inkluderer ordet «topikk» som forledd: «topikktekst», «topikkstykke»,
+   «topikkavsnitt». Dette rett og slett for at brukaren skal kunna dra enkle mentale
+   koplingar ifrå den engelskspråklege DITA-verda til det norske programmet. Det kan
+   altså vera greitt å ta omsyn til at topikkorientert forfattarskap generelt og bruk
+   av DITA spesielt, er eit smalt felt med få forfattarar og (kanskje) endå færre som
+   som synest det er viktig med norskspråkleg programvare.
+
+ * Men med få resssurar og få brukar er det på den andre sida viktig å få til mest mogeleg
+   «gjenbruk» av ord og uttrykk, slik at uttrykka fester seg. Dette kan vera eit argument
+   for at både leseverkty (denne fila!) og forfattarverkty bør nytta same terminologi.
+   Dette er også eit argument for å *ikkje* nytta «topikk-eit-eller-anna» i skriveverkty
+   (for det er ikkje meiningsfullt å nytta «neste topikk» i eit leseinstrument ... !)
+
+ * Ein kompliserande faktor er det med gjenbruk internt i skrivereiskapen, slik som i 
+   XMLmind XML Editor: Uttrykka må kunna fungera som namn på skriftmalar («topikkmalar»)
+   så vel som innhaldskart («topikkart»/topic maps) så vel som i resten av redigerings-
+   grensesnittet for DITA i XMLmind XML Editor - og det må vera intern samanheng i dette.
+
+ * Eitt av dei beste uttrykka for både lesing og skriving må vera «tema». Det kan fungera
+   både å seia «neste tema» og å seia «nytt tema».
+
+ * Uttrykk som kan fungere både for skriving og lesing: 
+
+                 ny sak * neste sak
+              nytt tema * neste tema
+            nytt stykke * neste stykke
+           nytt saktema * neste saktema
+           ny utgreiing * neste utgreiing
+
+    MERKNAD: Desse både-/og-uttrykka fungerer ikkje altid like godt
+             til lesing som til skriving - og omvendt. Dei kan
+             fungera litt betre til det eine enn til det andre.
+
+ * Uttrykk berre til lesing:
+
+                        * neste tematikk 
+
+    MERKNAD: Framstår noko for diffust for skriving.
+
+ * Uttrykk berre til skriving: 
+
+              ny topikk *
+            ny artikkel *
+           ny tematekst *
+         ny topikktekst *
+         nytt sakstykke *
+        nytt sakavsnitt *
+       ny tekstartikkel *
+      nytt topikkstykke *
+     nytt topikkavsnitt *
+
+    MERKNAD: Desse uttrykka er altså mest aktuelle dersom ein vel 
+             å operera med ulike uttrykk for lesing og skriving.
+
+Kvifor ikkje «emne»?
+
+ * I DITA-dokument representerer kvart punkt frå innhaldskartet ei sak, altså ei utgreiing av
+   ein tematikk. Ein innleiingstekst i DITA-ånd må atså utarbeidast som ein topikktekst.
+   Ei slik innleiing vil då koma fram i innhaldslista når du konverter til t.d. HTML. Dermed
+   vil DITAC/ditac (som denne fila er ein del av) genera ein lenk til innleiinga med 
+   fylgjande lenketekst: «Neste emne: Innleiing». Etter mitt syn er det ikkje meiningsfullt
+   å kalla ei innleiing for eit emne. Ei innleiing er korkje «emne» eller «subject». Ordet
+   «emne» er dessutan svært generelt - svært stort. Kva tid har du skrive om eit emne? Kva
+   tid er du ferdig med emnet? Det fungerer m.a.o. svært dårleg for skriving og nesten like
+   dårleg for lesing. (For lesing vil det nok kunna fungera greitt for dokument som er prega
+   av systematikk og generalitet.)
+
+Kva med «saktekst»?
+
+ * «Saktekst» er eit, på norsk, nyare ord for «sakprosa» men med ei breiare tyding som òg 
+   inkluderer tekst utan noko struktur (om no det er mogeleg, då …). Slik eg tolkar et utgjer
+   «topic» i DITA eit stykke tekst som - som minimum - har ein tittel og eit innhald. Det same 
+   er ikkje tilfelle med ei saktekst - saktekster treng ikkje den same strukturen som «topic» i
+   DITA. Saktekst kan dermed lett verta eit for generelt uttrykk.
+-->
+  <message name="previousTopic">Førre tema</message>
+  <message name="parentTopic">Overordna tema</message>
+  <message name="childTopic">Underordna tema</message>
+  <message name="nextTopic">Neste tema</message>
+  <message name="siblingTopic">Sideordna tema</message>
+  <message name="childTopics">Underordna tema</message>
+  <message name="newWindow">Åpner i et nytt vindu</message>
+<!-- Document sections -->
+  <message name="cover">Omslag</message>
+  <message name="titlePage">Tittelside</message>
+  <message name="toc">Innhold</message>
+  <message name="figurelist">Figurer</message>
+  <message name="tablelist">Tabeller</message>
+  <message name="examplelist">Eksempel</message>
+  <message name="equationlist">Formler</message>
+  <message name="abbrevlist">Forkortinger</message>
+  <message name="trademarklist">Varemerker</message>
+  <message name="bibliolist">Bibliografi</message>
+  <message name="glossarylist">Ordliste</message>
+  <message name="indexlist">Stikkordregister</message>
+  <message name="notices">Juridiske merknader</message>
+  <message name="dedication">Dedikasjon</message>
+  <message name="colophon">Kolofon</message>
+  <message name="bookabstract">Sammendrag</message>
+  <message name="draftintro">Om utkastet</message>
+  <message name="preface">Forord</message>
+  <message name="part">Del</message>
+  <message name="chapter">Kapittel</message>
+  <message name="appendices">Appendikser</message>
+  <message name="appendix">Appendiks</message>
+  <message name="amendments">Revisjonshistorikk</message>
+  <message name="section">Avsnitt</message>
+<!-- Index -->
+  <message name="symbols">Symbolbruk</message>
+  <message name="see">Se</message>
+  <message name="seeAlso">Se òg</message>
+<!-- Punctuation -->
+  <message name="openQuote">«</message>
+  <message name="closeQuote">»</message>
+  <message name="colonSeparator">: </message>
+  <message name="semiColonSeparator"> ;</message>
+  <message name="commaSeparator">, </message>
+  <message name="periodSeparator">. </message>
+<!-- XRefs -->
+  <message name="page-ref-before">på side</message>
+  <message name="page-ref-after"/>
+</messages>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="conversa">
+ <title>Conversa DITA Publisher</title>
+ <conbody>
+  <p>Conversa provides a graphical user interface to the free <xref format="html" 
+   href="http://www.xmlmind.com/ditac/l">DITA Converter</xref> 
+   (ditac) from XMLmind that you can use to easily publish your DITA projects 
+   in multiple formats.</p>
+  
+  <p>Conversa works right out of the box. Just install it and generate PDF, HTML 
+   or Web Help from your DITA files using the default configuration.</p>
+  
+  <p>The output formats supported by Conversa are:</p>
+  <table>
+   <tgroup cols="4">
+    <tbody>
+     <row>
+      <entry>PDF</entry>
+      <entry>HTML</entry>
+      <entry>EPUB 2 &amp; 3</entry>
+      <entry>PostScript</entry>
+     </row>
+     <row>
+      <entry>Eclipse Help</entry>
+      <entry>Web Help</entry>
+      <entry>Web Help with HTML 5</entry>
+      <entry>XSL-FO</entry>
+     </row>
+     <row>
+      <entry>HTML Help</entry>
+      <entry>RTF</entry>
+      <entry>DOCX</entry>
+      <entry>ODT</entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </table>
+  
+  <image href="../images/convert.png" placement="break" align="center" otherprops="html">
+   <alt>Conversa with Publish DITA Map Dialog</alt>
+  </image>
+  
+  <image href="../images/convert.png" placement="break" align="center" otherprops="pdf" scale="40"/>
+  
+  <p>Conversa ships with Apache FOP 2.3 to generate PDF files but you can also use 
+   <xref href="http://www.renderx.com/tools/xep.html" format="html">RenderX XEP</xref>, 
+   <xref href="http://www.antennahouse.com/antenna1/formatter/" format="html">Antenna House XSL Formatter</xref> 
+   or an external Apache FOP if you want customized PDF files.</p>
+  
+  <p>Microsoft HTML Help Workshop is required to generate HTML Help in <filepath>.chm</filepath> format for Windows. 
+   It can be freely downloaded from <xref href="https://www.microsoft.com/en-us/download/details.aspx?id=21138" 
+    format="html">Microsoft's Download Center</xref>.</p>
+  
+  <p>XMLmind XSL-FO Converter is used to generate DOCX, RTF and ODT output from DITA files. 
+   XSL-FO Converter is a commercial product from <xref format="html" 
+    href="http://www.xmlmind.com/foconverter/">XMLMind</xref>.</p>
+  
+ </conbody>
+</concept>

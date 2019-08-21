@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head><meta charset="UTF-8" />
+      <title>HTML Parameters</title><link href="resources/webhelp.css" rel="stylesheet" type="text/css" /><meta content="" name="description" />
+      <meta content="XMLmind DITA Converter 3.6.0" name="generator" />
+   <script charset="UTF-8" defer="defer" src="_wh/snowball_en.min.js" type="text/javascript"></script><link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript">
+    </script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
+    </script><script charset="UTF-8" src="_wh/wh.min.js" type="text/javascript">
+    </script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript">
+    </script></head>
+   
+<body>
+    
+
+    <div id="wh-body">
+      <div id="wh-navigation">
+        <ul id="wh-tabs">
+          <li id="wh-toc-tab"><a href="#wh-toc-pane"><span>Contents</span></a></li>
+          <li id="wh-index-tab"><a href="#wh-index-pane"><span>Index</span></a></li>
+          <li id="wh-search-tab"><a href="#wh-search-pane"><span>Search</span></a></li>
+        </ul>
+        <div id="wh-toc-pane">
+          <div id="wh-toc-form">
+            <span id="wh-toc-control"><a href="#">Collapse 
+            All</a><a href="#">Expand All</a></span>
+            <button id="wh-toc-previous">Previous</button>
+            <button id="wh-toc-next">Next</button>
+            <button id="wh-toc-print">Print</button>
+          </div>
+          <script charset="UTF-8" src="_wh/toc.js" type="text/javascript">
+          </script>
+        </div>
+        <div id="wh-index-pane">
+          <div id="wh-index-form">
+            <input id="wh-index-field" type="text" />
+          </div>
+          <script charset="UTF-8" src="_wh/index.js" type="text/javascript">
+          </script>
+        </div>
+        <div id="wh-search-pane">
+          <div id="wh-search-form">
+            <input id="wh-search-field" type="text" /><button id="wh-search-button">Search</button><span id="wh-highlight-group"><input checked="checked" id="wh-highlight-toggle" type="checkbox" /><label for="wh-highlight-toggle" id="wh-highlight-icon"><span class="ui-icon ui-icon-flag"></span></label></span>
+          </div>
+          <div id="wh-search-results">
+          </div>
+        </div>
+      </div>
+      <div id="wh-separator">
+      </div>
+      <div id="wh-content">
+      
+      <section class="reference" id="htmlParams" lang="en-US" xml:lang="en-US">
+         <h2 class="section2-title">HTML Parameters</h2>
+         <p class="shortdesc"></p>
+         <div class="refbody">
+            <section class="section" id="htmlParams__I_am8kcw_">
+               
+               <div class="p">The following table lists the parameters that are common to the stylesheets that 
+                  generate XHTML or HTML. They apply to the stylesheets that  
+                  produce XHTML, HTML, Web Help and HTML Help, Eclipse Help and EPUB.
+               </div>
+               
+               <div class="simpletable-container">
+                  <table border="1" class="simpletable">
+                     <colgroup style="width: 25%;"></colgroup>
+                     <colgroup style="width: 25%;"></colgroup>
+                     <colgroup style="width: 50%;"></colgroup>
+                     <thead>
+                        <tr class="sthead table-header-style">
+                           <td class="stentry">Parameter</td>
+                           <td class="stentry">Value</td>
+                           <td class="stentry">Description</td>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__add-index-toc"><span class="tt">add-index-toc</span><a id="htmlParams__I_p9to5b_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'yes'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether an A-Z list should be added at the
+                                 beginning of the back-of-the-book index.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__chain-pages"><span class="tt">chain-pages</span><a id="htmlParams__I_j2e7d7_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'none'</span>, <span class="tt">'top'</span>,
+                                 <span class="tt">'bottom'</span> or <span class="tt">'both'</span>.
+                              </div>
+                              <div class="p">Default value:
+                                 <span class="tt">'none'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether a header and/or a footer containing
+                                 navigation icons should be generated in order to link together all
+                                 the HTML pages.
+                              </div>
+                              <div class="note">
+                                 <h5 class="note-head">Note</h5>
+                                 <div class="note-body">There is no need to specify a value other
+                                    than <span class="tt">'none'</span> when generating Web Help, HTML Help, Eclipse
+                                    Help, EPUB and <span class="tm">Java™</span> Help.
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__chain-topics"><span class="tt">chain-topics</span><a id="htmlParams__I_ni5ntn_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether navigation icons should be generated
+                                 in order to link together all the topics.
+                              </div>
+                              <div class="p">See also related
+                                 parameter: <a class="xref" href="#htmlParams__ignore-navigation-links">ignore-navigation-links</a>.
+                              </div>
+                              <div class="note">
+                                 <h5 class="note-head">Note</h5>
+                                 <div class="note-body">There
+                                    is no need to specify a value other than <span class="tt">'no'</span> when
+                                    generating Web Help, HTML Help, Eclipse Help, EPUB and <span class="tm">Java™</span> Help.
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__css"><span class="tt">css</span><a id="htmlParams__I_ys5t5i_"></a></td>
+                           <td class="stentry">
+                              <div class="p">URL.</div>
+                              <div class="p">Default value: <span class="tt">''</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies which CSS stylesheet to use. Has priority over
+                                 the CSS stylesheet specified by the <a class="xref" href="#htmlParams__css-name">css-name parameter</a>.
+                              </div>
+                              <div class="p">An
+                                 end-user wishing to use a custom CSS must typically:
+                              </div>
+                              <ol class="compact-ol">
+                                 <li class="li">Import the <code class="filepath">basic.css</code> stock stylesheet
+                                    in its own <code class="filepath">custom.css</code> as follows:<pre class="pre">@import url(basic.css);</pre></li>
+                                 <li class="li">Copy by hand <code class="filepath">custom.css</code> to
+                                    <span class="tt"><i class="i">output_dir</i>/res/</span> after <code class="cmdname">ditac</code>
+                                    has finished its job.
+                                 </li>
+                              </ol>
+                              <div class="note">
+                                 <h5 class="note-head">Restriction</h5>
+                                 <div class="note-body">
+                                    <div class="p">Not supported by the stylesheets
+                                       that generate EPUB. 
+                                    </div>
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__css-name"><span class="tt">css-name</span><a id="htmlParams__I_2ae5ez_"></a></td>
+                           <td class="stentry">
+                              <div class="p">URL basename relative to the directory specified by
+                                 <a class="xref" href="common_parameters.html#commonParameters__xsl-resources-directory">parameter
+                                    xsl-resources-directory</a>.
+                              </div>
+                              <div class="p">Default value:
+                                 <span class="tt">'basic.css'</span>; <span class="tt">'javahelp.css'</span> when the output format
+                                 is <span class="tm">Java™</span> Help.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies which CSS stylesheet to use. This CSS
+                                 stylesheet is expected to be found in the resources
+                                 directory.
+                              </div>
+                              <div class="note">
+                                 <h5 class="note-head">Restriction</h5>
+                                 <div class="note-body">
+                                    <div class="p">Not supported by the
+                                       stylesheets that generate EPUB. 
+                                    </div>
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__default-table-width"><span class="tt">default-table-width</span><a id="htmlParams__I_x5dbt5_"></a></td>
+                           <td class="stentry">
+                              <div class="p">A percentage, typically something like <span class="tt">'100%'</span>
+                                 or <span class="tt">'90%'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">''</span> (as narrow as
+                                 possible).
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The default width of <span class="tt">table</span> and
+                                 <span class="tt">simpletable</span> elements.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__external-link-icon-height"><span class="tt">external-link-icon-height</span><a id="htmlParams__I_cq4ylu_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Length. A length may have a unit. Default is
+                                 <span class="tt">px</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'10'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The height of the ``opens in new window''
+                                 icon.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__external-link-icon-name"><span class="tt">external-link-icon-name</span><a id="htmlParams__I_n8vsz8_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Basename.</div>
+                              <div class="p">Default value:
+                                 <span class="tt">'new_window.png'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The basename of the ``opens in new window'' icon. This
+                                 icon is found in the resources directory.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__external-link-icon-width"><span class="tt">external-link-icon-width</span><a id="htmlParams__I_mmr8j7_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Length. A length may have a unit. Default is
+                                 <span class="tt">px</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'11'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The width of the ``opens in new window''
+                                 icon.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__format-to-type"><span class="tt">format-to-type</span><a id="htmlParams__I_r3aaoh_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Zero or more DITA format/MIME type pairs. Example:
+                                 &quot;<span class="tt">txt text/plain xml application/xml html text/html</span>&quot;.
+                                 
+                              </div>
+                              <div class="p">Default value: <span class="tt">''</span>, which means that DITA
+                                 <span class="tt">xref/@format</span> is <i class="i">not</i> converted to XHTML
+                                 <span class="tt">a/@type</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Allows to map DITA <span class="tt">xref/@format</span> to XHTML
+                                 <span class="tt">a/@type</span>.
+                              </div>
+                              <div class="p">Using default empty value, <span class="tt">&lt;xref
+                                    scope=&quot;external&quot; format=&quot;txt&quot;
+                                    href=&quot;http://acme.com/info.xyz&quot;&gt;</span> is converted to <span class="tt">&lt;a
+                                    href=&quot;http://acme.com/info.xyz&quot; target=&quot;_blank&quot;&gt;</span>. The fact
+                                 that file extension &quot;<span class="tt">.xyz</span>&quot; is unknown may cause problems
+                                 when attempting to navigate or download file &quot;<span class="tt">info.xyz</span>&quot;
+                                 using a Web browser.
+                              </div>
+                              <div class="p">If
+                                 <span class="tt">-p format-to-type &quot;txt text/plain&quot;</span> is passed to
+                                 <code class="cmdname">ditac</code> then <span class="tt">&lt;xref scope=&quot;external&quot;
+                                    format=&quot;txt&quot; href=&quot;http://acme.com/info.xyz&quot;&gt;</span> is converted
+                                 to <span class="tt">&lt;a type=&quot;text/plain&quot; href=&quot;http://acme.com/info.xyz&quot;
+                                    target=&quot;_blank&quot;&gt;</span>, which is better.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__generator-info"><span class="tt">generator-info</span><a id="htmlParams__I_rkfy2o_"></a></td>
+                           <td class="stentry">
+                              <div class="p">String</div>
+                              <div class="p">Default value: <span class="tt">'XMLmind DITA Converter
+                                    <i class="i">VERSION</i>'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The name of the software which has been used to create
+                                 the HTML pages. 
+                              </div>
+                              <div class="p">Specify an empty string if you don't want to
+                                 have a <span class="tt">&lt;meta name=&quot;generator&quot; content=&quot;<i class="i">XXX</i>&quot;/&gt;</span>
+                                 element added to your HTML pages.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__ignore-navigation-links"><span class="tt">ignore-navigation-links</span><a id="htmlParams__I_3hyutr_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span>, '<span class="tt">no</span>' and
+                                 <span class="tt">'auto'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'auto'</span> for XHTML and
+                                 its variants; <span class="tt">'yes'</span> for Web Help, Java Help, HTML Help,
+                                 Eclipse Help and EPUB
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">If <span class="tt">'yes'</span>, do not generate the navigation links
+                                 corresponding to <span class="tt">topicref</span> attribute
+                                 <span class="tt">collection-type</span>.
+                              </div>
+                              <div class="p">If <span class="tt">'no'</span>, generate the
+                                 navigation links corresponding to <span class="tt">topicref</span> attribute
+                                 <span class="tt">collection-type</span>.
+                              </div>
+                              <div class="p">If <span class="tt">'auto'</span>, generate the
+                                 navigation links corresponding to <span class="tt">topicref</span> attribute
+                                 <span class="tt">collection-type</span>, unless <a class="xref" href="#htmlParams__chain-topics"><span class="tt">chain-topics=yes</span></a>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__javascripts"><span class="tt">javascripts</span><a id="htmlParams__I_ed7eo_"></a></td>
+                           <td class="stentry">
+                              <div class="p">String. List of URLs separated by
+                                 whitespace.
+                              </div>
+                              <div class="p">Default value: <span class="tt">''</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The URLs specified in this parameter must point to
+                                 JavaScript files. These URLs are converted to
+                                 <code class="xmlelement">&lt;script&gt;</code> XHTML elements added to the
+                                 <code class="xmlelement">&lt;html&gt;</code>/<code class="xmlelement">&lt;head&gt;</code> elements
+                                 of the XHTML files generated by ditac.
+                              </div>
+                              <div class="p">Note that an URL may
+                                 end with <span class="tt">';async'</span>, <span class="tt">';defer'</span> or a combination of
+                                 both flags. These flags are translated to the corresponding
+                                 attributes of the <code class="xmlelement">&lt;script&gt;</code> element.
+                                 Example:
+                              </div><pre class="pre" style="font-size: 80%;">https://cdn.mathjax.org/mathjax/latest/¬
+MathJax.js?config=MML_CHTML<b class="b">;async</b></pre><div class="p">is translated to:</div><pre class="pre" style="font-size: 80%;">&lt;script type=&quot;text/javascript&quot; <b class="b">async=&quot;async&quot;</b>
+src=&quot;https://cdn.mathjax.org/mathjax/latest/¬
+MathJax.js?config=MML_CHTML&quot;&gt;
+&lt;/script&gt;</pre></td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__mathjax"><span class="tt">mathjax</span><a id="htmlParams__I_qtqg84_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span>, <span class="tt">'no'</span> and
+                                 <span class="tt">'auto'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Very few web browsers (Firefox) can natively render
+                                 MathML<a id="htmlParams__I_x77xx7_"></a>. Fortunately, there is <a class="xref" href="https://www.mathjax.org/" target="_blank">MathJax</a>.
+                                 MathJax<a id="htmlParams__I_jdq39k_"></a> is a JavaScript display engine
+                                 for mathematics that works in all browsers.
+                              </div>
+                              <dl class="dl">
+                                 <dt class="dt"><span class="tt">'yes'</span></dt>
+                                 <dd class="dd">Add a <code class="xmlelement">&lt;script&gt;</code> XHTML element
+                                    loading MathJax to the
+                                    <code class="xmlelement">&lt;html&gt;</code>/<code class="xmlelement">&lt;head&gt;</code>
+                                    elements of all XHTML files generated by ditac.
+                                 </dd>
+                                 <dt class="dt"><span class="tt">'auto'</span></dt>
+                                 <dd class="dd">Same as <span class="tt">'yes'</span>, but add
+                                    <code class="xmlelement">&lt;script&gt;</code> only to generated XHTML files
+                                    containing MathML.
+                                 </dd>
+                              </dl>
+                              <div class="p">Ignored by all XHTML-based formats but XHTML and Web
+                                 Help.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__mathjax-url"><span class="tt">mathjax-url</span><a id="htmlParams__I_gpbe7j_"></a></td>
+                           <td class="stentry">
+                              <div class="p">String.</div>
+                              <div class="p">Default value: the URL pointing to the
+                                 MathJax CDN, as recommended in the MathJax
+                                 documentation.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The URL allowing to load the <a class="xref" href="https://www.mathjax.org/" target="_blank">MathJax</a>
+                                 engine<a id="htmlParams__I_bdxdho_"></a> configured for rendering
+                                 MathML<a id="htmlParams__I_pypmil_"></a>.
+                              </div>
+                              <div class="p">Ignored unless parameter
+                                 <a class="xref" href="file:/Users/rmraya/Documents/workspace/Conversa/docs/references/html_parameters.dita#xsltParams/mathjax"><span class="tt">mathjax</span></a> is set to
+                                 <span class="tt">'yes'</span>or <span class="tt">'auto'</span>.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__mark-external-links"><span class="tt">mark-external-links</span><a id="htmlParams__I_l4nzlk_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether an external link should be marked
+                                 using a ``opens in new window'' icon.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__navigation-icon-height"><span class="tt">navigation-icon-height</span><a id="htmlParams__I_t1kgy_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Length. A length may have a unit. Default is
+                                 <span class="tt">px</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'16'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The height of a navigation icon.</div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__navigation-icon-suffix"><span class="tt">navigation-icon-suffix</span><a id="htmlParams__I_rply8p_"></a></td>
+                           <td class="stentry">
+                              <div class="p">String.</div>
+                              <div class="p">Default value:
+                                 <span class="tt">'.png'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The suffix of a navigation icon.</div>
+                              <div class="p">The root names of
+                                 navigation icons are fixed: 
+                                 <ul class="compact-sl">
+                                    <li class="sli"><span class="tt">first</span>, <span class="tt">first_disabled</span>,
+                                    </li>
+                                    <li class="sli"><span class="tt">last</span>, <span class="tt">last_disabled</span>,
+                                    </li>
+                                    <li class="sli"><span class="tt">next</span>, <span class="tt">next_disabled</span>,
+                                    </li>
+                                    <li class="sli"><span class="tt">previous</span>, <span class="tt">previous_disabled</span>,
+                                    </li>
+                                    <li class="sli"><span class="tt">parent</span>, <span class="tt">parent_disabled</span>,
+                                    </li>
+                                    <li class="sli"><span class="tt">child</span>, <span class="tt">child_disabled</span>.
+                                    </li>
+                                 </ul>
+                              </div>
+                              <div class="p">For example, if <span class="tt">note-icon-suffix='.svg'</span>, the
+                                 default resources directory is expected to contain
+                                 <code class="filepath">first.svg</code>,
+                                 <code class="filepath">first_disabled.svg</code>,
+                                 <code class="filepath">last.svg</code>, etc.
+                              </div>
+                              <div class="p">In principle, there is no
+                                 need for an end-user to specify any of the
+                                 <span class="tt">navigation-icon-suffix</span>, <span class="tt">navigation-icon-width</span> or
+                                 <span class="tt">navigation-icon-height</span> parameters.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__navigation-icon-width"><span class="tt">navigation-icon-width</span><a id="htmlParams__I_lx1uvq_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Length. A length may have a unit. Default is
+                                 <span class="tt">px</span>.
+                              </div>
+                              <div class="p">Default value: <span class="tt">'16'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The width of a navigation icon.</div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__screen-resolution"><span class="tt">screen-resolution</span><a id="htmlParams__I_9dqn3p_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Positive integer.</div>
+                              <div class="p">Default value:
+                                 <span class="tt">'96'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">The resolution of the screen in dot per inch (DPI). This
+                                 resolution is used to convert image dimensions such as <span class="tt">3cm</span>
+                                 to pixels.
+                              </div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="htmlParams__xhtml-mime-type"><span class="tt">xhtml-mime-type</span><a id="htmlParams__I_98atdx_"></a></td>
+                           <td class="stentry">
+                              <div class="p">A MIME type without a parameter such as
+                                 <span class="tt">'text/html'</span>, <span class="tt">'application/xhtml+xml'</span>,
+                                 <span class="tt">'application/xml'</span> or the empty string
+                                 (<span class="tt">''</span>).
+                              </div>
+                              <div class="p">Default value:
+                                 <span class="tt">'text/html'</span>.
+                              </div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Applies to all the XHTM-based formats (XHTML, EPUB), not
+                                 to the HTML-based formats (Web Help, <span class="tm">Java™</span> Help,
+                                 HTML Help, Eclipse Help).
+                              </div>
+                              <div class="p">By default (<span class="tt">'text/html'</span>),
+                                 serve XHTML as HTML.
+                              </div>
+                              <div class="p">Specify <span class="tt">'application/xhtml+xml'</span>
+                                 if you prefer to serve XHTML as XML.
+                              </div>
+                              <div class="p">Specify an empty string
+                                 if you prefer not to generate <span class="tt">&lt;meta
+                                    http-equiv=&quot;Content-Type&quot;...&gt;</span>.
+                              </div>
+                              <div class="note">
+                                 <h5 class="note-head">Tip</h5>
+                                 <div class="note-body">Web
+                                    browsers such as Firefox or Opera will <i class="i">not</i> render the MathML
+                                    embedded in XHTML, if this XHTML is served as HTML. Therefore when
+                                    your DITA document contains MathML equations, you'll have to
+                                    generate &quot;<span class="tt">.xhtml</span>&quot; files (&quot;<span class="tt">.html</span>&quot; files won't work)
+                                    and also, preferably, to specify
+                                    <span class="tt">xhtml-mime-type=&quot;application/xhtml+xml&quot;</span> or
+                                    <span class="tt">xhtml-mime-type=&quot;&quot;</span>.
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </section>
+         </div>
+      </section>
+   </div>
+    </div>
+
+    
+  </body></html>

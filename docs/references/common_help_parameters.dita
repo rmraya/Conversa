@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="Untitled10">
+  <title>Common Help Parameters</title>
+  <shortdesc></shortdesc>
+  <refbody>
+    <section>
+      <p>Parameters common to the stylesheets that generate Web Help, HTML Help, Eclipse Help and
+      EPUB</p>
+      <simpletable relcolwidth="1* 1* 2*">
+        <sthead>
+          <stentry>Parameter</stentry>
+          
+          <stentry>Value</stentry>
+          
+          <stentry>Description</stentry>
+        </sthead>
+        
+        <strow>
+          <stentry
+            id="show-title-page"><tt>add-toc-root</tt><indexterm>add-toc-root,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+            <tt>'no'</tt>.</p><p>Default value: <tt>'yes'</tt>.</p></stentry>
+          
+          <stentry><p>If <tt>'yes'</tt>, add a pseudo TOC entry, bearing the
+            title of the document, containing all the actual TOC
+            entries.</p><note type="restriction"><ul compact="yes">
+              <li>Value <tt>'no'</tt> is not supported by the stylesheets that
+                generate Eclipse Help.</li>
+              
+              <li>Ignored by the stylesheets that generate Web Help and
+                EPUB.</li>
+            </ul></note></stentry>
+        </strow>
+        
+        <strow>
+          <stentry
+            id="number-toc-entries"><tt>number-toc-entries</tt><indexterm>number-toc-entries,
+              parameter</indexterm></stentry>
+          
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+            <tt>'no'</tt>.</p><p>Default value: 'yes' for Web Help,
+              <tt>'no'</tt> for the other formats.</p></stentry>
+          
+          <stentry><p>If <tt>'yes'</tt>, number the TOC entries. No effect
+            unless the <xref href="common_parameters.dita#commonParameters/number">number parameter</xref>
+            is used to specify that topics should be numbered.</p></stentry>
+        </strow>
+      </simpletable></section>
+  </refbody>
+</reference>
