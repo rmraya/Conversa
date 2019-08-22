@@ -6,11 +6,11 @@
 Conversa works right out of the box. Just install it and generate PDF, HTML, EPUB or Web Help from your DITA files using the default configuration.
 
 The output formats supported by Conversa are:
-  | | |  | |
- :--: | :--: | :--: | :--:
- PDF | HTML | EPUB 2 & 3 | PostScript
- Eclipse Help | Web Help | Web Help with HTML5 | Html Help
- XSL-FO | RTF | DOCX | ODT
+| | | | |
+|:--:|:--:|:--:|:--:|
+| PDF | HTML | EPUB 2 & 3 | PostScript |
+| Eclipse Help | Web Help | Web Help with HTML5 | Html Help|
+| XSL-FO | RTF | DOCX | ODT |
 
 ## Installers
 
