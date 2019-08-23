@@ -1,13 +1,13 @@
 var whStorageId = "14fi5rxrwdafp";
 var whTOC = [
-["\n         <span class=\"webhelp-toc-chapter-entry\">Introduction</span>\n      ","conversa-2.html#I_4hvxj3_",[
+["\n         <span class=\"webhelp-toc-chapter-entry\">Introduction</span>\n      ","conversa-2.html#I_l4361e_",[
 ["\n            <span class=\"webhelp-toc-section1-entry\">Conversa DITA Publisher</span>\n         ","conversa-3.html#conversa",null]
 ]],
-["\n         <span class=\"webhelp-toc-chapter-entry\">Publishing DITA Maps</span>\n      ","conversa-4.html#I_5gff8m_",[
+["\n         <span class=\"webhelp-toc-chapter-entry\">Publishing DITA Maps</span>\n      ","conversa-4.html#I_gt32ln_",[
 ["\n            <span class=\"webhelp-toc-section1-entry\">Publish DITA Map Dialog</span>\n         ","publish_map.html#task_i3c_hgt_v5",null],
 ["\n            <span class=\"webhelp-toc-section1-entry\">Useful Tips</span>\n         ","useful_tips.html#Untitled14",null]
 ]],
-["\n         <span class=\"webhelp-toc-chapter-entry\">Configuration</span>\n      ","conversa-5.html#I_tdrklp_",[
+["\n         <span class=\"webhelp-toc-chapter-entry\">Configuration</span>\n      ","conversa-5.html#I_nczxue_",[
 ["\n            <span class=\"webhelp-toc-section1-entry\">Preferences Dialog</span>\n         ","program_settings.html#advanced_configuration",null],
 ["\n            <span class=\"webhelp-toc-section1-entry\">External Tools</span>\n         ","external_tools.html#Untitled2",null],
 ["\n            <span class=\"webhelp-toc-section1-entry\">XML Catalog</span>\n         ","xml_catalog.html#concept_lt2_lb4_ts",null],
