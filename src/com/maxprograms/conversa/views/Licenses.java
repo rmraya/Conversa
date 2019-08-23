@@ -203,7 +203,7 @@ public class Licenses {
         snowball.setText("Snowball");
 
         CustomLink snowballLink = new CustomLink(shell, SWT.NONE);
-        snowballLink.setText("3-clause BSD License");
+        snowballLink.setText("BSD (3-clause) License");
         try {
             snowballLink.setURL(new File("LEGAL/snowball.LICENSE").toURI().toURL().toString());
         } catch (MalformedURLException e) {
@@ -214,7 +214,7 @@ public class Licenses {
         flexmark.setText("flexmark-java");
 
         CustomLink flexMarkLink = new CustomLink(shell, SWT.NONE);
-        flexMarkLink.setText("MIT License");
+        flexMarkLink.setText("BSD (2-clause) License");
         try {
             flexMarkLink.setURL(new File("LEGAL/flexmark.LICENSE").toURI().toURL().toString());
         } catch (MalformedURLException e) {
