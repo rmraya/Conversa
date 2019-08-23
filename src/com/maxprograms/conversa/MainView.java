@@ -400,7 +400,6 @@ public class MainView {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	private void createMenu(Menu bar) {
 		MenuItem file = new MenuItem(bar, SWT.CASCADE);
 		file.setText("&File");

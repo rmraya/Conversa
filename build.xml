@@ -5,10 +5,7 @@
     <property name="build.compiler" value="javac10+"/>
     <path id="Conversa.classpath">
         <pathelement location="lib/ditac.jar"/>
-        <pathelement location="lib/dtd.jar"/>
         <pathelement location="lib/flexmark.jar"/>
-        <pathelement location="lib/json.jar"/>
-        <pathelement location="lib/jsoup-1.11.3.jar"/>
         <pathelement location="lib/mapdb.jar"/>
         <pathelement location="lib/openxliff.jar"/>
         <pathelement location="lib/relaxng.jar"/>
