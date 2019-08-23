@@ -459,26 +459,9 @@ public class MainView {
 		Menu helpMenu = new Menu(help);
 		help.setMenu(helpMenu);
 
-		MenuItem helpItem = new MenuItem(helpMenu, SWT.PUSH);
-		helpItem.setText("Conversa User Guide (Web Help)\tF1");
-		helpItem.setAccelerator(SWT.F1);
-		helpItem.setImage(Conversa.getResourcemanager().getHelp());
-		helpItem.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent event) {
-				try {
-					Program.launch(new File("docs/webhelp5/conversa.html").toURI().toURL().toString());
-				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening help", e);
-					MessageBox box = new MessageBox(shell, SWT.ICON_WARNING | SWT.OK);
-					box.setMessage("There was an error opening help file.");
-					box.open();
-				}
-			}
-		});
-
 		MenuItem pdfHelp = new MenuItem(helpMenu, SWT.PUSH);
-		pdfHelp.setText("Conversa User Guide (PDF)");
+		pdfHelp.setText("Conversa User Guide\tF1");
+		pdfHelp.setAccelerator(SWT.F1);
 		pdfHelp.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
