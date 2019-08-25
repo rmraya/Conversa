@@ -68,7 +68,6 @@ public class Conversa {
 		try {
 			checkLock();
 			lock();
-			System.setProperty("xml.catalog.files", getCatalogFile());
 			controller = new Controller();
 			main = new MainView(display);
 			main.show();
