@@ -1,7 +1,7 @@
 # Conversa DITA Publisher
 
 ![alt text](https://www.maxprograms.com/images/conversa.png "Conversa DITA Publisher")
-**Conversa** provides a free graphical user interface to the free **DITA Converter** (ditac) from [XMLmind](http://www.xmlmind.com/ditac/) that you can use to easily publish your DITA projects in multiple formats.
+**Conversa** is an open source graphical user interface for  **DITA Converter** (ditac) from [XMLmind](http://www.xmlmind.com/ditac/) that you can use to easily publish your DITA projects in multiple formats.
 
 Conversa works right out of the box. Just install it and generate PDF, HTML, EPUB or Web Help from your DITA files using the default configuration.
 
@@ -13,7 +13,7 @@ The output formats supported by Conversa are:
 - PostScript
 - Eclipse Help
 - Web Help & Web Help with HTML5
-- Html Help
+- HTML Help
 - XSL-FO
 - RTF
 - DOCX
