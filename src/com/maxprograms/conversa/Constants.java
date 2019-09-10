@@ -29,8 +29,8 @@ public class Constants {
 		// do not instantiate
 	}
 
-	public static final String VERSION = "1.3.1";
-	public static final String BUILD = "20190825_1843";
+	public static final String VERSION = "1.3.2";
+	public static final String BUILD = "20190910_0857";
 	public static final String PREFERENCES = "Conversa.pref";
 
 }

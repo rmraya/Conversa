@@ -23,6 +23,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.swt.SWT;
@@ -50,7 +51,7 @@ public class HTMLViewer extends Dialog {
 	public HTMLViewer(Shell parent) throws IOException {
 		super(parent, SWT.NONE);
 		shell = new Shell(parent, SWT.CLOSE | SWT.TITLE | SWT.MODELESS | SWT.BORDER | SWT.RESIZE);
-		if (System.getProperty("file.separator").equals("\\")) {
+		if (File.separator.equals("\\")) {
 			shell.setImage(Conversa.getResourcemanager().getWinLogo());
 		} else if (System.getProperty("os.name").startsWith("Mac")) {
 			shell.setImage(Conversa.getResourcemanager().getMacLogo());
@@ -70,7 +71,7 @@ public class HTMLViewer extends Dialog {
 		});
 
 		try {
-			if (System.getProperty("file.separator").equals("/")) {
+			if (File.separator.equals("/")) {
 				browser = new Browser(shell, SWT.WEBKIT);
 			} else {
 				browser = new Browser(shell, SWT.NONE);
@@ -78,7 +79,7 @@ public class HTMLViewer extends Dialog {
 		} catch (SWTError e) {
 			e.printStackTrace();
 			String message = "";
-			if (System.getProperty("file.separator").equals("/")) {
+			if (File.separator.equals("/")) {
 				if (System.getProperty("os.name").startsWith("Mac")) {
 					// Mac
 					message = "Error embedding browser. Check Safari's configuration.";

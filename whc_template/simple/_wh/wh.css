@@ -56,7 +56,7 @@
 }
 /* Common wh.css ========================================================== */
 /*
- * Copyright (c) 2017 XMLmind Software. All rights reserved.
+ * Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
  *
  * This file is part of the XMLmind Web Help Compiler project.
  * For conditions of distribution and use, see the accompanying LEGAL.txt file.
@@ -89,9 +89,9 @@ body {
     overflow: hidden;
 
     /*
-     * Needed to prevent layout flickering during whInitPage/whLayout.
+     * Needed to prevent layout flickering (FOUC) during whInitPage/whLayout.
      */
-    visiblity: hidden;
+    visibility: hidden;
     opacity: 0;
 }
 
@@ -205,7 +205,7 @@ span.wh-highlighted {
 }
 /* simple wh.css ========================================================= */
 /*
- * Copyright (c) 2017-2018 XMLmind Software. All rights reserved.
+ * Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
  *
  * This file is part of the XMLmind Web Help Compiler project.
  * For conditions of distribution and use, see the accompanying LEGAL.txt file.
@@ -304,7 +304,7 @@ span.wh-highlighted {
 }
 
 #wh-cancel-search {
-    visiblity: hidden;
+    visibility: hidden;
     opacity: 0;
 }
 

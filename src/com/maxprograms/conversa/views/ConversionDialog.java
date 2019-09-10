@@ -96,7 +96,7 @@ public class ConversionDialog implements ILogger {
 
 	public ConversionDialog(Shell parent, int style) {
 		shell = new Shell(parent, style);
-		if (System.getProperty("file.separator").equals("\\")) {
+		if (File.separator.equals("\\")) {
 			shell.setImage(Conversa.getResourcemanager().getWinLogo());
 		} else if (System.getProperty("os.name").startsWith("Mac")) {
 			shell.setImage(Conversa.getResourcemanager().getMacLogo());

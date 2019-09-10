@@ -102,7 +102,7 @@ public class MainView {
 		shellLayout.marginWidth = 0;
 		shellLayout.marginHeight = 0;
 		shell.setLayout(shellLayout);
-		if (System.getProperty("file.separator").equals("\\")) {
+		if (File.separator.equals("\\")) {
 			shell.setImage(Conversa.getResourcemanager().getWinLogo());
 		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
 			shell.setImage(Conversa.getResourcemanager().getMacLogo());
@@ -422,7 +422,7 @@ public class MainView {
 			new MenuItem(fileMenu, SWT.SEPARATOR);
 
 			MenuItem close = new MenuItem(fileMenu, SWT.PUSH);
-			if (System.getProperty("file.separator").equals("\\")) {
+			if (File.separator.equals("\\")) {
 				close.setText("Exit\tAlt + F4");
 				close.setAccelerator(SWT.ALT | SWT.F4);
 			} else {

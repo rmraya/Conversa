@@ -31,6 +31,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
+import java.io.File;
+
 import com.maxprograms.conversa.Conversa;
 import com.maxprograms.utils.Locator;
 
@@ -42,7 +44,7 @@ public class ConsoleView {
 	public ConsoleView(Shell parent, int style) {
 		shell = new Shell(parent, style);
 		shell.setLayout(new GridLayout());
-		if (System.getProperty("file.separator").equals("\\")) {
+		if (File.separator.equals("\\")) {
 			shell.setImage(Conversa.getResourcemanager().getWinLogo());
 		} else if (System.getProperty("os.name").startsWith("Mac")) {
 			shell.setImage(Conversa.getResourcemanager().getMacLogo());

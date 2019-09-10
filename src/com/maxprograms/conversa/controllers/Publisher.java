@@ -97,9 +97,6 @@ public class Publisher {
 
 		loadSettings();
 
-		File xslDir = new File(path(System.getProperty("user.dir") + System.getProperty("file.separator") + "xsl"));
-		System.setProperty("DITAC_XSL_DIR", xslDir.getAbsolutePath());
-
 		File inFile = new File(publication.getDitamap());
 		File outFolder = new File(publication.getOutputFolder());
 		if (!outFolder.exists()) {
@@ -138,10 +135,9 @@ public class Publisher {
 				}
 				break;
 			default:
-				String path = System.getProperty("user.dir") + System.getProperty("file.separator") + "fop-2.3"
-						+ System.getProperty("file.separator");
+				String path = System.getProperty("user.dir") + File.separator + "fop-2.3" + File.separator;
 				System.setProperty("FOP_HOME", path);
-				String javaHome = System.getProperty("user.dir") + System.getProperty("file.separator") + "jre";
+				String javaHome = System.getProperty("user.dir") + File.separator + "jre";
 				System.setProperty("JAVA_HOME", javaHome);
 
 				if (System.getProperty("os.name").startsWith("Windows")) {
@@ -346,7 +342,7 @@ public class Publisher {
 			if (pluginId.equals("")) {
 				outFile = new File(folder, "_.html");
 			} else {
-				outFile = new File(folder, pluginId + System.getProperty("file.separator") + "_.html");
+				outFile = new File(folder, pluginId + File.separator + "_.html");
 				if (!outFile.getParentFile().exists()) {
 					outFile.getParentFile().mkdirs();
 				}

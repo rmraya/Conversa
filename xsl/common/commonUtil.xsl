@@ -233,10 +233,12 @@
       </xsl:when>
 
       <xsl:when test="contains(@outputclass, 'continue')">
-        <xsl:variable name="previousList"
-          select="(preceding::*[contains(@class,' topic/ol ')])[last()]"/>
+        <xsl:variable name="olNesting" select="u:olNesting(.)"/>
+        <xsl:variable name="prevList"
+          select="(preceding::*[contains(@class,' topic/ol ') and 
+                                u:olNesting(.) eq $olNesting])[last()]"/>
 
-        <xsl:sequence select="u:computeOlStart($previousList, 1)"/>
+        <xsl:sequence select="u:computeOlStart($prevList, 1, $olNesting)"/>
       </xsl:when>
       <!-- Otherwise, an empty string. -->
     </xsl:choose>
@@ -252,9 +254,16 @@
                           else 1"/>
   </xsl:function>
 
+  <xsl:function name="u:olNesting" as="xs:integer">
+    <xsl:param name="list" as="element()"/>
+    <xsl:sequence 
+      select="count($list/ancestor::*[contains(@class,' topic/ol ')])"/>
+  </xsl:function>
+
   <xsl:function name="u:computeOlStart" as="xs:integer">
     <xsl:param name="list" as="element()?"/>
     <xsl:param name="olStart" as="xs:integer"/>
+    <xsl:param name="olNesting" as="xs:integer"/>
     
     <xsl:choose>
       <xsl:when test="empty($list)">
@@ -273,11 +282,12 @@
           </xsl:when>
 
           <xsl:when test="contains($list/@outputclass, 'continue')">
-            <xsl:variable name="previousList"
-              select="($list/preceding::*[contains(@class,' topic/ol ')])[last()]"/>
+            <xsl:variable name="prevList"
+              select="($list/preceding::*[contains(@class,' topic/ol ') and 
+                                          u:olNesting(.) eq $olNesting])[last()]"/>
 
             <xsl:sequence
-              select="u:computeOlStart($previousList, $itemCount + $olStart)"/>
+              select="u:computeOlStart($prevList, $itemCount + $olStart, $olNesting)"/>
           </xsl:when>
 
           <xsl:otherwise>

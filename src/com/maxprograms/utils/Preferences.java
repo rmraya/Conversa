@@ -84,7 +84,7 @@ public class Preferences {
 
 	public static synchronized File getPreferencesDir() throws IOException {
 		String directory;
-		if (System.getProperty("file.separator").equals("\\")) { //$NON-NLS-1$ //$NON-NLS-2$
+		if (File.separator.equals("\\")) { //$NON-NLS-1$ //$NON-NLS-2$
 			// Windows
 			directory = System.getenv("AppData") + "\\Conversa\\"; //$NON-NLS-1$ //$NON-NLS-2$
 		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) { //$NON-NLS-1$ //$NON-NLS-2$

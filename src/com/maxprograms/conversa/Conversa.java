@@ -165,7 +165,7 @@ public class Conversa {
 					try (FileLock newlock = oldchannel.tryLock()) {
 						if (newlock == null) {
 							Shell shell = new Shell(display);
-							if (System.getProperty("file.separator").equals("\\")) {
+							if (File.separator.equals("\\")) {
 								shell.setImage(getResourcemanager().getWinLogo());
 							} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
 								shell.setImage(getResourcemanager().getMacLogo());

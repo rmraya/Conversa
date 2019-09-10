@@ -52,7 +52,7 @@ public class Licenses {
         shell.setText("Licenses");
         display = shell.getDisplay();
         shell.setLayout(new GridLayout(2, false));
-        if (System.getProperty("file.separator").equals("\\")) {
+        if (File.separator.equals("\\")) {
             shell.setImage(Conversa.getResourcemanager().getWinLogo());
         } else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
             shell.setImage(Conversa.getResourcemanager().getMacLogo());

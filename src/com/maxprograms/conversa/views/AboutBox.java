@@ -25,6 +25,7 @@ package com.maxprograms.conversa.views;
 
 import java.text.MessageFormat;
 import java.lang.System.Logger.Level;
+import java.io.File;
 import java.lang.System.Logger;
 
 import org.eclipse.swt.SWT;
@@ -55,7 +56,7 @@ public class AboutBox {
 
 	public AboutBox(Shell parent, int style) {
 		shell = new Shell(parent, style);
-		if (System.getProperty("file.separator").equals("\\")) {
+		if (File.separator.equals("\\")) {
 			shell.setImage(Conversa.getResourcemanager().getWinLogo());
 		} else if (System.getProperty("os.name").startsWith("Mac")) {
 			shell.setImage(Conversa.getResourcemanager().getMacLogo());
