@@ -103,9 +103,9 @@ public class Conversa {
 
 	public static String getCatalogFile() throws IOException {
 		File preferencesFolder = Preferences.getPreferencesDir();
-		File catalogFolder = new File(preferencesFolder, "catalog");
+		File catalogFolder = new File(preferencesFolder, "schema");
 		if (!catalogFolder.exists()) {
-			copyFolder(new File("catalog"), catalogFolder);
+			copyFolder(new File("schema"), catalogFolder);
 		}
 		File catalog = new File(catalogFolder, "catalog.xml");
 		return catalog.getAbsolutePath();
