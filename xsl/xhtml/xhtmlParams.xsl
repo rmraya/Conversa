@@ -45,7 +45,7 @@
        meta http-equiv="Content-Type". -->
   <xsl:param name="xhtml-mime-type" select="'text/html'"/>
 
-  <xsl:param name="generator-info" select="'XMLmind DITA Converter 3.6.1'"/>
+  <xsl:param name="generator-info" select="'XMLmind DITA Converter 3.6.1_01'"/>
 
   <!-- Do not redefine unless you change the files found in
        $xsl-resources-directory. -->
