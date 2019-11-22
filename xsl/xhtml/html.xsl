@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -25,6 +25,7 @@
   <!-- Specify the output encoding here and also below. -->
   <xsl:param name="xhtmlEncoding" select="'UTF-8'"/>
 
+  <!-- DOCTYPE required; otherwise Web browser runs in "quirks mode". -->
   <xsl:output method="html" version="4.01" encoding="UTF-8"
               doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" 
               doctype-system="http://www.w3.org/TR/html4/loose.dtd"/>

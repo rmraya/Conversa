@@ -1,0 +1,113 @@
+/*
+ * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+#wh-navigation-form {
+    display: block;
+    flex: none;
+    padding: var(--panel-padding) calc(2 * var(--panel-padding));
+    background-color: var(--panel-background-color);
+    border-bottom-width: var(--panel-border-width);
+    border-bottom-color: var(--panel-border-color);
+    border-bottom-style: var(--panel-border-style);
+}
+
+#wh-toc-pane,
+#wh-search-pane {
+    display: block;
+    flex: auto;
+    margin: 0;
+    padding: var(--panel-padding);
+    overflow: auto;
+}
+
+#wh-search-pane {
+    display: none;
+}
+
+/*
+ * --------------------------------------
+ * Navigation form parts
+ * --------------------------------------
+ */
+
+#wh-search-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--field-background-color);
+    border-color: var(--field-border-color);
+    border-width: var(--field-border-width);
+    border-style: var(--field-border-style);
+    -moz-border-radius: var(--field-border-radius);
+    -webkit-border-radius: var(--field-border-radius);
+    border-radius: var(--field-border-radius);
+}
+
+#wh-search-field {
+    flex: auto;
+    width: 2em; /* By default, width:auto is 20 chars. */
+    min-width: 2em; 
+    font-family: inherit;
+    font-size: inherit;
+    border-style: none;
+    border-width: 0;
+    background-color: var(--field-background-color);
+    margin: 0 1ex;
+}
+
+#wh-search-field:focus {
+    outline: none;
+}
+
+#wh-search-field::-webkit-input-placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+#wh-search-field::-moz-placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+#wh-search-field:-ms-input-placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+#wh-search-field::placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+/* Remove "X" from the following input[type=text] in IE and Edge. */
+#wh-search-field::-ms-clear,
+#wh-search-field::-ms-reveal {
+    display: none;
+    width : 0;
+    height: 0;
+}
+
+#wh-do-search,
+#wh-cancel-search {
+    flex: none;
+    color: var(--button-icon-color);
+    padding: var(--button-icon-vpadding) var(--button-icon-hpadding);
+    cursor: default;
+}
+
+#wh-cancel-search {
+    visibility: hidden;
+    opacity: 0;
+}
+
+#wh-do-search:hover:before {
+    color: var(--search-icon-hover-color);
+}
+
+#wh-cancel-search:hover:before {
+    color: var(--cancel-icon-hover-color);
+}

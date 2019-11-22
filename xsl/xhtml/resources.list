@@ -1,6 +1,6 @@
 ### An UTF-8 text file containing URLs relative to this text file ---
 resources/attention.png
-resources/basic.css
+resources/base.css
 resources/caution.png
 resources/child.png
 resources/child_disabled.png

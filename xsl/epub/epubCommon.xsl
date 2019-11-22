@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2018 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -203,6 +203,14 @@
         </opf:item>
       </xsl:if>
     </xsl:for-each>
+
+    <!-- Declare custom CSS stylesheet if any. -->
+
+    <xsl:if test="$custom-css ne ''">
+      <opf:item id="{concat('__RES', count($resourceList))}" 
+                href="{concat($xslResourcesDir, u:basename($custom-css))}"
+                media-type="text/css"/>
+    </xsl:if>
 
     <!-- Declare watermark if any. -->
 

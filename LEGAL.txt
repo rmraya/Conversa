@@ -34,7 +34,8 @@
 
 ==============================================================================
 
-  The following components have not been developed by XMLmind Software:
+  Some software components have not been developed by XMLmind Software.
+  Among these third-party software components, there are:
 
       * lib/resolver.jar
 
@@ -49,7 +50,7 @@
       * lib/flexmark.jar (vsch/flexmark-java and its dependency: 
                           robinst/autolink-java)
 
-  For each component, there are two files in the LEGAL/ directory:
+  For each software component, there are two files in the LEGAL/ directory:
 
       [<component_name>.README] a text or HTML file describing the component.
 

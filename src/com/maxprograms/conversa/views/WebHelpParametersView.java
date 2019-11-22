@@ -47,18 +47,17 @@ import com.maxprograms.utils.Preferences;
 public class WebHelpParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(WebHelpParametersView.class.getName());
-	public static final String PARAMS = "WebHelpParameters";
+	public static final String PARAMS = "WebHelp";
 
 	protected boolean restoringDefaults;
 	private Combo whCollapseToc;
 	private Combo whIndexNumbers;
+	private Combo whInheritFontAndColors;
 	private Text whJquery;
-	private Text whJqueryCss;
-	private Text whJqueryCustomTheme;
-	private Text whJqueryTheme;
-	private Text whJqueryUi;
 	private Combo whLocalJquery;
 	private Combo whLayout;
+	private Combo whResponsiveUi;
+	private Text whUiLanguage;
 	private Combo whUseStemming;
 	private Text whUserCss;
 	private Text whUserFooter;
@@ -101,35 +100,17 @@ public class WebHelpParametersView extends Composite {
 		whIndexNumbers = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
 		whIndexNumbers.setItems(new String[] { "yes", "no" });
 
+		Label whInheritFontAndColorsLabel = new Label(holder, SWT.NONE);
+		whInheritFontAndColorsLabel.setText("wh-inherit-font-and-colors");
+
+		whInheritFontAndColors = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
+		whInheritFontAndColors.setItems(new String[] { "yes", "no" });
+
 		Label whJqueryLabel = new Label(holder, SWT.NONE);
 		whJqueryLabel.setText("wh-jquery");
 
 		whJquery = new Text(holder, SWT.BORDER);
 		whJquery.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-		Label whJqueryCssLabel = new Label(holder, SWT.NONE);
-		whJqueryCssLabel.setText("wh-jquery-css");
-
-		whJqueryCss = new Text(holder, SWT.BORDER);
-		whJqueryCss.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-		Label whJqueryCustomThemeLabel = new Label(holder, SWT.NONE);
-		whJqueryCustomThemeLabel.setText("wh-jquery-custom-theme");
-
-		whJqueryCustomTheme = new Text(holder, SWT.BORDER);
-		whJqueryCustomTheme.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-		Label whJqueryThemeLabel = new Label(holder, SWT.NONE);
-		whJqueryThemeLabel.setText("wh-jquery-theme");
-
-		whJqueryTheme = new Text(holder, SWT.BORDER);
-		whJqueryTheme.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-		Label whJqueryUiLabel = new Label(holder, SWT.NONE);
-		whJqueryUiLabel.setText("wh-jquery-ui");
-
-		whJqueryUi = new Text(holder, SWT.BORDER);
-		whJqueryUi.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Label whLocalJqueryLabel = new Label(holder, SWT.NONE);
 		whLocalJqueryLabel.setText("wh-local-jquery");
@@ -143,6 +124,18 @@ public class WebHelpParametersView extends Composite {
 		whLayout = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
 		whLayout.setItems(new String[] { "classic", "simple" });
 
+		Label whResponsiveUiLabel = new Label(holder, SWT.NONE);
+		whResponsiveUiLabel.setText("wh-responsive-ui");
+
+		whResponsiveUi = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
+		whResponsiveUi.setItems(new String[] { "yes", "no" });
+
+		Label whUiLanguageLabel = new Label(holder, SWT.NONE);
+		whUiLanguageLabel.setText("wh-ui-language");
+
+		whUiLanguage = new Text(holder, SWT.BORDER);
+		whUiLanguage.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
 		Label whUseStemmingLabel = new Label(holder, SWT.NONE);
 		whUseStemmingLabel.setText("wh-use-stemming");
 
@@ -153,7 +146,7 @@ public class WebHelpParametersView extends Composite {
 		whUserCssLabel.setText("wh-user-css");
 
 		whUserCss = new Text(holder, SWT.BORDER);
-		whUserCss.setText("wh-user-css");
+		whUserCss.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Label whUserFooterLabel = new Label(holder, SWT.NONE);
 		whUserFooterLabel.setText("wh-user-footer");
@@ -202,13 +195,12 @@ public class WebHelpParametersView extends Composite {
 
 		whCollapseToc.addModifyListener(modifyListener);
 		whIndexNumbers.addModifyListener(modifyListener);
+		whInheritFontAndColors.addModifyListener(modifyListener);
 		whJquery.addModifyListener(modifyListener);
-		whJqueryCss.addModifyListener(modifyListener);
-		whJqueryCustomTheme.addModifyListener(modifyListener);
-		whJqueryTheme.addModifyListener(modifyListener);
-		whJqueryUi.addModifyListener(modifyListener);
 		whLocalJquery.addModifyListener(modifyListener);
 		whLayout.addModifyListener(modifyListener);
+		whResponsiveUi.addModifyListener(modifyListener);
+		whUiLanguage.addModifyListener(modifyListener);
 		whUseStemming.addModifyListener(modifyListener);
 		whUserCss.addModifyListener(modifyListener);
 		whUserFooter.addModifyListener(modifyListener);
@@ -224,13 +216,12 @@ public class WebHelpParametersView extends Composite {
 			Map<String, String> values = new HashMap<>();
 			values.put("wh-collapse-toc", whCollapseToc.getText());
 			values.put("wh-index-numbers", whIndexNumbers.getText());
+			values.put("wh-inherit-font-and-colors", whInheritFontAndColors.getText());
 			values.put("wh-jquery", whJquery.getText());
-			values.put("wh-jquery-css", whJqueryCss.getText());
-			values.put("wh-jquery-custom-theme", whJqueryCustomTheme.getText());
-			values.put("wh-jquery-theme", whJqueryTheme.getText());
-			values.put("wh-jquery-ui", whJqueryUi.getText());
 			values.put("wh-local-jquery", whLocalJquery.getText());
 			values.put("wh-layout", whLayout.getText());
+			values.put("wh-responsive-ui", whResponsiveUi.getText());
+			values.put("wh-ui-language", whUiLanguage.getText());
 			values.put("wh-use-stemming", whUseStemming.getText());
 			values.put("wh-user-css", whUserCss.getText());
 			values.put("wh-user-footer", whUserFooter.getText());
@@ -252,13 +243,12 @@ public class WebHelpParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
 			whCollapseToc.setText(prefs.get(PARAMS, "wh-collapse-toc", "yes"));
 			whIndexNumbers.setText(prefs.get(PARAMS, "wh-index-numbers", "no"));
+			whInheritFontAndColors.setText(prefs.get(PARAMS, "wh-inherit-font-and-colors", "yes"));
 			whJquery.setText(prefs.get(PARAMS, "wh-jquery", ""));
-			whJqueryCss.setText(prefs.get(PARAMS, "wh-jquery-css", ""));
-			whJqueryTheme.setText(prefs.get(PARAMS, "wh-jquery-custom-theme", ""));
-			whJqueryTheme.setText(prefs.get(PARAMS, "wh-jquery-theme", "smoothness"));
-			whJqueryUi.setText(prefs.get(PARAMS, "wh-jquery-ui", ""));
 			whLocalJquery.setText(prefs.get(PARAMS, "wh-local-jquery", "no"));
 			whLayout.setText(prefs.get(PARAMS, "wh-layout", "classic"));
+			whResponsiveUi.setText(prefs.get(PARAMS, "wh-responsive-ui", "yes"));
+			whUiLanguage.setText(prefs.get(PARAMS, "wh-ui-language", "browser"));
 			whUseStemming.setText(prefs.get(PARAMS, "wh-use-stemming", "yes"));
 			whUserCss.setText(prefs.get(PARAMS, "wh-user-css", ""));
 			whUserFooter.setText(prefs.get(PARAMS, "wh-user-footer", ""));

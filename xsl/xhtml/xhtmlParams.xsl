@@ -35,9 +35,11 @@
                             $xsl-resources-directory
                         else
                             concat($xsl-resources-directory, '/')"/>
-    
-  <xsl:param name="css-name" select="'basic.css'"/>
+
+  <xsl:param name="cssResourceName" select="'base.css'"/>
+
   <xsl:param name="css" select="''"/>
+  <xsl:param name="custom-css" select="''"/>
 
   <!-- By default, serve XHTML as HTML.
        Specify 'application/xhtml+xml' if you prefer to serve XHTML as XML.
@@ -45,7 +47,7 @@
        meta http-equiv="Content-Type". -->
   <xsl:param name="xhtml-mime-type" select="'text/html'"/>
 
-  <xsl:param name="generator-info" select="'XMLmind DITA Converter 3.6.1_01'"/>
+  <xsl:param name="generator-info" select="'XMLmind DITA Converter 3.7.0'"/>
 
   <!-- Do not redefine unless you change the files found in
        $xsl-resources-directory. -->

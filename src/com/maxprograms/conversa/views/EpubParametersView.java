@@ -47,7 +47,7 @@ import com.maxprograms.utils.Preferences;
 public class EpubParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(EpubParametersView.class.getName());
-	public static final String PARAMS = "EpubParameters";
+	public static final String PARAMS = "Epub";
 
 	protected boolean restoringDefaults;
 	private Text coverImage;

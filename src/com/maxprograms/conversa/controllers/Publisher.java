@@ -25,15 +25,13 @@ package com.maxprograms.conversa.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.lang.System.Logger.Level;
-import java.lang.System.Logger;
-
-import org.eclipse.swt.program.Program;
 
 import com.maxprograms.conversa.Constants;
 import com.maxprograms.conversa.models.Publication;
@@ -52,6 +50,8 @@ import com.xmlmind.ditac.convert.Converter;
 import com.xmlmind.ditac.convert.StyleSheetCache;
 import com.xmlmind.util.Console;
 import com.xmlmind.util.Console.MessageType;
+
+import org.eclipse.swt.program.Program;
 
 public class Publisher {
 
@@ -169,6 +169,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -216,6 +217,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -262,6 +264,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -308,6 +311,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -364,6 +368,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -413,6 +418,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -462,6 +468,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -512,6 +519,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -559,6 +567,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -606,6 +615,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -653,6 +663,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -702,6 +713,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -751,6 +763,7 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
+			LOGGER.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
@@ -771,13 +784,14 @@ public class Publisher {
 
 	private static void getWebHelpParameters(ArgumentsBuilder argsBuilder) {
 		Map<String, String> defaults = new HashMap<>();
-		defaults.put("wh-collapse-toc", "yes");
+		defaults.put("wh-collapse-toc", "no");
 		defaults.put("wh-index-numbers", "no");
+		defaults.put("wh-inherit-font-and-colors", "yes");
 		defaults.put("wh-jquery", "");
-		defaults.put("wh-jquery-css", "");
-		defaults.put("wh-jquery-theme", "smoothness");
-		defaults.put("wh-jquery-ui", "");
 		defaults.put("wh-local-jquery", "no");
+		defaults.put("wh-layout", "classic");
+		defaults.put("wh-responsive-ui", "yes");
+		defaults.put("wh-ui-language", "browser");
 		defaults.put("wh-use-stemming", "yes");
 		defaults.put("wh-user-css", "");
 		defaults.put("wh-user-footer", "");
@@ -799,7 +813,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (!defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}
@@ -809,6 +823,7 @@ public class Publisher {
 		Map<String, String> defaults = new HashMap<>();
 		defaults.put("cover-image", "");
 		defaults.put("epub-identifier", "");
+		defaults.put("epub2-compatible", "yes");
 		defaults.put("generate-epub-trigger", "yes");
 		Map<String, String> custom = new HashMap<>();
 		try {
@@ -824,7 +839,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (!defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}
@@ -852,7 +867,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (!defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}
@@ -877,7 +892,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (!defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}
@@ -888,8 +903,11 @@ public class Publisher {
 		defaults.put("base-font-size", "10pt");
 		defaults.put("body-bottom-margin", "0.5in");
 		defaults.put("body-font-family", "serif");
+		defaults.put("body-start-indent", "2pc");
 		defaults.put("body-top-margin", "0.5in");
 		defaults.put("choice-bullets", "&#x2022;");
+		defaults.put("equation-block-equation-width", "90%");
+		defaults.put("equation-block-number-width", "10%");
 		defaults.put("external-href-after", "]");
 		defaults.put("external-href-before", "[");
 		defaults.put("footer-center",
@@ -909,6 +927,7 @@ public class Publisher {
 		defaults.put("header-left-width", "2");
 		defaults.put("header-right", "");
 		defaults.put("header-right-width", "2");
+		defaults.put("header-separator", "yes");
 		defaults.put("hyphenate", "no");
 		defaults.put("index-column-count", "2");
 		defaults.put("index-column-gap", "2em");
@@ -930,15 +949,17 @@ public class Publisher {
 		defaults.put("paper-type", "A4");
 		defaults.put("pdf-outline", "no");
 		defaults.put("show-external-links", "no");
+		defaults.put("show-imagemap-links", "yes");
 		defaults.put("show-link-page", "no");
 		defaults.put("show-xref-page", "no");
 		defaults.put("title-color", "black");
 		defaults.put("title-font-family", "sans-serif");
 		defaults.put("two-sided", "no");
-		defaults.put("&#x2022; &#x2013;", "&#x2022; &#x2013;");
+		defaults.put("ul-li-bullets", "&#x2022; &#x2013;");
 		defaults.put("unordered-step-bullets", "&#x2022;");
 		defaults.put("use-multimedia-extensions", "no");
 		defaults.put("watermark", "all");
+		defaults.put("xfc-render-as-table", "note");
 		Map<String, String> custom = new HashMap<>();
 		try {
 			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
@@ -953,7 +974,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (!defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}
@@ -980,7 +1001,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (!defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}
@@ -988,16 +1009,22 @@ public class Publisher {
 
 	private static void getHtmlParameters(ArgumentsBuilder argsBuilder) {
 		Map<String, String> defaults = new HashMap<>();
+		defaults.put("add-index-toc", "yes");
 		defaults.put("chain-pages", "none");
 		defaults.put("chain-topics", "no");
 		defaults.put("css", "");
-		defaults.put("css-name", "basic.css");
+		defaults.put("cssResourceName", "base.css");
+		defaults.put("custom-css", "");
 		defaults.put("default-table-width", "");
 		defaults.put("external-link-icon-height", "10");
 		defaults.put("external-link-icon-suffix", "new_window.png");
-		defaults.put("external-link-icon-width", "11");
-		defaults.put("generator-info", "XMLmind DITA Converter 2.5.6");
+		defaults.put("external-link-icon-width", "10");
+		defaults.put("format-to-type", "");
+		defaults.put("generator-info", "Conversa " + Constants.VERSION);
 		defaults.put("ignore-navigation-links", "auto"); // TODO redefine in web help
+		defaults.put("javascripts", "");
+		defaults.put("mathjax", "no");
+		defaults.put("mathjax-url", "");
 		defaults.put("mark-external-links", "no");
 		defaults.put("navigation-icon-height", "16");
 		defaults.put("navigation-icon-suffix", ".png");
@@ -1011,14 +1038,12 @@ public class Publisher {
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error saving preferences", e);
 		}
-
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			String customValue = custom.get(key);
-			if (customValue != null && !defaults.get(key).equals(customValue)) {
-				argsBuilder.append("-p", key, customValue);
+			if (custom.containsKey(key) && custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
+				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}
 
@@ -1030,7 +1055,10 @@ public class Publisher {
 	private static void getCommonParameters(ArgumentsBuilder argsBuilder) {
 		Map<String, String> defaults = new HashMap<>();
 		defaults.put("appendix-number-format", "A");
+		defaults.put("cause-number-format", "A");
 		defaults.put("center", "");
+		defaults.put("equation-number-after", ")");
+		defaults.put("equation-number-before", "(");
 		defaults.put("extended-toc", "none");
 		defaults.put("external-resource-base", "");
 		defaults.put("highlight-source", "yes");
@@ -1044,8 +1072,9 @@ public class Publisher {
 		defaults.put("mark-important-steps", "no");
 		defaults.put("part-number-format", "I");
 		defaults.put("prepend-chapter-to-section-number", "no");
+		defaults.put("remedy-number-format", "A");
 		defaults.put("show-draft-comments", "no");
-		defaults.put("text-file-encoding", "");
+		defaults.put("troubleSolution-number-format", "1");
 		defaults.put("title-after", "");
 		defaults.put("title-page", "auto");
 		defaults.put("title-prefix-separator1", ". ");
@@ -1067,7 +1096,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (!defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}

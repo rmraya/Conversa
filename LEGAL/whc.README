@@ -1,13 +1,16 @@
-XMLmind Web Help Compiler 2.3.0
+XMLmind Web Help Compiler 3.0.0
 -------------------------------
 
-XMLmind Web Help Compiler (whc for short) allows to convert a set of static
-XHTML pages to a standalone, interactive, Web Help application running in a
-Web browser.
+XMLmind Web Help Compiler (whc for short) is a Java^TM component which may be
+used to convert a set of static (X)HTML pages to a "Web Help". 
 
-More information in http://www.xmlmind.com/ditac/_whc/doc/index.html.
+A "Web Help" is an interactive help system that can be uploaded to your web
+server or put into a shared folder, so users can access it using a web browser
+like Chrome, Firefox, Safari, Edge or Opera.
 
-Download whc from http://www.xmlmind.com/ditac/whc.shtml.
+More information in https://www.xmlmind.com/ditac/_whc/doc/index.html.
+
+Download whc from https://www.xmlmind.com/ditac/whc.shtml.
 
 ------------------------------------------------------------------------------
 
@@ -21,17 +24,21 @@ GNU General Public License (GPL) Version 2.
 
 * jQuery. See http://jquery.com/.
 
-* jQuery UI. See http://jqueryui.com/.
-
 * jQuery Highlight plugin. MIT license only.
   See http://bartaz.github.com/sandbox.js/jquery.highlight.html.
+
+* jQuery easyDrag plugin. MIT license only.
+  See http://lab.gildasp.fr/easydrag/.
 
 XMLmind Web Help Compiler also includes some software components coming from 
 http://snowball.tartarus.org/ which are used to implement stemming:
 
 * whc_template/_wh/snowball_LL.js
-  See LEGAL/jsSnowball.README, jsSnowball.LICENSE
+  See LEGAL/jsSnowball.README, jsSnowball.LICENSE.
 
 * lib/snowball.jar
-  See LEGAL/snowball.README, snowball.LICENSE
+  See LEGAL/snowball.README, snowball.LICENSE.
+
+XMLmind Web Help Compiler uses an icon font generated using 
+Fontello, http://fontello.com/. See LEGAL/fontello.README, fontello.LICENSE.
 

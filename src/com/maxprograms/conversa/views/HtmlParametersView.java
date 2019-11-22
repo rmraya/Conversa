@@ -47,13 +47,14 @@ import com.maxprograms.utils.Preferences;
 public class HtmlParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(HtmlParametersView.class.getName());
-	public static final String PARAMS = "HtmlParameters";
+	public static final String PARAMS = "Html";
 
 	private Combo addIndexToc;
 	private Combo chainPages;
 	private Combo chainTopics;
 	private Text css;
-	private Text cssName;
+	private Text cssResourceName;
+	private Text customCss;
 	private Text defaultTableWidth;
 	private Text externalLinkIconHeight;
 	private Text externalLinkiconName;
@@ -119,11 +120,17 @@ public class HtmlParametersView extends Composite {
 		data.minimumWidth = 300;
 		css.setLayoutData(data);
 
-		Label cssNameLabel = new Label(holder, SWT.NONE);
-		cssNameLabel.setText("css-name");
+		Label cssResourceNameLabel = new Label(holder, SWT.NONE);
+		cssResourceNameLabel.setText("cssResourceName");
 
-		cssName = new Text(holder, SWT.BORDER);
-		cssName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		cssResourceName = new Text(holder, SWT.BORDER);
+		cssResourceName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label customCssLabel = new Label(holder, SWT.NONE);
+		customCssLabel.setText("custom-css");
+
+		customCss = new Text(holder, SWT.BORDER);
+		customCss.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Label defaultTableWidthLabel = new Label(holder, SWT.NONE);
 		defaultTableWidthLabel.setText("default-table-width");
@@ -239,7 +246,8 @@ public class HtmlParametersView extends Composite {
 		chainPages.addModifyListener(modifyListener);
 		chainTopics.addModifyListener(modifyListener);
 		css.addModifyListener(modifyListener);
-		cssName.addModifyListener(modifyListener);
+		cssResourceName.addModifyListener(modifyListener);
+		customCss.addModifyListener(modifyListener);
 		defaultTableWidth.addModifyListener(modifyListener);
 		externalLinkIconHeight.addModifyListener(modifyListener);
 		externalLinkiconName.addModifyListener(modifyListener);
@@ -281,13 +289,14 @@ public class HtmlParametersView extends Composite {
 			chainPages.setText(prefs.get(PARAMS, "chain-pages", "none"));
 			chainTopics.setText(prefs.get(PARAMS, "chain-topics", "no"));
 			css.setText(prefs.get(PARAMS, "css", ""));
-			cssName.setText(prefs.get(PARAMS, "css-name", "basic.css"));
+			cssResourceName.setText(prefs.get(PARAMS, "cssResourceName", "base.css"));
+			customCss.setText(prefs.get(PARAMS,"custom-css", ""));
 			defaultTableWidth.setText(prefs.get(PARAMS, "default-table-width", ""));
 			externalLinkIconHeight.setText(prefs.get(PARAMS, "external-link-icon-height", "10"));
 			externalLinkiconName.setText(prefs.get(PARAMS, "external-link-icon-name", "new_window.png"));
-			externalLinkIconWidth.setText(prefs.get(PARAMS, "external-link-icon-width", "11"));
+			externalLinkIconWidth.setText(prefs.get(PARAMS, "external-link-icon-width", "10"));
 			formatToType.setText(prefs.get(PARAMS, "format-to-type", ""));
-			generatorInfo.setText(prefs.get(PARAMS, "generator-info", "XMLmind DITA Converter 2.5.6"));
+			generatorInfo.setText(prefs.get(PARAMS, "generator-info", "Conversa " + Constants.VERSION));
 			ignoreNavigationLinks.setText(prefs.get(PARAMS, "ignore-navigation-links", "auto"));
 			javascripts.setText(prefs.get(PARAMS, "javascripts", ""));
 			mathjax.setText(prefs.get(PARAMS, "mathjax", "no"));
@@ -314,7 +323,6 @@ public class HtmlParametersView extends Composite {
 			values.put("chain-pages", chainPages.getText());
 			values.put("chain-topics", chainTopics.getText());
 			values.put("css", css.getText());
-			values.put("css-name", cssName.getText());
 			values.put("default-table-width", defaultTableWidth.getText());
 			values.put("external-link-icon-height", externalLinkIconHeight.getText());
 			values.put("external-link-icon-name", externalLinkiconName.getText());

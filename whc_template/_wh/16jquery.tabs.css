@@ -1,0 +1,44 @@
+/*
+ * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+ol.tabs-tabs,
+ul.tabs-tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
+    list-style-image: none;
+    padding: 0;
+    margin: 0;
+}
+
+li.tabs-tab {
+    flex: auto;
+    background-color: #F5F6F7;
+    border-top: 3px solid #F5F6F7;
+    padding: calc(1ex - 3px) 2ex 1ex 2ex;
+    margin: 0;
+    cursor: default; 
+}
+
+li.tabs-tab:hover {
+    border-top-color: #757575;
+    background-color: #DDDEDF;
+}
+
+li.tabs-tab a,
+li.tabs-tab a:hover,
+li.tabs-tab a:link,
+li.tabs-tab a:link:hover {
+    text-decoration: none;
+    cursor: default; 
+}
+
+li.tabs-tab.tabs-selected {
+    color: #0A84FF;
+    border-top-color: #0A84FF;
+}

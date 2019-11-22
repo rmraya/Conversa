@@ -47,12 +47,13 @@ import com.maxprograms.utils.Preferences;
 public class FoParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(FoParametersView.class.getName());
-	public static final String PARAMS = "FOParameters";
+	public static final String PARAMS = "XSL-FO";
 
 	protected boolean restoringDefaults;
 	private Text baseFontSize;
 	private Text bodyBottomMargin;
 	private Text bodyFontFamily;
+	private Text bodyStartIndent;
 	private Text bodyTopMargin;
 	private Text choiceBullets;
 	private Text equationBlockEquationWidth;
@@ -74,6 +75,7 @@ public class FoParametersView extends Composite {
 	private Text headerLeftWidth;
 	private Text headerRight;
 	private Text headerRightWidth;
+	private Combo headerSeparator;
 	private Combo hyphenate;
 	private Text indexColumnCount;
 	private Text indexColumnGap;
@@ -105,6 +107,7 @@ public class FoParametersView extends Composite {
 	private Text unorderedStepBullets;
 	private Combo useMultimediaExtensions;
 	private Text watermark;
+	private Text xfcRenderAsTable;
 
 	public FoParametersView(Composite parent, int style) {
 		super(parent, style);
@@ -144,6 +147,12 @@ public class FoParametersView extends Composite {
 
 		bodyFontFamily = new Text(holder, SWT.BORDER);
 		bodyFontFamily.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label bodyStartIndentLabel = new Label(holder, SWT.NONE);
+		bodyStartIndentLabel.setText("body-start-indent");
+
+		bodyStartIndent = new Text(holder, SWT.BORDER);
+		bodyStartIndent.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Label bodyTopMarginLabel = new Label(holder, SWT.NONE);
 		bodyTopMarginLabel.setText("body-top-margin");
@@ -270,6 +279,12 @@ public class FoParametersView extends Composite {
 
 		headerRightWidth = new Text(holder, SWT.BORDER);
 		headerRightWidth.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label headerSeparatorLabel = new Label(holder, SWT.NONE);
+		headerSeparatorLabel.setText("header-separator");
+
+		headerSeparator = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
+		headerSeparator.setItems(new String[] { "yes", "no" });
 
 		Label hyphenateLabel = new Label(holder, SWT.NONE);
 		hyphenateLabel.setText("hyphenate");
@@ -399,17 +414,17 @@ public class FoParametersView extends Composite {
 		showExternalLinks = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
 		showExternalLinks.setItems(new String[] { "yes", "no" });
 
-		Label showLinkPageLabel = new Label(holder, SWT.NONE);
-		showLinkPageLabel.setText("show-link-page");
-
-		showLinkPage = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		showLinkPage.setItems(new String[] { "yes", "no" });
-
 		Label showImageMapLinksLabel = new Label(holder, SWT.NONE);
 		showImageMapLinksLabel.setText("show-imagemap-links");
 
 		showImageMapLinks = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
 		showImageMapLinks.setItems(new String[] { "yes", "no" });
+
+		Label showLinkPageLabel = new Label(holder, SWT.NONE);
+		showLinkPageLabel.setText("show-link-page");
+
+		showLinkPage = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
+		showLinkPage.setItems(new String[] { "yes", "no" });
 
 		Label showXrefPageLabel = new Label(holder, SWT.NONE);
 		showXrefPageLabel.setText("show-xref-page");
@@ -459,6 +474,12 @@ public class FoParametersView extends Composite {
 		watermark = new Text(holder, SWT.BORDER);
 		watermark.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
+		Label xfcRenderAsTableLabel = new Label(holder, SWT.NONE);
+		xfcRenderAsTableLabel.setText("xfc-render-as-table");
+
+		xfcRenderAsTable = new Text(holder, SWT.BORDER);
+		xfcRenderAsTable.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
 		holder.setSize(holder.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		scrolled.setSize(holder.getSize().x + 20, 450);
 
@@ -477,6 +498,7 @@ public class FoParametersView extends Composite {
 		baseFontSize.addModifyListener(modifyListener);
 		bodyBottomMargin.addModifyListener(modifyListener);
 		bodyFontFamily.addModifyListener(modifyListener);
+		bodyStartIndent.addModifyListener(modifyListener);
 		bodyTopMargin.addModifyListener(modifyListener);
 		choiceBullets.addModifyListener(modifyListener);
 		equationBlockEquationWidth.addModifyListener(modifyListener);
@@ -498,6 +520,7 @@ public class FoParametersView extends Composite {
 		headerLeftWidth.addModifyListener(modifyListener);
 		headerRight.addModifyListener(modifyListener);
 		headerRightWidth.addModifyListener(modifyListener);
+		headerSeparator.addModifyListener(modifyListener);
 		hyphenate.addModifyListener(modifyListener);
 		indexColumnCount.addModifyListener(modifyListener);
 		indexColumnGap.addModifyListener(modifyListener);
@@ -529,6 +552,7 @@ public class FoParametersView extends Composite {
 		unorderedStepBullets.addModifyListener(modifyListener);
 		useMultimediaExtensions.addModifyListener(modifyListener);
 		watermark.addModifyListener(modifyListener);
+		xfcRenderAsTable.addModifyListener(modifyListener);
 	}
 
 	protected void loadDefaults() {
@@ -553,6 +577,7 @@ public class FoParametersView extends Composite {
 			baseFontSize.setText(prefs.get(PARAMS, "base-font-size", "10pt"));
 			bodyBottomMargin.setText(prefs.get(PARAMS, "body-bottom-margin", "0.5in"));
 			bodyFontFamily.setText(prefs.get(PARAMS, "body-font-family", "serif"));
+			bodyStartIndent.setText(prefs.get(PARAMS, "body-start-indent", "2pc"));
 			bodyTopMargin.setText(prefs.get(PARAMS, "body-top-margin", "0.5in"));
 			choiceBullets.setText(prefs.get(PARAMS, "choice-bullets", "&#x2022;"));
 			equationBlockEquationWidth.setText(prefs.get(PARAMS, "equation-block-equation-width", "90%"));
@@ -577,6 +602,7 @@ public class FoParametersView extends Composite {
 			headerLeftWidth.setText(prefs.get(PARAMS, "header-left-width", "2"));
 			headerRight.setText(prefs.get(PARAMS, "header-right", ""));
 			headerRightWidth.setText(prefs.get(PARAMS, "header-right-width", "2"));
+			headerSeparator.setText(prefs.get(PARAMS, "header-separator", "yes"));
 			hyphenate.setText(prefs.get(PARAMS, "hyphenate", "no"));
 			indexColumnCount.setText(prefs.get(PARAMS, "index-column-count", "2"));
 			indexColumnGap.setText(prefs.get(PARAMS, "index-column-gap", "2em"));
@@ -608,6 +634,7 @@ public class FoParametersView extends Composite {
 			unorderedStepBullets.setText(prefs.get(PARAMS, "unordered-step-bullets", "&#x2022;"));
 			useMultimediaExtensions.setText(prefs.get(PARAMS, "use-multimedia-extensions", "no"));
 			watermark.setText(prefs.get(PARAMS, "watermark", "all"));
+			xfcRenderAsTable.setText(prefs.get(PARAMS, "xfc-render-as-table", "note"));
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
@@ -623,6 +650,7 @@ public class FoParametersView extends Composite {
 			defaults.put("base-font-size", baseFontSize.getText());
 			defaults.put("body-bottom-margin", bodyBottomMargin.getText());
 			defaults.put("body-font-family", bodyFontFamily.getText());
+			defaults.put("body-start-indent", bodyStartIndent.getText());
 			defaults.put("body-top-margin", bodyTopMargin.getText());
 			defaults.put("choice-bullets", choiceBullets.getText());
 			defaults.put("equation-block-equation-width", equationBlockEquationWidth.getText());
@@ -644,6 +672,7 @@ public class FoParametersView extends Composite {
 			defaults.put("header-left-width", headerLeftWidth.getText());
 			defaults.put("header-right", headerRight.getText());
 			defaults.put("header-right-width", headerRightWidth.getText());
+			defaults.put("header-separator", headerSeparator.getText());
 			defaults.put("hyphenate", hyphenate.getText());
 			defaults.put("index-column-count", indexColumnCount.getText());
 			defaults.put("index-column-gap", indexColumnGap.getText());
@@ -675,6 +704,7 @@ public class FoParametersView extends Composite {
 			defaults.put("unordered-step-bullets", unorderedStepBullets.getText());
 			defaults.put("use-multimedia-extensions", useMultimediaExtensions.getText());
 			defaults.put("watermark", watermark.getText());
+			defaults.put("xfc-render-as-table", xfcRenderAsTable.getText());
 			prefs.save(PARAMS, defaults);
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error saving defaults", e);

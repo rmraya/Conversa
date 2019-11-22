@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie (hussein@xmlmind.com)
 |
@@ -19,6 +19,8 @@
   </xsl:attribute-set>
 
   <xsl:attribute-set name="index-title" use-attribute-sets="title">
+    <xsl:attribute name="color" select="$title-color"/>
+    <xsl:attribute name="font-family" select="$title-font-family"/>
     <xsl:attribute name="font-size">1.8em</xsl:attribute>
     <xsl:attribute name="line-height">0.74</xsl:attribute><!--Single line-->
     <xsl:attribute name="space-before.optimum">0.74em</xsl:attribute>
@@ -84,6 +86,8 @@
   </xsl:attribute-set>
 
   <xsl:attribute-set name="index-div-title" use-attribute-sets="title">
+    <xsl:attribute name="color" select="$title-color"/>
+    <xsl:attribute name="font-family" select="$title-font-family"/>
     <xsl:attribute name="font-size">1.4em</xsl:attribute>
     <xsl:attribute name="line-height">0.95</xsl:attribute><!--Single line-->
     <xsl:attribute name="space-before.optimum">0.95em</xsl:attribute>

@@ -1,0 +1,61 @@
+/*
+ * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+body {
+    --navigation-font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --navigation-font-size: 13.8px; /* 15px*0.92 */
+    --navigation-line-height: 1.5; 
+    --navigation-item-height: 1.5em; /* --navigation-line-height but in EMs */
+    --navigation-item-vpad: 0.25ex;
+    --navigation-color: #323232;
+    --navigation-background-color: #FFFFFF;
+    --navigation-width: 33%;
+
+    --panel-padding: 1ex;
+    --panel-background-color: #F9F9FA;
+    --panel-border-width: 1px;
+    --panel-border-color: #DDE1E4;
+    --panel-border-style: solid;
+
+    /* Buttons are transparent, borderless. */
+    --button-icon-size: 16px;
+    --button-icon-color: #848389;
+    --button-icon-vpadding: 4px; /* Icon size = 16px */
+    --button-icon-hpadding: 8px; /* Icon size = 16px */
+    --button-border-radius: 4px; /* Only for hover background. */
+    --button-hover-background-color: #F0F0F0;
+
+    /* Tabs are borderless. */
+    --tab-background-color: var(--panel-background-color);
+    --tab-selected-color: #0060DF;
+    --tab-selected-border-color: #0A84FF;
+    --tab-selected-border-width: 3px; 
+    --tab-selected-border-style: solid; 
+    --tab-hover-background-color: var(--button-hover-background-color);
+    --tab-hover-border-color: #BEBEC0;
+
+    /* The input type=text is borderless. Here field is an input+icon combo. */
+    --field-background-color: #FFFFFF;
+    --field-placeholder-color: #8E8E8E;
+    --field-border-style: solid;
+    --field-border-width: var(--panel-border-width);
+    --field-border-color: var(--panel-border-color);
+    --field-border-radius: 8px;
+
+    /* Navigation panes generally contain links to pages. */
+    --link-selected-color: var(--tab-selected-color);
+    --link-selected-border-color: var(--tab-selected-border-color);
+    --link-selected-border-width: var(--tab-selected-border-width); 
+    --link-selected-border-style: var(--tab-selected-border-style); 
+    --link-hover-background-color: var(--button-hover-background-color);
+
+    /* For use in lists like the one containing search results. */
+    --odd-row-background-color: #FFFFE0;
+
+    /* Customize jquery.highlight */
+    --highlight-background-color: #FFF040;
+}

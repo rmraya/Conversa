@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -24,8 +24,6 @@
 
   <xsl:param name="plugin-toc-basename">toc.xml</xsl:param>
   <xsl:param name="plugin-index-basename">index.xml</xsl:param>
-
-  <xsl:param name="css-name" select="'eclipsehelp.css'"/>
 
   <xsl:param name="ignore-navigation-links" select="'yes'"/>
 

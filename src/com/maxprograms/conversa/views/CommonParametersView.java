@@ -47,7 +47,7 @@ import com.maxprograms.utils.Preferences;
 public class CommonParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(CommonParametersView.class.getName());
-	public static final String PARAMS = "CommonParameters";
+	public static final String PARAMS = "Common";
 
 	private Combo appendixNumberFormat;
 	private Combo causeNumberFormat;
@@ -69,7 +69,6 @@ public class CommonParametersView extends Composite {
 	private Combo remedyNumberFormat;
 	private Combo showDraftComments;
 	private Combo troubleshootingNumberFormat;
-	private Text textFileEncoding;
 	private Text titleAfter;
 	private Text titlePage;
 	private Text titlePrefixSeparator1;
@@ -121,7 +120,7 @@ public class CommonParametersView extends Composite {
 		centerText.setLayoutData(data);
 
 		Label equationNumberAfterLabel = new Label(holder, SWT.NONE);
-		equationNumberAfterLabel.setText("equation-number-before");
+		equationNumberAfterLabel.setText("equation-number-after");
 
 		equationNumberAfter = new Text(holder, SWT.BORDER);
 		equationNumberAfter.setLayoutData(data);
@@ -217,16 +216,10 @@ public class CommonParametersView extends Composite {
 		showDraftComments.setItems(new String[] { "yes", "no" });
 
 		Label troubleshootingNumberFormatLabel = new Label(holder, SWT.NONE);
-		troubleshootingNumberFormatLabel.setText("troubleshooting-number-format");
+		troubleshootingNumberFormatLabel.setText("troubleSolution-number-format");
 
 		troubleshootingNumberFormat = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
 		troubleshootingNumberFormat.setItems(new String[] { "I", "i", "A", "a", "1" });
-
-		Label textFileEncodingLabel = new Label(holder, SWT.NONE);
-		textFileEncodingLabel.setText("text-file-encoding");
-
-		textFileEncoding = new Text(holder, SWT.BORDER);
-		textFileEncoding.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Label titleAfterLabel = new Label(holder, SWT.NONE);
 		titleAfterLabel.setText("title-after");
@@ -305,7 +298,6 @@ public class CommonParametersView extends Composite {
 		remedyNumberFormat.addModifyListener(modifyListener);
 		showDraftComments.addModifyListener(modifyListener);
 		troubleshootingNumberFormat.addModifyListener(modifyListener);
-		textFileEncoding.addModifyListener(modifyListener);
 		titleAfter.addModifyListener(modifyListener);
 		titlePage.addModifyListener(modifyListener);
 		titlePrefixSeparator1.addModifyListener(modifyListener);
@@ -354,8 +346,7 @@ public class CommonParametersView extends Composite {
 			prependChapterToSectionNumber.setText(prefs.get(PARAMS, "prepend-chapter-to-section-number", "no"));
 			remedyNumberFormat.setText(prefs.get(PARAMS, "remedy-number-format", "A"));
 			showDraftComments.setText(prefs.get(PARAMS, "show-draft-comments", "no"));
-			troubleshootingNumberFormat.setText(prefs.get(PARAMS, "troubleshooting-number-format", "1"));
-			textFileEncoding.setText(prefs.get(PARAMS, "text-file-encoding", ""));
+			troubleshootingNumberFormat.setText(prefs.get(PARAMS, "troubleSolution-number-format", "1"));
 			titleAfter.setText(prefs.get(PARAMS, "title-after", ""));
 			titlePage.setText(prefs.get(PARAMS, "title-page", "auto"));
 			titlePrefixSeparator1.setText(prefs.get(PARAMS, "title-prefix-separator1", ". "));
@@ -394,8 +385,7 @@ public class CommonParametersView extends Composite {
 			values.put("prepend-chapter-to-section-number", prependChapterToSectionNumber.getText());
 			values.put("remedy-number-format", remedyNumberFormat.getText());
 			values.put("show-draft-comments", showDraftComments.getText());
-			values.put("troubleshooting-number-format", troubleshootingNumberFormat.getText());
-			values.put("text-file-encoding", textFileEncoding.getText());
+			values.put("troubleSolution-number-format", troubleshootingNumberFormat.getText());
 			values.put("title-after", titleAfter.getText());
 			values.put("title-page", titlePage.getText());
 			values.put("title-prefix-separator1", titlePrefixSeparator1.getText());

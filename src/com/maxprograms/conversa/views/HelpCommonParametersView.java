@@ -46,7 +46,7 @@ import com.maxprograms.utils.Preferences;
 public class HelpCommonParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(HelpCommonParametersView.class.getName());
-	public static final String PARAMS = "HelpCommonParameters";
+	public static final String PARAMS = "HelpCommon";
 
 	protected boolean restoringDefaults;
 	private Combo addTocRoot;

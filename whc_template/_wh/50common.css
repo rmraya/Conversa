@@ -1,0 +1,200 @@
+/*
+ * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+html > body { /* Increase specificity. */
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden; /* Means: overflow is clipped; no scrollbars. */
+}
+
+/*
+ * --------------------------------------
+ * Page layout
+ * --------------------------------------
+ */
+
+#wh-header,
+#wh-footer {
+    display: block;
+    overflow: hidden; 
+}
+
+#wh-body {
+    display: flex;
+    position: relative;
+    height: 300px; /* Computed = 100vh - header_height - footer_height. */
+    /* Used to implement "-p --navigation-background-color inherit". */
+    background-color: inherit; 
+    overflow: hidden;
+
+    /*
+     * Needed to prevent layout flickering (FOUC) during initPage/layout.
+     */
+    visibility: hidden;
+    opacity: 0;
+}
+
+#wh-navigation {
+    /* flex colum for both "classic" and "simple" layouts.
+       See also openNavigation in common.js. */
+    display: flex;
+    flex-direction: column; 
+
+    flex: none;
+    width: var(--navigation-width);
+
+    font-family: var(--navigation-font-family);
+    font-size: var(--navigation-font-size);
+    line-height: var(--navigation-line-height);
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    text-align: left;
+    color: var(--navigation-color);
+    background-color: var(--navigation-background-color);
+
+    opacity: 1;
+    overflow: hidden; /* "auto" required in TOC, Index, etc, sub-panels. */
+
+    /* border-style:solid when the menu button has been clicked. */
+    border-color: var(--panel-border-color);
+    border-width: var(--panel-border-width);
+}
+
+#wh-separator {
+    display: block;
+    flex: none;
+    width: 3px;
+    cursor: col-resize;
+    border-left-style: solid;
+    border-left-color: var(--panel-border-color);
+    border-left-width: var(--panel-border-width);
+}
+
+#wh-separator:hover {
+    background-color: var(--panel-border-color); /* Make it look thick. */
+}
+
+#wh-content {
+    display: block;
+    flex: auto;
+    padding: 1em;
+    overflow: auto; /* Means: overflow is clipped; scrollbars if needed. */
+}
+
+/*
+ * --------------------------------------
+ * Menu button
+ * (Visible only on small devices.)
+ * --------------------------------------
+ */
+
+[class^="wh-icon-"]:before, 
+[class*=" wh-icon-"]:before {
+    font-size: var(--button-icon-size);
+    color: var(--button-icon-color);
+}
+
+#wh-menu {
+    display: none;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 51; /* wh-body-glass is 50; wh-navigation is 100. */
+    background-color: var(--navigation-background-color);
+    opacity: 1;
+    padding: var(--button-icon-vpadding) var(--button-icon-hpadding);
+    cursor: default;
+}
+
+#wh-menu:hover {
+    background-color: var(--button-hover-background-color);
+}
+
+/*
+ * --------------------------------------
+ * TOC (also styled by jquery.toc.css)
+ * --------------------------------------
+ */
+
+/*
+ * Copied  from jquery.toc.css.
+ */
+#wh-toc.toc-toc li {
+    /*icon_size = 16px */
+    /* padding-top + (line_height - icon_size)/2 */
+    background-position: 0px calc(var(--navigation-item-vpad) + ((var(--navigation-item-height) - 16px) / 2)); 
+    padding: var(--navigation-item-vpad) 0 0 22px; 
+}
+
+#wh-toc a {
+    display: inline-block;
+    padding: 1px;
+}
+
+#wh-toc a:hover { 
+    background-color: var(--link-hover-background-color);
+}
+
+#wh-toc a.wh-toc-selected {
+    color: var(--link-selected-color);
+    border-bottom-width: var(--link-selected-border-width);
+    border-bottom-color: var(--link-selected-border-color);
+    border-bottom-style: var(--link-selected-border-style);
+}
+
+/*
+ * --------------------------------------
+ * Search
+ * --------------------------------------
+ */
+
+/* See jquery.highlight options. */
+span.wh-highlighted {
+    background-color: var(--highlight-background-color);
+    padding: 1px;
+}
+
+#wh-search-result-header {
+    font-style: italic;
+}
+
+#wh-search-result-header > span.wh-highlighted {
+    font-style: normal;
+}
+
+#wh-search-result-list {
+    list-style-type: none;
+    list-style-image: none;
+    padding: 0;
+    margin: 0;
+}
+
+#wh-search-result-list > li {
+    background-repeat: no-repeat;
+    /* icon_size = 12px */
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iIzBBODRGRiI+PHBhdGggZD0iTTE3MjggNjQ3cTAgMjItMjYgNDhsLTM2MyAzNTQgODYgNTAwcTEgNyAxIDIwIDAgMjEtMTAuNSAzNS41dC0zMC41IDE0LjVxLTE5IDAtNDAtMTJsLTQ0OS0yMzYtNDQ5IDIzNnEtMjIgMTItNDAgMTItMjEgMC0zMS41LTE0LjV0LTEwLjUtMzUuNXEwLTYgMi0yMGw4Ni01MDAtMzY0LTM1NHEtMjUtMjctMjUtNDggMC0zNyA1Ni00Nmw1MDItNzMgMjI1LTQ1NXExOS00MSA0OS00MXQ0OSA0MWwyMjUgNDU1IDUwMiA3M3E1NiA5IDU2IDQ2eiIvPjwvZz48L3N2Zz4K);
+    /* padding-top + (line_height - icon_size)/2 */
+    background-position: 0px calc(var(--navigation-item-vpad) + ((var(--navigation-item-height) - 12px) / 2)); 
+    padding: var(--navigation-item-vpad) 0 var(--navigation-item-vpad) 18px;
+    margin: 0;
+}
+
+#wh-search-result-list > li.wh-odd-item {
+    background-color: var(--odd-row-background-color);
+}
+
+#wh-search-result-list > li > a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 1px;
+    cursor: pointer; 
+}
+
+#wh-search-result-list > li > a:hover {
+    background-color: var(--link-hover-background-color);
+}

@@ -1,0 +1,330 @@
+/*
+ * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ *
+ * This file is part of the XMLmind Web Help Compiler project.
+ * For conditions of distribution and use, see the accompanying LEGAL.txt file.
+ */
+
+/*
+ * --------------------------------------
+ * Tabs.
+ * --------------------------------------
+ */
+
+#wh-tabs {
+    flex: none;
+    border-bottom-width: var(--panel-border-width);
+    border-bottom-color: var(--panel-border-color);
+    border-bottom-style: var(--panel-border-style);
+}
+
+#wh-tabs li {
+    text-align: center;
+}
+
+#wh-tabs [class^="wh-icon-"], 
+#wh-tabs [class*=" wh-icon-"] {
+    /* In case the "<a> icon" also contains some text. */
+    font-weight: var(--tab-icon-font-weight);
+    font-size: var(--tab-icon-font-size);
+    color: var(--button-icon-color);
+}
+
+#wh-tabs [class^="wh-icon-"]:before, 
+#wh-tabs [class*=" wh-icon-"]:before {
+    font-size: var(--tab-icon-size);
+    /* In case the "<a> icon" also contains some text. */
+    padding-right: var(--tab-icon-text-gap);
+}
+
+/*
+ * Customize jquery.tabs.css.
+ */
+#wh-tabs li.tabs-tab {
+    padding-top: calc(1ex - var(--tab-selected-border-width));
+    border-top-style: var(--tab-selected-border-style);
+    border-top-width: var(--tab-selected-border-width);
+    border-top-color: var(--panel-background-color); /* Hence invisible. */
+    background-color: var(--panel-background-color);
+}
+
+#wh-tabs li.tabs-tab:hover {
+    border-top-color: var(--tab-hover-border-color);
+    background-color: var(--tab-hover-background-color);
+}
+
+#wh-tabs li.tabs-tab.tabs-selected {
+    color: var(--tab-selected-color);
+    border-top-color: var(--tab-selected-border-color);
+}
+
+#wh-tabs li.tabs-tab.tabs-selected > [class^="wh-icon-"]:before,
+#wh-tabs li.tabs-tab.tabs-selected > [class*=" wh-icon-"]:before,
+/* In case the "<a> icon" also contains some text. */
+#wh-tabs li.tabs-tab.tabs-selected > [class^="wh-icon-"],
+#wh-tabs li.tabs-tab.tabs-selected > [class*=" wh-icon-"] {
+    color: var(--tab-selected-color);
+}
+
+/*
+ * --------------------------------------
+ * Tab panels.
+ * --------------------------------------
+ */
+
+#wh-toc-container,
+#wh-index-container,
+#wh-search-container {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#wh-toc-form,
+#wh-index-form,
+#wh-search-form {
+    flex: none;
+    background-color: var(--panel-background-color);
+    border-bottom-width: var(--panel-border-width);
+    border-bottom-color: var(--panel-border-color);
+    border-bottom-style: var(--panel-border-style);
+}
+
+#wh-toc-pane,
+#wh-index-pane,
+#wh-search-pane {
+    display: block;
+    flex: auto;
+    margin: 0;
+    padding: var(--panel-padding);
+    overflow: auto;
+}
+
+/*
+ * --------------------------------------
+ * TOC form.
+ * --------------------------------------
+ */
+
+#wh-toc-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: var(--panel-padding);
+}
+
+#wh-toc-collapse-all,
+#wh-toc-expand-all,
+#wh-toc-previous,
+#wh-toc-next,
+#wh-toc-print {
+    flex: none;
+    padding: var(--button-icon-vpadding) var(--button-icon-hpadding);
+    -moz-border-radius: var(--button-border-radius);
+    -webkit-border-radius: var(--button-border-radius);
+    border-radius: var(--button-border-radius);
+    cursor: default;
+}
+
+.wh-toc-spring {
+    flex: auto;
+    width: var(--button-icon-size);
+}
+
+#wh-toc-collapse-all:hover,
+#wh-toc-expand-all:hover,
+#wh-toc-previous:hover,
+#wh-toc-next:hover,
+#wh-toc-print:hover {
+    background-color: var(--button-hover-background-color);
+}
+
+/*
+ * --------------------------------------
+ * Index and Search forms.
+ * --------------------------------------
+ */
+
+#wh-index-form {
+    display: block;
+    padding: var(--panel-padding) calc(2 * var(--panel-padding));
+}
+
+#wh-search-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: var(--panel-padding) calc(2 * var(--panel-padding));
+}
+
+#wh-index-group,
+#wh-search-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--field-background-color);
+    border-color: var(--field-border-color);
+    border-width: var(--field-border-width);
+    border-style: var(--field-border-style);
+    -moz-border-radius: var(--field-border-radius);
+    -webkit-border-radius: var(--field-border-radius);
+    border-radius: var(--field-border-radius);
+}
+
+#wh-search-group {
+    flex: auto;
+}
+
+#wh-search-highlight {
+    flex: none;
+    -moz-border-radius: var(--button-border-radius);
+    -webkit-border-radius: var(--button-border-radius);
+    border-radius: var(--button-border-radius);
+    padding: var(--button-icon-vpadding) var(--button-icon-hpadding);
+    margin-left: calc(2 * var(--panel-padding));
+}
+
+#wh-search-highlight:hover {
+    background-color: var(--button-hover-background-color);
+}
+
+/*
+ * Customize jquery.toggle.css.
+ */
+#wh-search-highlight.toggle-checked {
+    background-color: var(--toggle-checked-background-color);
+}
+
+#wh-search-highlight.toggle-checked:before {
+    color: var(--toggle-checked-color);
+}
+
+#wh-index-field,
+#wh-search-field {
+    flex: auto;
+    width: 2em; /* By default, width:auto is 20 chars. */
+    min-width: 2em; 
+    font-family: inherit;
+    font-size: inherit;
+    border-style: none;
+    border-width: 0;
+    background-color: var(--field-background-color);
+    margin: 0 1ex;
+}
+
+#wh-index-field:focus,
+#wh-search-field:focus {
+    outline: none;
+}
+
+#wh-index-field::-webkit-input-placeholder,
+#wh-search-field::-webkit-input-placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+#wh-index-field::-moz-placeholder,
+#wh-search-field::-moz-placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+#wh-index-field:-ms-input-placeholder,
+#wh-search-field:-ms-input-placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+#wh-index-field::placeholder,
+#wh-search-field::placeholder {
+    color: var(--field-placeholder-color);
+    text-align: center;
+}
+
+/* Remove "X" from the following input[type=text] in IE and Edge. */
+#wh-index-field::-ms-clear,
+#wh-index-field::-ms-reveal,
+#wh-search-field::-ms-clear,
+#wh-search-field::-ms-reveal {
+    display: none;
+    width : 0;
+    height: 0;
+}
+
+#wh-go-page,
+#wh-do-search,
+#wh-cancel-search {
+    flex: none;
+    color: var(--button-icon-color);
+    padding: var(--button-icon-vpadding) var(--button-icon-hpadding);
+    cursor: default;
+}
+
+#wh-go-page:hover:before,
+#wh-do-search:hover:before {
+    color: var(--do-icon-hover-color);
+}
+
+#wh-cancel-search:hover:before {
+    color: var(--cancel-icon-hover-color);
+}
+
+/*
+ * --------------------------------------
+ * Index
+ * --------------------------------------
+ */
+
+#wh-index,
+#wh-index ul {
+    list-style-type: none;
+    list-style-image: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2em;
+    padding-right: 0;
+    margin: 0;
+}
+
+#wh-index {
+    padding-left: 0;
+}
+
+#wh-index li {
+    padding-top: var(--navigation-item-vpad);
+    padding-bottom: var(--navigation-item-vpad);
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+}
+
+#wh-index span.wh-index-ref-type {
+    font-style: var(--index-see-font-style);
+    font-weight: var(--index-see-font-weight);
+}
+
+#wh-index a.wh-index-anchor {
+    color: var(--index-anchor-color);
+    text-decoration: none;
+    cursor: pointer; 
+}
+
+#wh-index a.wh-index-anchor:hover {
+    background-color: var(--link-hover-background-color);
+}
+
+#wh-index > li.wh-odd-item {
+    background-color: var(--odd-row-background-color);
+}
+
+#wh-index li.wh-suggested-item a.wh-index-anchor,
+#wh-index li.wh-suggested-item {
+    color: var(--index-autocomplete-color);
+}
+
+#wh-index li.wh-suggested-item {
+    background-color: var(--index-autocomplete-background-color);
+}

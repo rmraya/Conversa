@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -20,8 +20,6 @@
        by the webhelp.xsl stylesheet. -->
   <xsl:param name="whc-toc-basename">whc_toc.xml</xsl:param>
   <xsl:param name="whc-index-basename">whc_index.xml</xsl:param>
-
-  <xsl:param name="css-name">webhelp.css</xsl:param>
 
   <xsl:param name="ignore-navigation-links">yes</xsl:param>
 

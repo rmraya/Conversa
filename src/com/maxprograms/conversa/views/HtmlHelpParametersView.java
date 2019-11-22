@@ -46,7 +46,7 @@ import com.maxprograms.utils.Preferences;
 public class HtmlHelpParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(HtmlHelpParametersView.class.getName());
-	public static final String PARAMS = "HtmlHelpParameters";
+	public static final String PARAMS = "HtmlHelp";
 
 	protected boolean restoringDefaults;
 	private Text hhcBasename;

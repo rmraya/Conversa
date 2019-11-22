@@ -25,7 +25,12 @@
   <!-- Specify the output encoding here and also everywhere below. -->
   <xsl:param name="xhtmlEncoding" select="'iso-8859-1'"/>
 
-  <xsl:output method="html" encoding="iso-8859-1" indent="no"/>
+  <!-- Important: the CHM viewer emulates IE7. 
+       Without a <!DOCTYPE> IE7 does not support CSS :first-child. 
+       (:last-child not supported.) -->
+  <xsl:output method="html" encoding="iso-8859-1" indent="no"
+              doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN" 
+              doctype-system="http://www.w3.org/TR/html4/loose.dtd"/>
 
   <!-- Suppressed. -->
   <xsl:template name="javascripts"/>

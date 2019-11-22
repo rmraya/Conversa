@@ -46,7 +46,7 @@ import com.maxprograms.utils.Preferences;
 public class EclipseHelpParametersView extends Composite {
 
 	protected static final Logger LOGGER = System.getLogger(EclipseHelpParametersView.class.getName());
-	public static final String PARAMS = "EclipseHelpParameters";
+	public static final String PARAMS = "EclipseHelp";
 
 	protected boolean restoringDefaults;
 	private Text pluginId;

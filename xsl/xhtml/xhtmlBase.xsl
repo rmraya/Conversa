@@ -211,19 +211,20 @@
   <xsl:template name="cssMeta">
     <xsl:variable name="cssURI">
       <xsl:choose>
+        <xsl:when test="$custom-css ne ''">
+          <xsl:value-of select="concat($xslResourcesDir, 
+                                       u:basename($custom-css))"/>
+        </xsl:when>
         <xsl:when test="$css ne ''">
           <xsl:value-of select="$css"/>
         </xsl:when>
-        <xsl:when test="$css-name ne ''">
-          <xsl:value-of select="concat($xslResourcesDir, $css-name)"/>
-        </xsl:when>
-        <xsl:otherwise></xsl:otherwise>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($xslResourcesDir, $cssResourceName)"/>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:if test="$cssURI ne ''">
-      <link rel="stylesheet" type="text/css" href="{$cssURI}"/>
-    </xsl:if>
+    <link rel="stylesheet" type="text/css" href="{$cssURI}"/>
   </xsl:template>
 
   <xsl:template name="descriptionMeta">

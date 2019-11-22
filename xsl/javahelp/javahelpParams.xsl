@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -23,8 +23,6 @@
   <xsl:param name="toc-basename">jhelptoc.xml</xsl:param>
   <xsl:param name="index-basename">jhelpidx.xml</xsl:param>
   <xsl:param name="indexer-directory-basename">JavaHelpSearch</xsl:param>
-
-  <xsl:param name="css-name" select="'javahelp.css'"/>
 
   <xsl:param name="ignore-navigation-links" select="'yes'"/>
 
