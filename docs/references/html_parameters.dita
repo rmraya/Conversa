@@ -9,385 +9,409 @@
         generate XHTML or HTML. They apply to the stylesheets that  
         produce XHTML, HTML, Web Help and HTML Help, Eclipse Help and EPUB.</p>
       <simpletable relcolwidth="1* 1* 2*">
-          <sthead>
-            <stentry>Parameter</stentry>
-            
-            <stentry>Value</stentry>
-            
-            <stentry>Description</stentry>
-          </sthead>
-        
+        <sthead>
+          <stentry>Parameter</stentry>
+
+          <stentry>Value</stentry>
+
+          <stentry>Description</stentry>
+        </sthead>
+
         <strow>
           <stentry
-            id="add-index-toc"><tt>add-index-toc</tt><indexterm>add-index-toc,
-              parameter</indexterm></stentry>
-          
+          id="add-index-toc"><tt>add-index-toc</tt><indexterm>add-index-toc,
+          parameter</indexterm></stentry>
+
           <stentry><p>Allowed values are: <tt>'yes'</tt> and
-            <tt>'no'</tt>.</p><p>Default value: <tt>'yes'</tt>.</p></stentry>
-          
+          <tt>'no'</tt>.</p><p>Default value: <tt>'yes'</tt>.</p></stentry>
+
           <stentry><p>Specifies whether an A-Z list should be added at the
-            beginning of the back-of-the-book index.</p></stentry>
+          beginning of the back-of-the-book index.</p></stentry>
         </strow>
-        
-          <strow>
-            <stentry
-              id="chain-pages"><tt>chain-pages</tt><indexterm>chain-pages,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Allowed values are: <tt>'none'</tt>, <tt>'top'</tt>,
-              <tt>'bottom'</tt> or <tt>'both'</tt>.</p><p>Default value:
-                <tt>'none'</tt>.</p></stentry>
-            
-            <stentry><p>Specifies whether a header and/or a footer containing
-              navigation icons should be generated in order to link together all
-              the HTML pages.</p><note>There is no need to specify a value other
-                than <tt>'none'</tt> when generating Web Help, HTML Help, Eclipse
-                Help, EPUB and <tm tmtype="tm">Java</tm> Help.</note></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="chain-topics"><tt>chain-topics</tt><indexterm>chain-topics,
-                parameter<index-see-also>ignore-navigation-links,
-                  parameter</index-see-also></indexterm></stentry>
-            
-            <stentry><p>Allowed values are: <tt>'yes'</tt> and
-              <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
-            
-            <stentry><p>Specifies whether navigation icons should be generated
-              in order to link together all the topics.</p><p>See also related
-                parameter: <xref
-                  href="#htmlParams/ignore-navigation-links">ignore-navigation-links</xref>.</p><note>There
-                    is no need to specify a value other than <tt>'no'</tt> when
-                    generating Web Help, HTML Help, Eclipse Help, EPUB and <tm
-                      tmtype="tm">Java</tm> Help.</note></stentry>
-          </strow>
-          
-          <strow>
-            <stentry id="css"><tt>css</tt><indexterm>css,
-              parameter</indexterm></stentry>
-            
-            <stentry><p>URL.</p><p>Default value: <tt>''</tt>.</p></stentry>
-            
-            <stentry><p>Specifies which CSS stylesheet to use. Has priority over
-              the CSS stylesheet specified by the <xref
-                href="#htmlParams/css-name">css-name parameter</xref>.</p><p>An
-                  end-user wishing to use a custom CSS must typically:</p><ol
-                    compact="yes">
-                    <li>Import the <filepath>basic.css</filepath> stock stylesheet
-                      in its own <filepath>custom.css</filepath> as follows:<pre>@import url(basic.css);</pre></li>
-                    
-                    <li>Copy by hand <filepath>custom.css</filepath> to
-                      <tt><i>output_dir</i>/res/</tt> after <cmdname>ditac</cmdname>
-                      has finished its job.</li>
-                  </ol><note type="restriction"><p>Not supported by the stylesheets
-                    that generate EPUB. </p></note></stentry>
-          </strow>
-          
-          <strow>
-            <stentry id="css-name"><tt>css-name</tt><indexterm>css-name,
-              parameter</indexterm></stentry>
-            
-            <stentry><p>URL basename relative to the directory specified by
-              <xref href="common_parameters.dita#commonParameters/xsl-resources-directory">parameter
-                xsl-resources-directory</xref>.</p><p>Default value:
-                  <tt>'basic.css'</tt>; <tt>'javahelp.css'</tt> when the output format
-                  is <tm tmtype="tm">Java</tm> Help.</p></stentry>
-            
-            <stentry><p>Specifies which CSS stylesheet to use. This CSS
-              stylesheet is expected to be found in the resources
-              directory.</p><note type="restriction"><p>Not supported by the
-                stylesheets that generate EPUB. </p></note></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="default-table-width"><tt>default-table-width</tt><indexterm>default-table-width,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>A percentage, typically something like <tt>'100%'</tt>
-              or <tt>'90%'</tt>.</p><p>Default value: <tt>''</tt> (as narrow as
-                possible).</p></stentry>
-            
-            <stentry><p>The default width of <tt>table</tt> and
-              <tt>simpletable</tt> elements.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="external-link-icon-height"><tt>external-link-icon-height</tt><indexterm>external-link-icon-height,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Length. A length may have a unit. Default is
-              <tt>px</tt>.</p><p>Default value: <tt>'10'</tt>.</p></stentry>
-            
-            <stentry><p>The height of the ``opens in new window''
-              icon.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="external-link-icon-name"><tt>external-link-icon-name</tt><indexterm>external-link-icon-name,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Basename.</p><p>Default value:
-              <tt>'new_window.png'</tt>.</p></stentry>
-            
-            <stentry><p>The basename of the ``opens in new window'' icon. This
-              icon is found in the resources directory.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="external-link-icon-width"><tt>external-link-icon-width</tt><indexterm>external-link-icon-width,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Length. A length may have a unit. Default is
-              <tt>px</tt>.</p><p>Default value: <tt>'11'</tt>.</p></stentry>
-            
-            <stentry><p>The width of the ``opens in new window''
-              icon.</p></stentry>
-          </strow>
-          
+
         <strow>
           <stentry
-            id="format-to-type"><tt>format-to-type</tt><indexterm>format-to-type,
-              parameter</indexterm></stentry>
-          
+          id="chain-pages"><tt>chain-pages</tt><indexterm>chain-pages,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'none'</tt>, <tt>'top'</tt>,
+          <tt>'bottom'</tt> or <tt>'both'</tt>.</p><p>Default value:
+          <tt>'none'</tt>.</p></stentry>
+
+          <stentry><p>Specifies whether a header and/or a footer containing
+          navigation icons should be generated in order to link together all
+          the HTML pages.</p><note>There is no need to specify a value other
+          than <tt>'none'</tt> when generating Web Help, HTML Help, Eclipse
+          Help, EPUB and <tm tmtype="tm">Java</tm> Help.</note></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="chain-topics"><tt>chain-topics</tt><indexterm>chain-topics,
+          parameter<index-see-also>ignore-navigation-links,
+          parameter</index-see-also></indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+          <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+
+          <stentry><p>Specifies whether navigation icons should be generated
+          in order to link together all the topics.</p><p>See also related
+          parameter: <xref
+          href="#htmlParams/ignore-navigation-links"><tt>ignore-navigation-links</tt></xref>.</p><note>There
+          is no need to specify a value other than <tt>'no'</tt> when
+          generating Web Help, HTML Help, Eclipse Help, EPUB and <tm
+          tmtype="tm">Java</tm> Help.</note></stentry>
+        </strow>
+
+        <strow>
+          <stentry id="css"><tt>css</tt><indexterm>css,
+          parameter</indexterm></stentry>
+
+          <stentry><p>URL.</p><p>Default value: <tt>''</tt>.</p></stentry>
+
+          <stentry><p>Low-level parameter specifying which CSS stylesheet to
+          use to style the generated (X)HTML pages.</p><p>When neither
+          <tt>css</tt> nor <xref
+          href="#htmlParams/custom-css"><tt>custom-css</tt></xref> is specified, the
+          default CSS stylesheet being used is <tt><xref
+          href="common_parameters.dita#commonParameters/xsl-resources-directory"><tt><i>xsl-resources-directory</i></tt></xref>/base.css</tt>.</p><note
+          type="restriction"><p>Not supported by the stylesheets that generate
+          EPUB. </p></note></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="cssResourceName"><tt>cssResourceName</tt><indexterm>cssResourceName,
+          parameter</indexterm></stentry>
+
+          <stentry><p>URL basename relative to the directory specified by
+          parameter <xref
+            href="common_parameters.dita#commonParameters/xsl-resources-directory"><tt>xsl-resources-directory</tt></xref>.</p><p>Default
+          value: <tt>'base.css'</tt>.</p></stentry>
+
+          <stentry><p>Very low-level parameter specifying which CSS stylesheet
+          to use. This CSS stylesheet is expected to be found in the resources
+          directory.</p><note><p>This parameter is not useful unless you
+          develop a <xref
+            href="https://www.xmlmind.com/ditac/_distrib/doc/manual/webhelp/commandLine.html#commandLine__what_is_a_plugin" 
+            scope="external" format="html">plug-in</xref>
+          implementing a DITA specialization. More information in <xref
+            href="https://www.xmlmind.com/ditac/_distrib/doc/manual/webhelp/specialize.html" 
+            format="html" scope="external"/>.</p></note></stentry>
+        </strow>
+
+        <strow>
+          <stentry id="custom-css"><image alt="Pseudo parameter"
+          href="../images/pseudoParam.png"/><tt>custom-css</tt><indexterm>custom-css,
+          parameter</indexterm></stentry>
+
+          <stentry><p>URL.</p><p>Default value: <tt>''</tt>.</p></stentry>
+
+          <stentry><p>Specifies the custom CSS stylesheet used to style the
+          generated (X)HTML pages. This high-level parameter has priority over
+          low-level parameter <xref
+          href="#htmlParams/css"><tt>css</tt></xref>.</p><p>This custom CSS stylesheet
+          is copied to directory <xref
+          href="common_parameters.dita#commonParameters/xsl-resources-directory"><tt>xsl-resources-directory</tt></xref>.
+          Therefore <tt>custom-css</tt> requires directory
+          <tt>xsl-resources-directory</tt> to be specified as an URL which is
+          relative to the output directory (e.g.
+          <tt>xsl-resources-directory='res'</tt>).</p><p>How to use
+          <tt>custom-css</tt> is explained in <xref
+            href="https://www.xmlmind.com/ditac/_distrib/doc/manual/webhelp/manual-6.html#customCSS" 
+            scope="external" format="html"/>.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="default-table-width"><tt>default-table-width</tt><indexterm>default-table-width,
+          parameter</indexterm></stentry>
+
+          <stentry><p>A percentage, typically something like <tt>'100%'</tt>
+          or <tt>'90%'</tt>.</p><p>Default value: <tt>''</tt> (as narrow as
+          possible).</p></stentry>
+
+          <stentry><p>The default width of <xmlelement>table</xmlelement> and
+          <xmlelement>simpletable</xmlelement> elements.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="external-link-icon-height"><tt>external-link-icon-height</tt><indexterm>external-link-icon-height,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Length. A length may have a unit. Default is
+          <tt>px</tt>.</p><p>Default value: <tt>'10'</tt>.</p></stentry>
+
+          <stentry><p>The height of the “opens in new window”
+          icon.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="external-link-icon-name"><tt>external-link-icon-name</tt><indexterm>external-link-icon-name,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Basename.</p><p>Default value:
+          <tt>'new_window.png'</tt>.</p></stentry>
+
+          <stentry><p>The basename of the “opens in new window” icon. This
+          icon is found in the resources directory.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="external-link-icon-width"><tt>external-link-icon-width</tt><indexterm>external-link-icon-width,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Length. A length may have a unit. Default is
+          <tt>px</tt>.</p><p>Default value: <tt>'10'</tt>.</p></stentry>
+
+          <stentry><p>The width of the “opens in new window”'
+          icon.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="format-to-type"><tt>format-to-type</tt><indexterm>format-to-type,
+          parameter</indexterm></stentry>
+
           <stentry><p>Zero or more DITA format/MIME type pairs. Example:
-            "<tt>txt text/plain xml application/xml html text/html</tt>".
+          "<tt>txt text/plain xml application/xml html text/html</tt>".
           </p><p>Default value: <tt>''</tt>, which means that DITA
-            <tt>xref/@format</tt> is <i>not</i> converted to XHTML
-            <tt>a/@type</tt>.</p></stentry>
-          
+          <tt>xref/@format</tt> is <i>not</i> converted to XHTML
+          <tt>a/@type</tt>.</p></stentry>
+
           <stentry><p>Allows to map DITA <tt>xref/@format</tt> to XHTML
-            <tt>a/@type</tt>.</p><p>Using default empty value, <tt>&lt;xref
-              scope="external" format="txt"
-              href="http://acme.com/info.xyz"&gt;</tt> is converted to <tt>&lt;a
-                href="http://acme.com/info.xyz" target="_blank"&gt;</tt>. The fact
-              that file extension "<tt>.xyz</tt>" is unknown may cause problems
-              when attempting to navigate or download file "<tt>info.xyz</tt>"
-              using a Web browser.</p><p>If
-                <tt>-p format-to-type "txt text/plain"</tt> is passed to
-                <cmdname>ditac</cmdname> then <tt>&lt;xref scope="external"
-                  format="txt" href="http://acme.com/info.xyz"&gt;</tt> is converted
-                to <tt>&lt;a type="text/plain" href="http://acme.com/info.xyz"
-                  target="_blank"&gt;</tt>, which is better.</p></stentry>
+          <tt>a/@type</tt>.</p><p>Using default empty value, <tt>&lt;xref
+          scope="external" format="txt"
+          href="http://acme.com/info.xyz"&gt;</tt> is converted to <tt>&lt;a
+          href="http://acme.com/info.xyz" target="_blank"&gt;</tt>. The fact
+          that file extension "<tt>.xyz</tt>" is unknown may cause problems
+          when attempting to navigate or download file "<tt>info.xyz</tt>"
+          using a Web browser.</p><p>If
+          <tt>-p format-to-type "txt text/plain"</tt> is passed to
+          <cmdname>ditac</cmdname> then <tt>&lt;xref scope="external"
+          format="txt" href="http://acme.com/info.xyz"&gt;</tt> is converted
+          to <tt>&lt;a type="text/plain" href="http://acme.com/info.xyz"
+          target="_blank"&gt;</tt>, which is better.</p></stentry>
         </strow>
-        
-          <strow>
-            <stentry
-              id="generator-info"><tt>generator-info</tt><indexterm>generator-info,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>String</p><p>Default value: <tt>'XMLmind DITA Converter
-              <i>VERSION</i>'</tt>.</p></stentry>
-            
-            <stentry><p>The name of the software which has been used to create
-              the HTML pages. </p><p>Specify an empty string if you don't want to
-                have a <tt>&lt;meta name="generator" content="<i>XXX</i>"/&gt;</tt>
-                element added to your HTML pages.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="ignore-navigation-links"><tt>ignore-navigation-links</tt><indexterm>ignore-navigation-links,
-                parameter<index-see-also>chain-topics,
-                  parameter</index-see-also></indexterm></stentry>
-            
-            <stentry><p>Allowed values are: <tt>'yes'</tt>, '<tt>no</tt>' and
-              <tt>'auto'</tt>.</p><p>Default value: <tt>'auto'</tt> for XHTML and
-                its variants; <tt>'yes'</tt> for Web Help, Java Help, HTML Help,
-                Eclipse Help and EPUB</p></stentry>
-            
-            <stentry><p>If <tt>'yes'</tt>, do not generate the navigation links
-              corresponding to <tt>topicref</tt> attribute
-              <tt>collection-type</tt>.</p><p>If <tt>'no'</tt>, generate the
-                navigation links corresponding to <tt>topicref</tt> attribute
-                <tt>collection-type</tt>.</p><p>If <tt>'auto'</tt>, generate the
-                  navigation links corresponding to <tt>topicref</tt> attribute
-                  <tt>collection-type</tt>, unless <xref
-                    href="#htmlParams/chain-topics"><tt>chain-topics=yes</tt></xref>.</p></stentry>
-          </strow>
+
         <strow>
           <stentry
-            id="javascripts"><tt>javascripts</tt><indexterm>javascripts,
-              parameter</indexterm></stentry>
-          
+          id="generator-info"><tt>generator-info</tt><indexterm>generator-info,
+          parameter</indexterm></stentry>
+
+          <stentry><p>String</p><p>Default value: <tt>'XMLmind DITA Converter
+          <i>VERSION</i>'</tt>.</p></stentry>
+
+          <stentry><p>The name of the software which has been used to create
+          the HTML pages. </p><p>Specify an empty string if you don't want to
+          have a <tt>&lt;meta name="generator" content="<i>XXX</i>"/&gt;</tt>
+          element added to your HTML pages.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="ignore-navigation-links"><tt>ignore-navigation-links</tt><indexterm>ignore-navigation-links,
+          parameter<index-see-also>chain-topics,
+          parameter</index-see-also></indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt>, '<tt>no</tt>' and
+          <tt>'auto'</tt>.</p><p>Default value: <tt>'auto'</tt> for XHTML and
+          its variants; <tt>'yes'</tt> for Web Help, Java Help, HTML Help,
+          Eclipse Help and EPUB</p></stentry>
+
+          <stentry><p>If <tt>'yes'</tt>, do not generate the navigation links
+          corresponding to <tt>topicref</tt> attribute
+          <xmlatt>collection-type</xmlatt>.</p><p>If <tt>'no'</tt>, generate
+          the navigation links corresponding to <tt>topicref</tt> attribute
+          <xmlatt>collection-type</xmlatt>.</p><p>If <tt>'auto'</tt>, generate
+          the navigation links corresponding to <tt>topicref</tt> attribute
+          <xmlatt>collection-type</xmlatt>, unless <xref
+          href="#xsltParams/chain-topics"><tt>chain-topics=yes</tt></xref>.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="javascripts"><tt>javascripts</tt><indexterm>javascripts,
+          parameter</indexterm></stentry>
+
           <stentry><p>String. List of URLs separated by
-            whitespace.</p><p>Default value: <tt>''</tt>.</p></stentry>
-          
+          whitespace.</p><p>Default value: <tt>''</tt>.</p></stentry>
+
           <stentry><p>The URLs specified in this parameter must point to
-            JavaScript files. These URLs are converted to
-            <xmlelement>script</xmlelement> XHTML elements added to the
-            <xmlelement>html</xmlelement>/<xmlelement>head</xmlelement> elements
-            of the XHTML files generated by ditac.</p><p>Note that an URL may
-              end with <tt>';async'</tt>, <tt>';defer'</tt> or a combination of
-              both flags. These flags are translated to the corresponding
-              attributes of the <xmlelement>script</xmlelement> element.
-              Example:</p><pre scale="80">https://cdn.mathjax.org/mathjax/latest/¬
+          JavaScript files. These URLs are converted to
+          <xmlelement>script</xmlelement> XHTML elements added to the
+          <xmlelement>html</xmlelement>/<xmlelement>head</xmlelement> elements
+          of the XHTML files generated by ditac.</p><p>Note that an URL may
+          end with <tt>';async'</tt>, <tt>';defer'</tt> or a combination of
+          both flags. These flags are translated to the corresponding
+          attributes of the <xmlelement>script</xmlelement> element.
+          Example:</p><pre scale="80">https://cdn.mathjax.org/mathjax/latest/¬
 MathJax.js?config=MML_CHTML<b>;async</b></pre><p>is translated to:</p><pre
           scale="80">&lt;script type="text/javascript" <b>async="async"</b>
 src="https://cdn.mathjax.org/mathjax/latest/¬
 MathJax.js?config=MML_CHTML"&gt;
 &lt;/script&gt;</pre></stentry>
         </strow>
-        
+
         <strow>
           <stentry id="mathjax"><tt>mathjax</tt><indexterm>mathjax,
-            parameter</indexterm></stentry>
-          
+          parameter</indexterm></stentry>
+
           <stentry><p>Allowed values are: <tt>'yes'</tt>, <tt>'no'</tt> and
-            <tt>'auto'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
-          
+          <tt>'auto'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+
           <stentry><p>Very few web browsers (Firefox) can natively render
-            MathML<indexterm>MathML</indexterm>. Fortunately, there is <xref
-              format="html" href="https://www.mathjax.org/"
-              scope="external">MathJax</xref>.
-            MathJax<indexterm>MathJax</indexterm> is a JavaScript display engine
-            for mathematics that works in all browsers.</p><dl>
+          MathML<indexterm>MathML</indexterm>. Fortunately, there is <xref
+          format="html" href="https://www.mathjax.org/"
+          scope="external">MathJax</xref>.
+          MathJax<indexterm>MathJax</indexterm> is a JavaScript display engine
+          for mathematics that works in all browsers.</p><dl compact="yes">
               <dlentry>
                 <dt><tt>'yes'</tt></dt>
-                
+
                 <dd>Add a <xmlelement>script</xmlelement> XHTML element
-                  loading MathJax to the
-                  <xmlelement>html</xmlelement>/<xmlelement>head</xmlelement>
-                  elements of all XHTML files generated by ditac.</dd>
+                loading MathJax to the
+                <xmlelement>html</xmlelement>/<xmlelement>head</xmlelement>
+                elements of all XHTML files generated by ditac.</dd>
               </dlentry>
-              
+
               <dlentry>
                 <dt><tt>'auto'</tt></dt>
-                
+
                 <dd>Same as <tt>'yes'</tt>, but add
-                  <xmlelement>script</xmlelement> only to generated XHTML files
-                  containing MathML.</dd>
+                <xmlelement>script</xmlelement> only to generated XHTML files
+                containing MathML.</dd>
               </dlentry>
             </dl><p>Ignored by all XHTML-based formats but XHTML and Web
-              Help.</p></stentry>
+          Help.</p></stentry>
         </strow>
-        
+
         <strow>
           <stentry
-            id="mathjax-url"><tt>mathjax-url</tt><indexterm>mathjax-url,
-              parameter</indexterm></stentry>
-          
+          id="mathjax-url"><tt>mathjax-url</tt><indexterm>mathjax-url,
+          parameter</indexterm></stentry>
+
           <stentry><p>String.</p><p>Default value: the URL pointing to the
-            MathJax CDN, as recommended in the MathJax
-            documentation.</p></stentry>
-          
+          MathJax CDN, as recommended in the MathJax
+          documentation.</p></stentry>
+
           <stentry><p>The URL allowing to load the <xref format="html"
-            href="https://www.mathjax.org/" scope="external">MathJax</xref>
-            engine<indexterm>MathJax</indexterm> configured for rendering
-            MathML<indexterm>MathML</indexterm>.</p><p>Ignored unless parameter
-              <xref href="#xsltParams/mathjax"><tt>mathjax</tt></xref> is set to
-              <tt>'yes'</tt>or <tt>'auto'</tt>.</p></stentry>
+          href="https://www.mathjax.org/" scope="external">MathJax</xref>
+          engine<indexterm>MathJax</indexterm> configured for rendering
+          MathML<indexterm>MathML</indexterm>.</p><p>Ignored unless parameter
+          <xref href="#xsltParams/mathjax"><tt>mathjax</tt></xref> is set to
+          <tt>'yes'</tt>or <tt>'auto'</tt>.</p></stentry>
         </strow>
-        
-          <strow>
-            <stentry
-              id="mark-external-links"><tt>mark-external-links</tt><indexterm>mark-external-links,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Allowed values are: <tt>'yes'</tt> and
-              <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
-            
-            <stentry><p>Specifies whether an external link should be marked
-              using a ``opens in new window'' icon.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="navigation-icon-height"><tt>navigation-icon-height</tt><indexterm>navigation-icon-height,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Length. A length may have a unit. Default is
-              <tt>px</tt>.</p><p>Default value: <tt>'16'</tt>.</p></stentry>
-            
-            <stentry><p>The height of a navigation icon.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="navigation-icon-suffix"><tt>navigation-icon-suffix</tt><indexterm>navigation-icon-suffix,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>String.</p><p>Default value:
-              <tt>'.png'</tt>.</p></stentry>
-            
-            <stentry><p>The suffix of a navigation icon.</p><p>The root names of
-              navigation icons are fixed: <sl compact="yes">
-                <sli><tt>first</tt>, <tt>first_disabled</tt>,</sli>
-                
-                <sli><tt>last</tt>, <tt>last_disabled</tt>,</sli>
-                
-                <sli><tt>next</tt>, <tt>next_disabled</tt>,</sli>
-                
-                <sli><tt>previous</tt>, <tt>previous_disabled</tt>,</sli>
-                
-                <sli><tt>parent</tt>, <tt>parent_disabled</tt>,</sli>
-                
-                <sli><tt>child</tt>, <tt>child_disabled</tt>.</sli>
-              </sl></p><p>For example, if <tt>note-icon-suffix='.svg'</tt>, the
-                default resources directory is expected to contain
-                <filepath>first.svg</filepath>,
-                <filepath>first_disabled.svg</filepath>,
-                <filepath>last.svg</filepath>, etc.</p><p>In principle, there is no
-                  need for an end-user to specify any of the
-                  <tt>navigation-icon-suffix</tt>, <tt>navigation-icon-width</tt> or
-                  <tt>navigation-icon-height</tt> parameters.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="navigation-icon-width"><tt>navigation-icon-width</tt><indexterm>navigation-icon-width,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Length. A length may have a unit. Default is
-              <tt>px</tt>.</p><p>Default value: <tt>'16'</tt>.</p></stentry>
-            
-            <stentry><p>The width of a navigation icon.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="screen-resolution"><tt>screen-resolution</tt><indexterm>screen-resolution,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>Positive integer.</p><p>Default value:
-              <tt>'96'</tt>.</p></stentry>
-            
-            <stentry><p>The resolution of the screen in dot per inch (DPI). This
-              resolution is used to convert image dimensions such as <tt>3cm</tt>
-              to pixels.</p></stentry>
-          </strow>
-          
-          <strow>
-            <stentry
-              id="xhtml-mime-type"><tt>xhtml-mime-type</tt><indexterm>xhtml-mime-type,
-                parameter</indexterm></stentry>
-            
-            <stentry><p>A MIME type without a parameter such as
-              <tt>'text/html'</tt>, <tt>'application/xhtml+xml'</tt>,
-              <tt>'application/xml'</tt> or the empty string
-              (<tt>''</tt>).</p><p>Default value:
-                <tt>'text/html'</tt>.</p></stentry>
-            
-            <stentry><p>Applies to all the XHTM-based formats (XHTML, EPUB), not
-              to the HTML-based formats (Web Help, <tm tmtype="tm">Java</tm> Help,
-              HTML Help, Eclipse Help).</p><p>By default (<tt>'text/html'</tt>),
-                serve XHTML as HTML.</p><p>Specify <tt>'application/xhtml+xml'</tt>
-                  if you prefer to serve XHTML as XML.</p><p>Specify an empty string
-                    if you prefer not to generate <tt>&lt;meta
-                      http-equiv="Content-Type"...&gt;</tt>.</p><note type="tip">Web
-                        browsers such as Firefox or Opera will <i>not</i> render the MathML
-                        embedded in XHTML, if this XHTML is served as HTML. Therefore when
-                        your DITA document contains MathML equations, you'll have to
-                        generate "<tt>.xhtml</tt>" files ("<tt>.html</tt>" files won't work)
-                        and also, preferably, to specify
-                        <tt>xhtml-mime-type="application/xhtml+xml"</tt> or
-                        <tt>xhtml-mime-type=""</tt>.</note></stentry>
-          </strow>
-        </simpletable></section>
+
+        <strow>
+          <stentry
+          id="mark-external-links"><tt>mark-external-links</tt><indexterm>mark-external-links,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Allowed values are: <tt>'yes'</tt> and
+          <tt>'no'</tt>.</p><p>Default value: <tt>'no'</tt>.</p></stentry>
+
+          <stentry><p>Specifies whether an external link should be marked
+          using a “opens in new window” icon.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="navigation-icon-height"><tt>navigation-icon-height</tt><indexterm>navigation-icon-height,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Length. A length may have a unit. Default is
+          <tt>px</tt>.</p><p>Default value: <tt>'16'</tt>.</p></stentry>
+
+          <stentry><p>The height of a navigation icon.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="navigation-icon-suffix"><tt>navigation-icon-suffix</tt><indexterm>navigation-icon-suffix,
+          parameter</indexterm></stentry>
+
+          <stentry><p>String.</p><p>Default value:
+          <tt>'.png'</tt>.</p></stentry>
+
+          <stentry><p>The suffix of a navigation icon.</p><p>The root names of
+          navigation icons are fixed: <sl compact="yes">
+              <sli><tt>first</tt>, <tt>first_disabled</tt>,</sli>
+
+              <sli><tt>last</tt>, <tt>last_disabled</tt>,</sli>
+
+              <sli><tt>next</tt>, <tt>next_disabled</tt>,</sli>
+
+              <sli><tt>previous</tt>, <tt>previous_disabled</tt>,</sli>
+
+              <sli><tt>parent</tt>, <tt>parent_disabled</tt>,</sli>
+
+              <sli><tt>child</tt>, <tt>child_disabled</tt>.</sli>
+            </sl></p><p>For example, if <tt>note-icon-suffix='.svg'</tt>, the
+          default resources directory is expected to contain
+          <filepath>first.svg</filepath>,
+          <filepath>first_disabled.svg</filepath>,
+          <filepath>last.svg</filepath>, etc.</p><p>In principle, there is no
+          need for an end-user to specify any of the
+          <tt>navigation-icon-suffix</tt>, <tt>navigation-icon-width</tt> or
+          <tt>navigation-icon-height</tt> parameters.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="navigation-icon-width"><tt>navigation-icon-width</tt><indexterm>navigation-icon-width,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Length. A length may have a unit. Default is
+          <tt>px</tt>.</p><p>Default value: <tt>'16'</tt>.</p></stentry>
+
+          <stentry><p>The width of a navigation icon.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="screen-resolution"><tt>screen-resolution</tt><indexterm>screen-resolution,
+          parameter</indexterm></stentry>
+
+          <stentry><p>Positive integer.</p><p>Default value:
+          <tt>'96'</tt>.</p></stentry>
+
+          <stentry><p>The resolution of the screen in dot per inch (DPI). This
+          resolution is used to convert image dimensions such as <tt>3cm</tt>
+          to pixels.</p></stentry>
+        </strow>
+
+        <strow>
+          <stentry
+          id="xhtml-mime-type"><tt>xhtml-mime-type</tt><indexterm>xhtml-mime-type,
+          parameter</indexterm></stentry>
+
+          <stentry><p>A MIME type without a parameter such as
+          <tt>'text/html'</tt>, <tt>'application/xhtml+xml'</tt>,
+          <tt>'application/xml'</tt> or the empty string
+          (<tt>''</tt>).</p><p>Default value: see prose.</p></stentry>
+
+          <stentry><p>Low-level parameter. Do not change default value unless
+          you know what you are doing.</p><ul>
+              <li>Specify <tt>'text/html'</tt> to serve XHTML as HTML.<p>This
+              is the default value for all (X)HTML-based output formats except
+              for EPUB 2 and (X)HTML5.</p></li>
+
+              <li>Specify <tt>'application/xhtml+xml'</tt> if you prefer to
+              serve XHTML as XML.<p>This is the default value for
+              EPUB 2.</p></li>
+
+              <li>Specify an empty string if you prefer not to generate
+              <tt>&lt;meta http-equiv="Content-Type"&gt;</tt>.<p>This is the
+              default value for (X)HTML5 for which a
+              <tt>&lt;meta charset="UTF-8"&gt;</tt> is generated
+              instead.</p></li>
+            </ul></stentry>
+        </strow>
+      </simpletable></section>
     
     
   </refbody>

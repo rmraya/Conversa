@@ -45,7 +45,7 @@
               <tt>'no'</tt> for the other formats.</p></stentry>
           
           <stentry><p>If <tt>'yes'</tt>, number the TOC entries. No effect
-            unless the <xref href="common_parameters.dita#commonParameters/number">number parameter</xref>
+            unless the <xref href="#xsltParams/number">number parameter</xref>
             is used to specify that topics should be numbered.</p></stentry>
         </strow>
       </simpletable></section>

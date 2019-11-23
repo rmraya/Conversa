@@ -1,71 +1,60 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head><meta charset="UTF-8" />
-      <title>Web Help Parameters</title><link href="resources/webhelp.css" rel="stylesheet" type="text/css" /><meta content="" name="description" />
-      <meta content="XMLmind DITA Converter 3.6.0" name="generator" />
-   <script charset="UTF-8" defer="defer" src="_wh/snowball_en.min.js" type="text/javascript"></script><link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript">
-    </script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
-    </script><script charset="UTF-8" src="_wh/wh.min.js" type="text/javascript">
-    </script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript">
-    </script></head>
+      
+      <title>Web Help Parameters</title>
+      <link href="resources/base.css" rel="stylesheet" type="text/css" />
+      <meta content="" name="description" />
+      <meta content="XMLmind DITA Converter 3.7.0" name="generator" />
+   <meta content="width=device-width, initial-scale=1" name="viewport" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script><script charset="UTF-8" src="_wh/wh.js" type="text/javascript"></script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript"></script></head>
    
 <body>
     
 
     <div id="wh-body">
+      <div class="wh-icon-menu" id="wh-menu"></div>
       <div id="wh-navigation">
         <ul id="wh-tabs">
-          <li id="wh-toc-tab"><a href="#wh-toc-pane"><span>Contents</span></a></li>
-          <li id="wh-index-tab"><a href="#wh-index-pane"><span>Index</span></a></li>
-          <li id="wh-search-tab"><a href="#wh-search-pane"><span>Search</span></a></li>
+          <li id="wh-toc-tab"><a class="wh-icon-toc" href="#wh-toc-container"></a></li>
+          <li id="wh-index-tab"><a class="wh-icon-index" href="#wh-index-container"></a></li>
+          <li id="wh-search-tab"><a class="wh-icon-search" href="#wh-search-container"></a></li>
         </ul>
-        <div id="wh-toc-pane">
-          <div id="wh-toc-form">
-            <span id="wh-toc-control"><a href="#">Collapse 
-            All</a><a href="#">Expand All</a></span>
-            <button id="wh-toc-previous">Previous</button>
-            <button id="wh-toc-next">Next</button>
-            <button id="wh-toc-print">Print</button>
+        <div id="wh-toc-container">
+          <div id="wh-toc-form"><span class="wh-icon-collapse-all" id="wh-toc-collapse-all"></span><span class="wh-icon-expand-all" id="wh-toc-expand-all"></span><span class="wh-toc-spring"></span><span class="wh-icon-previous" id="wh-toc-previous"></span><span class="wh-icon-next" id="wh-toc-next"></span><span class="wh-toc-spring"></span><span class="wh-icon-print" id="wh-toc-print"></span></div>
+          <div id="wh-toc-pane">
           </div>
-          <script charset="UTF-8" src="_wh/toc.js" type="text/javascript">
-          </script>
         </div>
-        <div id="wh-index-pane">
-          <div id="wh-index-form">
-            <input id="wh-index-field" type="text" />
+        <div id="wh-index-container">
+          <div id="wh-index-form"><span id="wh-index-group"><input id="wh-index-field" type="text" /><span class="wh-icon-go" id="wh-go-page"></span></span></div>
+          <div id="wh-index-pane">
           </div>
-          <script charset="UTF-8" src="_wh/index.js" type="text/javascript">
-          </script>
         </div>
-        <div id="wh-search-pane">
-          <div id="wh-search-form">
-            <input id="wh-search-field" type="text" /><button id="wh-search-button">Search</button><span id="wh-highlight-group"><input checked="checked" id="wh-highlight-toggle" type="checkbox" /><label for="wh-highlight-toggle" id="wh-highlight-icon"><span class="ui-icon ui-icon-flag"></span></label></span>
-          </div>
-          <div id="wh-search-results">
+        <div id="wh-search-container">
+          <div id="wh-search-form"><span id="wh-search-group"><span class="wh-icon-search" id="wh-do-search"></span><input id="wh-search-field" type="text" /><span class="wh-icon-cancel" id="wh-cancel-search"></span></span><span class="wh-icon-highlight" id="wh-search-highlight"></span></div>
+          <div id="wh-search-pane">
+            <div id="wh-search-results">
+            </div>
           </div>
         </div>
       </div>
-      <div id="wh-separator">
-      </div>
+      <div id="wh-separator"></div>
       <div id="wh-content">
       
       <section class="reference" id="Untitled11" lang="en-US" xml:lang="en-US">
          <h2 class="section3-title">Web Help Parameters</h2>
          <p class="shortdesc"></p>
          <div class="refbody">
-            <section class="section" id="Untitled11__I_o36clz_">
+            <section class="section" id="Untitled11__I_w5yo2q_">
                
                <div class="p">The table below lists the parameters specific to the stylesheets that generate Web
-                  Help.
-               </div>
+                  Help.</div>
                
-               <div class="p" id="Untitled11__pseudoParam">Parameters marked using this icon <img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /> are <dfn class="term">pseudo-parameters</dfn>. They may or may
+               <div class="p" id="Untitled11__pseudoParam">Parameters marked using this icon <img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /> are <dfn class="term">pseudo-parameters</dfn>. They may or may
                   not be passed to the XSLT stylesheets, but it is important thing to remember that
                   they
                   are also interpreted by ditac itself. As a consequence, you cannot specify them in
                   an XSLT
-                  stylesheet which customizes the stock ones.
-               </div>
+                  stylesheet which customizes the stock ones.</div>
                
                <div class="simpletable-container">
                   <table border="1" class="simpletable">
@@ -81,349 +70,378 @@
                      </thead>
                      <tbody>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-collapse-toc"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-collapse-toc</span><a id="Untitled11__I_kperei_"></a></td>
+                           <td class="stentry" id="Untitled11__wh---CSS_VAR_NAME"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh---<i class="i">CSS_VAR_NAME</i></span><a id="Untitled11__I_87g8qf_"></a></td>
+                           <td class="stentry">
+                              <div class="p">String. A valid CSS property value.</div>
+                              <div class="p">No
+                                 default.</div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">This kind of parameter may be used to override any of
+                                 the default values of the <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">CSS variables</a> specified in any of the
+                                 <code class="filepath">NNtheme.css</code> template files (all found in
+                                 <span class="tt"><i class="i">ditac_install_dir</i>/whc_template/_wh/</span>). </div>
+                              <div class="p">For
+                                 example, the main <code class="filepath">NNtheme.css</code> template
+                                 file:</div>
+                              <pre class="pre">body {
+  ...
+  --navigation-width: 33%;
+  ...
+} </pre>
+                              <div class="p">The <code class="codeph">wh---navigation-width</code> CSS variable is used as
+                                 follows in <code class="filepath">NNcommon.css</code>, another CSS template
+                                 file:</div>
+                              <pre class="pre">#wh-navigation {
+  ...
+  width: var(--navigation-width);
+  ...
+}</pre>
+                              <div class="p">Therefore parameter <code class="codeph">wh---navigation-width</code> may be
+                                 used to give the navigation side of the generated Web Help a
+                                 different initial width. Example:
+                                 <code class="codeph">-p wh---navigation-width &quot;25%&quot;</code>.</div>
+                              <div class="p">More examples
+                                 in &quot;<a class="xref" href="https://www.xmlmind.com/ditac/_whc/doc/manual/getting_started.html#tabs_with_labels" target="_blank"><cite class="cite">XMLmind Web Help Compiler Manual, Getting
+                                       started</cite></a>&quot;.</div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-collapse-toc"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-collapse-toc</span><a id="Untitled11__I_iis0m_"></a></td>
                            <td class="stentry">
                               <div class="p">Allowed values are: <span class="tt">'yes'</span> and
-                                 <span class="tt">'no'</span>.
-                              </div>
-                              <div class="p">Default value: <span class="tt">'no'</span>.
-                              </div>
+                                 <span class="tt">'no'</span>.</div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Specifies whether the TOC should be initially
-                                 collapsed.
-                              </div>
+                                 collapsed.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-index-numbers"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-index-numbers</span><a id="Untitled11__I_qvtp4l_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-index-numbers"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-index-numbers</span><a id="Untitled11__I_dzoosd_"></a></td>
                            <td class="stentry">
                               <div class="p">Allowed values are: <span class="tt">'yes'</span> and
-                                 <span class="tt">'no'</span>.
-                              </div>
-                              <div class="p">Default value: <span class="tt">'no'</span>.
-                              </div>
+                                 <span class="tt">'no'</span>.</div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Specifies whether words looking like numbers are to be
-                                 indexed.
-                              </div>
+                                 indexed.</div>
                               <div class="p">Examples of such number-like words: <span class="tt">3.14</span>,
                                  <span class="tt">3,14</span>, <span class="tt">3times4equals12</span>, <span class="tt">+1</span>, <span class="tt">-1.0</span>,
                                  <span class="tt">3px</span>, <span class="tt">1,2cm</span>, <span class="tt">100%</span>, <span class="tt">1.0E+6</span>,
-                                 <span class="tt">1,000.00$</span>.
-                              </div>
+                                 <span class="tt">1,000.00$</span>.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-jquery"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-jquery</span><a id="Untitled11__I_s4mc7b_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-inherit-font-and-colors"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-inherit-font-and-colors</span><a id="Untitled11__I_vi4evn_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.</div>
+                              <div class="p">Default value: <span class="tt">'yes'</span>.</div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">When <span class="tt">wh-inherit-font-and-colors</span> is set to
+                                 <span class="tt">'no'</span>, the navigation pane of the generated Web Help uses
+                                 fonts and colors of its own, which will generally differ from those
+                                 used for the content of the Web Help.</div>
+                              <div class="p">Setting
+                                 <span class="tt">wh-inherit-font-and-colors</span> to <span class="tt">'yes'</span> lets you use
+                                 for the navigation pane the same fonts and colors as those used for
+                                 the content of the Web Help. </div>
+                              <div class="p">So basically this parameter is a
+                                 shorthand for:</div>
+                              <pre class="screen">-p wh---navigation-font-family inherit¬
+-p wh---navigation-font-size inherit¬
+-p wh---navigation-color inherit¬
+-p wh---navigation-background-color inherit</pre>
+                              <div class="p">See above <a class="xref" href="#Untitled11__wh---CSS_VAR_NAME"><span class="tt">wh---<i class="i">CSS_VAR_NAME</i></span></a>
+                                 parameters.</div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-jquery"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-jquery</span><a id="Untitled11__I_fmv16m_"></a></td>
                            <td class="stentry">
                               <div class="p">Relative or absolute URI. A relative URI is relative to
-                                 the URI of a page of the Web Help.
-                              </div>
+                                 the URI of a page of the Web Help.</div>
                               <div class="p">Default value: absolute URI
-                                 of the corresponding file found on the Google CDN.
-                              </div>
+                                 of the corresponding file found on the Google CDN.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Specifies the location of the JavaScript file containing
-                                 <a class="xref" href="http://jquery.com/" target="_blank">jQuery</a> .
-                              </div>
-                              <div class="p">Example:
-                                 <span class="tt">'http://ajax.aspnetcdn.com/ajax/¬
-                                    jQuery/jquery-1.10.1.min.js'</span>.
-                              </div>
+                                 <a class="xref" href="https://jquery.com/" target="_blank">jQuery</a> . Example: </div>
+                              <pre class="pre">https://code.jquery.com/¬
+jquery-3.4.1.slim.min.js</pre>
+                              <div class="p">Specifying an &quot;<span class="tt">https:</span>&quot; URL is
+                                 recommended when the generated Web Help is stored on an HTTPS
+                                 server.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-jquery-css"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-jquery-css</span><a id="Untitled11__I_hsfriw_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-local-jquery"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-local-jquery</span><a id="Untitled11__I_d3s1c7_"></a></td>
                            <td class="stentry">
-                              <div class="p">Relative or absolute URI. A relative URI is relative to
-                                 the URI of a page of the Web Help.
-                              </div>
-                              <div class="p">Default value: absolute URI
-                                 of the corresponding file found on the Google CDN.
-                              </div>
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.</div>
+                              <div class="p">Default value: <span class="tt">'no'</span>.</div>
                            </td>
                            <td class="stentry">
-                              <div class="p">Specifies the location of the CSS stylesheet of <a class="xref" href="http://jqueryui.com/" target="_blank">jQuery
-                                    UI</a> .
-                              </div>
-                              <div class="p">Example: <span class="tt">'http://ajax.aspnetcdn.com/ajax/¬
-                                    jquery.ui/1.10.3/themes/redmond/jquery-ui.css'</span>.
-                              </div>
-                           </td>
-                        </tr>
-                        <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-jquery-custom-theme"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-jquery-custom-theme</span><a id="Untitled11__I_srs0gb_"></a></td>
-                           <td class="stentry">
-                              <div class="p">Filename or absolute URI of a <span class="tt">.zip</span> file created
-                                 using JQueryUI <a class="xref" href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a>. A relative filename is relative
-                                 to the current working directory.
-                              </div>
-                              <div class="p">No default.</div>
-                           </td>
-                           <td class="stentry">
-                              <div class="p">Specifies a <span class="tt">.zip</span> file created using JQueryUI
-                                 <a class="xref" href="http://jqueryui.com/themeroller/" target="_blank">ThemeRoller</a> containing a custom JQueryUI
-                                 theme. Example:
-                                 <code class="filepath">jquery-ui-1.12.1.custom.zip</code>.
-                              </div>
-                              <div class="p">The files
-                                 comprising the custom theme are copied to
+                              <div class="p">Specifies whether all jQuery files should be copied to
                                  <code class="filepath">_wh/jquery/</code>, where <code class="filepath">_wh/</code> is
-                                 the directory containing the other Web Help files.
-                              </div>
-                              <div class="p">Ignored if
-                                 parameter <span class="tt">wh-jquery-css</span> has been used to specify the CSS
-                                 stylesheet of jQuery UI.
-                              </div>
+                                 the directory containing the other Web Help files.</div>
+                              <div class="p">By default,
+                                 the jQuery files are accessed from the Web (typically from a
+                                 CDN).</div>
+                              <div class="p">Note that this parameter is applied <i class="i">after</i> jQuery
+                                 has been possibly customized using parameter <span class="tt">wh-jquery</span>. For
+                                 example,
+                                 &quot;<code class="codeph">-p wh-jquery https://code.jquery.com/jquery-3.4.1.js</code>&quot;
+                                 copies a file downloaded from <span class="tt">https://code.jquery.com/ to
+                                    _wh/jquery/</span>.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-jquery-theme"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-jquery-theme</span><a id="Untitled11__I_jpttau_"></a></td>
-                           <td class="stentry">
-                              <div class="p">The name of a theme. Examples: <span class="tt">'redmond'</span>,
-                                 <span class="tt">'cupertino'</span>.
-                              </div>
-                              <div class="p">Default value:
-                                 <span class="tt">'smoothness'</span>.
-                              </div>
-                           </td>
-                           <td class="stentry">
-                              <div class="p">Specifies the name of the <a class="xref" href="http://jqueryui.com/" target="_blank">jQuery UI</a> theme
-                                 used by the compiler.
-                              </div>
-                              <div class="p">Ignored if parameter
-                                 <span class="tt">wh-jquery-css</span> has been used to specify the CSS stylesheet
-                                 of jQuery UI.
-                              </div>
-                           </td>
-                        </tr>
-                        <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-jquery-ui"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-jquery-ui</span><a id="Untitled11__I_p92pik_"></a></td>
-                           <td class="stentry">
-                              <div class="p">Relative or absolute URI. A relative URI is relative to
-                                 the URI of a page of the Web Help.
-                              </div>
-                              <div class="p">Default value: absolute URI
-                                 of the corresponding file found on the Google CDN.
-                              </div>
-                           </td>
-                           <td class="stentry">
-                              <div class="p">Specifies the location of the JavaScript file containing
-                                 <a class="xref" href="http://jqueryui.com/" target="_blank">jQuery UI</a> .
-                              </div>
-                              <div class="p">Example:
-                                 <span class="tt">'http://ajax.aspnetcdn.com/ajax/¬
-                                    jquery.ui/1.10.3/jquery-ui.min.js'</span>.
-                              </div>
-                           </td>
-                        </tr>
-                        <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-local-jquery"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-local-jquery</span><a id="Untitled11__I_ga0jho_"></a></td>
-                           <td class="stentry">
-                              <div class="p">yes or no.</div>
-                              <div class="p">Default value: no.</div>
-                           </td>
-                           <td class="stentry">
-                              <div class="p">Specifies whether to copy all jQuery files to the
-                                 directory containing the other Web Help files. By default, the
-                                 jQuery files are accessed from the Web (typically from a
-                                 CDN).
-                              </div>
-                           </td>
-                        </tr>
-                        <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-layout"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-layout</span><a id="Untitled11__I_xkqq3r_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-layout"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-layout</span><a id="Untitled11__I_gsfj2o_"></a></td>
                            <td class="stentry">
                               <div class="p">The name of a layout.</div>
                               <div class="p">Default value:
-                                 classic.
-                              </div>
+                                 classic.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Selects a layout for the generated Web Help.</div>
                               <div class="p">For
-                                 now, only 2 layouts are supported: <span class="tt">classic</span> and
-                                 <span class="tt">simple</span>.
-                              </div>
+                                 now, only two layouts are supported: <span class="tt">classic</span> and
+                                 <span class="tt">simple</span>.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-use-stemming"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-use-stemming</span><a id="Untitled11__I_tx3nfv_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-responsive-ui"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-responsive-ui</span><a id="Untitled11__I_tftrwa_"></a></td>
                            <td class="stentry">
-                              <div class="p">yes or no.</div>
-                              <div class="p">Default value: yes.</div>
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.</div>
+                              <div class="p">Default value: <span class="tt">'yes'</span>.</div>
                            </td>
                            <td class="stentry">
-                              <div class="p">Specifies whether stemming should be used to implement
-                                 the search by contents facility. By default, stemming is used
-                                 whenever possible, that is,
-                              </div>
-                              <ul class="ul">
+                              <div class="p">Specifies whether the generated Web Help should be
+                                 “responsive”, that is, whether it should adapt its layout to the
+                                 size of the screen.</div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-ui-language"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-ui-language</span><a id="Untitled11__I_cqptt0_"></a></td>
+                           <td class="stentry">
+                              <div class="p">&quot;<span class="tt">browser</span>&quot; or &quot;<span class="tt">document</span>&quot; or a language
+                                 code conforming <a class="xref" href="https://www.ietf.org/rfc/rfc3066.txt" target="_blank">RFC
+                                    3066</a>. Examples: <span class="tt">de</span>, <span class="tt">fr-CA</span>.</div>
+                              <div class="p">Default
+                                 value: <span class="tt">'browser'</span>.</div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies which language should be used for the messages
+                                 (tab labels, button tool tips, etc) of the generated Web
+                                 Help.</div>
+                              <div class="p">Default value &quot;<span class="tt">browser</span>&quot; means that this
+                                 language is the one used by the Web browser for its own messages.
+                                 This language may often be specified in the user preferences of the
+                                 Web browser.</div>
+                              <div class="p">Value &quot;<span class="tt">document</span>&quot; means that the language
+                                 of the document should be used.</div>
+                              <div class="p">A language code such as
+                                 <span class="tt">en</span>, <span class="tt">en-US</span>, <span class="tt">es</span>, <span class="tt">es-AR</span>, etc, may
+                                 be used to explicitly specify which language should be
+                                 used.</div>
+                           </td>
+                        </tr>
+                        <tr class="strow">
+                           <td class="stentry" id="Untitled11__wh-use-stemming"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-use-stemming</span><a id="Untitled11__I_5kl96t_"></a></td>
+                           <td class="stentry">
+                              <div class="p">Allowed values are: <span class="tt">'yes'</span> and
+                                 <span class="tt">'no'</span>.</div>
+                              <div class="p">Default value: <span class="tt">'yes'</span>.</div>
+                           </td>
+                           <td class="stentry">
+                              <div class="p">Specifies whether <dfn class="term">stemming</dfn><a class="fn-link" href="#I_d3141e419_"><sup class="fn-callout">(1)</sup></a> should be used
+                                 to implement the search facility. By default, stemming is used
+                                 whenever possible, that is,</div>
+                              <ol class="compact-ol">
                                  <li class="li">when the main language of the document can be
-                                    determined;
-                                 </li>
+                                    determined;</li>
                                  <li class="li">when this main language is one of: Danish, Dutch, English,
                                     Finnish, French, German, Hungarian, Italian, Norwegian,
-                                    Portuguese, Russian, Spanish, Swedish, Romanian, Turkish.
-                                 </li>
-                              </ul>
+                                    Portuguese, Russian, Spanish, Swedish, Romanian, Turkish.</li>
+                              </ol>
                               <div class="p">The main language of the document is specified by the
-                                 <span class="tt">xml:lang</span> attribute found on the root element of DITA map
-                                 being converted, if not declared it is assumed to be
-                                 &quot;<span class="tt">en</span>&quot;.
-                              </div>
+                                 <code class="xmlatt">@xml:lang</code> attribute found on the root element of
+                                 DITA map being converted; otherwise using the <a class="xref" href="https://www.xmlmind.com/ditac/_distrib/doc/manual/webhelp/commandLine.html#commandLine__option-lang" target="_blank">-lang command-line
+                                    option</a>; otherwise, it is assumed to be
+                                 &quot;<span class="tt">en</span>&quot;.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-user-css"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-user-css</span><a id="Untitled11__I_j02foz_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-user-css"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-css</span><a id="Untitled11__I_m0mysi_"></a></td>
                            <td class="stentry">
-                              <div class="p">Relative or absolute URI of a CSS file. A relative URI
-                                 is relative to the current working directory.
-                              </div>
+                              <div class="p">Filename or absolute URI of a CSS file. A relative
+                                 filename is relative to the current working directory.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Specifies the user's CSS stylesheet which is to be added
-                                 to each page of the Web Help.
-                              </div>
+                                 to each page of the Web Help.</div>
                               <div class="p">This file is copied to
-                                 <i class="i"><span class="tt">output_directory</span></i><span class="tt">/_wh/user/</span>.
-                              </div>
+                                 <i class="i"><span class="tt">output_directory</span></i><span class="tt">/_wh/user/</span>.</div>
                               <div class="p">Sample
-                                 user's CSS: <code class="filepath">docs/wh_resources/header_footer.css</code>.
-                              </div>
+                                 user's CSS <a class="xref" href="wh_resources/header_footer.css" target="_blank">wh_resources/header_footer.css</a> as used in
+                                 the following example:</div>
+                              <pre class="screen" style="font-size: 90%;">-p wh-user-header¬
+wh_resources/header.html
+-p wh-user-footer¬
+wh_resources/footer.html
+-p wh-user-css¬
+wh_resources/header_footer.css
+-p wh-user-resources¬
+wh_resources/header_footer_files</pre>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-user-footer"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-user-footer</span><a id="Untitled11__I_71rnlj_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-user-footer"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-footer</span><a id="Untitled11__I_pp2qcy_"></a></td>
                            <td class="stentry">
-                              <div class="p">Relative or absolute URI of an XHTML file. A relative
-                                 URI is relative to the current working directory.
-                              </div>
+                              <div class="p">Filename or absolute URI of an XHTML file. A relative
+                                 filename is relative to the current working directory.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Specifies the user's footer which is to be added to each
-                                 page of the Web Help.
-                              </div>
-                              <div class="p">The content of the <span class="tt">body</span> element
-                                 of <span class="tt">wh-user-footer</span> is inserted as is in the
-                                 <span class="tt">&lt;div id=&quot;wh-footer&quot;&gt;</span> found in a page of the Web
-                                 Help.
-                              </div>
-                              <div class="p">Same remark as for parameter <span class="tt">wh-user-header</span>
-                                 about the resources referenced by a user's footer.
-                              </div>
-                              <div class="p">Sample
-                                 user's footer: <code class="filepath">docs/wh_resources/footer.html</code>.
-                              </div>
+                                 page of the Web Help.</div>
+                              <div class="p">The content of the
+                                 <code class="xmlelement">&lt;body&gt;</code> element of <span class="tt">wh-user-footer</span> is
+                                 inserted as is in the <span class="tt">&lt;div id=&quot;wh-footer&quot;&gt;</span> found in
+                                 each page of the Web Help.</div>
+                              <div class="p">Same remark as for parameter
+                                 <span class="tt">wh-user-header</span> about the resources referenced by a user's
+                                 footer.</div>
+                              <div class="p">Sample user's footer <a class="xref" href="wh_resources/footer.html" target="_blank">wh_resources/footer.html</a> as used in the
+                                 following example:</div>
+                              <pre class="screen" style="font-size: 90%;">-p wh-user-header¬
+wh_resources/header.html
+-p wh-user-footer¬
+wh_resources/footer.html
+-p wh-user-css¬
+wh_resources/header_footer.css
+-p wh-user-resources¬
+wh_resources/header_footer_files</pre>
+                              <div class="p">More examples in &quot;<a class="xref" href="https://www.xmlmind.com/ditac/_whc/doc/manual/getting_started.html#custom_header_footer" target="_blank"><cite class="cite">XMLmind Web Help Compiler Manual, Getting
+                                       started</cite></a>&quot;.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-user-header"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-user-header</span><a id="Untitled11__I_c9hef4_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-user-header"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-header</span><a id="Untitled11__I_k69790_"></a></td>
                            <td class="stentry">
-                              <div class="p">Relative or absolute URI of an XHTML file. A relative
-                                 URI is relative to the current working directory.
-                              </div>
+                              <div class="p">Filename or absolute URI of an XHTML file. A relative
+                                 filename is relative to the current working directory.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Specifies the user's header which is to be added to each
-                                 page of the Web Help.
-                              </div>
-                              <div class="p">The content of the <span class="tt">body</span> element
-                                 of <span class="tt">wh-user-header</span> is inserted as is in the
-                                 <span class="tt">&lt;div id=&quot;wh-header&quot;&gt;</span> found in a page of the Web
-                                 Help.
-                              </div>
-                              <div class="p">If a user's header references resources (e.g. image
-                                 files), then these resources must either be referenced using
-                                 absolute URLs or these resources must be found in a user's resource
-                                 directory and parameter <span class="tt">wh-user-resources</span> must be
-                                 specified.
-                              </div>
+                                 page of the Web Help.</div>
+                              <div class="p">The content of the
+                                 <code class="xmlelement">&lt;body&gt;</code> element of <span class="tt">wh-user-header</span> is
+                                 inserted as is in the <span class="tt">&lt;div id=&quot;wh-header&quot;&gt;</span> found in
+                                 each page of the Web Help.</div>
+                              <div class="p">If a user's header references
+                                 resources (e.g. image files), then these resources must either be
+                                 referenced using absolute URLs or these resources must be found in a
+                                 user's resource directory and parameter <span class="tt">wh-user-resources</span>
+                                 must be specified.</div>
                               <div class="p">Example:</div>
                               <ul class="ul">
-                                 <li class="li">The user's resource directory is called <span class="tt">user2/</span> and
-                                    contains <span class="tt">user2/logo100x50.png</span>.
-                                 </li>
-                                 <li class="li">ditac is passed parameters: <span class="tt">-p user-resources user2</span>
-                                    and <span class="tt">-p user-header header2.html</span>.
-                                 </li>
+                                 <li class="li">The user's resource directory is called
+                                    <span class="tt">header_footer_files/</span> and contains
+                                    <span class="tt">header_footer_files/200x100.png</span>.</li>
+                                 <li class="li"><code class="cmdname">ditac</code> is passed parameters:
+                                    <span class="tt">-p wh-user-resources <i class="i">PATH_TO/</i>header_footer_files</span>
+                                    and <span class="tt">-p wh-user-header <i class="i">PATH_TO/</i>header.html</span>.</li>
                                  <li class="li">
-                                    <div class="p"><span class="tt">header2.html</span> looks like this:
-                                    </div><pre class="pre">&lt;html&gt;
+                                    <div class="p"><span class="tt">header.html</span> looks like this:</div>
+                                    <pre class="pre">&lt;html&gt;
 ...
 &lt;body&gt;
 ...
-&lt;img src=&quot;<b class="b">_wh/user/user2</b>/¬
-logo100x50.png&quot; /&gt;
+&lt;img src=&quot;<b class="b">_wh/user/header_footer_files/</b>¬
+logo200x100.png&quot; /&gt;
 ...
 &lt;/body&gt;
-&lt;/html&gt;</pre><div class="p">Notice the path used to reference
-                                       <span class="tt">logo100x50.png</span>.
-                                    </div>
+&lt;/html&gt;</pre>
+                                    <div class="p">Notice the path used to reference
+                                       <span class="tt">logo200x100.png</span>.</div>
                                  </li>
                               </ul>
-                              <div class="p">Sample user's header: <code class="filepath">docs/wh_resources/header.html</code>.
-                              </div>
+                              <div class="p">Sample user's header <a class="xref" href="wh_resources/header.html" target="_blank">wh_resources/header.html</a> as used in the
+                                 following example:</div>
+                              <pre class="screen" style="font-size: 90%;">-p wh-user-header¬
+wh_resources/header.html
+-p wh-user-footer¬
+wh_resources/footer.html
+-p wh-user-css¬
+wh_resources/header_footer.css
+-p wh-user-resources¬
+wh_resources/header_footer_files</pre>
+                              <div class="p">More examples in &quot;<a class="xref" href="https://www.xmlmind.com/ditac/_whc/doc/manual/getting_started.html#custom_header_footer" target="_blank"><cite class="cite">XMLmind Web Help Compiler Manual, Getting
+                                       started</cite></a>&quot;.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__wh-user-resources"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">wh-user-resources</span><a id="Untitled11__I_o1i08j_"></a></td>
+                           <td class="stentry" id="Untitled11__wh-user-resources"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">wh-user-resources</span><a id="Untitled11__I_dyr0bu_"></a></td>
                            <td class="stentry">
                               <div class="p">Filename or absolute &quot;<span class="tt">file:</span>&quot; URI of a
                                  <i class="i">directory</i>. URI schemes other than &quot;<span class="tt">file</span>&quot; (e.g.
                                  &quot;<span class="tt">http</span>&quot;) are not supported for this parameter. A relative
-                                 filename is relative to the current working directory.
-                              </div>
+                                 filename is relative to the current working directory.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Specifies a user's resource directory which is to be
                                  recursively copied to
-                                 <span class="tt"><i class="i">output_directory</i>/_wh/user/</span>.
-                              </div>
+                                 <span class="tt"><i class="i">output_directory</i>/_wh/user/</span>.</div>
                               <div class="p">This directory
                                  typically contains image files referenced by the user's header,
-                                 footer or CSS stylesheet.
-                              </div>
-                              <div class="p">Sample user's resource directory:
-                                 <code class="filepath">wh_resources/header_footer_files/</code>.
-                              </div>
+                                 footer or CSS stylesheet.</div>
+                              <div class="p">Sample user's resource directory
+                                 <a class="xref" href="wh_resources/header_footer_files/" target="_blank">wh_resources/header_footer_files/</a> as used in
+                                 the following example:</div>
+                              <pre class="screen" style="font-size: 90%;">-p wh-user-header¬
+wh_resources/header.html
+-p wh-user-footer¬
+wh_resources/footer.html
+-p wh-user-css¬
+wh_resources/header_footer.css
+-p wh-user-resources¬
+wh_resources/header_footer_files</pre>
+                              <div class="p">More examples in &quot;<a class="xref" href="https://www.xmlmind.com/ditac/_whc/doc/manual/getting_started.html#custom_header_footer" target="_blank"><cite class="cite">XMLmind Web Help Compiler Manual, Getting
+                                       started</cite></a>&quot;.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__whc-index-basename"><span class="tt">whc-index-basename</span><a id="Untitled11__I_3pv6iv_"></a></td>
+                           <td class="stentry" id="Untitled11__whc-index-basename"><span class="tt">whc-index-basename</span><a id="Untitled11__I_snngrv_"></a></td>
                            <td class="stentry">
                               <div class="p">URL basename.</div>
                               <div class="p">Default value:
-                                 <span class="tt">'whc_index.xml'</span>.
-                              </div>
+                                 <span class="tt">'whc_index.xml'</span>.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Basename of the Index XML input file of XMLmind Web Help
-                                 Compiler.
-                              </div>
+                                 Compiler.</div>
                               <div class="p">In principle, there is no need for an end-user to
-                                 specify this parameter.
-                              </div>
+                                 specify this parameter.</div>
                            </td>
                         </tr>
                         <tr class="strow">
-                           <td class="stentry" id="Untitled11__whc-toc-basename"><span class="tt">whc-toc-basename</span><a id="Untitled11__I_bqy7zq_"></a></td>
+                           <td class="stentry" id="Untitled11__whc-toc-basename"><span class="tt">whc-toc-basename</span><a id="Untitled11__I_pt612w_"></a></td>
                            <td class="stentry">
                               <div class="p">URL basename.</div>
                               <div class="p">Default value:
-                                 <span class="tt">'whc_toc.xml'</span>.
-                              </div>
+                                 <span class="tt">'whc_toc.xml'</span>.</div>
                            </td>
                            <td class="stentry">
                               <div class="p">Basename of the TOC XML input file of XMLmind Web Help
-                                 Compiler.
-                              </div>
+                                 Compiler.</div>
                               <div class="p">In principle, there is no need for an end-user to
-                                 specify this parameter.
-                              </div>
+                                 specify this parameter.</div>
                            </td>
                         </tr>
                      </tbody>
@@ -432,6 +450,16 @@ logo100x50.png&quot; /&gt;
             </section>
          </div>
       </section>
+      <hr class="footnote-separator" />
+      <table class="fn-layout">
+         <tr>
+            <td style="vertical-align: baseline;"> <sup class="fn-callout">(1)</sup></td>
+            <td class="fn" id="I_d3141e419_" style="vertical-align: baseline;">In linguistic
+               morphology and information retrieval, stemming is the process of
+               reducing inflected (or sometimes derived) words to their word stem,
+               base or root form—generally a written word form.</td>
+         </tr>
+      </table>
    </div>
     </div>
 

@@ -1,64 +1,54 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head><meta charset="UTF-8" />
-      <title>External Tools</title><link href="resources/webhelp.css" rel="stylesheet" type="text/css" /><meta content="XMLmind DITA Converter 3.6.0" name="generator" />
-   <script charset="UTF-8" defer="defer" src="_wh/snowball_en.min.js" type="text/javascript"></script><link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript">
-    </script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
-    </script><script charset="UTF-8" src="_wh/wh.min.js" type="text/javascript">
-    </script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript">
-    </script></head>
+      
+      <title>External Tools</title>
+      <link href="resources/base.css" rel="stylesheet" type="text/css" />
+      <meta content="XMLmind DITA Converter 3.7.0" name="generator" />
+   <meta content="width=device-width, initial-scale=1" name="viewport" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script><script charset="UTF-8" src="_wh/wh.js" type="text/javascript"></script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript"></script></head>
    
 <body>
     
 
     <div id="wh-body">
+      <div class="wh-icon-menu" id="wh-menu"></div>
       <div id="wh-navigation">
         <ul id="wh-tabs">
-          <li id="wh-toc-tab"><a href="#wh-toc-pane"><span>Contents</span></a></li>
-          <li id="wh-index-tab"><a href="#wh-index-pane"><span>Index</span></a></li>
-          <li id="wh-search-tab"><a href="#wh-search-pane"><span>Search</span></a></li>
+          <li id="wh-toc-tab"><a class="wh-icon-toc" href="#wh-toc-container"></a></li>
+          <li id="wh-index-tab"><a class="wh-icon-index" href="#wh-index-container"></a></li>
+          <li id="wh-search-tab"><a class="wh-icon-search" href="#wh-search-container"></a></li>
         </ul>
-        <div id="wh-toc-pane">
-          <div id="wh-toc-form">
-            <span id="wh-toc-control"><a href="#">Collapse 
-            All</a><a href="#">Expand All</a></span>
-            <button id="wh-toc-previous">Previous</button>
-            <button id="wh-toc-next">Next</button>
-            <button id="wh-toc-print">Print</button>
+        <div id="wh-toc-container">
+          <div id="wh-toc-form"><span class="wh-icon-collapse-all" id="wh-toc-collapse-all"></span><span class="wh-icon-expand-all" id="wh-toc-expand-all"></span><span class="wh-toc-spring"></span><span class="wh-icon-previous" id="wh-toc-previous"></span><span class="wh-icon-next" id="wh-toc-next"></span><span class="wh-toc-spring"></span><span class="wh-icon-print" id="wh-toc-print"></span></div>
+          <div id="wh-toc-pane">
           </div>
-          <script charset="UTF-8" src="_wh/toc.js" type="text/javascript">
-          </script>
         </div>
-        <div id="wh-index-pane">
-          <div id="wh-index-form">
-            <input id="wh-index-field" type="text" />
+        <div id="wh-index-container">
+          <div id="wh-index-form"><span id="wh-index-group"><input id="wh-index-field" type="text" /><span class="wh-icon-go" id="wh-go-page"></span></span></div>
+          <div id="wh-index-pane">
           </div>
-          <script charset="UTF-8" src="_wh/index.js" type="text/javascript">
-          </script>
         </div>
-        <div id="wh-search-pane">
-          <div id="wh-search-form">
-            <input id="wh-search-field" type="text" /><button id="wh-search-button">Search</button><span id="wh-highlight-group"><input checked="checked" id="wh-highlight-toggle" type="checkbox" /><label for="wh-highlight-toggle" id="wh-highlight-icon"><span class="ui-icon ui-icon-flag"></span></label></span>
-          </div>
-          <div id="wh-search-results">
+        <div id="wh-search-container">
+          <div id="wh-search-form"><span id="wh-search-group"><span class="wh-icon-search" id="wh-do-search"></span><input id="wh-search-field" type="text" /><span class="wh-icon-cancel" id="wh-cancel-search"></span></span><span class="wh-icon-highlight" id="wh-search-highlight"></span></div>
+          <div id="wh-search-pane">
+            <div id="wh-search-results">
+            </div>
           </div>
         </div>
       </div>
-      <div id="wh-separator">
-      </div>
+      <div id="wh-separator"></div>
       <div id="wh-content">
       
       <section class="concept" id="Untitled2" lang="en-US" xml:lang="en-US">
          <h2 class="section1-title">External Tools</h2>
          <div class="conbody">
-            <section class="section" id="Untitled2__I_4s966q_">
+            <section class="section" id="Untitled2__I_lcqpk_">
                
                <h3 class="section-title">Default XSL-FO Processor for PDF</h3>
                
                <div class="p">Conversa generates XSL-FO files that can be converted to PDF format using the following
                   XSL
-                  transformation engines:
-               </div>
+                  transformation engines:</div>
                
                <ul class="ul">
                   <li class="li">Built-in Apache FOP 2.3</li>
@@ -68,13 +58,11 @@
                </ul>
                
                <div class="p">Use the <b class="uicontrol">External Tools</b> tab of the <b class="uicontrol">Preferences</b>
-                  dialog to configure the default XSLT engine.
-               </div>
-               <img alt="Preferences dialog showing the External Tools tab" class="image" src="img/third_party-3.png" />
+                  dialog to configure the default XSLT engine.</div>
+               <img alt="Preferences dialog showing the External Tools tab" class="image" src="img/third_party.png" />
                
-               
-            </section>
-            <section class="section" id="Untitled2__I_2bwwma_">
+               </section>
+            <section class="section" id="Untitled2__I_90xdgg_">
                
                <h3 class="section-title">External Tools</h3>
                
@@ -83,24 +71,20 @@
                   indicate the paths to the  XSLT engine executables in the corresponding text boxes.
                   Use the
                   apropriate <b class="uicontrol">Browse...</b> button to locate the executables in the file
-                  system.
-               </div>
+                  system.</div>
                
                <div class="p">XMLmind XSL-FO converter is required to generate RTF, DOCX or ODT files from a DITA
                   map. Enter
                   the location of <code class="filepath">fo2rtf.bat</code> (Windows) or <code class="filepath">fo2rtf</code> (Mac OS
                   X or Linux) in the <b class="uicontrol">XMLmind XSL-FO Converter</b> text box or use the
-                  corresponding <b class="uicontrol">Browse...</b> button to locate the program in the file system. 
-               </div>
+                  corresponding <b class="uicontrol">Browse...</b> button to locate the program in the file system. </div>
                
                <div class="p">Microsoft Help Compiler is required to generate Html Help (Windows help) using conversa.
                   Enter
                   the location of <code class="filepath">hhc.exe</code> in the <b class="uicontrol">Microsoft Help
                      Compiler</b> text box or use the <b class="uicontrol">Browse...</b> button next to it to
-                  select the location from the file system.
-               </div>
-               
-            </section>
+                  select the location from the file system.</div>
+               </section>
          </div>
       </section>
    </div>

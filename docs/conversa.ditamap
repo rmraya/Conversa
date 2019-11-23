@@ -33,7 +33,7 @@
 
     <chapter>
         <topicmeta>
-            <navtitle>Configuration</navtitle>
+            <navtitle>Conversa Configuration</navtitle>
         </topicmeta>
         <topicref href="concepts/program_settings.dita"/>
         <topicref href="concepts/external_tools.dita"/>
@@ -52,8 +52,8 @@
                 <topicref href="references/eclipse_help_parameters.dita"/>
             </topicref>
         </topicref>
-
     </chapter>
+    
     <backmatter>
         <booklists>
             <indexlist/>

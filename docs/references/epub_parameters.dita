@@ -58,7 +58,6 @@
               if you don't need this compatibility.</p></stentry>
         </strow>
         
-        
         <strow>
           <stentry
             id="generate-epub-trigger"><tt>generate-epub-trigger</tt><indexterm>generate-epub-trigger,
@@ -73,8 +72,8 @@
                 href="http://idpf.org/epub/30/spec/epub30-contentdocs.html#sec-xhtml-epub-trigger"
                 scope="external"><tt>epub:trigger</tt></xref> yet. When
               <tt>generate-epub-trigger=no</tt>, ditac generates an
-              <tt>onclick</tt> attribute containing simple JavaScript code and
-              declares the containing XHTML 5 page as being
+              <xmlatt>onclick</xmlatt> attribute containing simple JavaScript code
+              and declares the containing XHTML 5 page as being
               <tt>scripted</tt>.</p></stentry>
         </strow>
       </simpletable>

@@ -8,17 +8,47 @@
  *
  * Same as basic.css except:
  * - Removed rules related to toc, booklist and index.
- * - Added a rule for web-help-<role>-entry.
+ * - Added a rule for webhelp-<role>-entry.
  */
 
 body {
-    font-family: sans-serif;
-    font-size: 10pt;
-    line-height: 1.33;
-    color: #111;
-    background-color: #FFF;
-    margin-left: 1.33em;
-    margin-right: 1.33em;
+    font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.50;
+    color: #212529;
+    background-color: #FFFFFF;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+dt {
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+dt + dt {
+    margin-top: 0;
+}
+
+dt > *:last-child {
+    margin-bottom: 0;
+}
+
+dd {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+dd  > *:first-child {
+    margin-top: 0;
+}
+
+table,
+th,
+td {
+    font-size: 1em; /* In "quirks mode", tables do not inherit font size. */
+    line-height: 1.5;
 }
 
 a:link:hover,
@@ -80,8 +110,8 @@ a:visited {
 .result-title,
 .postreq-title {
     font-weight: bold;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .part-title,
@@ -98,8 +128,8 @@ a:visited {
 .section8-title,
 .section9-title,
 .topic-title {
-    border-bottom: 1px solid #111;
-    padding-bottom: 0.18em;
+    border-bottom: 1px solid #212529;
+    padding-bottom: 0.125em;
 }
 
 .frontmattersection-title,
@@ -120,24 +150,24 @@ a:visited {
 .appendices-title,
 .appendix-title {
     font-size: 1.8em;
-    line-height: 1; /*Not 0.74*/
-    margin-top: 0.74em;
-    margin-bottom: 0.74em;
+    line-height: 1;
+    margin-top: 0.56em;
+    margin-bottom: 0.56em;
 }
 
 .section1-title,
 .topic-title {
     font-size: 1.6em;
-    line-height: 1; /*Not 0.83*/
-    margin-top: 0.83em;
-    margin-bottom: 0.83em;
+    line-height: 1;
+    margin-top: 0.62em;
+    margin-bottom: 0.62em;
 }
 
 .section2-title {
     font-size: 1.4em;
-    line-height: 1; /*Not 0.95*/
-    margin-top: 0.95em;
-    margin-bottom: 0.95em;
+    line-height: 1.07;
+    margin-top: 0.71em;
+    margin-bottom: 0.71em;
 }
 
 .section3-title,
@@ -148,9 +178,9 @@ a:visited {
 .section8-title,
 .section9-title {
     font-size: 1.2em;
-    line-height: 1.11;
-    margin-top: 1.11em;
-    margin-bottom: 1.11em;
+    line-height: 1.25;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
 }
 
 .section-title,
@@ -163,64 +193,64 @@ a:visited {
 .result-title,
 .postreq-title {
     font-size: 1.2em;
-    line-height: 1.11;
-    margin-top: 1.11em;
-    margin-bottom: 1.11em;
+    line-height: 1.25;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
 }
 
 .remedy .steps-informal-title,
 .remedy .steps-title {
     font-size: 1em;
-    line-height: 1.33;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    line-height: 1.50;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .equation-figure-title,
 .fig-title,
 .table-title {
     font-size: 1em;
-    line-height: 1.33;
+    line-height: 1.50;
     font-weight: normal;
     font-style: italic;
-    margin-top: 0.33em;
-    margin-bottom: 0.33em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
 
 .related-links-title,
 .linklist-title,
 .linkpool-title {
-    margin-top: 0.33em;
-    margin-bottom: 0.33em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
 
 .abstract {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .shortdesc {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .body,
 .conbody,
 .refbody,
 .taskbody {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .related-links {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .section,
 .example {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* ------------------------------------------------------------------------
@@ -228,8 +258,8 @@ a:visited {
  +------------------------------------------------------------------------- */
 
 .refsyn {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* ------------------------------------------------------------------------
@@ -237,8 +267,8 @@ a:visited {
  +------------------------------------------------------------------------- */
 
 .info {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .steps-informal,
@@ -248,8 +278,8 @@ a:visited {
 .compact-unordered-step-list,
 .substeps,
 .compact-substeps {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .substeps,
@@ -266,29 +296,29 @@ a:visited {
 
 .choices {
     list-style-type: circle;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .stepsection {
     list-style-type: none;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .tutorialinfo {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .stepxmp {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .stepresult {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* ------------------------------------------------------------------------
@@ -296,8 +326,8 @@ a:visited {
  +------------------------------------------------------------------------- */
 
 .glossentry {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .glossterm {
@@ -320,40 +350,40 @@ a:visited {
 
 .glossBody {
     margin-left: 4em;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .glossBody-properties {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .glossSurfaceForm,
 .glossUsage,
 .glossScopeNote,
 .glossSymbol {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .glossAlt {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .glossAlt-properties,
 .glossAlt-variants {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .glossAbbreviation-container,
 .glossAcronym-container,
 .glossShortForm-container,
 .glossSynonym-container {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .glossAbbreviation,
@@ -369,7 +399,7 @@ a:visited {
 
 .glossentry > .related-links > .related-links-title {
     font-size: 1em;
-    line-height: 1.33;
+    line-height: 1.50;
 }
 
 /* ------------------------------------------------------------------------
@@ -377,8 +407,8 @@ a:visited {
  +------------------------------------------------------------------------- */
 
 .p {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 td > *:first-child,
@@ -392,28 +422,26 @@ th > *:last-child {
 }
 
 .note {
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-size: 0.917em;
+    line-height: 1.63;
     border-top: 2px solid #C0C0C0;
     border-bottom: 2px solid #C0C0C0;
-    padding: 1.48em 0;
-    margin: 2.96em 4em;
+    padding: 1em 0;
+    margin: 2.2em 4em;
 }
 
 .note-head {
     font-size: 1.1em;
-    line-height: 1.21;
+    line-height: 1.36;
     font-weight: bold;
     margin-top: 0;
-    margin-bottom: 1.11em;
+    margin-bottom: 0.83em;
 }
 
 /* 
  * When the note icon is displayed.
  */
 .note-layout {
-    /* Quirks mode: tables do not inherit font size. */
-    font-size: 1em;
     border-collapse: collapse; 
     border-spacing: 0;
     margin: 0;
@@ -421,7 +449,7 @@ th > *:last-child {
 
 .note-icon {
     vertical-align: top;
-    padding-right: 1.33em;
+    padding-right: 1em;
 }
 
 .note-text {
@@ -487,8 +515,8 @@ ol.inheritnum > li::before {
 .compact-ul,
 .sl,
 .compact-sl {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .sl,
@@ -500,8 +528,8 @@ ol.inheritnum > li::before {
  * Web browsers seem to always display lists as compact.
  */
 li {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .compact-ol > li,
@@ -512,14 +540,12 @@ li {
 }
 
 .tabular-dl  {
-    /* Quirks mode: tables do not inherit font size. */
-    font-size: 1em;
     border-collapse: collapse; 
     border-spacing: 0;
     border-top: 1px solid #808080; 
     border-bottom: 1px solid #808080; 
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .tabular-dl-head-row  {
@@ -534,20 +560,20 @@ li {
 .tabular-dt,
 .tabular-dd {
     vertical-align: baseline;
-    padding: 0.33em;
+    padding: 0.25em 0.5em;
 }
 
 .tabular-dthd,
 .tabular-dt {
-    padding-right: 1.33em;
+    padding-right: 1em;
 }
 
 .dl,
 .compact-dl,
 .parml,
 .compact-parml {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .dt,
@@ -555,21 +581,28 @@ li {
     font-weight: bold;
 }
 
-/*
- * Web browsers seem to always display lists as compact.
- */
-dd {
-    margin-bottom: 1.33em;
+.compact-dl > dt,
+.compact-dl > dd,
+.compact-parml > dt,
+.compact-parml > dd {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.compact-dl > dd,
-.compact-parml > dd {
+.compact-dl > dt > *:first-child,
+.compact-parml > dt > *:first-child {
+    margin-top: 0;
+}
+
+.compact-dl > dd > *:last-child,
+.compact-parml > dd > *:last-child {
     margin-bottom: 0;
 }
 
 .equation-figure,
 .fig {
-    margin: 2.66em 0;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .equation-figure-contents > *:first-child,
@@ -585,44 +618,44 @@ dd {
 .pre,
 .codeblock {
     white-space: pre;
-    font-family: monospace;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.917em;
+    line-height: 1.63;
     background-color: #F0F0F0;
     /* Add actual border using the frame attribute. */
     border-color: #D0D0D0;
-    padding: 0.37em;
-    margin-top: 1.48em;
-    margin-bottom: 1.48em;
+    padding: 0.25em 0.5em;
+    margin-top: 1.11em;
+    margin-bottom: 1.11em;
 }
 
 .lines {
     white-space: pre;
     font-family: inherit;
-    font-size: 0.9em;
-    line-height: 1.48;
-    padding: 0.37em;
-    margin-top: 1.48em;
-    margin-bottom: 1.48em;
+    font-size: 0.917em;
+    line-height: 1.63;
+    padding: 0.25em 0.5em;
+    margin-top: 1.11em;
+    margin-bottom: 1.11em;
 }
 
 .lq {
-    margin: 2.66em 4em;
+    margin: 2em 4em;
 }
 
 .lq-reftitle {
     font-style: italic;
     text-align: right;
-    margin-top: 0.33em;
-    margin-bottom: 0.33em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
 
 a.object-download-link,
 .object-no-download-link {
     text-decoration: underline;
-    font-family: monospace;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.917em;
+    /*line-height: 1.63;*/
 }
 
 .object-no-download-link {
@@ -634,15 +667,13 @@ a.object-download-link,
  +------------------------------------------------------------------------- */
 
 .simpletable-container {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .simpletable,
 .properties,
 .choicetable {
-    /* Quirks mode: tables do not inherit font size. */
-    font-size: 1em;
     border-collapse: collapse; 
     border-spacing: 0;
     border: 1px solid #808080;
@@ -666,7 +697,7 @@ a.object-download-link,
 .chdeschd {
     vertical-align: baseline;
     border: 1px solid #808080;
-    padding: 0.33em;
+    padding: 0.25em 0.5em;
 }
 
 /* ------------------------------------------------------------------------
@@ -674,13 +705,11 @@ a.object-download-link,
  +------------------------------------------------------------------------- */
 
 .table {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .tgroup {
-    /* Quirks mode: tables do not inherit font size. */
-    font-size: 1em;
     border-collapse: collapse;
     border-spacing: 0;
     border-color: #808080;
@@ -688,7 +717,7 @@ a.object-download-link,
 
 .entry {
     border-color: #808080;
-    padding: 0.33em;
+    padding: 0.25em 0.5em;
 }
 
 /* ------------------------------------------------------------------------
@@ -708,9 +737,9 @@ a.object-download-link,
     -webkit-border-radius: 1ex;
     border-radius: 1ex;
     background-color: #F8F8FC;
-    padding: 1.33em;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .parent-topic-link-item,
@@ -718,13 +747,13 @@ a.object-download-link,
 .next-topic-link-item,
 .sibling-topic-link-item {
     font-weight: bold;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-size: 0.917em;
+    /*line-height: 1.63;*/
 }
 
 .linkpool-title {
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-size: 0.917em;
+    line-height: 1.63;
     margin-top: 0;
 }
 
@@ -735,13 +764,13 @@ a.object-download-link,
 
 .linklist {
     margin-left: 2.66em;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .linkinfo {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 /* ------------------------------------------------------------------------
@@ -750,8 +779,8 @@ a.object-download-link,
 
 .draft-comment {
     color: red;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-size: 0.917em;
+    line-height: 1.63;
     /*no margins*/
 }
 
@@ -771,14 +800,14 @@ a.object-download-link,
     text-align: left;
     margin-left: 0;
     margin-right: auto;
-    margin-top: 2.66em;
-    margin-bottom: 0.33em;
+    margin-top: 2em;
+    margin-bottom: 0.25em;
 }
 
 .fn-layout {
     border-collapse: collapse; 
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-size: 0.917em;
+    line-height: 1.63;
     margin: 0;
 }
 
@@ -799,9 +828,9 @@ a.object-download-link,
 }
 
 .tt {
-    font-family: monospace;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.917em;
+    /*line-height: 1.63;*/
 }
 
 /* ------------------------------------------------------------------------
@@ -817,9 +846,9 @@ a.object-download-link,
 .oper,
 .delim, 
 .sep {
-    font-family: monospace;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.917em;
+    /*line-height: 1.63;*/
 }
 
 .option {
@@ -842,26 +871,27 @@ a.object-download-link,
  | Software elements
  +------------------------------------------------------------------------- */
 
-.msgph,
 .msgblock,
+.msgph,
 .msgnum,
 .cmdname,
 .varname,
 .filepath,
 .userinput,
 .systemoutput {
-    font-family: monospace;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.917em;
+    /*line-height: 1.63;*/
 }
 
 .msgblock {
+    line-height: 1.63;
     background-color: #E8F0F8;
-    padding: 0.37em;
+    padding: 0.25em 0.5em;
     border-color: #C8D0E8;
     /* Add actual border using the frame attribute. */
-    margin-top: 1.48em;
-    margin-bottom: 1.48em;
+    margin-top: 1.11em;
+    margin-bottom: 1.11em;
 }
 
 .cmdname {
@@ -889,15 +919,15 @@ a.object-download-link,
 }
 
 .screen {
-    font-family: monospace;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.917em;
+    line-height: 1.63;
     background-color: #F0F8F0;
-    padding: 0.37em;
+    padding: 0.25em 0.5em;
     border-color: #D0EED0;
     /* Add actual border using the frame attribute. */
-    margin-top: 1.48em;
-    margin-bottom: 1.48em;
+    margin-top: 1.11em;
+    margin-bottom: 1.11em;
 }
 
 /* ------------------------------------------------------------------------
@@ -905,8 +935,8 @@ a.object-download-link,
  +------------------------------------------------------------------------- */
 
 .imagemap {
-    margin-top: 2.66em;
-    margin-bottom: 2.66em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .imagemap > object {
@@ -920,12 +950,12 @@ a.object-download-link,
 .hazardstatement {
     border: 2px solid black;
     border-collapse: collapse; 
-    margin-top: 2.66em;
-    margin-bottom: 2.66em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .hazardstatement td {
-    padding: 0.66em;
+    padding: 0.5em;
 }
 
 .hazardStatement-danger-head,
@@ -942,7 +972,7 @@ a.object-download-link,
 .hazardStatement-other-head {
     text-align: center;
     font-size: 1.6em;
-    line-height: 1.33; /*Not 0.83*/
+    line-height: 1;
     font-weight: bold;
     color: white;
     background-color: green;
@@ -970,20 +1000,20 @@ a.object-download-link,
 
 .hazardStatement-head-icon {
     vertical-align: middle;
-    padding-right: 0.66em;
+    padding-right: 0.5em;
 }
 
 .messagepanel {
     text-align: center;
     font-size: 1.2em;
-    line-height: 1.33; /*Not 1.11*/
+    line-height: 1.25;
     color: white;
     background-color: blue;
 }
 
 .typeofhazard {
     font-size: 1.4em;
-    line-height: 1.33; /*Not 0.95*/
+    line-height: 1.07;
     font-weight: bold;
 }
 
@@ -993,8 +1023,8 @@ a.object-download-link,
 
 .equation-block {
     text-align: center;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .equation-block-layout {
@@ -1025,37 +1055,37 @@ a.object-download-link,
     -webkit-border-radius: 1ex;
     border-radius: 1ex;
     background-color: #F4F8FC;
-    padding: 1.33em;
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .document-title {
     font-weight: bold;
     font-size: 2em;
-    line-height: 1; /*Not 0.66*/
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    line-height: 1;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .booklibrary {
-    margin-top: 2.66em;
-    margin-bottom: 2.66em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .booktitlealt {
     font-style: italic;
     font-size: 1.2em;
-    line-height: 1.11;
-    margin-top: 2.22em;
-    margin-bottom: 2.22em;
+    line-height: 1.25;
+    margin-top: 1.67em;
+    margin-bottom: 1.67em;
 }
 
 .document-author,
 .personinfo, 
 .organizationinfo {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .addressdetails {
@@ -1066,17 +1096,16 @@ a.object-download-link,
 
 .emailaddress,
 .url {
-    font-family: monospace;
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.917em;
+    line-height: 1.63;
 }
 
 .last-critdate,
 .document-publisher {
-    margin-top: 2.66em;
-    margin-bottom: 2.66em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
-
 
 /* ------------------------------------------------------------------------
  | Page navigation
@@ -1085,15 +1114,13 @@ a.object-download-link,
 .page-navigation-header,
 .page-navigation-footer {
     font-size: 0.8em;
-    line-height: 1.33; /*Not 1.66*/
+    line-height: 1.73;
     color: #808080;
     padding: 0;
     margin: 0;
 }
 
 .page-navigation-layout {
-    /* Quirks mode: tables do not inherit font size. */
-    font-size: 1em;
     border-collapse: collapse; 
     border-spacing: 0;
     padding: 0;
@@ -1102,20 +1129,23 @@ a.object-download-link,
 
 .page-navigation-header > .page-navigation-layout {
     border-bottom: 1px solid #C0C0C0;
-    margin-bottom: 1.66em;
+    margin-bottom: 1.25em;
 }
 
 .page-navigation-footer > .page-navigation-layout {
     border-top: 1px solid #C0C0C0;
-    margin-top: 1.66em;
+    margin-top: 1.25em;
 }
 
 .page-navigation-layout td {
-    padding: 0.25ex;
+    vertical-align: baseline;
+    padding: 0.125em;
 }
 
-.navigation-icon {
+.navigation-icon,
+.navigation-icon-disabled {
     border-style: none;
+    vertical-align: middle;
 }
 
 .page-navigation-current {
@@ -1140,8 +1170,8 @@ a.object-download-link,
 .ditac-flags-div-end-text,
 .ditac-flags-span-start-text,
 .ditac-flags-span-end-text {
-    font-size: 0.9em;
-    line-height: 1.48;
+    font-size: 0.917em;
+    /*line-height: 1.63;*/
     color: gray;
 }
 
@@ -1157,8 +1187,8 @@ a.object-download-link,
  +------------------------------------------------------------------------- */
 
 div.listing-layout {
-    margin-top: 1.33em;
-    margin-bottom: 1.33em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 table.listing-table {
@@ -1181,11 +1211,11 @@ tr.listing-row {}
 
 td.listing-numbers-cell {
     color: #808080;
-    padding: 0.33em;
+    padding: 0.25em;
 }
 
 td.listing-lines-cell {
-    padding: 0.33em;
+    padding: 0.25em 0.5em;
 }
 
 pre.listing-numbers,

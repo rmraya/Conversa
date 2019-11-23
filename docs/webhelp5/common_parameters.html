@@ -1,63 +1,53 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
    <head><meta charset="UTF-8" />
-      <title>Common Parameters</title><link href="resources/webhelp.css" rel="stylesheet" type="text/css" /><meta content="" name="description" />
-      <meta content="XMLmind DITA Converter 3.6.0" name="generator" />
-   <script charset="UTF-8" defer="defer" src="_wh/snowball_en.min.js" type="text/javascript"></script><link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript">
-    </script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript">
-    </script><script charset="UTF-8" src="_wh/wh.min.js" type="text/javascript">
-    </script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript">
-    </script></head>
+      
+      <title>Common Parameters</title>
+      <link href="resources/base.css" rel="stylesheet" type="text/css" />
+      <meta content="" name="description" />
+      <meta content="XMLmind DITA Converter 3.7.0" name="generator" />
+   <meta content="width=device-width, initial-scale=1" name="viewport" /><link href="_wh/wh.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script><script charset="UTF-8" src="_wh/wh.js" type="text/javascript"></script><script charset="UTF-8" defer="defer" src="_wh/search.js" type="text/javascript"></script></head>
    
 <body>
     
 
     <div id="wh-body">
+      <div class="wh-icon-menu" id="wh-menu"></div>
       <div id="wh-navigation">
         <ul id="wh-tabs">
-          <li id="wh-toc-tab"><a href="#wh-toc-pane"><span>Contents</span></a></li>
-          <li id="wh-index-tab"><a href="#wh-index-pane"><span>Index</span></a></li>
-          <li id="wh-search-tab"><a href="#wh-search-pane"><span>Search</span></a></li>
+          <li id="wh-toc-tab"><a class="wh-icon-toc" href="#wh-toc-container"></a></li>
+          <li id="wh-index-tab"><a class="wh-icon-index" href="#wh-index-container"></a></li>
+          <li id="wh-search-tab"><a class="wh-icon-search" href="#wh-search-container"></a></li>
         </ul>
-        <div id="wh-toc-pane">
-          <div id="wh-toc-form">
-            <span id="wh-toc-control"><a href="#">Collapse 
-            All</a><a href="#">Expand All</a></span>
-            <button id="wh-toc-previous">Previous</button>
-            <button id="wh-toc-next">Next</button>
-            <button id="wh-toc-print">Print</button>
+        <div id="wh-toc-container">
+          <div id="wh-toc-form"><span class="wh-icon-collapse-all" id="wh-toc-collapse-all"></span><span class="wh-icon-expand-all" id="wh-toc-expand-all"></span><span class="wh-toc-spring"></span><span class="wh-icon-previous" id="wh-toc-previous"></span><span class="wh-icon-next" id="wh-toc-next"></span><span class="wh-toc-spring"></span><span class="wh-icon-print" id="wh-toc-print"></span></div>
+          <div id="wh-toc-pane">
           </div>
-          <script charset="UTF-8" src="_wh/toc.js" type="text/javascript">
-          </script>
         </div>
-        <div id="wh-index-pane">
-          <div id="wh-index-form">
-            <input id="wh-index-field" type="text" />
+        <div id="wh-index-container">
+          <div id="wh-index-form"><span id="wh-index-group"><input id="wh-index-field" type="text" /><span class="wh-icon-go" id="wh-go-page"></span></span></div>
+          <div id="wh-index-pane">
           </div>
-          <script charset="UTF-8" src="_wh/index.js" type="text/javascript">
-          </script>
         </div>
-        <div id="wh-search-pane">
-          <div id="wh-search-form">
-            <input id="wh-search-field" type="text" /><button id="wh-search-button">Search</button><span id="wh-highlight-group"><input checked="checked" id="wh-highlight-toggle" type="checkbox" /><label for="wh-highlight-toggle" id="wh-highlight-icon"><span class="ui-icon ui-icon-flag"></span></label></span>
-          </div>
-          <div id="wh-search-results">
+        <div id="wh-search-container">
+          <div id="wh-search-form"><span id="wh-search-group"><span class="wh-icon-search" id="wh-do-search"></span><input id="wh-search-field" type="text" /><span class="wh-icon-cancel" id="wh-cancel-search"></span></span><span class="wh-icon-highlight" id="wh-search-highlight"></span></div>
+          <div id="wh-search-pane">
+            <div id="wh-search-results">
+            </div>
           </div>
         </div>
       </div>
-      <div id="wh-separator">
-      </div>
+      <div id="wh-separator"></div>
       <div id="wh-content">
       
       <section class="reference" id="commonParameters" lang="en-US" xml:lang="en-US">
          <h2 class="section2-title">Common Parameters</h2>
          <p class="shortdesc"></p>
          <div class="refbody">
-            <section class="section" id="commonParameters__I_b5x7qd_">
+            <section class="section" id="commonParameters__I_rawre2_">
                
                <div class="p">The parameters described below apply to all XSL styleheets used by Conversa.</div>
-               
-            </section>
+               </section>
             <div class="simpletable-container">
                <table border="1" class="simpletable">
                   <colgroup style="width: 25%;"></colgroup>
@@ -72,447 +62,372 @@
                   </thead>
                   <tbody>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__appendix-number-format"><span class="tt">appendix-number-format</span><a id="commonParameters__I_7ktg0c_"></a></td>
+                        <td class="stentry" id="commonParameters__appendix-number-format"><span class="tt">appendix-number-format</span><a id="commonParameters__I_vbwojf_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'I'</span>, <span class="tt">'i'</span>,
-                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.
-                           </div>
+                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.</div>
                            <div class="p">Default value:
-                              <span class="tt">'A'</span>.
-                           </div>
+                              <span class="tt">'A'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">The number format of topics referenced in a bookmap as
                               <span class="tt">appendix</span>. By default, such topics are numbered as follows:
                               <b class="b">Appendix A.</b> <i class="i">Title of first appendix</i>, <b class="b">Appendix
-                                 B.</b> <i class="i">Title of second appendix</i>, etc.
-                           </div>
+                                 B.</b> <i class="i">Title of second appendix</i>, etc.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__cause-number-format"><span class="tt">cause-number-format</span><a id="commonParameters__I_keiqxk_"></a></td>
+                        <td class="stentry" id="commonParameters__cause-number-format"><span class="tt">cause-number-format</span><a id="commonParameters__I_5ag27g_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'I'</span>, <span class="tt">'i'</span>,
-                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.
-                           </div>
+                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.</div>
                            <div class="p">Default value:
-                              <span class="tt">'A'</span>.
-                           </div>
+                              <span class="tt">'A'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">In a <code class="xmlelement">&lt;troubleshooting&gt;</code> topic,
                               multiple <code class="xmlelement">&lt;remedy&gt;</code> elements having no title
-                              are given numbers formatted using this format.
-                           </div>
+                              are given numbers formatted using this format.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__center"><span class="tt">center</span><a id="commonParameters__I_52k39i_"></a></td>
+                        <td class="stentry" id="commonParameters__center"><span class="tt">center</span><a id="commonParameters__I_u4yao5_"></a></td>
                         <td class="stentry">
                            <div class="p">List of element names separated by
-                              whitespace.
-                           </div>
-                           <div class="p">Example: <span class="tt">'fig simpletable
-                                 table'</span>.
-                           </div>
-                           <div class="p">Default value: <span class="tt">''</span>.
-                           </div>
+                              whitespace.</div>
+                           <div class="p">Example: <span class="tt">'fig equation-figure simpletable
+                                 table'</span>.</div>
+                           <div class="p">Default value: <span class="tt">''</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Specifies which elements are to be centered horizontally
-                              on the page.
-                           </div>
+                              on the page.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__extended-toc"><span class="tt">extended-toc</span><a id="commonParameters__I_555aye_"></a></td>
-                        <td class="stentry">
-                           <div class="p">Allowed values are: <span class="tt">'frontmatter'</span>,
-                              <span class="tt">'backmatter'</span>, <span class="tt">'both'</span>,
-                              <span class="tt">'none'</span>.
-                           </div>
-                           <div class="p">Default value: <span class="tt">'none'</span>.
-                           </div>
-                        </td>
-                        <td class="stentry">
-                           <div class="p">Allows to add <span class="tt">frontmatter</span> and
-                              <span class="tt">backmatter</span> <span class="tt">topicref</span>s to the <b class="b">Table of
-                                 Contents</b> (TOC) of a document.
-                           </div>
-                           <div class="p">Note that the <span class="tt">toc</span>,
-                              <span class="tt">navtitle</span>, <span class="tt">locktitle</span>, etc, attributes are applied
-                              normally to <span class="tt">frontmatter</span> and <span class="tt">backmatter</span>
-                              <span class="tt">topicref</span>s when an extended TOC is generated.
-                           </div>
-                        </td>
-                     </tr>
-                     <tr class="strow">
-                        <td class="stentry" id="commonParameters__equation-number-after"><span class="tt">equation-number-after</span><a id="commonParameters__I_lm8ubk_"></a></td>
+                        <td class="stentry" id="commonParameters__equation-number-after"><span class="tt">equation-number-after</span><a id="commonParameters__I_sxqknk_"></a></td>
                         <td class="stentry">
                            <div class="p">String.</div>
-                           <div class="p">Default value: <span class="tt">')'</span>.
-                           </div>
+                           <div class="p">Default value: <span class="tt">')'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Text added after the contents of a
-                              <code class="xmlelement">&lt;equation-number&gt;</code> element.
-                           </div>
+                              <code class="xmlelement">&lt;equation-number&gt;</code> element.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__equation-number-before"><span class="tt">equation-number-before</span><a id="commonParameters__I_6i4w9n_"></a></td>
+                        <td class="stentry" id="commonParameters__equation-number-before"><span class="tt">equation-number-before</span><a id="commonParameters__I_e0jjkj_"></a></td>
                         <td class="stentry">
                            <div class="p">String.</div>
-                           <div class="p">Default value: <span class="tt">'('</span>.
-                           </div>
+                           <div class="p">Default value: <span class="tt">'('</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Text added before the contents of a
-                              <code class="xmlelement">&lt;equation-number&gt;</code> element.
-                           </div>
+                              <code class="xmlelement">&lt;equation-number&gt;</code> element.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__external-resource-base"><span class="tt">external-resource-base</span><a id="commonParameters__I_fkvuzi_"></a></td>
+                        <td class="stentry" id="commonParameters__extended-toc"><span class="tt">extended-toc</span><a id="commonParameters__I_9zqeqn_"></a></td>
                         <td class="stentry">
-                           <div class="p">Allowed values are: <span class="tt">''</span>, an URL ending with
-                              &quot;<span class="tt">/</span>&quot; or <span class="tt">'#REMOVE'</span>.
-                           </div>
-                           <div class="p">Default value:
-                              <span class="tt">'#REMOVE'</span> for EPUB 2<a id="commonParameters__I_pyrdy3_"></a> and EPUB 3<a id="commonParameters__I_5kh4hj_"></a>, <span class="tt">''</span> for all the other output
-                              formats.
-                           </div>
+                           <div class="p">Allowed values are: <span class="tt">'frontmatter'</span>,
+                              <span class="tt">'backmatter'</span>, <span class="tt">'both'</span>,
+                              <span class="tt">'none'</span>.</div>
+                           <div class="p">Default value: <span class="tt">'none'</span>.</div>
                         </td>
                         <td class="stentry">
-                           <div class="p">Specifies how to resolve <span class="tt">xref</span> or <span class="tt">link</span>
-                              elements having an <i class="i">external</i> <span class="tt">scope</span> attribute and a
-                              <i class="i">relative</i> <span class="tt">href</span> attribute. Example of such
-                              <span class="tt">xref</span> elements: <span class="tt">&lt;xref scope=&quot;external&quot; format=&quot;java&quot;
-                                 href=&quot;src/Test.java&quot;&gt;Test.java&lt;/xref&gt;</span>.
-                           </div>
+                           <div class="p">Allows to add <code class="xmlelement">&lt;frontmatter&gt;</code> and
+                              <code class="xmlelement">&lt;backmatter&gt;</code>
+                              <code class="xmlelement">&lt;topicref&gt;</code>s to the <b class="b">Table of Contents</b>
+                              (TOC) of a document.</div>
+                           <div class="p">Note that the <code class="xmlatt">@toc</code>,
+                              <code class="xmlatt">@navtitle</code>, <code class="xmlatt">@locktitle</code>, etc,
+                              attributes are applied normally to
+                              <code class="xmlelement">&lt;frontmatter&gt;</code> and
+                              <code class="xmlelement">&lt;backmatter&gt;</code>
+                              <code class="xmlelement">&lt;topicref&gt;</code>s when an extended TOC is
+                              generated.</div>
+                        </td>
+                     </tr>
+                     <tr class="strow">
+                        <td class="stentry" id="commonParameters__external-resource-base"><span class="tt">external-resource-base</span><a id="commonParameters__I_np1a3a_"></a></td>
+                        <td class="stentry">
+                           <div class="p">Allowed values are: <span class="tt">''</span>, an URL ending with
+                              &quot;<span class="tt">/</span>&quot; or <span class="tt">'#REMOVE'</span>.</div>
+                           <div class="p">Default value:
+                              <span class="tt">'#REMOVE'</span> for EPUB 2<a id="commonParameters__I_8xql5c_"></a> and EPUB 3<a id="commonParameters__I_c17ozh_"></a>, <span class="tt">''</span> for all the other output
+                              formats.</div>
+                        </td>
+                        <td class="stentry">
+                           <div class="p">Specifies how to resolve <code class="xmlelement">&lt;xref&gt;</code>
+                              or <code class="xmlelement">&lt;link&gt;</code> elements having an <i class="i">external</i>
+                              <code class="xmlatt">@scope</code> attribute and a <i class="i">relative</i>
+                              <code class="xmlatt">@href</code> attribute. Example of such
+                              <code class="xmlelement">&lt;xref&gt;</code> elements: <span class="tt">&lt;xref
+                                 scope=&quot;external&quot; format=&quot;java&quot;
+                                 href=&quot;src/Test.java&quot;&gt;Test.java&lt;/xref&gt;</span>.</div>
                            <dl class="compact-dl">
                               <dt class="dt"><span class="tt">''</span></dt>
-                              <dd class="dd">Do not resolve the <span class="tt">href</span> attribute. In this case,
-                                 the external resource files are expected to be copied
-                                 “by hand” to the output directory.
-                              </dd>
-                              <dt class="dt">An URL ending with &quot;<span class="tt">/</span>&quot;
-                              </dt>
-                              <dd class="dd">This URL is prepended to the value of the <span class="tt">href</span>
-                                 attribute.
-                              </dd>
+                              <dd class="dd">Do not resolve the <code class="xmlatt">@href</code> attribute. In
+                                 this case, the external resource files are expected to be
+                                 copied “by hand” to the output directory.</dd>
+                              <dt class="dt">An URL ending with &quot;<span class="tt">/</span>&quot;</dt>
+                              <dd class="dd">This URL is prepended to the value of the
+                                 <code class="xmlatt">@href</code> attribute.</dd>
                               <dt class="dt"><span class="tt">'#REMOVE'</span></dt>
-                              <dd class="dd">The <span class="tt">xref</span> or <span class="tt">link</span> element is processed as
-                                 if it did not have an <span class="tt">href</span> attribute.
-                              </dd>
+                              <dd class="dd">The <code class="xmlelement">&lt;xref&gt;</code> or
+                                 <code class="xmlelement">&lt;link&gt;</code> element is processed as if it
+                                 did not have an <code class="xmlatt">@href</code> attribute.</dd>
                            </dl>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__highlight-source"><span class="tt">highlight-source</span><a id="commonParameters__I_u9vycc_"></a></td>
+                        <td class="stentry" id="commonParameters__highlight-source"><span class="tt">highlight-source</span><a id="commonParameters__I_udo1d_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'yes'</span> and
-                              <span class="tt">'no'</span>.
-                           </div>
-                           <div class="p">Default value: <span class="tt">'yes'</span>.
-                           </div>
+                              <span class="tt">'no'</span>.</div>
+                           <div class="p">Default value: <span class="tt">'yes'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Allows to turn off syntax highlighting in elements
-                              specializing <span class="tt">pre</span>.<a id="commonParameters__I_f8qj8q_"></a></div>
+                              specializing <code class="xmlelement">&lt;pre&gt;</code>.<a id="commonParameters__I_7cwacy_"></a></div>
                            <div class="p">By default, syntax highlighting is
-                              turned on for all elements specializing <span class="tt">pre</span> and having an
-                              <span class="tt">outputclass</span> attribute equals to <span class="tt">language-c</span>,
-                              <span class="tt">language-cpp</span>, <span class="tt">language-csharp</span>,
-                              <span class="tt">language-delphi</span>, <span class="tt">language-ini</span>,
-                              <span class="tt">language-java</span>, language-javascript, <span class="tt">language-m2</span>,
-                              <span class="tt">language-perl</span>, <span class="tt">language-php</span>,
+                              turned on for all elements specializing <code class="xmlelement">&lt;pre&gt;</code>
+                              and having an <code class="xmlatt">@outputclass</code> attribute equals to
+                              <span class="tt">language-c</span>, <span class="tt">language-cpp</span>,
+                              <span class="tt">language-csharp</span>, <span class="tt">language-delphi</span>,
+                              <span class="tt">language-ini</span>, <span class="tt">language-java</span>, language-javascript,
+                              <span class="tt">language-m2</span>, <span class="tt">language-perl</span>, <span class="tt">language-php</span>,
                               <span class="tt">language-python</span>, <span class="tt">language-ruby</span>,
-                              <span class="tt">language-tcl</span>.<a id="commonParameters__I_wtwom3_"></a></div>
+                              <span class="tt">language-tcl</span>.<a id="commonParameters__I_l83pnb_"></a></div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__index-range-separator"><span class="tt">index-range-separator</span><a id="commonParameters__I_1r0u02_"></a></td>
+                        <td class="stentry" id="commonParameters__index-range-separator"><span class="tt">index-range-separator</span><a id="commonParameters__I_wuo2am_"></a></td>
                         <td class="stentry">
                            <div class="p">String.</div>
                            <div class="p">Default value: <span class="tt">'&amp;#x2013;'</span> (EN
-                              DASH).
-                           </div>
+                              DASH).</div>
                         </td>
                         <td class="stentry">
                            <div class="p">The string used to separate the first page number from
                               the last page number in a page range of an indexed term. Example:
-                              <span class="tt">index-range-separator='&lt;--&gt;'</span>:
-                           </div><pre class="pre"><b class="b">C</b>
-Cat 54, 87&lt;--&gt;90</pre></td>
+                              <span class="tt">index-range-separator='&lt;--&gt;'</span>:</div>
+                           <pre class="pre"><b class="b">C</b>
+Cat 54, 87&lt;--&gt;90</pre>
+                        </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__link-auto-text"><span class="tt">link-auto-text</span><a id="commonParameters__I_do0iv6_"></a></td>
+                        <td class="stentry" id="commonParameters__link-auto-text"><span class="tt">link-auto-text</span><a id="commonParameters__I_ef1375_"></a></td>
                         <td class="stentry">
                            <div class="p">List of values separated by whitespace. Allowed values
-                              are: <span class="tt">'number'</span> and <span class="tt">'text'</span>.
-                           </div>
+                              are: <span class="tt">'number'</span> and <span class="tt">'text'</span>.</div>
                            <div class="p">Default value:
-                              <span class="tt">'number text'</span>.
-                           </div>
+                              <span class="tt">'number text'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">This parameter specifies which text to generate for a
-                              <span class="tt">link</span> element, when this <span class="tt">link</span> element has no
-                              <span class="tt">linktext</span> child element or when this <span class="tt">linktext</span> child
-                              element is empty.
-                           </div>
-                           <div class="p">Similar to above parameter <a class="xref" href="#commonParameters__xref-auto-text">xref-auto-text</a> but for
-                              <span class="tt">link</span> elements.
-                           </div>
+                              <code class="xmlelement">&lt;link&gt;</code> element, when this
+                              <code class="xmlelement">&lt;link&gt;</code> element has no
+                              <code class="xmlelement">&lt;linktext&gt;</code> child element or when this
+                              <code class="xmlelement">&lt;linktext&gt;</code> child element is
+                              empty.</div>
+                           <div class="p">Similar to above parameter <a class="xref" href="file:/Users/rmraya/Documents/GitHub/Conversa/docs/references/common_parameters.dita#xsltParams/xref-auto-text">xref-auto-text</a> but for
+                              <code class="xmlelement">&lt;link&gt;</code> elements.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__note-icon-list"><span class="tt">note-icon-list</span><a id="commonParameters__I_qnbs9i_"></a></td>
+                        <td class="stentry" id="commonParameters__note-icon-list"><span class="tt">note-icon-list</span><a id="commonParameters__I_5f719k_"></a></td>
                         <td class="stentry">
                            <div class="p">List of <span class="tt">type</span> attribute values separated by
-                              whitespace.
-                           </div>
+                              whitespace.</div>
                            <div class="p">Default value: <span class="tt">'attention caution danger
                                  fastpath important note notes remember restriction
-                                 tip'</span>.
-                           </div>
+                                 tip'</span>.</div>
                         </td>
                         <td class="stentry">
-                           <div class="p">Specifies the type (attribute <span class="tt">type</span>) of the
-                              <span class="tt">note</span> elements for which icons should be used rather than
-                              text in order to represent note labels.
-                           </div>
+                           <div class="p">Specifies the type (attribute <code class="xmlatt">@type</code>) of
+                              the <code class="xmlelement">&lt;note&gt;</code> elements for which icons should be
+                              used rather than text in order to represent note
+                              labels.</div>
                            <div class="p">Ignored unless
-                              <span class="tt">use-note-icon='yes'</span>.
-                           </div>
+                              <span class="tt">use-note-icon='yes'</span>.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__number"><span class="tt">number</span><a id="commonParameters__I_m8d99b_"></a></td>
+                        <td class="stentry" id="commonParameters__number"><span class="tt">number</span><a id="commonParameters__I_qfil11_"></a></td>
                         <td class="stentry">
                            <div class="p">List of values separated by whitespace. Allowed values
                               are: <span class="tt">'topic'</span>, <span class="tt">'chapter-only'</span>, <span class="tt">'table'</span>,
-                              <span class="tt">'fig'</span>, <span class="tt">'example'</span>, <span class="tt">'all'</span>.
-                           </div>
-                           <div class="p">Default
-                              value: <span class="tt">''</span> (number nothing).
-                           </div>
+                              <span class="tt">'fig'</span>, <span class="tt">'example'</span>, <span class="tt">'equation-figure'</span>,
+                              <span class="tt">'all'</span>.</div>
+                           <div class="p">Default value: <span class="tt">''</span> (number
+                              nothing).</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Specifies which elements are to be numbered.
-                              
-                           </div>
-                           <div class="p"><span class="tt">'all'</span> is a short form for <span class="tt">'topic table
-                                 fig'</span>.
-                           </div>
-                           <div class="p"><span class="tt">'chapter-only'</span> means: number topics, but
-                              only those referenced in a bookmap as <span class="tt">part</span>,
-                              <span class="tt">chapter</span> and <span class="tt">appendix</span>.
-                           </div>
+                              </div>
+                           <div class="p"><span class="tt">'all'</span> is a short form for <span class="tt">'topic table fig
+                                 equation-figure'</span>.</div>
+                           <div class="p"><span class="tt">'chapter-only'</span> means: number
+                              topics, but only those referenced in a bookmap as
+                              <code class="xmlelement">&lt;part&gt;</code>, <code class="xmlelement">&lt;chapter&gt;</code> and
+                              <code class="xmlelement">&lt;appendix&gt;</code>.</div>
                            <div class="note">
                               <h5 class="note-head">Note</h5>
-                              <div class="note-body">Please
-                                 note that <span class="tt">'all'</span> does not include <span class="tt">'example'</span>. If you
-                                 want to number all formal elements including examples, then you must
-                                 specify <span class="tt">'all example'</span>.
-                              </div>
+                              <div class="note-body">Please note
+                                 that <span class="tt">'all'</span> does not include <span class="tt">'example'</span>. If you want
+                                 to number all formal elements including examples, then you must
+                                 specify <span class="tt">'all example'</span>.</div>
                            </div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__number-separator1"><span class="tt">number-separator1</span><a id="commonParameters__I_1ogrp0_"></a></td>
+                        <td class="stentry" id="commonParameters__number-separator1"><span class="tt">number-separator1</span><a id="commonParameters__I_vgbc51_"></a></td>
                         <td class="stentry">
                            <div class="p">String.</div>
-                           <div class="p">Default value: <span class="tt">'.'</span>.
-                           </div>
+                           <div class="p">Default value: <span class="tt">'.'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">The string used to separate the hierarchical number of
-                              topics acting as sections.
-                           </div>
+                              topics acting as sections.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__number-separator2"><span class="tt">number-separator2</span><a id="commonParameters__I_jvdxt2_"></a></td>
+                        <td class="stentry" id="commonParameters__number-separator2"><span class="tt">number-separator2</span><a id="commonParameters__I_be66sc_"></a></td>
                         <td class="stentry">
                            <div class="p">String.</div>
-                           <div class="p">Default value: <span class="tt">'-'</span>.
-                           </div>
+                           <div class="p">Default value: <span class="tt">'-'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">The string used to separate the hierarchical number of
-                              figures, tables and examples.
-                           </div>
-                           <div class="p">When possible, the number of
-                              figure, table or example is made relative to the number of the
-                              ancestor chapter or appendix. This gives for example (for
-                              descendants of chapter 5): <b class="b">Figure 5-1.</b> <i class="i">Title of first
+                              figures, tables, examples and equations.</div>
+                           <div class="p">When possible, the
+                              number of figure, table, example or equation is made relative to the
+                              number of the ancestor chapter or appendix. This gives for example
+                              (for descendants of chapter 5): <b class="b">Figure 5-1.</b> <i class="i">Title of first
                                  figure of chapter 5</i>, <b class="b">Figure 5-2.</b> <i class="i">Title of second
-                                 figure of chapter 5</i>, etc.
-                           </div>
+                                 figure of chapter 5</i>, etc.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__mark-important-steps"><span class="tt">mark-important-steps</span><a id="commonParameters__I_o6mz3h_"></a></td>
+                        <td class="stentry" id="commonParameters__mark-important-steps"><span class="tt">mark-important-steps</span><a id="commonParameters__I_5f141f_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'yes'</span> and
-                              <span class="tt">'no'</span>.
-                           </div>
-                           <div class="p">Default value: <span class="tt">'no'</span>.
-                           </div>
+                              <span class="tt">'no'</span>.</div>
+                           <div class="p">Default value: <span class="tt">'no'</span>.</div>
                         </td>
                         <td class="stentry">Generates a &quot;Required&quot; (respectively &quot;Optional&quot;) label for
-                           <span class="tt">step</span> and <span class="tt">substep</span> elements having an
-                           <span class="tt">importance</span> attribute set to &quot;<span class="tt">required</span>&quot; (resp.
-                           &quot;<span class="tt">optional</span>&quot;).
-                        </td>
+                           <code class="xmlelement">&lt;step&gt;</code> and <code class="xmlelement">&lt;substep&gt;</code>
+                           elements having an <code class="xmlatt">@importance</code> attribute set to
+                           &quot;<span class="tt">required</span>&quot; (resp. &quot;<span class="tt">optional</span>&quot;).</td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__part-number-format"><span class="tt">part-number-format</span><a id="commonParameters__I_aihtd2_"></a></td>
+                        <td class="stentry" id="commonParameters__part-number-format"><span class="tt">part-number-format</span><a id="commonParameters__I_b3o0jo_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'I'</span>, <span class="tt">'i'</span>,
-                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.
-                           </div>
+                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.</div>
                            <div class="p">Default value:
-                              <span class="tt">'I'</span>.
-                           </div>
+                              <span class="tt">'I'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">The number format of topics referenced in a bookmap as
                               <span class="tt">part</span>. By default, such topics are numbered as follows:
                               <b class="b">Part I.</b> <i class="i">Title of first part</i>, <b class="b">Part II.</b> <i class="i">Title
-                                 of second part</i>, etc.
-                           </div>
+                                 of second part</i>, etc.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__prepend-chapter-to-section-number"><span class="tt">prepend-chapter-to-​section-number</span><a id="commonParameters__I_orrbw5_"></a></td>
+                        <td class="stentry" id="commonParameters__prepend-chapter-to-section-number"><span class="tt">prepend-chapter-to-section-number</span><a id="commonParameters__I_pck5hh_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'yes'</span> and
-                              <span class="tt">'no'</span>.
-                           </div>
-                           <div class="p">Default value: <span class="tt">'no'</span>.
-                           </div>
+                              <span class="tt">'no'</span>.</div>
+                           <div class="p">Default value: <span class="tt">'no'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Normally topics which are descendants of chapters (that
-                              is, topics referenced in a bookmap as <span class="tt">chapter</span>) are numbered
-                              as follows: <b class="b">1.</b> <i class="i">Title of first section</i>, <b class="b">1.1.</b>
-                              <i class="i">Title of first subsection</i>, etc.
-                           </div>
+                              is, topics referenced in a bookmap as
+                              <code class="xmlelement">&lt;chapter&gt;</code>) are numbered as follows: <b class="b">1.</b>
+                              <i class="i">Title of first section</i>, <b class="b">1.1.</b> <i class="i">Title of first
+                                 subsection</i>, etc.</div>
                            <div class="p">Specifying
                               <span class="tt">prepend-chapter-to-section-number='yes'</span> prepends the number
                               of the chapter ancestor to the section number. This gives for
                               example (for descendants of chapter 5): <b class="b">5.1.</b> <i class="i">Title of
                                  first section</i>, <b class="b">5.1.1.</b> <i class="i">Title of first subsection</i>,
-                              etc.
-                           </div>
+                              etc.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__remedy-number-format"><span class="tt">remedy-number-format</span><a id="commonParameters__I_21yvrf_"></a></td>
+                        <td class="stentry" id="commonParameters__remedy-number-format"><span class="tt">remedy-number-format</span><a id="commonParameters__I_tmuqva_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'I'</span>, <span class="tt">'i'</span>,
-                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.
-                           </div>
+                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.</div>
                            <div class="p">Default value:
-                              <span class="tt">'A'</span>.
-                           </div>
+                              <span class="tt">'A'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">In a <code class="xmlelement">&lt;troubleshooting&gt;</code> topic,
                               multiple <code class="xmlelement">&lt;remedy&gt;</code> elements having no title
-                              are given numbers formatted using this format.
-                           </div>
+                              are given numbers formatted using this format.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__show-draft-comments"><span class="tt">show-draft-comments</span><a id="commonParameters__I_75gvgo_"></a></td>
+                        <td class="stentry" id="commonParameters__show-draft-comments"><span class="tt">show-draft-comments</span><a id="commonParameters__I_806ktw_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'yes'</span> and
-                              <span class="tt">'no'</span>.
-                           </div>
-                           <div class="p">Default value: <span class="tt">'no'</span>.
-                           </div>
+                              <span class="tt">'no'</span>.</div>
+                           <div class="p">Default value: <span class="tt">'no'</span>.</div>
                         </td>
                         <td class="stentry">
-                           <div class="p">Specifies whether <span class="tt">draft-comments</span> elements
-                              should be rendered.
-                           </div>
+                           <div class="p">Specifies whether
+                              <code class="xmlelement">&lt;draft-comments&gt;</code> elements should be
+                              rendered.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__troubleSolution-number-format"><span class="tt">troubleSolution-number-format</span><a id="commonParameters__I_2pd0f8_"></a></td>
+                        <td class="stentry" id="commonParameters__troubleSolution-number-format"><span class="tt">troubleSolution-number-format</span><a id="commonParameters__I_qne62h_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'I'</span>, <span class="tt">'i'</span>,
-                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.
-                           </div>
+                              <span class="tt">'A'</span>, <span class="tt">'a'</span>, <span class="tt">'1'</span>.</div>
                            <div class="p">Default value:
-                              <span class="tt">'1'</span>.
-                           </div>
+                              <span class="tt">'1'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">In a <code class="xmlelement">&lt;troubleshooting&gt;</code> topic,
                               multiple <code class="xmlelement">&lt;troubleSolution&gt;</code> elements having no
-                              title are given numbers formatted using this format. 
-                           </div>
+                              title are given numbers formatted using this format. </div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__text-file-encoding"><span class="tt">text-file-encoding</span><a id="commonParameters__I_8ezuid_"></a></td>
-                        <td class="stentry">
-                           <div class="p">An encoding name such as UTF-8 or
-                              ISO-8859-1.
-                           </div>
-                           <div class="p">Default value: <span class="tt">''</span>.
-                           </div>
-                        </td>
-                        <td class="stentry">
-                           <div class="p">Encoding of the text file referenced by
-                              <span class="tt">coderef</span>/<span class="tt">@href</span>. An empty string means: to be
-                              determined automatically.
-                           </div>
-                        </td>
-                     </tr>
-                     <tr class="strow">
-                        <td class="stentry" id="commonParameters__title-after"><span class="tt">title-after</span><a id="commonParameters__I_cx4nb3_"></a></td>
+                        <td class="stentry" id="commonParameters__title-after"><span class="tt">title-after</span><a id="commonParameters__I_9fhji2_"></a></td>
                         <td class="stentry">
                            <div class="p">List of element names separated by
-                              whitespace.
-                           </div>
-                           <div class="p">Example: <span class="tt">'fig table'</span>.
-                           </div>
-                           <div class="p">Default
-                              value: <span class="tt">''</span>.
-                           </div>
+                              whitespace.</div>
+                           <div class="p">Example: <span class="tt">'fig equation-figure
+                                 table'</span>.</div>
+                           <div class="p">Default value: <span class="tt">''</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Specifies which elements should have their titles
-                              displayed after their bodies.
-                           </div>
+                              displayed after their bodies.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__title-page"><span class="tt">title-page</span><a id="commonParameters__I_yxjaxd_"></a></td>
+                        <td class="stentry" id="commonParameters__title-page"><span class="tt">title-page</span><a id="commonParameters__I_1338w2_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'auto'</span>, <span class="tt">'none'</span> or
-                              the URI of a custom title page.
-                           </div>
+                              the URI of a custom title page.</div>
                            <div class="p">Default value:
-                              <span class="tt">'auto'</span>.
-                           </div>
+                              <span class="tt">'auto'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Specifies the kind of ``title page'' (contains the title
                               of the document, its author, etc) to be generated before the actual
-                              contents of the document.
-                           </div>
+                              contents of the document.</div>
                            <dl class="dl">
                               <dt class="dt"><span class="tt">'auto'</span></dt>
                               <dd class="dd">Automatically generate a title page based on the title and
-                                 metadata of the map.
-                              </dd>
+                                 metadata of the map.</dd>
                               <dt class="dt"><span class="tt">'none'</span></dt>
                               <dd class="dd">Do not generate a title page.</dd>
                               <dt class="dt"><i class="i">URI of a custom title page</i></dt>
@@ -522,8 +437,7 @@ Cat 54, 87&lt;--&gt;90</pre></td>
                                  <div class="p">This custom title page is an XHTML file for
                                     XHTML-based formats (XHTML, HTML Help, etc). This custom title
                                     page is an XSL-FO file for FO-based formats (PDF, RTF, etc).
-                                    Such custom title pages are generally hand-written.
-                                 </div>
+                                    Such custom title pages are generally hand-written.</div>
                                  <ul class="ul">
                                     <li class="li">The child nodes of the <span class="tt">body</span> element of the
                                        custom XHTML title page are wrapped in a <span class="tt">div</span>
@@ -531,20 +445,17 @@ Cat 54, 87&lt;--&gt;90</pre></td>
                                        XSLT stylesheet.
                                        <div class="p">Do not add a <span class="tt">&lt;!DOCTYPE&gt;</span>
                                           to such custom XHTML title page because otherwise, the
-                                          XSLT stylesheet may fail loading it.
-                                       </div>
-                                       <div class="p">See <code class="filepath">docs/samples/titlepage.xhtml</code> sample custom XHTML title
-                                          page.
-                                       </div>
+                                          XSLT stylesheet may fail loading it.</div>
+                                       <div class="p">See <a class="xref" href="samples/titlepage.xhtml" target="_blank">sample custom XHTML title
+                                             page</a>.</div>
                                     </li>
                                     <li class="li">The child nodes of the first
                                        <span class="tt">fo:flow[@flow-name='xsl-region-body']</span> element of
                                        the custom XSL-FO title page are wrapped in a
                                        <span class="tt">fo:block</span> contained the XSL-FO file being
                                        generated by the XSLT stylesheet.
-                                       <div class="p">See <code class="filepath">docs/samples/titlepage.fo</code> sample custom
-                                          XSL-FO title page.
-                                       </div>
+                                       <div class="p">See <a class="xref" href="samples/titlepage.fo" target="_blank">sample custom
+                                             XSL-FO title page</a>.</div>
                                     </li>
                                  </ul>
                               </dd>
@@ -552,88 +463,77 @@ Cat 54, 87&lt;--&gt;90</pre></td>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__title-prefix-separator1"><span class="tt">title-prefix-separator1</span><a id="commonParameters__I_j9f9l4_"></a></td>
+                        <td class="stentry" id="commonParameters__title-prefix-separator1"><span class="tt">title-prefix-separator1</span><a id="commonParameters__I_2vxb5u_"></a></td>
                         <td class="stentry">
                            <div class="p">String.</div>
                            <div class="p">Default value: <span class="tt">'.
-                                 '</span>.
-                           </div>
+                                 '</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">The string used to separate the number of an formal
-                              object from its title.
-                           </div>
+                              object from its title.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__use-note-icon"><span class="tt">use-note-icon</span><a id="commonParameters__I_d8dp8c_"></a></td>
+                        <td class="stentry" id="commonParameters__use-note-icon"><span class="tt">use-note-icon</span><a id="commonParameters__I_bgsyqo_"></a></td>
                         <td class="stentry">
                            <div class="p">Allowed values are: <span class="tt">'yes'</span> and
-                              <span class="tt">'no'</span>.
-                           </div>
-                           <div class="p">Default value: <span class="tt">'no'</span>.
-                           </div>
+                              <span class="tt">'no'</span>.</div>
+                           <div class="p">Default value: <span class="tt">'no'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Specifies whether icons should be used rather than text
-                              in order to represent the label of a <span class="tt">note</span>
-                              element.
-                           </div>
+                              in order to represent the label of a <code class="xmlelement">&lt;note&gt;</code>
+                              element.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__watermark-image"><span class="tt">watermark-image</span><a id="commonParameters__I_h0uowe_"></a></td>
+                        <td class="stentry" id="commonParameters__watermark-image"><span class="tt">watermark-image</span><a id="commonParameters__I_b9t3oe_"></a></td>
                         <td class="stentry">
                            <div class="p">URI. If the URI is relative, it is relative to the
-                              current working directory of the user.
-                           </div>
+                              current working directory of the user.</div>
                            <div class="p">No default
-                              value.
-                           </div>
+                              value.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Specifies an image file which is to be used as a
                               watermark in all the pages comprising the output document. See also
-                              parameter <a class="xref" href="fo_parameters.html#foparameters__watermark"><span class="tt">watermark</span></a>.
-                           </div>
+                              parameter <a class="xref" href="file:/Users/rmraya/Documents/GitHub/Conversa/docs/references/common_parameters.dita#xsltParams/watermark"><span class="tt">watermark</span></a>.</div>
                            <div class="p">If you
-                              need this feature when generating RTF, DOCX or ODT, please make sure to use
+                              need this feature when generating RTF<a id="commonParameters__I_fsu6c_"></a>,
+                              WordprocessingML<a id="commonParameters__I_1uu1vl_"></a>, Office Open XML
+                              (<span class="tt">.docx</span>)<a id="commonParameters__I_gccskj_"></a>, OpenDocument
+                              (<span class="tt">.odt</span>)<a id="commonParameters__I_vmw6cn_"></a>, please make sure to use
                               <a class="xref" href="http://www.xmlmind.com/foconverter/" target="_blank">XMLmind XSL-FO Converter</a>
-                              v5.3+<a id="commonParameters__I_da7xmq_"></a>.
-                           </div>
+                              v5.3+<a id="commonParameters__I_dl3y2m_"></a>.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__xref-auto-text"><span class="tt">xref-auto-text</span><a id="commonParameters__I_mqlk5j_"></a></td>
+                        <td class="stentry" id="commonParameters__xref-auto-text"><span class="tt">xref-auto-text</span><a id="commonParameters__I_eq1v2f_"></a></td>
                         <td class="stentry">
                            <div class="p">List of values separated by whitespace. Allowed values
-                              are: <span class="tt">'number'</span> and <span class="tt">'text'</span>.
-                           </div>
+                              are: <span class="tt">'number'</span> and <span class="tt">'text'</span>.</div>
                            <div class="p">Default value:
-                              <span class="tt">'number'</span>.
-                           </div>
+                              <span class="tt">'number'</span>.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">This parameter specifies which text to generate for an
-                              <span class="tt">xref</span> element, when this <span class="tt">xref</span> element contains no
-                              text at all<a class="fn-link" href="#I_d351e1076_"><sup class="fn-callout">(1)</sup></a>.
-                           </div>
-                           <div class="p">Let's suppose that an <span class="tt">xref</span> element
-                              containing no text at all points to a topic titled
-                              &quot;<span class="tt">Installation</span>&quot;.
-                           </div>
-                           <div class="p">Because the <span class="tt">xref</span> element
-                              points to an element having a <span class="tt">title</span> child element, ditac
-                              may use this title as a starting point for the generated
-                              text.
-                           </div>
-                           <div class="p">Now let's suppose that topics are numbered and that the
-                              number of the &quot;<span class="tt">Installation</span>&quot; topic is &quot;<span class="tt">Chapter
-                                 5</span>&quot;.
-                           </div>
-                           <div class="p">The text generated for this <span class="tt">xref</span> element is
-                              thus:
-                           </div>
+                              <code class="xmlelement">&lt;xref&gt;</code> element, when this
+                              <code class="xmlelement">&lt;xref&gt;</code> element contains no text at
+                              all<a class="fn-link" href="#I_d352e1091_"><sup class="fn-callout">(1)</sup></a>.</div>
+                           <div class="p">Let's suppose that an
+                              <code class="xmlelement">&lt;xref&gt;</code> element containing no text at all
+                              points to a topic titled &quot;<span class="tt">Installation</span>&quot;.</div>
+                           <div class="p">Because the
+                              <code class="xmlelement">&lt;xref&gt;</code> element points to an element having a
+                              <code class="xmlelement">&lt;title&gt;</code> child element, ditac may use this
+                              title as a starting point for the generated text.</div>
+                           <div class="p">Now let's
+                              suppose that topics are numbered and that the number of the
+                              &quot;<span class="tt">Installation</span>&quot; topic is &quot;<span class="tt">Chapter 5</span>&quot;.</div>
+                           <div class="p">The
+                              text generated for this <code class="xmlelement">&lt;xref&gt;</code> element is
+                              thus:</div>
                            <dl class="dl">
                               <dt class="dt">If <span class="tt">xref-auto-text='number'</span></dt>
                               <dd class="dd"><span class="tt">Chapter 5</span></dd>
@@ -645,34 +545,28 @@ Cat 54, 87&lt;--&gt;90</pre></td>
                            <div class="p">Note that this specification is just a hint because ditac
                               needs anyway to generate some text. For example, if topics are not
                               numbered and <span class="tt">xref-auto-text='number'</span>, the generated text
-                              will be &quot;<span class="tt">Installation</span>&quot;.
-                           </div>
+                              will be &quot;<span class="tt">Installation</span>&quot;.</div>
                         </td>
                      </tr>
                      <tr class="strow">
-                        <td class="stentry" id="commonParameters__xsl-resources-directory"><img alt="pseudoParam-3.png" class="image" src="img/pseudoParam-3.png" /><span class="tt">xsl-resources-​directory</span><a id="commonParameters__I_ryewm2_"></a></td>
+                        <td class="stentry" id="commonParameters__xsl-resources-directory"><img alt="pseudoParam.png" class="image" src="img/pseudoParam.png" /><span class="tt">xsl-resources-directory</span><a id="commonParameters__I_7qe3ik_"></a></td>
                         <td class="stentry">
                            <div class="p">URL. A relative URL is relative to the output
-                              directory.
-                           </div>
+                              directory.</div>
                            <div class="p">Default value: <span class="tt">'resources/'</span> resolved
                               against the directory which contains the XSLT
-                              stylesheets.
-                           </div>
+                              stylesheets.</div>
                         </td>
                         <td class="stentry">
                            <div class="p">Most XSLT stylesheets generate files which reference
                               resources such as icons or CSS stylesheets. This parameter specifies
-                              the target directory which is to contain such resources.
-                           </div>
+                              the target directory which is to contain such resources.</div>
                            <div class="p">If
-                              this directory does not exist, it is automatically created.
-                           </div>
+                              this directory does not exist, it is automatically created.</div>
                            <div class="p">If
                               this directory does not already contain the resources needed by the
                               XSLT stylesheets, such resources are automatically copied to this
-                              directory.
-                           </div>
+                              directory.</div>
                            <div class="p">The default value of this parameter is something
                               like <code class="filepath">file:/opt/ditac/xsl/xhtml/resources/</code> for
                               the stylesheets generating XHTML. URL
@@ -680,13 +574,11 @@ Cat 54, 87&lt;--&gt;90</pre></td>
                               an existing directory containing <code class="filepath">basic.css</code>,
                               <code class="filepath">note.png</code>, <code class="filepath">important.png</code>,
                               etc. This means that by default, no directory is created and no
-                              resource is copied.
-                           </div>
+                              resource is copied.</div>
                            <div class="p">If the value of this parameter is an
                               absolute URI, then ditac assumes that no resource directory is to be
                               created and no resource is to be copied because this has already
-                              been done by the user.
-                           </div>
+                              been done by the user.</div>
                            <div class="note">
                               <h5 class="note-head">Important</h5>
                               <div class="note-body">
@@ -694,13 +586,11 @@ Cat 54, 87&lt;--&gt;90</pre></td>
                                     <li class="li">Explicitly specifying something like
                                        <span class="tt">xsl-resources-directory='res'</span> is almost <i class="i">always
                                           required</i> when generating files having an XHTML/HTML based
-                                       format (XHTML, HTML Help, etc).
-                                    </li>
+                                       format (XHTML, HTML Help, etc).</li>
                                     <li class="li">Explicitly specifying something like
                                        <span class="tt">xsl-resources-directory='res'</span> is almost <i class="i">never
                                           required</i> when generating files converted from XSL-FO (PDF,
-                                       RTF, etc).
-                                    </li>
+                                       RTF, etc).</li>
                                  </ul>
                               </div>
                            </div>
@@ -715,10 +605,9 @@ Cat 54, 87&lt;--&gt;90</pre></td>
       <table class="fn-layout">
          <tr>
             <td style="vertical-align: baseline;"> <sup class="fn-callout">(1)</sup></td>
-            <td class="fn" id="I_d351e1076_" style="vertical-align: baseline;">This implies that the <span class="tt">xref-auto-text</span>
-               parameter is ignored when an <span class="tt">xref</span> element contains some
-               text.
-            </td>
+            <td class="fn" id="I_d352e1091_" style="vertical-align: baseline;">This implies that the <span class="tt">xref-auto-text</span> parameter is
+               ignored when an <code class="xmlelement">&lt;xref&gt;</code> element contains some
+               text.</td>
          </tr>
       </table>
    </div>
