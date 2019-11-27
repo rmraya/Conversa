@@ -80,7 +80,7 @@ public class HTMLViewer extends Dialog {
 			e.printStackTrace();
 			String message = "";
 			if (File.separator.equals("/")) {
-				if (System.getProperty("os.name").startsWith("Mac")) {
+				if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
 					// Mac
 					message = "Error embedding browser. Check Safari's configuration.";
 				} else {

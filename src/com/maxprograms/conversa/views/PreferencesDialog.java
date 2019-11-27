@@ -50,7 +50,7 @@ public class PreferencesDialog {
 		shell = new Shell(parent, style);
 		if (File.separator.equals("\\")) {
 			shell.setImage(Conversa.getResourcemanager().getWinLogo());
-		} else if (System.getProperty("os.name").startsWith("Mac")) {
+		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
 			shell.setImage(Conversa.getResourcemanager().getMacLogo());
 		} else {
 			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
