@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2020 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -72,6 +72,33 @@
     <xsl:variable name="ext" select="u:extension($baseName)" />
 
     <xsl:sequence select="$baseName eq concat($rootName, '.', $ext)" />
+  </xsl:function>
+
+  <!-- tocChunk, indexChunk ============================================== -->
+
+  <xsl:function name="u:tocChunk" as="element()?">
+    <!-- In case there are tocs at different places in the document. -->
+    <xsl:sequence select="u:chunkContaining('ditac:toc')[1]" />
+  </xsl:function>
+
+  <xsl:function name="u:indexChunk" as="element()?">
+    <!-- In case there are indexLists at different places in the document. -->
+    <xsl:sequence select="u:chunkContaining('ditac:indexList')[1]" />
+  </xsl:function>
+
+  <xsl:function name="u:chunkContaining" as="element()*">
+    <xsl:param name="childName" as="xs:string"/>
+    
+    <xsl:for-each select="$ditacLists/ditac:chunkList/ditac:chunk">
+      <xsl:choose>
+        <xsl:when test="exists(child::*[name() eq $childName])">
+          <xsl:sequence select="."/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:function>
 
   <!-- chunkIndex ======================================================== -->

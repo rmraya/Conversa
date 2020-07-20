@@ -130,13 +130,9 @@
 
   <!-- Navigation icons -->
 
-  <message name="firstPage">Première page</message>
-
   <message name="previousPage">Page précédente</message>
 
   <message name="nextPage">Page suivante</message>
-
-  <message name="lastPage">Dernière page</message>
 
   <message name="previousTopic">Sujet précédent</message>
 

@@ -8,7 +8,7 @@
    <p>Conversa generates XSL-FO files that can be converted to PDF format using the following XSL
     transformation engines:</p>
    <ul>
-    <li>Built-in Apache FOP 2.3</li>
+    <li>Built-in Apache FOP 2.5</li>
     <li>External Apache FOP</li>
     <li>Antenna House XSL Formatter</li>
     <li>RenderX XEP </li>

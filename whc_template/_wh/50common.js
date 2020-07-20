@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ * Copyright (c) 2019-2020 XMLmind Software. All rights reserved.
  *
  * This file is part of the XMLmind Web Help Compiler project.
  * For conditions of distribution and use, see the accompanying LEGAL.txt file.
@@ -438,9 +438,7 @@ function findWords(words, searchedWords) {
         var word = words[i];
         if (wh.search_stemmer !== null && 
             word.search(/^[-+]?\d/) < 0) { // Not number-like.
-            wh.search_stemmer.setCurrent(word);
-            wh.search_stemmer.stem();
-            var stem = wh.search_stemmer.getCurrent();
+            var stem = wh.search_stemmer.stemWord(word);
             //console.log(">>> word='"+ word + "' stem=" + stem + "' <<<");
 
             if (stem != word) {

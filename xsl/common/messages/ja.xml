@@ -73,10 +73,8 @@
   <message name="alternateFor">代替語</message>
 
   <!-- Navigation icons -->
-  <message name="firstPage">先頭ページ</message>
   <message name="previousPage">前ページ</message>
   <message name="nextPage">次ページ</message>
-  <message name="lastPage">最終ページ</message>
   <message name="previousTopic">前トピック</message>
   <message name="parentTopic">親トピック</message>
   <message name="childTopic">子トピック</message>

@@ -73,10 +73,8 @@
   <message name="alternateFor">Zamiennik dla</message>
 
   <!-- Navigation icons -->
-  <message name="firstPage">Pierwsza strona</message>
   <message name="previousPage">Poprzednia strona</message>
   <message name="nextPage">Następna strona</message>
-  <message name="lastPage">Ostatnia strona</message>
   <message name="previousTopic">Poprzednia strona</message>
   <message name="parentTopic">Temat nadrzędny</message>
   <message name="childTopic">Temat podrzędny</message>

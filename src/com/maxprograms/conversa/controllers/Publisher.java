@@ -135,7 +135,7 @@ public class Publisher {
 				}
 				break;
 			default:
-				String path = System.getProperty("user.dir") + File.separator + "fop-2.3" + File.separator;
+				String path = System.getProperty("user.dir") + File.separator + "fop-2.5" + File.separator;
 				System.setProperty("FOP_HOME", path);
 				String javaHome = System.getProperty("user.dir") + File.separator + "jre";
 				System.setProperty("JAVA_HOME", javaHome);
@@ -146,7 +146,7 @@ public class Publisher {
 					path = path + "fop.sh";
 				}
 				if (!converter.registerFOP(path(path))) {
-					logger.displayError("Error registering internal FOP.");
+					logger.displayError("Error registering internal FOP. (" + path + ")");
 					return;
 				}
 			}

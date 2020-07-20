@@ -1,0 +1,342 @@
+Compiled FOP 2.5 using Java 1.8 with the following changes. 
+
+Ran: mvn clean install 
+
+For that, added <skipTests> to the topmost pom.xml:
+===============================================================
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire.plugin.version}</version>
+          <configuration>
+            <skipTests>true</skipTests>
+          </configuration>
+        </plugin>
+===============================================================
+
+* InternalResourceResolver constructor is not public. 
+  This class cannot be extended to support "jar:" opaque URIs.
+
+fop-core/src/main/java/org/apache/fop/apps/io/
+===============================================================
+--- InternalResourceResolver.java.ORI	2020-05-05 11:42:04.000000000 +0200
++++ InternalResourceResolver.java	2020-07-06 16:16:11.317799886 +0200
+@@ -40,15 +40,16 @@
+  * URIs to it.
+  */
+ public class InternalResourceResolver {
+-    private final URI baseUri;
+-    private final ResourceResolver resourceResolver;
+-    private final DataURIResolver dataSchemeResolver = new DataURIResolver();
++    protected final URI baseUri;
++    protected final ResourceResolver resourceResolver;
++    protected final DataURIResolver dataSchemeResolver = new DataURIResolver();
+ 
+     /**
+      * @param baseUri the base URI from which to resolve relative URIs
+      * @param resourceResolver the resolver to delegate to
+      */
+-    InternalResourceResolver(URI baseUri, ResourceResolver resourceResolver) {
++    public InternalResourceResolver(URI baseUri,
++                                    ResourceResolver resourceResolver) {
+         this.baseUri = baseUri;
+         this.resourceResolver = resourceResolver;
+     }
+===============================================================
+
+* When generating PostScript (not PDF), 
+  NPE in PSImageHandlerSVG.getDimension for some SVG files.
+
+fop-core/src/main/java/org/apache/fop/render/ps/
+===============================================================
+--- PSImageHandlerSVG.java.ORI	2020-05-05 11:42:05.000000000 +0200
++++ PSImageHandlerSVG.java	2020-07-06 16:19:04.999852761 +0200
+@@ -39,6 +39,7 @@
+ import org.w3c.dom.Document;
+ import org.w3c.dom.Node;
+ import org.w3c.dom.NodeList;
++import org.w3c.dom.NamedNodeMap;
+ 
+ import org.apache.batik.bridge.BridgeContext;
+ import org.apache.batik.bridge.GVTBuilder;
+@@ -265,8 +266,9 @@
+     }
+ 
+     private Float getDimension(Document document, String dimension) {
+-        if (document.getFirstChild().getAttributes().getNamedItem(dimension) != null) {
+-            String width = document.getFirstChild().getAttributes().getNamedItem(dimension).getNodeValue();
++        NamedNodeMap attrs = document.getDocumentElement().getAttributes();
++        if (attrs != null && attrs.getNamedItem(dimension) != null) {
++            String width = attrs.getNamedItem(dimension).getNodeValue();
+             width = width.replaceAll("[^\\d.]", "");
+             return Float.parseFloat(width);
+         }
+===============================================================
+
+* A systemId is always expected to be absolute.
+  Anyway, without this, SVG files using markers 
+  (e.g. marker-start:url(#TriangleInM)) cannot be rendered.
+
+  Corresponds to FOP 2.0 bug #FOP-2489, marked as fixed in FOP 2.2
+  ("Fixed on the Batik side instead: 
+    http://svn.apache.org/viewvc?view=revision&revision=1687506")
+
+fop-core/src/main/java/org/apache/fop/apps/:
+===============================================================
+--- FOUserAgent.java.ORI	2020-07-06 16:21:36.722251903 +0200
++++ FOUserAgent.java	2020-07-06 16:22:59.333419391 +0200
+@@ -413,6 +413,14 @@
+         try {
+             // Have to do this so we can resolve data URIs
+             StreamSource src = new StreamSource(resourceResolver.getResource(uri));
++            // A systemId is always expected to be absolute.
++            // Anyway, without this, SVG files using markers 
++            // (e.g. marker-start:url(#TriangleInM)) cannot be rendered.
++
++            if (!uri.startsWith("data:")) {
++                uri = resourceResolver.getBaseURI().resolve(uri).toASCIIString();
++            }
++
+             src.setSystemId(uri);
+             return src;
+         } catch (URISyntaxException use) {
+===============================================================
+
+* fop-core/src/main/java/org/apache/fop/apps/FopFactoryConfig.java: changed 
+  DEFAULT_SOURCE_RESOLUTION from 72 to 120dpi (like RenderX XEP).
+===============================================================
+--- FopFactoryConfig.java.ORI	2020-07-06 16:34:26.754069486 +0200
++++ FopFactoryConfig.java	2020-07-06 16:35:04.505650692 +0200
+@@ -55,8 +55,9 @@
+     /** Defines the default page-height */
+     String DEFAULT_PAGE_HEIGHT = "11in";
+ 
+-    /** Defines the default source resolution (72dpi) for FOP */
+-    float DEFAULT_SOURCE_RESOLUTION = 72.0f; //dpi
++    /** Defines the default source resolution (72dpi) for FOP
++        (120dpi like RenderX XEP) */
++    float DEFAULT_SOURCE_RESOLUTION = 120.0f; //dpi
+ 
+     /** Defines the default target resolution (72dpi) for FOP */
+     float DEFAULT_TARGET_RESOLUTION = 72.0f; //dpi
+===============================================================
+
+* The DOM builder of Saxon 6.5 is not namespace aware and we really need to DOM
+  builder which is namespace aware, otherwise SVG instream-foreign-object are
+  not properly processed.
+
+New file fop-core/src/main/java/org/apache/fop/util/SAXToDOM.java:
+===============================================================
+package org.apache.fop.util;
+
+import java.util.Stack;
+import org.xml.sax.SAXException;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
+
+public final class SAXToDOM extends DefaultHandler {
+    private Stack nodeStack;
+    private StringBuilder buffer;
+    private Document doc;
+
+    public SAXToDOM(Document doc) {
+        nodeStack = new Stack();
+        buffer = null;
+
+        this.doc = doc;
+        nodeStack.push(doc);
+    }
+
+    public void startElement(String uri, String localName, String qName,
+                             Attributes atts)
+        throws SAXException {
+        flushBuffer();
+
+        Element element = doc.createElementNS(uri, qName);
+
+        int attCount = atts.getLength();
+        for (int i = 0; i < attCount; ++i) {
+            String attName = atts.getQName(i);
+            if (attName.startsWith("xmlns")) {
+                continue;
+            }
+
+            String attURI = atts.getURI(i);
+
+            element.setAttributeNS((attURI.length() == 0)? null : attURI, 
+                                   attName, atts.getValue(i));
+        }
+
+        Node parent = (Node) nodeStack.peek();
+        parent.appendChild(element);
+
+        nodeStack.push(element);
+    }
+
+    public void endElement(String uri, String localName, String qName)
+        throws SAXException {
+        flushBuffer();
+
+        nodeStack.pop();
+    }
+
+    private void flushBuffer() {
+        if (buffer != null) {
+            Node parent = (Node) nodeStack.peek();
+            parent.appendChild(doc.createTextNode(buffer.toString()));
+            buffer = null;
+        }
+    }
+
+    public void characters(char[] ch, int start, int length)
+        throws SAXException {
+        if (buffer == null) {
+            buffer = new StringBuilder();
+        }
+        buffer.append(ch, start, length);
+    }
+}
+===============================================================
+
+fop-core/src/main/java/org/apache/fop/util/:
+===============================================================
+--- DOMBuilderContentHandlerFactory.java.ORI	2020-05-05 11:42:05.000000000 +0200
++++ DOMBuilderContentHandlerFactory.java	2020-07-06 16:26:27.927271540 +0200
+@@ -19,11 +19,6 @@
+ 
+ package org.apache.fop.util;
+ 
+-import javax.xml.transform.TransformerConfigurationException;
+-import javax.xml.transform.dom.DOMResult;
+-import javax.xml.transform.sax.SAXTransformerFactory;
+-import javax.xml.transform.sax.TransformerHandler;
+-
+ import org.w3c.dom.DOMImplementation;
+ import org.w3c.dom.Document;
+ import org.xml.sax.Attributes;
+@@ -34,10 +29,6 @@
+  * ContentHandlerFactory which constructs ContentHandlers that build DOM Documents.
+  */
+ public class DOMBuilderContentHandlerFactory implements ContentHandlerFactory {
+-
+-    private static SAXTransformerFactory tFactory
+-            = (SAXTransformerFactory)SAXTransformerFactory.newInstance();
+-
+     private String namespaceURI;
+     private DOMImplementation domImplementation;
+ 
+@@ -103,23 +94,19 @@
+         /**
+          * {@inheritDoc}
+          */
+-        public void startElement(String uri, String localName, String qName, Attributes atts)
++        public void startElement(String uri, String localName, String qName, 
++                                 Attributes atts)
+                     throws SAXException {
+             if (doc == null) {
+-                TransformerHandler handler;
+-                try {
+-                    handler = tFactory.newTransformerHandler();
+-                } catch (TransformerConfigurationException e) {
+-                    throw new SAXException("Error creating a new TransformerHandler", e);
+-                }
+-                doc = domImplementation.createDocument(namespaceURI, qName, null);
+-                //It's easier to work with an empty document, so remove the root element
++                doc = domImplementation.createDocument(namespaceURI, qName, 
++                                                       null);
++                // It's easier to work with an empty document, so remove the
++                // root element
+                 doc.removeChild(doc.getDocumentElement());
+-                handler.setResult(new DOMResult(doc));
+-                setDelegateContentHandler(handler);
+-                setDelegateLexicalHandler(handler);
+-                setDelegateDTDHandler(handler);
+-                handler.startDocument();
++                
++                ContentHandler delegate = new SAXToDOM(doc);
++                setDelegateContentHandler(delegate);
++                delegate.startDocument();
+             }
+             super.startElement(uri, localName, qName, atts);
+         }
+@@ -133,7 +120,5 @@
+                 obListener.notifyObjectBuilt(getObject());
+             }
+         }
+-
+     }
+-
+ }
+===============================================================
+
+fop-core/src/main/java/org/apache/fop/fo/extensions/svg/:
+===============================================================
+--- SVGDOMContentHandlerFactory.java.ORI	2020-05-05 11:42:04.000000000 +0200
++++ SVGDOMContentHandlerFactory.java	2020-07-06 16:29:54.236988506 +0200
+@@ -19,13 +19,9 @@
+ 
+ package org.apache.fop.fo.extensions.svg;
+ 
+-import javax.xml.transform.TransformerConfigurationException;
+-import javax.xml.transform.dom.DOMResult;
+-import javax.xml.transform.sax.SAXTransformerFactory;
+-import javax.xml.transform.sax.TransformerHandler;
+-
+ import org.w3c.dom.DOMImplementation;
+ import org.w3c.dom.Document;
++
+ import org.xml.sax.Attributes;
+ import org.xml.sax.ContentHandler;
+ import org.xml.sax.SAXException;
+@@ -35,16 +31,13 @@
+ 
+ import org.apache.fop.util.ContentHandlerFactory;
+ import org.apache.fop.util.DelegatingContentHandler;
++import org.apache.fop.util.SAXToDOM;
+ 
+ /**
+  * ContentHandlerFactory which constructs ContentHandlers that build SVG DOM
+  * Documents.
+  */
+ public class SVGDOMContentHandlerFactory implements ContentHandlerFactory {
+-
+-    private static SAXTransformerFactory tFactory
+-        = (SAXTransformerFactory)SAXTransformerFactory.newInstance();
+-
+     /**
+      * Default Constructor.
+      */
+@@ -110,23 +103,17 @@
+         public void startElement(String uri, String localName, String qName, Attributes atts)
+                 throws SAXException {
+             if (doc == null) {
+-                TransformerHandler handler;
+-                try {
+-                    handler = tFactory.newTransformerHandler();
+-                } catch (TransformerConfigurationException e) {
+-                    throw new SAXException("Error creating a new TransformerHandler", e);
+-                }
+                 String version = atts.getValue("version");
+-                DOMImplementation domImplementation = getDOMImplementation(version);
++                DOMImplementation domImplementation = 
++                    getDOMImplementation(version);
+                 doc = domImplementation.createDocument(uri, qName, null);
+                 // It's easier to work with an empty document, so remove the
+                 // root element
+                 doc.removeChild(doc.getDocumentElement());
+-                handler.setResult(new DOMResult(doc));
+-                setDelegateContentHandler(handler);
+-                setDelegateLexicalHandler(handler);
+-                setDelegateDTDHandler(handler);
+-                handler.startDocument();
++
++                ContentHandler delegate = new SAXToDOM(doc);
++                setDelegateContentHandler(delegate);
++                delegate.startDocument();
+             }
+             super.startElement(uri, localName, qName, atts);
+         }
+===============================================================

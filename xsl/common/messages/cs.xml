@@ -73,10 +73,8 @@
   <message name="alternateFor">Alternativní výraz pro</message>
 
   <!-- Navigation icons -->
-  <message name="firstPage">První strana</message>
   <message name="previousPage">Předchozí strana</message>
   <message name="nextPage">Následující strana</message>
-  <message name="lastPage">Poslední strana</message>
   <message name="previousTopic">Předchozí téma</message>
   <message name="parentTopic">Rodičovské téma</message>
   <message name="childTopic">Dceřiné téma</message>

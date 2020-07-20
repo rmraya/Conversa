@@ -73,10 +73,8 @@
   <message name="alternateFor">Альтернативный для</message>
 
   <!-- Navigation icons -->
-  <message name="firstPage">Первая страница</message>
   <message name="previousPage">Предыдущая страница</message>
   <message name="nextPage">Следующая страница</message>
-  <message name="lastPage">Последняя страница</message>
   <message name="previousTopic">Предыдущая тема</message>
   <message name="parentTopic">Родительская тема</message>
   <message name="childTopic">Дочерняя тема</message>

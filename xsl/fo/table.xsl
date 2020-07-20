@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2020 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie (hussein@xmlmind.com)
 |
@@ -16,17 +16,36 @@
   
   <!-- table ============================================================= -->
 
-  <xsl:attribute-set name="table" use-attribute-sets="block-style">
+  <xsl:attribute-set name="landscape-table">
+    <xsl:attribute name="reference-orientation">90</xsl:attribute>
+    <xsl:attribute name="break-before">page</xsl:attribute>
+    <xsl:attribute name="break-after">page</xsl:attribute>
   </xsl:attribute-set>
 
   <xsl:template match="*[contains(@class,' topic/table ')]">
-    <fo:block xsl:use-attribute-sets="table">
-      <xsl:call-template name="commonAttributes"/>
-      <xsl:call-template name="processTable"/>
-    </fo:block>
+    <xsl:choose>
+      <xsl:when test="@orient eq 'land'">
+        <fo:block-container xsl:use-attribute-sets="landscape-table">
+          <xsl:call-template name="processTable"/>
+        </fo:block-container>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="processTable"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
+  <xsl:attribute-set name="table" use-attribute-sets="block-style">
+  </xsl:attribute-set>
+
   <xsl:template name="processTable">
+    <fo:block xsl:use-attribute-sets="table">
+      <xsl:call-template name="commonAttributes"/>
+      <xsl:call-template name="processTableContent"/>
+    </fo:block>
+  </xsl:template>
+  
+  <xsl:template name="processTableContent">
     <xsl:variable name="title" select="./*[contains(@class,' topic/title ')]"/>
 
     <xsl:choose>
@@ -68,7 +87,7 @@
       <!-- LIMITATION: $center not supported: table width is always 100% -->
 
       <!-- Display attributes -->
-      <!-- LIMITATION: @pgwide, @orient not supported -->
+      <!-- LIMITATION: @pgwide not supported -->
 
       <xsl:if test="../@scale">
         <xsl:attribute name="font-size"

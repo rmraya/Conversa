@@ -4,14 +4,14 @@ Saxon-HE 9.9 is the latest major release of the open-source edition of Saxon.
 
 The Saxon 9.9 release is currently considered as the most stable and reliable release.
 
-It is available for the Java and .NET platforms. Releases on C/C++/PHP platforms will be available soon.
+It is available for the Java and .NET platforms. Releases on C/C++/PHP platforms are still on 9.9.1.5, but will be updated soon.
 
-The current maintenance release is Saxon-HE 9.9.1.5.
+The current maintenance release is Saxon-HE 9.9.1.7.
 
 The documentation for Saxon is at http://www.saxonica.com/documentation/
 and includes a detailed list of changes for each release.
 
-For the Java platform, download file SaxonHE9-9-1-5J.zip.
+For the Java platform, download file SaxonHE9-9-1-7J.zip.
 
 Installation instructions are at:
 
@@ -20,12 +20,100 @@ http://www.saxonica.com/documentation/index.html#!about/installationjava
 The file saxon-resources9-9.zip contains documentation, sample files, test drivers and other miscellaneous resources. 
 It is common to all platforms, and is not normally updated when new maintenance releases appear.
 
-The file saxon9–9-1-5source.zip contains source code for both platforms; a new version is produced with each maintenance release. Source code with the latest patches can also be obtained from a Subversion repository maintained at https://dev.saxonica.com/repos/archive/opensource. The Subversion repository on the SourceForge site is no longer maintained.
+The file saxon9–9-1-7source.zip contains source code for both platforms; a new version is produced with each maintenance release.
+Source code with the latest patches can also be obtained from a Subversion repository maintained at https://dev.saxonica.com/repos/archive/opensource.
+The Subversion repository on the SourceForge site is no longer maintained.
+
+
+The following bugs are cleared in 9.9.1.7, issued 2020-03-04 (this includes bugs that appear only in the commercial
+versions of the product). Bugs are listed under the number used on the new Saxonica Community site at
+https://saxonica.plan.io/projects/saxon/issues :
+
+Bug #4246: XSLT variable contains document node with zero-length text node
+Bug #4315: Named output ignored in 9.9 when using result-document with format attribute
+Bug #4326: NullPointerException in XSLGeneralIncorporate
+Bug #4331: XTSE3051 is not raised
+Bug #4382: NullPointerException when running collection() with recurse=yes over a directory tree containing a large number of files
+Bug #4403: Internal error when calling saxon:transform() with stylesheet without primary output
+Bug #4405: Internal error: local variable encountered whose binding has been deleted
+Bug #4406: README lists version 9.9.1.6 twice
+Bug #4407: Unescaped right curly brace in regular expression
+Bug #4408: Use of reserved namespace http://www.w3.org/2005/xpath-functions/map in user-defined function
+Bug #4412: Disable-output-escaping has no effect when expand-text="yes" is in force
+Bug #4414: Unnecessary log messages when using array:xxx() extension functions
+Bug #4419: fn:normalize-unicode fails when DTD-based validation of source data is turned on
+Bug #4430: Unpredictable output when streaming accumulators call other accumulators
+Bug #4433: Saxon 9.9.1-5 outputs malformed XML due to duplicate default namespace declaration
+Bug #4435: saxon:query() parameters
+Bug #4437: IntHashSet.copy()
+Bug #4441: Filter expression: NoDynamicContextException
+Bug #4443: Type check: xs:byte, unary expression
+Bug #4444: Problem with count(//parent::node()) and schematron comparison operators
+Bug #4445: Problem with validation [ArrayIndexOutOfBoundsException in TinyTree]
+Bug #4446: Schema-Aware Transformation: wrong node set
+Bug #4447: Grouping with type declaration → XQST0094
+Bug #4448: Local variables in xsl:key definition: Internal error: Cannot set local variable: no slot allocated
+Bug #4449: NPE in CaseVariants
+Bug #4453: SXST0067: No transmission watch for $input!element() with XSLT 3 code trying to use streaming
+Bug #4457: MessageListener.message() terminate parameter set incorrectly
+Bug #4459: ArrayIndexOutOfBoundsException at net.sf.saxon.serialize.HTMLIndenter.comment
+Bug #4462: Incorrect code in XSDSimpleContentRestriction
+Bug #4469: XQJ bindDocument() fails java.lang.IllegalStateException: Attempt to output end tag with no matching start tag
+Bug #4470: Higher order functions under XQuery with EET license
+Bug #4471: Base URI of configuration file supplied to fn:transform()
+Bug #4473: URIResolver returning null when applied to source-location in fn:transform
+Bug #4474: JDK9: Illegal reflective access by net.sf.saxon.java.JavaPlatform to constructor com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl()
+
+
+
+The following bugs are cleared in 9.9.1.6, issued 2019-12-06 (this includes bugs that appear only in the commercial
+versions of the product). Bugs are listed under the number used on the new Saxonica Community site at
+https://saxonica.plan.io/projects/saxon/issues :
+
+
+Bug #4279: net.sf.saxon.trans.LicenseException: Invalid license file found.
+Bug #4314: Problem using current-merge-group() as argument to function call on the right hand side of simple map expression
+Bug #4315: Named output ignored in 9.9 when using result-document with format attribute
+Bug #4316: Reserved namespace "http://www.w3.org/2011/xquery-options"
+Bug #4324: java.lang.NullPointerException when attribute xsl:use-package/@name is absent
+Bug #4327: Error SXST0067: No transmission filter available for parent::(document-node()|element())
+Bug #4328: saxon:get-pseudo-attribute() returns empty string on no match
+Bug #4329: Getting warning "Source document ignored - query does not access the context item" although XQuery accesses /*/* (in right hand side of let expression)
+Bug #4330: NullPointerException with XQuery using tumbling window in right hand side of let expression
+Bug #4342: Sporadic spikes in XSL processing time due to internal looping
+Bug #4343: XQMetaData.getXQJVersion() yields 0.9 rather than 1.0
+Bug #4344: Incorrect type inference for schema-aware types
+Bug #4346: Streamed optimization of xsl:copy doesn't converge
+Bug #4350: TimingTraceListener (-TP option) has a built-in limit of 1500 on the number of stack frames
+Bug #4353: Extra namespaces present when serializing XdmValue using Serializer API
+Bug #4354: AttributeGetter does not have NO_NODES_NEWLY_CREATED property
+Bug #4357: XSLT using accumulator passes streamability analysis but crashed with java.lang.UnsupportedOperationException: net.sf.saxon.trans.XPathException: Navigation using preceding-sibling axis is not supported from a streamed input node
+Bug #4361: Multiple function bindings for EXPath Archive extract-map()
+Bug #4363: ConcurrentModificationException in XQueryCompiler
+Bug #4364: Better handling for UncheckedXPathException
+Bug #4376: xsl:message content is not available within xsl:catch as $err:value
+Bug #4378: analyze-string() in saxon:threads fails
+Bug #4384: ClassCastException when accumulator declaration is in no namespace
+Bug #4385: Infinite recursion in optimizer
+Bug #4389: ClassCastException when running EE rather than HE
+Bug #4390: Command line: -val has no default value
+Bug #4394: NullPointerException during error recovery with a misplaced character map
+Bug #4397: Obscure issue when using "instance of" inside function on results of array:filter
+Bug #4399: functx:non-distinct-values says cannot compare xs:integer to xs:integer, in 9.8 EE only
+Bug #4402: Cannot be cast to net.sf.saxon.type.ComplexType
 
 
 The following bugs are cleared in 9.9.1.5, issued 2019-09-05 (this includes bugs that appear only in the commercial
 versions of the product). Bugs are listed under the number used on the new Saxonica Community site at
 https://saxonica.plan.io/projects/saxon/issues :
+
+NOTE: Saxon.NET backward compatibility issue in regards to XdmEnumerator:
+We hope this won't distrupt many users, but as a result of the patch to address the bug issue
+https://saxonica.plan.io/issues/4296 the classes IXdmEnumerator and IXdmEnumerable disappear;
+in their place we use IEnumerator<XdmItem> and IEnumerable<XdmItem>.
+Any code that implements ExtensionFunctionCall will need to change; in most cases it's just a
+matter of changing IXdmEnumerator to IEnumerator<XdmItem> in both the arguments and the result
+type of the Call() method. The C# Examples in the saxon-resources have been updated to illustrates the changes.
 
 
 Bug #3261: Duplicate binding slot assignment (switch optimization)

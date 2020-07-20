@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2020 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -47,7 +47,7 @@
        meta http-equiv="Content-Type". -->
   <xsl:param name="xhtml-mime-type" select="'text/html'"/>
 
-  <xsl:param name="generator-info" select="'XMLmind DITA Converter 3.7.0_01'"/>
+  <xsl:param name="generator-info" select="'XMLmind DITA Converter 3.8.0'"/>
 
   <!-- Do not redefine unless you change the files found in
        $xsl-resources-directory. -->
@@ -83,7 +83,7 @@
   <xsl:param name="mathjax" select="'no'"/>
 
   <xsl:param name="mathjax-url" 
-   select="'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_CHTML;async'"/>
+   select="'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_CHTML;async'"/>
 
   <!-- DITA @format to HTML @type map. Contains DITA format/MIME type pairs.
        Example: 'txt text/plain xml application/xml html text/html'.

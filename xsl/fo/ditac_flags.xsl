@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2020 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie (hussein@xmlmind.com)
 |
@@ -73,8 +73,8 @@
 
       <fo:block xsl:use-attribute-sets="ditac-flags-block">
         <xsl:call-template name="flagsStyle">
-          <xsl:with-param name="setChangebar" 
-            select="$foProcessor ne 'XEP' and $foProcessor ne 'AHF'"/>
+          <!-- Not supported by XFC (and FOP older than version 2.4). -->
+          <xsl:with-param name="setChangebar" select="$foProcessor eq 'XFC'"/>
         </xsl:call-template>
 
         <xsl:apply-templates/>
@@ -211,12 +211,12 @@
             <xsl:call-template name="changeBarAttributes"/>
           </rx:change-bar-begin>
         </xsl:when>
-        <xsl:when test="$foProcessor eq 'AHF'">
+        <xsl:when test="$foProcessor = ('FOP', 'AHF')">
           <fo:change-bar-begin change-bar-class="{generate-id(.)}">
             <xsl:call-template name="changeBarAttributes"/>
           </fo:change-bar-begin>
         </xsl:when>
-        <!-- Not supported by FOP 2.0+ and by XFC. -->
+        <!-- Not supported by XFC (and FOP older than version 2.4). -->
       </xsl:choose>
     </xsl:if>
   </xsl:template>
@@ -247,9 +247,10 @@
         <xsl:when test="$foProcessor eq 'XEP'">
           <rx:change-bar-end change-bar-class="{generate-id(.)}"/>
         </xsl:when>
-        <xsl:when test="$foProcessor eq 'AHF'">
+        <xsl:when test="$foProcessor = ('FOP', 'AHF')">
           <fo:change-bar-end change-bar-class="{generate-id(.)}"/>
         </xsl:when>
+        <!-- Not supported by XFC (and FOP older than version 2.4). -->
       </xsl:choose>
     </xsl:if>
   </xsl:template>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2020 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -426,33 +426,6 @@
           </xsl:call-template>
 
           <tr>
-            <td>
-              <xsl:call-template name="tableLayoutAttributes">
-                <xsl:with-param name="valign" select="'top'"/>
-                <xsl:with-param name="align" select="'left'"/>
-              </xsl:call-template>
-
-              <xsl:choose>
-                <xsl:when test="$chunkIndex gt 1">
-                  <xsl:variable name="firstChunk" select="u:chunk(1)"/>
-
-                  <xsl:call-template name="navigationIcon">
-                    <xsl:with-param name="name" select="'first'"/>
-                    <xsl:with-param name="type" select="'firstPage'"/>
-                    <xsl:with-param name="href" select="$firstChunk/@file"/>
-                    <xsl:with-param name="target" 
-                                    select="u:longChunkTitle($firstChunk)"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="navigationIcon">
-                    <xsl:with-param name="name" select="'first'"/>
-                    <xsl:with-param name="type" select="'firstPage'"/>
-                  </xsl:call-template>
-                </xsl:otherwise>
-              </xsl:choose>
-            </td>
-
             <xsl:choose>
               <xsl:when test="$chunkIndex gt 1">
                 <xsl:variable name="prevChunk" 
@@ -515,15 +488,17 @@
               <xsl:call-template name="tableLayoutAttributes">
                 <xsl:with-param name="valign" select="'top'"/>
                 <xsl:with-param name="align" select="'center'"/>
-                <xsl:with-param name="width" select="'40%'"/>
+                <xsl:with-param name="width" select="'50%'"/>
               </xsl:call-template>
 
               <xsl:variable name="currentChunk" select="u:chunk($chunkIndex)"/>
+              <xsl:variable name="tocChunk" select="u:tocChunk()"/>
+              <xsl:variable name="indexChunk" select="u:indexChunk()"/>
 
               <span class="page-navigation-current">
                 <xsl:value-of select="u:longChunkTitle($currentChunk)"/>
               </span>
-              <xsl:text> </xsl:text>
+              <xsl:text>&#x20;</xsl:text>
               <span class="page-navigation-page">
                 <xsl:text>(</xsl:text>
                 <xsl:value-of select="$chunkIndex"/>
@@ -531,6 +506,36 @@
                 <xsl:value-of select="$chunkCount"/>
                 <xsl:text>)</xsl:text>
               </span>
+              <xsl:if test="exists($tocChunk)">
+                <xsl:text>&#x20;&#xA0;&#xA0;</xsl:text>
+                <xsl:call-template name="navigationIcon">
+                  <xsl:with-param name="name" select="'toc'"/>
+                  <xsl:with-param name="type" select="'toc'"/>
+                  <xsl:with-param name="href"
+                                  select="if ($currentChunk is $tocChunk)
+                                          then ''
+                                          else $tocChunk/@file"/>
+                  <xsl:with-param name="target" 
+                                  select="if ($currentChunk is $tocChunk)
+                                          then ''
+                                          else u:longChunkTitle($tocChunk)"/>
+                </xsl:call-template>
+              </xsl:if>
+              <xsl:if test="exists($indexChunk)">
+                <xsl:text>&#x20;&#xA0;&#xA0;</xsl:text>
+                <xsl:call-template name="navigationIcon">
+                  <xsl:with-param name="name" select="'indexlist'"/>
+                  <xsl:with-param name="type" select="'indexlist'"/>
+                  <xsl:with-param name="href"
+                                  select="if ($currentChunk is $indexChunk)
+                                          then ''
+                                          else $indexChunk/@file"/>
+                  <xsl:with-param name="target" 
+                                  select="if ($currentChunk is $indexChunk)
+                                          then ''
+                                          else u:longChunkTitle($indexChunk)"/>
+                </xsl:call-template>
+              </xsl:if>
             </td>
 
             <xsl:choose>
@@ -590,34 +595,6 @@
                 </td>
               </xsl:otherwise>
             </xsl:choose>
-
-            <td>
-              <xsl:call-template name="tableLayoutAttributes">
-                <xsl:with-param name="valign" select="'top'"/>
-                <xsl:with-param name="align" select="'right'"/>
-              </xsl:call-template>
-
-              <xsl:choose>
-                <xsl:when test="$chunkIndex lt $chunkCount">
-                  <xsl:variable name="lastChunk"
-                                select="u:chunk($chunkCount)"/>
-
-                  <xsl:call-template name="navigationIcon">
-                    <xsl:with-param name="name" select="'last'"/>
-                    <xsl:with-param name="type" select="'lastPage'"/>
-                    <xsl:with-param name="href" select="$lastChunk/@file"/>
-                    <xsl:with-param name="target" 
-                                    select="u:longChunkTitle($lastChunk)"/>
-                  </xsl:call-template>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="navigationIcon">
-                    <xsl:with-param name="name" select="'last'"/>
-                    <xsl:with-param name="type" select="'lastPage'"/>
-                  </xsl:call-template>
-                </xsl:otherwise>
-              </xsl:choose>
-            </td>
           </tr>
         </table>
       </xsl:element>
@@ -625,8 +602,8 @@
   </xsl:template>
 
   <xsl:template name="navigationIcon">
-    <xsl:param name="name" select="'first'"/>
-    <xsl:param name="type" select="'firstPage'"/>
+    <xsl:param name="name" select="'next'"/>
+    <xsl:param name="type" select="'nextPage'"/>
     <xsl:param name="href" select="''"/>
     <xsl:param name="target" select="''"/>
 

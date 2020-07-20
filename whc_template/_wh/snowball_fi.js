@@ -1,1098 +1,1094 @@
-/*!
- * Snowball JavaScript Library v0.4
- * http://snowball.tartarus.org/
- * https://github.com/mazko/jssnowball
- *
- * Copyright Nov 25 2012, Oleg Mazko
- * http://www.opensource.org/licenses/bsd-license.html
- */
-
 function Snowball() {
 
-/* Among.js --------------------------------------------------------------- */
+/**@constructor*/
+BaseStemmer = function() {
+    this.setCurrent = function(value) {
+        this.current = value;
+	this.cursor = 0;
+	this.limit = this.current.length;
+	this.limit_backward = 0;
+	this.bra = this.cursor;
+	this.ket = this.limit;
+    };
 
-function Among(s, substring_i, result, method) {
-	if ((!s && s != "") || (!substring_i && (substring_i != 0)) || !result)
-		throw ("Bad Among initialisation: s:" + s + ", substring_i: "
-				+ substring_i + ", result: " + result);
-	this.s_size = s.length;
-	this.s = (function() {
-		var sLength = s.length, charArr = new Array(sLength);
-		for (var i = 0; i < sLength; i++)
-			charArr[i] = s.charCodeAt(i);
-		return charArr;})();
-	this.substring_i = substring_i;
-	this.result = result;
-	this.method = method;
-}
+    this.getCurrent = function() {
+        return this.current;
+    };
 
-/* SnowballProgram.js ----------------------------------------------------- */
+    this.copy_from = function(other) {
+	this.current          = other.current;
+	this.cursor           = other.cursor;
+	this.limit            = other.limit;
+	this.limit_backward   = other.limit_backward;
+	this.bra              = other.bra;
+	this.ket              = other.ket;
+    };
 
-function SnowballProgram() {
-	var current;
-	return {
-		bra : 0,
-		ket : 0,
-		limit : 0,
-		cursor : 0,
-		limit_backward : 0,
-		setCurrent : function(word) {
-			current = word;
-			this.cursor = 0;
-			this.limit = word.length;
-			this.limit_backward = 0;
-			this.bra = this.cursor;
-			this.ket = this.limit;
-		},
-		getCurrent : function() {
-			var result = current;
-			current = null;
-			return result;
-		},
-		in_grouping : function(s, min, max) {
-			if (this.cursor >= this.limit) return false;
-			var ch = current.charCodeAt(this.cursor);
-			if (ch > max || ch < min) return false;
-			ch -= min;
-			if ((s[ch >> 3] & (0X1 << (ch & 0X7))) == 0) return false;
-			this.cursor++;
-			return true;
-		},
-		in_grouping_b : function(s, min, max) {
-			if (this.cursor <= this.limit_backward) return false;
-			var ch = current.charCodeAt(this.cursor - 1);
-			if (ch > max || ch < min) return false;
-			ch -= min;
-			if ((s[ch >> 3] & (0X1 << (ch & 0X7))) == 0) return false;
-			this.cursor--;
-			return true;
-		},
-		out_grouping : function(s, min, max) {
-			if (this.cursor >= this.limit) return false;
-			var ch = current.charCodeAt(this.cursor);
-			if (ch > max || ch < min) {
-				this.cursor++;
-				return true;
-			}
-			ch -= min;
-			if ((s[ch >> 3] & (0X1 << (ch & 0X7))) == 0) {
-				this.cursor ++;
-				return true;
-			}
-			return false;
-		},
-		out_grouping_b : function(s, min, max) {
-			if (this.cursor <= this.limit_backward) return false;
-			var ch = current.charCodeAt(this.cursor - 1);
-			if (ch > max || ch < min) {
-				this.cursor--;
-				return true;
-			}
-			ch -= min;
-			if ((s[ch >> 3] & (0X1 << (ch & 0X7))) == 0) {
-				this.cursor--;
-				return true;
-			}
-			return false;
-		},
-		eq_s : function(s_size, s) {
-			if (this.limit - this.cursor < s_size) return false;
-			var i;
-			for (i = 0; i != s_size; i++) {
-				if (current.charCodeAt(this.cursor + i) != s.charCodeAt(i)) return false;
-			}
-			this.cursor += s_size;
-			return true;
-		},
-		eq_s_b : function(s_size, s) {
-			if (this.cursor - this.limit_backward < s_size) return false;
-			var i;
-			for (i = 0; i != s_size; i++) {
-				if (current.charCodeAt(this.cursor - s_size + i) != s.charCodeAt(i)) return false;
-			}
-			this.cursor -= s_size;
-			return true;
-		},
-		eq_v_b : function(s) {
-			return this.eq_s_b(s.length, s);
-		},
-		find_among : function(v, v_size) {
-			var i = 0, j = v_size, c = this.cursor, l = this.limit, common_i = 0, common_j = 0, first_key_inspected = false;
-			while (true) {
-				var k = i + ((j - i) >> 1), diff = 0, common = common_i < common_j
-						? common_i
-						: common_j, w = v[k];
-				for (var i2 = common; i2 < w.s_size; i2++) {
-					if (c + common == l) {
-						diff = -1;
-						break;
-					}
-					diff = current.charCodeAt(c + common) - w.s[i2];
-					if (diff)
-						break;
-					common++;
-				}
-				if (diff < 0) {
-					j = k;
-					common_j = common;
-				} else {
-					i = k;
-					common_i = common;
-				}
-				if (j - i <= 1) {
-					if (i > 0 || j == i || first_key_inspected)
-						break;
-					first_key_inspected = true;
-				}
-			}
-			while (true) {
-				var w = v[i];
-				if (common_i >= w.s_size) {
-					this.cursor = c + w.s_size;
-					if (!w.method)
-						return w.result;
-					var res = w.method();
-					this.cursor = c + w.s_size;
-					if (res)
-						return w.result;
-				}
-				i = w.substring_i;
-				if (i < 0)
-					return 0;
-			}
-		},
-		find_among_b : function(v, v_size) {
-			var i = 0, j = v_size, c = this.cursor, lb = this.limit_backward, common_i = 0, common_j = 0, first_key_inspected = false;
-			while (true) {
-				var k = i + ((j - i) >> 1), diff = 0, common = common_i < common_j
-						? common_i
-						: common_j, w = v[k];
-				for (var i2 = w.s_size - 1 - common; i2 >= 0; i2--) {
-					if (c - common == lb) {
-						diff = -1;
-						break;
-					}
-					diff = current.charCodeAt(c - 1 - common) - w.s[i2];
-					if (diff)
-						break;
-					common++;
-				}
-				if (diff < 0) {
-					j = k;
-					common_j = common;
-				} else {
-					i = k;
-					common_i = common;
-				}
-				if (j - i <= 1) {
-					if (i > 0 || j == i || first_key_inspected)
-						break;
-					first_key_inspected = true;
-				}
-			}
-			while (true) {
-				var w = v[i];
-				if (common_i >= w.s_size) {
-					this.cursor = c - w.s_size;
-					if (!w.method)
-						return w.result;
-					var res = w.method();
-					this.cursor = c - w.s_size;
-					if (res)
-						return w.result;
-				}
-				i = w.substring_i;
-				if (i < 0)
-					return 0;
-			}
-		},
-		replace_s : function(c_bra, c_ket, s) {
-			var adjustment = s.length - (c_ket - c_bra), left = current
-					.substring(0, c_bra), right = current.substring(c_ket);
-			current = left + s + right;
-			this.limit += adjustment;
-			if (this.cursor >= c_ket)
-				this.cursor += adjustment;
-			else if (this.cursor > c_bra)
-				this.cursor = c_bra;
-			return adjustment;
-		},
-		slice_check : function() {
-			if (this.bra < 0 ||
-			    this.bra > this.ket ||
-			    this.ket > this.limit ||
-			    this.limit > current.length)
-			{
-				throw ("faulty slice operation");
-			}
-		},
-		slice_from : function(s) {
-			this.slice_check();
-			this.replace_s(this.bra, this.ket, s);
-		},
-		slice_del : function() {
-			this.slice_from("");
-		},
-		insert : function(c_bra, c_ket, s) {
-			var adjustment = this.replace_s(c_bra, c_ket, s);
-			if (c_bra <= this.bra) this.bra += adjustment;
-			if (c_bra <= this.ket) this.ket += adjustment;
-		},
-		slice_to : function() {
-			this.slice_check();
-			return current.substring(this.bra, this.ket);
-		},
-		get_size_of_p : function() {
+    this.in_grouping = function(s, min, max) {
+	if (this.cursor >= this.limit) return false;
+	var ch = this.current.charCodeAt(this.cursor);
+	if (ch > max || ch < min) return false;
+	ch -= min;
+	if ((s[ch >>> 3] & (0x1 << (ch & 0x7))) == 0) return false;
+	this.cursor++;
+	return true;
+    };
 
-			/* Potentially bug of ANSI C stemmers, presents here for porting compliance */
+    this.in_grouping_b = function(s, min, max) {
+	if (this.cursor <= this.limit_backward) return false;
+	var ch = this.current.charCodeAt(this.cursor - 1);
+	if (ch > max || ch < min) return false;
+	ch -= min;
+	if ((s[ch >>> 3] & (0x1 << (ch & 0x7))) == 0) return false;
+	this.cursor--;
+	return true;
+    };
 
-			return current ? encodeURIComponent(current).match(/%..|./g).length + 1 : 1;
+    this.out_grouping = function(s, min, max) {
+	if (this.cursor >= this.limit) return false;
+	var ch = this.current.charCodeAt(this.cursor);
+	if (ch > max || ch < min) {
+	    this.cursor++;
+	    return true;
+	}
+	ch -= min;
+	if ((s[ch >>> 3] & (0X1 << (ch & 0x7))) == 0) {
+	    this.cursor++;
+	    return true;
+	}
+	return false;
+    };
+
+    this.out_grouping_b = function(s, min, max) {
+	if (this.cursor <= this.limit_backward) return false;
+	var ch = this.current.charCodeAt(this.cursor - 1);
+	if (ch > max || ch < min) {
+	    this.cursor--;
+	    return true;
+	}
+	ch -= min;
+	if ((s[ch >>> 3] & (0x1 << (ch & 0x7))) == 0) {
+	    this.cursor--;
+	    return true;
+	}
+	return false;
+    };
+
+    this.eq_s = function(s)
+    {
+	if (this.limit - this.cursor < s.length) return false;
+        if (this.current.slice(this.cursor, this.cursor + s.length) != s)
+        {
+            return false;
+        }
+	this.cursor += s.length;
+	return true;
+    };
+
+    this.eq_s_b = function(s)
+    {
+	if (this.cursor - this.limit_backward < s.length) return false;
+        if (this.current.slice(this.cursor - s.length, this.cursor) != s)
+        {
+            return false;
+        }
+	this.cursor -= s.length;
+	return true;
+    };
+
+    /** @return {number} */ this.find_among = function(v)
+    {
+	var i = 0;
+	var j = v.length;
+
+	var c = this.cursor;
+	var l = this.limit;
+
+	var common_i = 0;
+	var common_j = 0;
+
+	var first_key_inspected = false;
+
+	while (true)
+        {
+	    var k = i + ((j - i) >>> 1);
+	    var diff = 0;
+	    var common = common_i < common_j ? common_i : common_j; // smaller
+	    // w[0]: string, w[1]: substring_i, w[2]: result, w[3]: function (optional)
+	    var w = v[k];
+	    var i2;
+	    for (i2 = common; i2 < w[0].length; i2++)
+            {
+		if (c + common == l)
+                {
+		    diff = -1;
+		    break;
 		}
-	};
-}
-
-/* ------------------------------------------------------------------------- */
-function finnishStemmer() {
-        var a_0 = [
-            new Among ( "pa", -1, 1 ),
-            new Among ( "sti", -1, 2 ),
-            new Among ( "kaan", -1, 1 ),
-            new Among ( "han", -1, 1 ),
-            new Among ( "kin", -1, 1 ),
-            new Among ( "h\u00E4n", -1, 1 ),
-            new Among ( "k\u00E4\u00E4n", -1, 1 ),
-            new Among ( "ko", -1, 1 ),
-            new Among ( "p\u00E4", -1, 1 ),
-            new Among ( "k\u00F6", -1, 1 )
-        ];
-
-        var a_1 = [
-            new Among ( "lla", -1, -1 ),
-            new Among ( "na", -1, -1 ),
-            new Among ( "ssa", -1, -1 ),
-            new Among ( "ta", -1, -1 ),
-            new Among ( "lta", 3, -1 ),
-            new Among ( "sta", 3, -1 )
-        ];
-
-        var a_2 = [
-            new Among ( "ll\u00E4", -1, -1 ),
-            new Among ( "n\u00E4", -1, -1 ),
-            new Among ( "ss\u00E4", -1, -1 ),
-            new Among ( "t\u00E4", -1, -1 ),
-            new Among ( "lt\u00E4", 3, -1 ),
-            new Among ( "st\u00E4", 3, -1 )
-        ];
-
-        var a_3 = [
-            new Among ( "lle", -1, -1 ),
-            new Among ( "ine", -1, -1 )
-        ];
-
-        var a_4 = [
-            new Among ( "nsa", -1, 3 ),
-            new Among ( "mme", -1, 3 ),
-            new Among ( "nne", -1, 3 ),
-            new Among ( "ni", -1, 2 ),
-            new Among ( "si", -1, 1 ),
-            new Among ( "an", -1, 4 ),
-            new Among ( "en", -1, 6 ),
-            new Among ( "\u00E4n", -1, 5 ),
-            new Among ( "ns\u00E4", -1, 3 )
-        ];
-
-        var a_5 = [
-            new Among ( "aa", -1, -1 ),
-            new Among ( "ee", -1, -1 ),
-            new Among ( "ii", -1, -1 ),
-            new Among ( "oo", -1, -1 ),
-            new Among ( "uu", -1, -1 ),
-            new Among ( "\u00E4\u00E4", -1, -1 ),
-            new Among ( "\u00F6\u00F6", -1, -1 )
-        ];
-
-        var a_6 = [
-            new Among ( "a", -1, 8 ),
-            new Among ( "lla", 0, -1 ),
-            new Among ( "na", 0, -1 ),
-            new Among ( "ssa", 0, -1 ),
-            new Among ( "ta", 0, -1 ),
-            new Among ( "lta", 4, -1 ),
-            new Among ( "sta", 4, -1 ),
-            new Among ( "tta", 4, 9 ),
-            new Among ( "lle", -1, -1 ),
-            new Among ( "ine", -1, -1 ),
-            new Among ( "ksi", -1, -1 ),
-            new Among ( "n", -1, 7 ),
-            new Among ( "han", 11, 1 ),
-            new Among ( "den", 11, -1, r_VI ),
-            new Among ( "seen", 11, -1, r_LONG ),
-            new Among ( "hen", 11, 2 ),
-            new Among ( "tten", 11, -1, r_VI ),
-            new Among ( "hin", 11, 3 ),
-            new Among ( "siin", 11, -1, r_VI ),
-            new Among ( "hon", 11, 4 ),
-            new Among ( "h\u00E4n", 11, 5 ),
-            new Among ( "h\u00F6n", 11, 6 ),
-            new Among ( "\u00E4", -1, 8 ),
-            new Among ( "ll\u00E4", 22, -1 ),
-            new Among ( "n\u00E4", 22, -1 ),
-            new Among ( "ss\u00E4", 22, -1 ),
-            new Among ( "t\u00E4", 22, -1 ),
-            new Among ( "lt\u00E4", 26, -1 ),
-            new Among ( "st\u00E4", 26, -1 ),
-            new Among ( "tt\u00E4", 26, 9 )
-        ];
-
-        var a_7 = [
-            new Among ( "eja", -1, -1 ),
-            new Among ( "mma", -1, 1 ),
-            new Among ( "imma", 1, -1 ),
-            new Among ( "mpa", -1, 1 ),
-            new Among ( "impa", 3, -1 ),
-            new Among ( "mmi", -1, 1 ),
-            new Among ( "immi", 5, -1 ),
-            new Among ( "mpi", -1, 1 ),
-            new Among ( "impi", 7, -1 ),
-            new Among ( "ej\u00E4", -1, -1 ),
-            new Among ( "mm\u00E4", -1, 1 ),
-            new Among ( "imm\u00E4", 10, -1 ),
-            new Among ( "mp\u00E4", -1, 1 ),
-            new Among ( "imp\u00E4", 12, -1 )
-        ];
-
-        var a_8 = [
-            new Among ( "i", -1, -1 ),
-            new Among ( "j", -1, -1 )
-        ];
-
-        var a_9 = [
-            new Among ( "mma", -1, 1 ),
-            new Among ( "imma", 0, -1 )
-        ];
-
-        var g_AEI = [17, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8 ];
-
-        var g_V1 = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32 ];
-
-        var g_V2 = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32 ];
-
-        var g_particle_end = [17, 97, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32 ];
-
-        var B_ending_removed;
-        var S_x = "";
-        var I_p2;
-        var I_p1;
-
-        var sbp = new SnowballProgram();
-
-        function r_mark_regions() {
-            var v_1;
-            var v_3;
-            I_p1 = sbp.limit;
-            I_p2 = sbp.limit;
-            golab0: while(true)
+		diff = this.current.charCodeAt(c + common) - w[0].charCodeAt(i2);
+		if (diff != 0) break;
+		common++;
+	    }
+	    if (diff < 0)
             {
-                v_1 = sbp.cursor;
-                lab1: do {
-                    if (!(sbp.in_grouping(g_V1, 97, 246)))
-                    {
-                        break lab1;
-                    }
-                    sbp.cursor = v_1;
-                    break golab0;
-                } while (false);
-                sbp.cursor = v_1;
-                if (sbp.cursor >= sbp.limit)
+		j = k;
+		common_j = common;
+	    }
+            else
+            {
+		i = k;
+		common_i = common;
+	    }
+	    if (j - i <= 1)
+            {
+		if (i > 0) break; // v->s has been inspected
+		if (j == i) break; // only one item in v
+
+		// - but now we need to go round once more to get
+		// v->s inspected. This looks messy, but is actually
+		// the optimal approach.
+
+		if (first_key_inspected) break;
+		first_key_inspected = true;
+	    }
+	}
+	do {
+	    var w = v[i];
+	    if (common_i >= w[0].length)
+            {
+		this.cursor = c + w[0].length;
+		if (w.length < 4) return w[2];
+		var res = w[3](this);
+		this.cursor = c + w[0].length;
+		if (res) return w[2];
+	    }
+	    i = w[1];
+	} while (i >= 0);
+	return 0;
+    };
+
+    // find_among_b is for backwards processing. Same comments apply
+    this.find_among_b = function(v)
+    {
+	var i = 0;
+	var j = v.length
+
+	var c = this.cursor;
+	var lb = this.limit_backward;
+
+	var common_i = 0;
+	var common_j = 0;
+
+	var first_key_inspected = false;
+
+	while (true)
+        {
+	    var k = i + ((j - i) >> 1);
+	    var diff = 0;
+	    var common = common_i < common_j ? common_i : common_j;
+	    var w = v[k];
+	    var i2;
+	    for (i2 = w[0].length - 1 - common; i2 >= 0; i2--)
+            {
+		if (c - common == lb)
                 {
-                    return false;
-                }
-                sbp.cursor++;
-            }
-            golab2: while(true)
+		    diff = -1;
+		    break;
+		}
+		diff = this.current.charCodeAt(c - 1 - common) - w[0].charCodeAt(i2);
+		if (diff != 0) break;
+		common++;
+	    }
+	    if (diff < 0)
             {
-                lab3: do {
-                    if (!(sbp.out_grouping(g_V1, 97, 246)))
-                    {
-                        break lab3;
-                    }
-                    break golab2;
-                } while (false);
-                if (sbp.cursor >= sbp.limit)
-                {
-                    return false;
-                }
-                sbp.cursor++;
-            }
-            I_p1 = sbp.cursor;
-            golab4: while(true)
+		j = k;
+		common_j = common;
+	    }
+            else
             {
-                v_3 = sbp.cursor;
-                lab5: do {
-                    if (!(sbp.in_grouping(g_V1, 97, 246)))
-                    {
-                        break lab5;
-                    }
-                    sbp.cursor = v_3;
-                    break golab4;
-                } while (false);
-                sbp.cursor = v_3;
-                if (sbp.cursor >= sbp.limit)
-                {
-                    return false;
-                }
-                sbp.cursor++;
-            }
-            golab6: while(true)
+		i = k;
+		common_i = common;
+	    }
+	    if (j - i <= 1)
             {
-                lab7: do {
-                    if (!(sbp.out_grouping(g_V1, 97, 246)))
-                    {
-                        break lab7;
-                    }
-                    break golab6;
-                } while (false);
-                if (sbp.cursor >= sbp.limit)
-                {
-                    return false;
-                }
-                sbp.cursor++;
-            }
-            I_p2 = sbp.cursor;
-            return true;
-        }
+		if (i > 0) break;
+		if (j == i) break;
+		if (first_key_inspected) break;
+		first_key_inspected = true;
+	    }
+	}
+	do {
+	    var w = v[i];
+	    if (common_i >= w[0].length)
+            {
+		this.cursor = c - w[0].length;
+		if (w.length < 4) return w[2];
+		var res = w[3](this);
+		this.cursor = c - w[0].length;
+		if (res) return w[2];
+	    }
+	    i = w[1];
+	} while (i >= 0);
+	return 0;
+    };
 
-        function r_R2() {
-            if (!(I_p2 <= sbp.cursor))
-            {
-                return false;
-            }
-            return true;
-        }
+    /* to replace chars between c_bra and c_ket in this.current by the
+     * chars in s.
+     */
+    this.replace_s = function(c_bra, c_ket, s)
+    {
+	var adjustment = s.length - (c_ket - c_bra);
+	this.current = this.current.slice(0, c_bra) + s + this.current.slice(c_ket);
+	this.limit += adjustment;
+	if (this.cursor >= c_ket) this.cursor += adjustment;
+	else if (this.cursor > c_bra) this.cursor = c_bra;
+	return adjustment;
+    };
 
-        function r_particle_etc() {
-            var among_var;
-            var v_1;
-            var v_2;
-            v_1 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p1)
-            {
-                return false;
-            }
-            sbp.cursor = I_p1;
-            v_2 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_1;
-            sbp.ket = sbp.cursor;
-            among_var = sbp.find_among_b(a_0, 10);
-            if (among_var == 0)
-            {
-                sbp.limit_backward = v_2;
-                return false;
-            }
-            sbp.bra = sbp.cursor;
-            sbp.limit_backward = v_2;
-            switch(among_var) {
-                case 0:
-                    return false;
-                case 1:
-                    if (!(sbp.in_grouping_b(g_particle_end, 97, 246)))
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if (!r_R2())
-                    {
-                        return false;
-                    }
-                    break;
-            }
-            sbp.slice_del();
-            return true;
+    this.slice_check = function()
+    {
+        if (this.bra < 0 ||
+            this.bra > this.ket ||
+            this.ket > this.limit ||
+            this.limit > this.current.length)
+        {
+            return false;
         }
+        return true;
+    };
 
-        function r_possessive() {
-            var among_var;
-            var v_1;
-            var v_2;
-            var v_3;
-            v_1 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p1)
-            {
-                return false;
-            }
-            sbp.cursor = I_p1;
-            v_2 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_1;
-            sbp.ket = sbp.cursor;
-            among_var = sbp.find_among_b(a_4, 9);
-            if (among_var == 0)
-            {
-                sbp.limit_backward = v_2;
-                return false;
-            }
-            sbp.bra = sbp.cursor;
-            sbp.limit_backward = v_2;
-            switch(among_var) {
-                case 0:
-                    return false;
-                case 1:
-                    {
-                        v_3 = sbp.limit - sbp.cursor;
-                        lab0: do {
-                            if (!(sbp.eq_s_b(1, "k")))
-                            {
-                                break lab0;
-                            }
-                            return false;
-                        } while (false);
-                        sbp.cursor = sbp.limit - v_3;
-                    }
-                    sbp.slice_del();
-                    break;
-                case 2:
-                    sbp.slice_del();
-                    sbp.ket = sbp.cursor;
-                    if (!(sbp.eq_s_b(3, "kse")))
-                    {
-                        return false;
-                    }
-                    sbp.bra = sbp.cursor;
-                    sbp.slice_from("ksi");
-                    break;
-                case 3:
-                    sbp.slice_del();
-                    break;
-                case 4:
-                    if (sbp.find_among_b(a_1, 6) == 0)
-                    {
-                        return false;
-                    }
-                    sbp.slice_del();
-                    break;
-                case 5:
-                    if (sbp.find_among_b(a_2, 6) == 0)
-                    {
-                        return false;
-                    }
-                    sbp.slice_del();
-                    break;
-                case 6:
-                    if (sbp.find_among_b(a_3, 2) == 0)
-                    {
-                        return false;
-                    }
-                    sbp.slice_del();
-                    break;
-            }
-            return true;
+    this.slice_from = function(s)
+    {
+        var result = false;
+	if (this.slice_check())
+        {
+	    this.replace_s(this.bra, this.ket, s);
+            result = true;
         }
+        return result;
+    };
 
-        function r_LONG() {
-            if (sbp.find_among_b(a_5, 7) == 0)
-            {
-                return false;
-            }
-            return true;
+    this.slice_del = function()
+    {
+	return this.slice_from("");
+    };
+
+    this.insert = function(c_bra, c_ket, s)
+    {
+        var adjustment = this.replace_s(c_bra, c_ket, s);
+	if (c_bra <= this.bra) this.bra += adjustment;
+	if (c_bra <= this.ket) this.ket += adjustment;
+    };
+
+    this.slice_to = function()
+    {
+        var result = '';
+	if (this.slice_check())
+        {
+            result = this.current.slice(this.bra, this.ket);
         }
+        return result;
+    };
 
-        function r_VI() {
-            if (!(sbp.eq_s_b(1, "i")))
-            {
-                return false;
-            }
-            if (!(sbp.in_grouping_b(g_V2, 97, 246)))
-            {
-                return false;
-            }
-            return true;
-        }
+    this.assign_to = function()
+    {
+        return this.current.slice(0, this.limit);
+    };
+};
 
-        function r_case_ending() {
-            var among_var;
-            var v_1;
-            var v_2;
-            var v_3;
-            var v_4;
-            var v_5;
-            v_1 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p1)
-            {
-                return false;
-            }
-            sbp.cursor = I_p1;
-            v_2 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_1;
-            sbp.ket = sbp.cursor;
-            among_var = sbp.find_among_b(a_6, 30);
-            if (among_var == 0)
-            {
-                sbp.limit_backward = v_2;
-                return false;
-            }
-            sbp.bra = sbp.cursor;
-            sbp.limit_backward = v_2;
-            switch(among_var) {
-                case 0:
-                    return false;
-                case 1:
-                    if (!(sbp.eq_s_b(1, "a")))
-                    {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if (!(sbp.eq_s_b(1, "e")))
-                    {
-                        return false;
-                    }
-                    break;
-                case 3:
-                    if (!(sbp.eq_s_b(1, "i")))
-                    {
-                        return false;
-                    }
-                    break;
-                case 4:
-                    if (!(sbp.eq_s_b(1, "o")))
-                    {
-                        return false;
-                    }
-                    break;
-                case 5:
-                    if (!(sbp.eq_s_b(1, "\u00E4")))
-                    {
-                        return false;
-                    }
-                    break;
-                case 6:
-                    if (!(sbp.eq_s_b(1, "\u00F6")))
-                    {
-                        return false;
-                    }
-                    break;
-                case 7:
-                    v_3 = sbp.limit - sbp.cursor;
-                    lab0: do {
-                        v_4 = sbp.limit - sbp.cursor;
-                        lab1: do {
-                            v_5 = sbp.limit - sbp.cursor;
-                            lab2: do {
-                                if (!r_LONG())
-                                {
-                                    break lab2;
-                                }
-                                break lab1;
-                            } while (false);
-                            sbp.cursor = sbp.limit - v_5;
-                            if (!(sbp.eq_s_b(2, "ie")))
-                            {
-                                sbp.cursor = sbp.limit - v_3;
-                                break lab0;
-                            }
-                        } while (false);
-                        sbp.cursor = sbp.limit - v_4;
-                        if (sbp.cursor <= sbp.limit_backward)
-                        {
-                            sbp.cursor = sbp.limit - v_3;
-                            break lab0;
-                        }
-                        sbp.cursor--;
-                        sbp.bra = sbp.cursor;
-                    } while (false);
-                    break;
-                case 8:
-                    if (!(sbp.in_grouping_b(g_V1, 97, 246)))
-                    {
-                        return false;
-                    }
-                    if (!(sbp.out_grouping_b(g_V1, 97, 246)))
-                    {
-                        return false;
-                    }
-                    break;
-                case 9:
-                    if (!(sbp.eq_s_b(1, "e")))
-                    {
-                        return false;
-                    }
-                    break;
-            }
-            sbp.slice_del();
-            B_ending_removed = true;
-            return true;
-        }
 
-        function r_other_endings() {
-            var among_var;
-            var v_1;
-            var v_2;
-            var v_3;
-            v_1 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p2)
-            {
-                return false;
-            }
-            sbp.cursor = I_p2;
-            v_2 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_1;
-            sbp.ket = sbp.cursor;
-            among_var = sbp.find_among_b(a_7, 14);
-            if (among_var == 0)
-            {
-                sbp.limit_backward = v_2;
-                return false;
-            }
-            sbp.bra = sbp.cursor;
-            sbp.limit_backward = v_2;
-            switch(among_var) {
-                case 0:
-                    return false;
-                case 1:
-                    {
-                        v_3 = sbp.limit - sbp.cursor;
-                        lab0: do {
-                            if (!(sbp.eq_s_b(2, "po")))
-                            {
-                                break lab0;
-                            }
-                            return false;
-                        } while (false);
-                        sbp.cursor = sbp.limit - v_3;
-                    }
-                    break;
-            }
-            sbp.slice_del();
-            return true;
-        }
+/*==============================================*/
 
-        function r_i_plural() {
-            var v_1;
-            var v_2;
-            v_1 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p1)
-            {
-                return false;
-            }
-            sbp.cursor = I_p1;
-            v_2 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_1;
-            sbp.ket = sbp.cursor;
-            if (sbp.find_among_b(a_8, 2) == 0)
-            {
-                sbp.limit_backward = v_2;
-                return false;
-            }
-            sbp.bra = sbp.cursor;
-            sbp.limit_backward = v_2;
-            sbp.slice_del();
-            return true;
-        }
+// Generated by Snowball 2.0.0 - https://snowballstem.org/
 
-        function r_t_plural() {
-            var among_var;
-            var v_1;
-            var v_2;
-            var v_3;
-            var v_4;
-            var v_5;
-            var v_6;
-            v_1 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p1)
-            {
-                return false;
-            }
-            sbp.cursor = I_p1;
-            v_2 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_1;
-            sbp.ket = sbp.cursor;
-            if (!(sbp.eq_s_b(1, "t")))
-            {
-                sbp.limit_backward = v_2;
-                return false;
-            }
-            sbp.bra = sbp.cursor;
-            v_3 = sbp.limit - sbp.cursor;
-            if (!(sbp.in_grouping_b(g_V1, 97, 246)))
-            {
-                sbp.limit_backward = v_2;
-                return false;
-            }
-            sbp.cursor = sbp.limit - v_3;
-            sbp.slice_del();
-            sbp.limit_backward = v_2;
-            v_4 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p2)
-            {
-                return false;
-            }
-            sbp.cursor = I_p2;
-            v_5 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_4;
-            sbp.ket = sbp.cursor;
-            among_var = sbp.find_among_b(a_9, 2);
-            if (among_var == 0)
-            {
-                sbp.limit_backward = v_5;
-                return false;
-            }
-            sbp.bra = sbp.cursor;
-            sbp.limit_backward = v_5;
-            switch(among_var) {
-                case 0:
-                    return false;
-                case 1:
-                    {
-                        v_6 = sbp.limit - sbp.cursor;
-                        lab0: do {
-                            if (!(sbp.eq_s_b(2, "po")))
-                            {
-                                break lab0;
-                            }
-                            return false;
-                        } while (false);
-                        sbp.cursor = sbp.limit - v_6;
-                    }
-                    break;
-            }
-            sbp.slice_del();
-            return true;
-        }
+/**@constructor*/
+FinnishStemmer = function() {
+    var base = new BaseStemmer();
+    /** @const */ var a_0 = [
+        ["pa", -1, 1],
+        ["sti", -1, 2],
+        ["kaan", -1, 1],
+        ["han", -1, 1],
+        ["kin", -1, 1],
+        ["h\u00E4n", -1, 1],
+        ["k\u00E4\u00E4n", -1, 1],
+        ["ko", -1, 1],
+        ["p\u00E4", -1, 1],
+        ["k\u00F6", -1, 1]
+    ];
 
-        function r_tidy() {
-            var v_1;
-            var v_2;
-            var v_3;
-            var v_4;
-            var v_5;
-            var v_6;
-            var v_7;
-            var v_8;
-            var v_9;
-            v_1 = sbp.limit - sbp.cursor;
-            if (sbp.cursor < I_p1)
-            {
-                return false;
-            }
-            sbp.cursor = I_p1;
-            v_2 = sbp.limit_backward;
-            sbp.limit_backward = sbp.cursor;
-            sbp.cursor = sbp.limit - v_1;
-            v_3 = sbp.limit - sbp.cursor;
-            lab0: do {
-                v_4 = sbp.limit - sbp.cursor;
-                if (!r_LONG())
-                {
-                    break lab0;
-                }
-                sbp.cursor = sbp.limit - v_4;
-                sbp.ket = sbp.cursor;
-                if (sbp.cursor <= sbp.limit_backward)
-                {
-                    break lab0;
-                }
-                sbp.cursor--;
-                sbp.bra = sbp.cursor;
-                sbp.slice_del();
-            } while (false);
-            sbp.cursor = sbp.limit - v_3;
-            v_5 = sbp.limit - sbp.cursor;
-            lab1: do {
-                sbp.ket = sbp.cursor;
-                if (!(sbp.in_grouping_b(g_AEI, 97, 228)))
+    /** @const */ var a_1 = [
+        ["lla", -1, -1],
+        ["na", -1, -1],
+        ["ssa", -1, -1],
+        ["ta", -1, -1],
+        ["lta", 3, -1],
+        ["sta", 3, -1]
+    ];
+
+    /** @const */ var a_2 = [
+        ["ll\u00E4", -1, -1],
+        ["n\u00E4", -1, -1],
+        ["ss\u00E4", -1, -1],
+        ["t\u00E4", -1, -1],
+        ["lt\u00E4", 3, -1],
+        ["st\u00E4", 3, -1]
+    ];
+
+    /** @const */ var a_3 = [
+        ["lle", -1, -1],
+        ["ine", -1, -1]
+    ];
+
+    /** @const */ var a_4 = [
+        ["nsa", -1, 3],
+        ["mme", -1, 3],
+        ["nne", -1, 3],
+        ["ni", -1, 2],
+        ["si", -1, 1],
+        ["an", -1, 4],
+        ["en", -1, 6],
+        ["\u00E4n", -1, 5],
+        ["ns\u00E4", -1, 3]
+    ];
+
+    /** @const */ var a_5 = [
+        ["aa", -1, -1],
+        ["ee", -1, -1],
+        ["ii", -1, -1],
+        ["oo", -1, -1],
+        ["uu", -1, -1],
+        ["\u00E4\u00E4", -1, -1],
+        ["\u00F6\u00F6", -1, -1]
+    ];
+
+    /** @const */ var a_6 = [
+        ["a", -1, 8],
+        ["lla", 0, -1],
+        ["na", 0, -1],
+        ["ssa", 0, -1],
+        ["ta", 0, -1],
+        ["lta", 4, -1],
+        ["sta", 4, -1],
+        ["tta", 4, 2],
+        ["lle", -1, -1],
+        ["ine", -1, -1],
+        ["ksi", -1, -1],
+        ["n", -1, 7],
+        ["han", 11, 1],
+        ["den", 11, -1, r_VI],
+        ["seen", 11, -1, r_LONG],
+        ["hen", 11, 2],
+        ["tten", 11, -1, r_VI],
+        ["hin", 11, 3],
+        ["siin", 11, -1, r_VI],
+        ["hon", 11, 4],
+        ["h\u00E4n", 11, 5],
+        ["h\u00F6n", 11, 6],
+        ["\u00E4", -1, 8],
+        ["ll\u00E4", 22, -1],
+        ["n\u00E4", 22, -1],
+        ["ss\u00E4", 22, -1],
+        ["t\u00E4", 22, -1],
+        ["lt\u00E4", 26, -1],
+        ["st\u00E4", 26, -1],
+        ["tt\u00E4", 26, 2]
+    ];
+
+    /** @const */ var a_7 = [
+        ["eja", -1, -1],
+        ["mma", -1, 1],
+        ["imma", 1, -1],
+        ["mpa", -1, 1],
+        ["impa", 3, -1],
+        ["mmi", -1, 1],
+        ["immi", 5, -1],
+        ["mpi", -1, 1],
+        ["impi", 7, -1],
+        ["ej\u00E4", -1, -1],
+        ["mm\u00E4", -1, 1],
+        ["imm\u00E4", 10, -1],
+        ["mp\u00E4", -1, 1],
+        ["imp\u00E4", 12, -1]
+    ];
+
+    /** @const */ var a_8 = [
+        ["i", -1, -1],
+        ["j", -1, -1]
+    ];
+
+    /** @const */ var a_9 = [
+        ["mma", -1, 1],
+        ["imma", 0, -1]
+    ];
+
+    /** @const */ var /** Array<int> */ g_AEI = [17, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8];
+
+    /** @const */ var /** Array<int> */ g_C = [119, 223, 119, 1];
+
+    /** @const */ var /** Array<int> */ g_V1 = [17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
+
+    /** @const */ var /** Array<int> */ g_V2 = [17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
+
+    /** @const */ var /** Array<int> */ g_particle_end = [17, 97, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 32];
+
+    var /** boolean */ B_ending_removed = false;
+    var /** string */ S_x = '';
+    var /** number */ I_p2 = 0;
+    var /** number */ I_p1 = 0;
+
+
+    /** @return {boolean} */
+    function r_mark_regions() {
+        I_p1 = base.limit;
+        I_p2 = base.limit;
+        golab0: while(true)
+        {
+            var /** number */ v_1 = base.cursor;
+            lab1: {
+                if (!(base.in_grouping(g_V1, 97, 246)))
                 {
                     break lab1;
                 }
-                sbp.bra = sbp.cursor;
-                if (!(sbp.out_grouping_b(g_V1, 97, 246)))
-                {
-                    break lab1;
-                }
-                sbp.slice_del();
-            } while (false);
-            sbp.cursor = sbp.limit - v_5;
-            v_6 = sbp.limit - sbp.cursor;
-            lab2: do {
-                sbp.ket = sbp.cursor;
-                if (!(sbp.eq_s_b(1, "j")))
-                {
-                    break lab2;
-                }
-                sbp.bra = sbp.cursor;
-                lab3: do {
-                    v_7 = sbp.limit - sbp.cursor;
-                    lab4: do {
-                        if (!(sbp.eq_s_b(1, "o")))
-                        {
-                            break lab4;
-                        }
-                        break lab3;
-                    } while (false);
-                    sbp.cursor = sbp.limit - v_7;
-                    if (!(sbp.eq_s_b(1, "u")))
-                    {
-                        break lab2;
-                    }
-                } while (false);
-                sbp.slice_del();
-            } while (false);
-            sbp.cursor = sbp.limit - v_6;
-            v_8 = sbp.limit - sbp.cursor;
-            lab5: do {
-                sbp.ket = sbp.cursor;
-                if (!(sbp.eq_s_b(1, "o")))
-                {
-                    break lab5;
-                }
-                sbp.bra = sbp.cursor;
-                if (!(sbp.eq_s_b(1, "j")))
-                {
-                    break lab5;
-                }
-                sbp.slice_del();
-            } while (false);
-            sbp.cursor = sbp.limit - v_8;
-            sbp.limit_backward = v_2;
-            golab6: while(true)
-            {
-                v_9 = sbp.limit - sbp.cursor;
-                lab7: do {
-                    if (!(sbp.out_grouping_b(g_V1, 97, 246)))
-                    {
-                        break lab7;
-                    }
-                    sbp.cursor = sbp.limit - v_9;
-                    break golab6;
-                } while (false);
-                sbp.cursor = sbp.limit - v_9;
-                if (sbp.cursor <= sbp.limit_backward)
-                {
-                    return false;
-                }
-                sbp.cursor--;
+                base.cursor = v_1;
+                break golab0;
             }
-            sbp.ket = sbp.cursor;
-            if (sbp.cursor <= sbp.limit_backward)
+            base.cursor = v_1;
+            if (base.cursor >= base.limit)
             {
                 return false;
             }
-            sbp.cursor--;
-            sbp.bra = sbp.cursor;
-            S_x = sbp.slice_to(S_x);
-            if (!(sbp.eq_v_b(S_x)))
-            {
-                return false;
-            }
-            sbp.slice_del();
-            return true;
+            base.cursor++;
         }
-
-        this.stem = function() {
-            var v_1;
-            var v_2;
-            var v_3;
-            var v_4;
-            var v_5;
-            var v_6;
-            var v_7;
-            var v_8;
-            var v_9;
-            v_1 = sbp.cursor;
-            lab0: do {
-                if (!r_mark_regions())
-                {
-                    break lab0;
-                }
-            } while (false);
-            sbp.cursor = v_1;
-            B_ending_removed = false;
-            sbp.limit_backward = sbp.cursor; sbp.cursor = sbp.limit;
-            v_2 = sbp.limit - sbp.cursor;
-            lab1: do {
-                if (!r_particle_etc())
-                {
-                    break lab1;
-                }
-            } while (false);
-            sbp.cursor = sbp.limit - v_2;
-            v_3 = sbp.limit - sbp.cursor;
-            lab2: do {
-                if (!r_possessive())
-                {
-                    break lab2;
-                }
-            } while (false);
-            sbp.cursor = sbp.limit - v_3;
-            v_4 = sbp.limit - sbp.cursor;
-            lab3: do {
-                if (!r_case_ending())
+        golab2: while(true)
+        {
+            lab3: {
+                if (!(base.out_grouping(g_V1, 97, 246)))
                 {
                     break lab3;
                 }
-            } while (false);
-            sbp.cursor = sbp.limit - v_4;
-            v_5 = sbp.limit - sbp.cursor;
-            lab4: do {
-                if (!r_other_endings())
-                {
-                    break lab4;
-                }
-            } while (false);
-            sbp.cursor = sbp.limit - v_5;
-            lab5: do {
-                v_6 = sbp.limit - sbp.cursor;
-                lab6: do {
-                    if (!(B_ending_removed))
-                    {
-                        break lab6;
-                    }
-                    v_7 = sbp.limit - sbp.cursor;
-                    lab7: do {
-                        if (!r_i_plural())
-                        {
-                            break lab7;
-                        }
-                    } while (false);
-                    sbp.cursor = sbp.limit - v_7;
-                    break lab5;
-                } while (false);
-                sbp.cursor = sbp.limit - v_6;
-                v_8 = sbp.limit - sbp.cursor;
-                lab8: do {
-                    if (!r_t_plural())
-                    {
-                        break lab8;
-                    }
-                } while (false);
-                sbp.cursor = sbp.limit - v_8;
-            } while (false);
-            v_9 = sbp.limit - sbp.cursor;
-            lab9: do {
-                if (!r_tidy())
-                {
-                    break lab9;
-                }
-            } while (false);
-            sbp.cursor = sbp.limit - v_9;
-            sbp.cursor = sbp.limit_backward;
-            return true;
+                break golab2;
+            }
+            if (base.cursor >= base.limit)
+            {
+                return false;
+            }
+            base.cursor++;
         }
+        I_p1 = base.cursor;
+        golab4: while(true)
+        {
+            var /** number */ v_3 = base.cursor;
+            lab5: {
+                if (!(base.in_grouping(g_V1, 97, 246)))
+                {
+                    break lab5;
+                }
+                base.cursor = v_3;
+                break golab4;
+            }
+            base.cursor = v_3;
+            if (base.cursor >= base.limit)
+            {
+                return false;
+            }
+            base.cursor++;
+        }
+        golab6: while(true)
+        {
+            lab7: {
+                if (!(base.out_grouping(g_V1, 97, 246)))
+                {
+                    break lab7;
+                }
+                break golab6;
+            }
+            if (base.cursor >= base.limit)
+            {
+                return false;
+            }
+            base.cursor++;
+        }
+        I_p2 = base.cursor;
+        return true;
+    };
 
-        this.setCurrent = function(word) {
-                sbp.setCurrent(word);
-        };
+    /** @return {boolean} */
+    function r_R2() {
+        if (!(I_p2 <= base.cursor))
+        {
+            return false;
+        }
+        return true;
+    };
 
-        this.getCurrent = function() {
-                return sbp.getCurrent();
-        };
-}
+    /** @return {boolean} */
+    function r_particle_etc() {
+        var /** number */ among_var;
+        if (base.cursor < I_p1)
+        {
+            return false;
+        }
+        var /** number */ v_2 = base.limit_backward;
+        base.limit_backward = I_p1;
+        base.ket = base.cursor;
+        among_var = base.find_among_b(a_0);
+        if (among_var == 0)
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        base.bra = base.cursor;
+        base.limit_backward = v_2;
+        switch (among_var) {
+            case 1:
+                if (!(base.in_grouping_b(g_particle_end, 97, 246)))
+                {
+                    return false;
+                }
+                break;
+            case 2:
+                if (!r_R2())
+                {
+                    return false;
+                }
+                break;
+        }
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        return true;
+    };
 
-return new finnishStemmer();
+    /** @return {boolean} */
+    function r_possessive() {
+        var /** number */ among_var;
+        if (base.cursor < I_p1)
+        {
+            return false;
+        }
+        var /** number */ v_2 = base.limit_backward;
+        base.limit_backward = I_p1;
+        base.ket = base.cursor;
+        among_var = base.find_among_b(a_4);
+        if (among_var == 0)
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        base.bra = base.cursor;
+        base.limit_backward = v_2;
+        switch (among_var) {
+            case 1:
+                {
+                    var /** number */ v_3 = base.limit - base.cursor;
+                    lab0: {
+                        if (!(base.eq_s_b("k")))
+                        {
+                            break lab0;
+                        }
+                        return false;
+                    }
+                    base.cursor = base.limit - v_3;
+                }
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
+            case 2:
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                base.ket = base.cursor;
+                if (!(base.eq_s_b("kse")))
+                {
+                    return false;
+                }
+                base.bra = base.cursor;
+                if (!base.slice_from("ksi"))
+                {
+                    return false;
+                }
+                break;
+            case 3:
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
+            case 4:
+                if (base.find_among_b(a_1) == 0)
+                {
+                    return false;
+                }
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
+            case 5:
+                if (base.find_among_b(a_2) == 0)
+                {
+                    return false;
+                }
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
+            case 6:
+                if (base.find_among_b(a_3) == 0)
+                {
+                    return false;
+                }
+                if (!base.slice_del())
+                {
+                    return false;
+                }
+                break;
+        }
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_LONG() {
+        if (base.find_among_b(a_5) == 0)
+        {
+            return false;
+        }
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_VI() {
+        if (!(base.eq_s_b("i")))
+        {
+            return false;
+        }
+        if (!(base.in_grouping_b(g_V2, 97, 246)))
+        {
+            return false;
+        }
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_case_ending() {
+        var /** number */ among_var;
+        if (base.cursor < I_p1)
+        {
+            return false;
+        }
+        var /** number */ v_2 = base.limit_backward;
+        base.limit_backward = I_p1;
+        base.ket = base.cursor;
+        among_var = base.find_among_b(a_6);
+        if (among_var == 0)
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        base.bra = base.cursor;
+        base.limit_backward = v_2;
+        switch (among_var) {
+            case 1:
+                if (!(base.eq_s_b("a")))
+                {
+                    return false;
+                }
+                break;
+            case 2:
+                if (!(base.eq_s_b("e")))
+                {
+                    return false;
+                }
+                break;
+            case 3:
+                if (!(base.eq_s_b("i")))
+                {
+                    return false;
+                }
+                break;
+            case 4:
+                if (!(base.eq_s_b("o")))
+                {
+                    return false;
+                }
+                break;
+            case 5:
+                if (!(base.eq_s_b("\u00E4")))
+                {
+                    return false;
+                }
+                break;
+            case 6:
+                if (!(base.eq_s_b("\u00F6")))
+                {
+                    return false;
+                }
+                break;
+            case 7:
+                var /** number */ v_3 = base.limit - base.cursor;
+                lab0: {
+                    var /** number */ v_4 = base.limit - base.cursor;
+                    lab1: {
+                        var /** number */ v_5 = base.limit - base.cursor;
+                        lab2: {
+                            if (!r_LONG())
+                            {
+                                break lab2;
+                            }
+                            break lab1;
+                        }
+                        base.cursor = base.limit - v_5;
+                        if (!(base.eq_s_b("ie")))
+                        {
+                            base.cursor = base.limit - v_3;
+                            break lab0;
+                        }
+                    }
+                    base.cursor = base.limit - v_4;
+                    if (base.cursor <= base.limit_backward)
+                    {
+                        base.cursor = base.limit - v_3;
+                        break lab0;
+                    }
+                    base.cursor--;
+                    base.bra = base.cursor;
+                }
+                break;
+            case 8:
+                if (!(base.in_grouping_b(g_V1, 97, 246)))
+                {
+                    return false;
+                }
+                if (!(base.in_grouping_b(g_C, 98, 122)))
+                {
+                    return false;
+                }
+                break;
+        }
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        B_ending_removed = true;
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_other_endings() {
+        var /** number */ among_var;
+        if (base.cursor < I_p2)
+        {
+            return false;
+        }
+        var /** number */ v_2 = base.limit_backward;
+        base.limit_backward = I_p2;
+        base.ket = base.cursor;
+        among_var = base.find_among_b(a_7);
+        if (among_var == 0)
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        base.bra = base.cursor;
+        base.limit_backward = v_2;
+        switch (among_var) {
+            case 1:
+                {
+                    var /** number */ v_3 = base.limit - base.cursor;
+                    lab0: {
+                        if (!(base.eq_s_b("po")))
+                        {
+                            break lab0;
+                        }
+                        return false;
+                    }
+                    base.cursor = base.limit - v_3;
+                }
+                break;
+        }
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_i_plural() {
+        if (base.cursor < I_p1)
+        {
+            return false;
+        }
+        var /** number */ v_2 = base.limit_backward;
+        base.limit_backward = I_p1;
+        base.ket = base.cursor;
+        if (base.find_among_b(a_8) == 0)
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        base.bra = base.cursor;
+        base.limit_backward = v_2;
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_t_plural() {
+        var /** number */ among_var;
+        if (base.cursor < I_p1)
+        {
+            return false;
+        }
+        var /** number */ v_2 = base.limit_backward;
+        base.limit_backward = I_p1;
+        base.ket = base.cursor;
+        if (!(base.eq_s_b("t")))
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        base.bra = base.cursor;
+        var /** number */ v_3 = base.limit - base.cursor;
+        if (!(base.in_grouping_b(g_V1, 97, 246)))
+        {
+            base.limit_backward = v_2;
+            return false;
+        }
+        base.cursor = base.limit - v_3;
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        base.limit_backward = v_2;
+        if (base.cursor < I_p2)
+        {
+            return false;
+        }
+        var /** number */ v_5 = base.limit_backward;
+        base.limit_backward = I_p2;
+        base.ket = base.cursor;
+        among_var = base.find_among_b(a_9);
+        if (among_var == 0)
+        {
+            base.limit_backward = v_5;
+            return false;
+        }
+        base.bra = base.cursor;
+        base.limit_backward = v_5;
+        switch (among_var) {
+            case 1:
+                {
+                    var /** number */ v_6 = base.limit - base.cursor;
+                    lab0: {
+                        if (!(base.eq_s_b("po")))
+                        {
+                            break lab0;
+                        }
+                        return false;
+                    }
+                    base.cursor = base.limit - v_6;
+                }
+                break;
+        }
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        return true;
+    };
+
+    /** @return {boolean} */
+    function r_tidy() {
+        if (base.cursor < I_p1)
+        {
+            return false;
+        }
+        var /** number */ v_2 = base.limit_backward;
+        base.limit_backward = I_p1;
+        var /** number */ v_3 = base.limit - base.cursor;
+        lab0: {
+            var /** number */ v_4 = base.limit - base.cursor;
+            if (!r_LONG())
+            {
+                break lab0;
+            }
+            base.cursor = base.limit - v_4;
+            base.ket = base.cursor;
+            if (base.cursor <= base.limit_backward)
+            {
+                break lab0;
+            }
+            base.cursor--;
+            base.bra = base.cursor;
+            if (!base.slice_del())
+            {
+                return false;
+            }
+        }
+        base.cursor = base.limit - v_3;
+        var /** number */ v_5 = base.limit - base.cursor;
+        lab1: {
+            base.ket = base.cursor;
+            if (!(base.in_grouping_b(g_AEI, 97, 228)))
+            {
+                break lab1;
+            }
+            base.bra = base.cursor;
+            if (!(base.in_grouping_b(g_C, 98, 122)))
+            {
+                break lab1;
+            }
+            if (!base.slice_del())
+            {
+                return false;
+            }
+        }
+        base.cursor = base.limit - v_5;
+        var /** number */ v_6 = base.limit - base.cursor;
+        lab2: {
+            base.ket = base.cursor;
+            if (!(base.eq_s_b("j")))
+            {
+                break lab2;
+            }
+            base.bra = base.cursor;
+            lab3: {
+                var /** number */ v_7 = base.limit - base.cursor;
+                lab4: {
+                    if (!(base.eq_s_b("o")))
+                    {
+                        break lab4;
+                    }
+                    break lab3;
+                }
+                base.cursor = base.limit - v_7;
+                if (!(base.eq_s_b("u")))
+                {
+                    break lab2;
+                }
+            }
+            if (!base.slice_del())
+            {
+                return false;
+            }
+        }
+        base.cursor = base.limit - v_6;
+        var /** number */ v_8 = base.limit - base.cursor;
+        lab5: {
+            base.ket = base.cursor;
+            if (!(base.eq_s_b("o")))
+            {
+                break lab5;
+            }
+            base.bra = base.cursor;
+            if (!(base.eq_s_b("j")))
+            {
+                break lab5;
+            }
+            if (!base.slice_del())
+            {
+                return false;
+            }
+        }
+        base.cursor = base.limit - v_8;
+        base.limit_backward = v_2;
+        golab6: while(true)
+        {
+            var /** number */ v_9 = base.limit - base.cursor;
+            lab7: {
+                if (!(base.out_grouping_b(g_V1, 97, 246)))
+                {
+                    break lab7;
+                }
+                base.cursor = base.limit - v_9;
+                break golab6;
+            }
+            base.cursor = base.limit - v_9;
+            if (base.cursor <= base.limit_backward)
+            {
+                return false;
+            }
+            base.cursor--;
+        }
+        base.ket = base.cursor;
+        if (!(base.in_grouping_b(g_C, 98, 122)))
+        {
+            return false;
+        }
+        base.bra = base.cursor;
+        S_x = base.slice_to();
+        if (S_x == '')
+        {
+            return false;
+        }
+        if (!(base.eq_s_b(S_x)))
+        {
+            return false;
+        }
+        if (!base.slice_del())
+        {
+            return false;
+        }
+        return true;
+    };
+
+    this.stem = /** @return {boolean} */ function() {
+        var /** number */ v_1 = base.cursor;
+        r_mark_regions();
+        base.cursor = v_1;
+        B_ending_removed = false;
+        base.limit_backward = base.cursor; base.cursor = base.limit;
+        var /** number */ v_2 = base.limit - base.cursor;
+        r_particle_etc();
+        base.cursor = base.limit - v_2;
+        var /** number */ v_3 = base.limit - base.cursor;
+        r_possessive();
+        base.cursor = base.limit - v_3;
+        var /** number */ v_4 = base.limit - base.cursor;
+        r_case_ending();
+        base.cursor = base.limit - v_4;
+        var /** number */ v_5 = base.limit - base.cursor;
+        r_other_endings();
+        base.cursor = base.limit - v_5;
+        lab0: {
+            lab1: {
+                if (!B_ending_removed)
+                {
+                    break lab1;
+                }
+                var /** number */ v_7 = base.limit - base.cursor;
+                r_i_plural();
+                base.cursor = base.limit - v_7;
+                break lab0;
+            }
+            var /** number */ v_8 = base.limit - base.cursor;
+            r_t_plural();
+            base.cursor = base.limit - v_8;
+        }
+        var /** number */ v_9 = base.limit - base.cursor;
+        r_tidy();
+        base.cursor = base.limit - v_9;
+        base.cursor = base.limit_backward;
+        return true;
+    };
+
+    /**@return{string}*/
+    this['stemWord'] = function(/**string*/word) {
+        base.setCurrent(word);
+        this.stem();
+        return base.getCurrent();
+    };
+};
+
+
+return new FinnishStemmer();
 }

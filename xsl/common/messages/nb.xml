@@ -81,10 +81,8 @@
   <message name="synonym">Synonym</message>
   <message name="alternateFor">Alternativ til</message>
 <!-- Navigation icons -->
-  <message name="firstPage">Første side</message>
   <message name="previousPage">Forrige side</message>
   <message name="nextPage">Neste side</message>
-  <message name="lastPage">Siste side</message>
 <!--topic: 
 2017-09-18: LHS
  * Justerte «topic» til «tema» - fordi det kan fungere bra for både skriving

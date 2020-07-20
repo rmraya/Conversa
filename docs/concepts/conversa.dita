@@ -4,7 +4,7 @@
  <title>Conversa DITA Publisher</title>
  <conbody>
   <p>Conversa provides a graphical user interface to the free <xref format="html" 
-   href="http://www.xmlmind.com/ditac/l">DITA Converter</xref> 
+   href="http://www.xmlmind.com/ditac/">DITA Converter</xref> 
    (ditac) from XMLmind that you can use to easily publish your DITA projects 
    in multiple formats.</p>
   
@@ -43,7 +43,7 @@
   
   <image href="../images/convert.png" placement="break" align="center" otherprops="pdf" scale="40"/>
   
-  <p>Conversa ships with Apache FOP 2.3 to generate PDF files but you can also use 
+  <p>Conversa ships with Apache FOP 2.5 to generate PDF files but you can also use 
    <xref href="http://www.renderx.com/tools/xep.html" format="html">RenderX XEP</xref>, 
    <xref href="http://www.antennahouse.com/antenna1/formatter/" format="html">Antenna House XSL Formatter</xref> 
    or an external Apache FOP if you want customized PDF files.</p>

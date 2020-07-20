@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2018 XMLmind Software. All rights reserved.
+| Copyright (c) 2018-2020 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -924,7 +924,7 @@
       <xsl:when test="exists(@href)">
         <xref>
           <xsl:variable name="isMDITAKeyRef"
-                        select="@data-keyref ne '' and @href eq '' and 
+                        select="@data-keyref ne '' and @href eq '#' and 
                                 normalize-space(.) eq @data-keyref"/>
 
           <!-- Normalize "#foo" to "#./foo". -->
@@ -1022,9 +1022,18 @@
   </xsl:template>
 
   <!-- audio ========================= -->
+  <!-- =======================================================================
+       Why explicitely add attributes name="XXX" and class="YYY" to
+       all the following media elements?
+       =======================================================================
+       In case, a HDITA or MDITA topic is used in the context of a "plain"
+       DITA (that is, not LwDITA) document. In such case, these elements
+       are not declared in the "plain" DITA schema. Hence the translated
+       topic is invalid, class attributes are not added by the schema,
+       the XSL stylesheet cannot cope with class-less elements, etc. -->
 
   <xsl:template match="h:audio">
-    <audio>
+    <audio class="+ topic/object media-d/audio ">
       <xsl:call-template name="processCommonAttributes"/>
       <xsl:call-template name="processMediaContent"/>
     </audio>
@@ -1034,27 +1043,35 @@
     <xsl:call-template name="processMediaContent0"/>
 
     <xsl:if test="@poster ne ''">
-      <video-poster value="{@poster}"/>
+      <video-poster name="poster" class="+ topic/param media-d/video-poster "
+                    value="{@poster}"/>
     </xsl:if>
 
     <xsl:if test="exists(@controls)">
-      <media-controls value="true"/>
+      <media-controls name="controls"
+                      class="+ topic/param media-d/media-controls "
+                      value="true"/>
     </xsl:if>
 
     <xsl:if test="exists(@autoplay)">
-      <media-autoplay value="true"/>
+      <media-autoplay name="autoplay"
+                      class="+ topic/param media-d/media-autoplay "
+                      value="true"/>
     </xsl:if>
 
     <xsl:if test="exists(@loop)">
-      <media-loop value="true"/>
+      <media-loop name="loop" class="+ topic/param media-d/media-loop "
+                  value="true"/>
     </xsl:if>
 
     <xsl:if test="exists(@muted)">
-      <media-muted value="true"/>
+      <media-muted name="muted" class="+ topic/param media-d/media-muted "
+                   value="true"/>
     </xsl:if>
 
     <xsl:if test="@src ne ''">
-      <media-source value="{@src}"/>
+      <media-source name="source" class="+ topic/param media-d/media-source "
+                    value="{@src}"/>
     </xsl:if>
 
     <xsl:apply-templates select="./h:source"/>
@@ -1062,11 +1079,13 @@
   </xsl:template>
 
   <xsl:template match="h:source[exists(@src)]">
-    <media-source value="{@src}"/>
+    <media-source name="source" class="+ topic/param media-d/media-source "
+                  value="{@src}"/>
   </xsl:template>
 
   <xsl:template match="h:track[exists(@src)]">
-    <media-track value="{@src}">
+    <media-track name="track" class="+ topic/param media-d/media-track "
+                 value="{@src}">
       <xsl:if test="@kind ne ''">
         <xsl:attribute name="type" select="@kind"/>
       </xsl:if>
@@ -1076,7 +1095,7 @@
   <!-- video ========================= -->
 
   <xsl:template match="h:video">
-    <video>
+    <video class="+ topic/object media-d/video ">
       <xsl:call-template name="processCommonAttributes"/>
       <xsl:call-template name="processMediaContent"/>
     </video>
@@ -1153,7 +1172,7 @@
       <xsl:call-template name="processKeyrefAttribute"/>
 
       <xsl:variable name="isMDITAKeyRef"
-                    select="@data-keyref ne '' and @src eq '' and 
+                    select="@data-keyref ne '' and @src eq '#' and 
                             normalize-space(@alt) eq @data-keyref"/>
 
       <xsl:if test="not($isMDITAKeyRef)">
