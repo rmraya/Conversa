@@ -320,7 +320,7 @@ public class ConversionDialog implements ILogger {
 		logPanel = new LogPanel(shell, SWT.BORDER);
 		logPanel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-		Composite bottom = new Composite(shell, SWT.BORDER);
+		Group bottom = new Group(shell, SWT.NONE);
 		bottom.setLayout(new GridLayout(3, false));
 		bottom.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
