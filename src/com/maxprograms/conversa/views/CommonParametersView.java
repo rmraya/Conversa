@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -103,13 +103,13 @@ public class CommonParametersView extends Composite {
 		appendixFnumberFormatLabel.setText("appendix-number-format");
 
 		appendixNumberFormat = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		appendixNumberFormat.setItems(new String[] { "I", "i", "A", "a", "1" });
+		appendixNumberFormat.setItems("I", "i", "A", "a", "1");
 
 		Label causeNumberFormatLabel = new Label(holder, SWT.NONE);
 		causeNumberFormatLabel.setText("cause-number-format");
 
 		causeNumberFormat = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		causeNumberFormat.setItems(new String[] { "I", "i", "A", "a", "1" });
+		causeNumberFormat.setItems("I", "i", "A", "a", "1");
 
 		Label centerLabel = new Label(holder, SWT.NONE);
 		centerLabel.setText("center");
@@ -135,7 +135,7 @@ public class CommonParametersView extends Composite {
 		extendedTocLabel.setText("extended-toc");
 
 		extendedToc = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		extendedToc.setItems(new String[] { "frontmatter", "backmatter", "both", "none" });
+		extendedToc.setItems("frontmatter", "backmatter", "both", "none");
 
 		Label externalResourceBaseLabel = new Label(holder, SWT.NONE);
 		externalResourceBaseLabel.setText("external-resource-base");
@@ -147,7 +147,7 @@ public class CommonParametersView extends Composite {
 		highlightSourceLabel.setText("highlight-source");
 
 		highlightSource = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		highlightSource.setItems(new String[] { "yes", "no" });
+		highlightSource.setItems("yes", "no");
 
 		Label indexRangeSeparatorLabel = new Label(holder, SWT.NONE);
 		indexRangeSeparatorLabel.setText("index-range-separator");
@@ -189,37 +189,37 @@ public class CommonParametersView extends Composite {
 		markImportantStepsLabel.setText("mark-important-steps");
 
 		markImportantSteps = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		markImportantSteps.setItems(new String[] { "yes", "no" });
+		markImportantSteps.setItems("yes", "no");
 
 		Label partNumberFormatLabel = new Label(holder, SWT.NONE);
 		partNumberFormatLabel.setText("part-number-format");
 
 		partNumberFormat = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		partNumberFormat.setItems(new String[] { "I", "i", "A", "a", "1" });
+		partNumberFormat.setItems("I", "i", "A", "a", "1");
 
 		Label prependChapterToSectionNumberLabel = new Label(holder, SWT.NONE);
 		prependChapterToSectionNumberLabel.setText("prepend-chapter-to-section-number");
 
 		prependChapterToSectionNumber = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		prependChapterToSectionNumber.setItems(new String[] { "yes", "no" });
+		prependChapterToSectionNumber.setItems("yes", "no");
 
 		Label remedyNumberFormatLabel = new Label(holder, SWT.NONE);
 		remedyNumberFormatLabel.setText("remedy-number-format");
 
 		remedyNumberFormat = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		remedyNumberFormat.setItems(new String[] { "I", "i", "A", "a", "1" });
+		remedyNumberFormat.setItems("I", "i", "A", "a", "1");
 
 		Label showDraftCommentsLabel = new Label(holder, SWT.NONE);
 		showDraftCommentsLabel.setText("show-draft-comments");
 
 		showDraftComments = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		showDraftComments.setItems(new String[] { "yes", "no" });
+		showDraftComments.setItems("yes", "no");
 
 		Label troubleshootingNumberFormatLabel = new Label(holder, SWT.NONE);
 		troubleshootingNumberFormatLabel.setText("troubleSolution-number-format");
 
 		troubleshootingNumberFormat = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		troubleshootingNumberFormat.setItems(new String[] { "I", "i", "A", "a", "1" });
+		troubleshootingNumberFormat.setItems("I", "i", "A", "a", "1");
 
 		Label titleAfterLabel = new Label(holder, SWT.NONE);
 		titleAfterLabel.setText("title-after");
@@ -243,7 +243,7 @@ public class CommonParametersView extends Composite {
 		useNoteIconLabel.setText("use-note-icon");
 
 		useNoteIcon = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		useNoteIcon.setItems(new String[] { "yes", "no" });
+		useNoteIcon.setItems("yes", "no");
 
 		Label watermarkImageLabel = new Label(holder, SWT.NONE);
 		watermarkImageLabel.setText("watermark-image");

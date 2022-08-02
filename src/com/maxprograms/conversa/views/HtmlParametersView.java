@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -98,19 +98,19 @@ public class HtmlParametersView extends Composite {
 		addIndexTocLabel.setText("add-index-toc");
 
 		addIndexToc = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		addIndexToc.setItems(new String[] { "yes", "no" });
+		addIndexToc.setItems("yes", "no");
 
 		Label chainPagesLabel = new Label(holder, SWT.NONE);
 		chainPagesLabel.setText("chain-pages");
 
 		chainPages = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		chainPages.setItems(new String[] { "none", "top", "bottom", "both" });
+		chainPages.setItems("none", "top", "bottom", "both");
 
 		Label chainTopicsLabel = new Label(holder, SWT.NONE);
 		chainTopicsLabel.setText("chain-topics");
 
 		chainTopics = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		chainTopics.setItems(new String[] { "yes", "no" });
+		chainTopics.setItems("yes", "no");
 
 		Label cssLabel = new Label(holder, SWT.NONE);
 		cssLabel.setText("css");
@@ -171,7 +171,7 @@ public class HtmlParametersView extends Composite {
 		ignoreNavigationLinksLabel.setText("ignore-navigation-links");
 
 		ignoreNavigationLinks = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		ignoreNavigationLinks.setItems(new String[] { "yes", "no", "auto" });
+		ignoreNavigationLinks.setItems("yes", "no", "auto");
 
 		Label javascriptsLabel = new Label(holder, SWT.NONE);
 		javascriptsLabel.setText("javascripts");
@@ -183,7 +183,7 @@ public class HtmlParametersView extends Composite {
 		mathjaxLabel.setText("mathjax");
 
 		mathjax = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		mathjax.setItems(new String[] { "yes", "no", "auto" });
+		mathjax.setItems("yes", "no", "auto");
 
 		Label mathjaxUrlLabel = new Label(holder, SWT.NONE);
 		mathjaxUrlLabel.setText("mathjax-url");
@@ -195,7 +195,7 @@ public class HtmlParametersView extends Composite {
 		markExternalLinksLabel.setText("mark-external-links");
 
 		markExternalLinks = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		markExternalLinks.setItems(new String[] { "yes", "no" });
+		markExternalLinks.setItems("yes", "no");
 
 		Label navigationIconHeightLabel = new Label(holder, SWT.NONE);
 		navigationIconHeightLabel.setText("navigation-icon-height");
@@ -290,7 +290,7 @@ public class HtmlParametersView extends Composite {
 			chainTopics.setText(prefs.get(PARAMS, "chain-topics", "no"));
 			css.setText(prefs.get(PARAMS, "css", ""));
 			cssResourceName.setText(prefs.get(PARAMS, "cssResourceName", "base.css"));
-			customCss.setText(prefs.get(PARAMS,"custom-css", ""));
+			customCss.setText(prefs.get(PARAMS, "custom-css", ""));
 			defaultTableWidth.setText(prefs.get(PARAMS, "default-table-width", ""));
 			externalLinkIconHeight.setText(prefs.get(PARAMS, "external-link-icon-height", "10"));
 			externalLinkiconName.setText(prefs.get(PARAMS, "external-link-icon-name", "new_window.png"));

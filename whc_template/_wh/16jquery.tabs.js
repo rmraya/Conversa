@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ * Copyright (c) 2019-2021 XMLmind Software. All rights reserved.
  *
  * This file is part of the XMLmind Web Help Compiler project.
  * For conditions of distribution and use, see the accompanying LEGAL.txt file.
@@ -32,6 +32,10 @@
                 $(this).addClass("tabs-tab");
 
                 var links = $(this).children("a[href]");
+                links.each(function (i) {
+                    $(this).attr("draggable", "false");
+                });
+                
                 $(this).add(links).click(function (event) {
                     // Do not follow link.
                     event.preventDefault();

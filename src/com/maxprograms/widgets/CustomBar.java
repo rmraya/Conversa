@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Label;
 
 public class CustomBar extends Composite {
 
-	private GridLayout layout;
+	private GridLayout barLayout;
 	private int count;
 	private Image imageSeparator;
 
@@ -43,11 +43,11 @@ public class CustomBar extends Composite {
 
 	public CustomBar(Composite parent, int style) {
 		super(parent, style);
-		layout = new GridLayout();
-		layout.marginWidth = 1;
-		layout.marginHeight = 0;
-		layout.horizontalSpacing = 1;
-		setLayout(layout);
+		barLayout = new GridLayout();
+		barLayout.marginWidth = 1;
+		barLayout.marginHeight = 0;
+		barLayout.horizontalSpacing = 1;
+		setLayout(barLayout);
 
 		setForeground(defaultForeground);
 		setBackground(defaultBackground);
@@ -94,7 +94,7 @@ public class CustomBar extends Composite {
 
 	private void setItemCount(int value) {
 		count = value;
-		layout.numColumns = count;
+		barLayout.numColumns = count;
 		layout();
 	}
 

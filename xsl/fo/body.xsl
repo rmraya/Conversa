@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2022 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie (hussein@xmlmind.com)
 |
@@ -532,30 +532,38 @@
     <xsl:param name="inheritNum" select="false()"/>
 
     <xsl:if test="$foProcessor eq 'XFC'">
-      <xsl:variable name="olType2">
-        <xsl:choose>
-          <xsl:when test="$olType eq 'a'">lower-alpha</xsl:when>
-          <xsl:when test="$olType eq 'A'">upper-alpha</xsl:when>
-          <xsl:when test="$olType eq 'i'">lower-roman</xsl:when>
-          <xsl:when test="$olType eq 'I'">upper-roman</xsl:when>
-          <xsl:otherwise>decimal</xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="exists(./*[contains(@class,' task/stepsection ')])">
+          <!-- Cannot be a proper list in this case. -->
+          <xsl:attribute name="xfc:label-format" select="''"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="olType2">
+            <xsl:choose>
+              <xsl:when test="$olType eq 'a'">lower-alpha</xsl:when>
+              <xsl:when test="$olType eq 'A'">upper-alpha</xsl:when>
+              <xsl:when test="$olType eq 'i'">lower-roman</xsl:when>
+              <xsl:when test="$olType eq 'I'">upper-roman</xsl:when>
+              <xsl:otherwise>decimal</xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
 
-      <xsl:variable name="format" select="concat('%{', $olType2)"/>
-      <xsl:variable name="format2" 
-        select="if (number($olStart) ge 0) 
-                then concat($format, ';start=', $olStart) 
-                else $format"/>
-      <!-- Specifying both inherit and start=N is not supported. 
-           When this is the case, favor start=N  over inherit. -->
-      <xsl:variable name="format3"
-        select="if ($inheritNum and not(number($olStart) ge 0)) 
-                then concat($format2, ';inherit')
-                else $format2"/>
-      <xsl:variable name="format4" select="concat($format3, '}.')"/>
+          <xsl:variable name="format" select="concat('%{', $olType2)"/>
+          <xsl:variable name="format2" 
+            select="if (number($olStart) ge 0) 
+                    then concat($format, ';start=', $olStart) 
+                    else $format"/>
+          <!-- Specifying both inherit and start=N is not supported. 
+               When this is the case, favor start=N  over inherit. -->
+          <xsl:variable name="format3"
+            select="if ($inheritNum and not(number($olStart) ge 0)) 
+                    then concat($format2, ';inherit')
+                    else $format2"/>
+          <xsl:variable name="format4" select="concat($format3, '}.')"/>
 
-      <xsl:attribute name="xfc:label-format" select="$format4"/>
+          <xsl:attribute name="xfc:label-format" select="$format4"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
   </xsl:template>
 
@@ -581,12 +589,20 @@
     <xsl:param name="bullets" select="$ulLiBullets"/>
 
     <xsl:if test="$foProcessor eq 'XFC'">
-      <xsl:variable name="nesting"
-        select="count(ancestor::*[contains(@class,$class)])"/>
-      <xsl:variable name="bullet" 
-        select="$bullets[1 + ($nesting mod count($bullets))]"/>
+      <xsl:choose>
+        <xsl:when test="exists(./*[contains(@class,' task/stepsection ')])">
+          <!-- Cannot be a proper list in this case. -->
+          <xsl:attribute name="xfc:label-format" select="''"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="nesting"
+            select="count(ancestor::*[contains(@class,$class)])"/>
+          <xsl:variable name="bullet" 
+            select="$bullets[1 + ($nesting mod count($bullets))]"/>
 
-      <xsl:attribute name="xfc:label-format" select="$bullet"/>
+          <xsl:attribute name="xfc:label-format" select="$bullet"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
   </xsl:template>
 

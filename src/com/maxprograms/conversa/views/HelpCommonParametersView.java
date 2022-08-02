@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -77,13 +77,13 @@ public class HelpCommonParametersView extends Composite {
 		addTocRootLabel.setText("add-toc-root");
 
 		addTocRoot = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		addTocRoot.setItems(new String[] { "yes", "no" });
+		addTocRoot.setItems("yes", "no");
 
 		Label numberTocEntriesLabel = new Label(holder, SWT.NONE);
 		numberTocEntriesLabel.setText("number-toc-entries");
 
 		numberTocEntries = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		numberTocEntries.setItems(new String[] { "yes", "no" });
+		numberTocEntries.setItems("yes", "no");
 
 		holder.setSize(holder.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		scrolled.setSize(holder.getSize().x + 20, 450);

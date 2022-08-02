@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -77,7 +77,6 @@ public class HTMLViewer extends Dialog {
 				browser = new Browser(shell, SWT.NONE);
 			}
 		} catch (SWTError e) {
-			e.printStackTrace();
 			String message = "";
 			if (File.separator.equals("/")) {
 				if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2020 XMLmind Software. All rights reserved.
+ * Copyright (c) 2019-2021 XMLmind Software. All rights reserved.
  *
  * This file is part of the XMLmind Web Help Compiler project.
  * For conditions of distribution and use, see the accompanying LEGAL.txt file.
@@ -259,6 +259,7 @@ function addTOCEntry(entry, list) {
     if (href !== null) {
         var link = $("<a></a>");
         link.attr("href", href);
+        link.attr("draggable", "false");
         link.html(text);
 
         item.append(link);
@@ -374,10 +375,15 @@ function stopSearch(field) {
 }
 
 function highlightSearchedWords(words) {
-    // Option wordsOnly:true does not seem to work for languages other than
-    // English.
+    // Option wordsOnly:true is NOT what we need. It searches and highlights
+    // words, that is, substrings separated from other substrings by
+    // whitespace or punctuation.
+    //
+    // We would like to search for the stem and highlight the word containing
+    // found stem. This is quite different. Hence added option highlightWord.
+    
     $("#wh-content").highlight(words, 
-                               { caseSensitive: false, 
+                               { caseSensitive: false, highlightWord: true,
                                  className: "wh-highlighted" });
 }
 
@@ -600,6 +606,7 @@ function searchResultList(resultIndices) {
 
         var link = $("<a></a>");
         link.attr("href", wh.search_baseNameList[index]);
+        link.attr("draggable", "false");
         link.html(wh.search_titleList[index]);
         item.append(link);
     }

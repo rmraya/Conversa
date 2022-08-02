@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2022 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -138,7 +138,8 @@
 
   <xsl:output name="hhcOutputFormat"
     method="html" encoding="iso-8859-1" use-character-maps="crLF"
-    indent="no" include-content-type="no"/>
+    indent="no" include-content-type="no"
+    version="4.01" doctype-public="" doctype-system=""/>
 
   <xsl:template name="generateTOC">
     <xsl:result-document href="{resolve-uri($hhc-basename, base-uri())}"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2021 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -34,54 +34,5 @@
 
   <xsl:param name="sectionQName" select="'section'"/>
   <xsl:param name="navQName" select="'nav'"/>
-
-  <xsl:template name="otherMeta">
-    <xsl:call-template name="otherMetaImpl"/>
-
-    <xsl:if test="exists(//processing-instruction('onclick'))">
-      <xsl:call-template name="onclickPIScript"/>
-    </xsl:if>
-  </xsl:template>
-
-  <!-- Override otherAttributes -->
-  <xsl:template name="otherAttributes">
-    <xsl:param name="class" select="''"/>
-    <xsl:param name="classPrefix" select="''"/>
-    <xsl:param name="extraClasses" select="''"/>
-
-    <xsl:call-template name="otherAttributesImpl">
-      <xsl:with-param name="class" select="$class"/>
-      <xsl:with-param name="classPrefix" select="$classPrefix"/>
-      <xsl:with-param name="extraClasses" select="$extraClasses"/>
-    </xsl:call-template>
-
-    <xsl:for-each select="processing-instruction('onclick')">
-      <xsl:call-template name="processOnclickPI"/>
-    </xsl:for-each>
-  </xsl:template>
-
-  <xsl:template name="processOnclickPI">
-    <xsl:variable name="triggers">
-      <xsl:call-template name="onclickPIToTriggers"/>
-    </xsl:variable>
-
-    <xsl:variable name="script">
-      <xsl:for-each select="$triggers/*">
-        <xsl:text> onclickPI_</xsl:text>
-        <xsl:value-of select="@action"/>
-        <xsl:text>('</xsl:text>
-        <xsl:value-of select="@ref"/>
-        <xsl:text>');</xsl:text>
-      </xsl:for-each>
-    </xsl:variable>
-
-    <xsl:variable name="script2" select="normalize-space($script)"/>
-    <xsl:if test="$script2 ne ''">
-      <xsl:for-each select="parent::*">
-        <xsl:attribute name="onclick"
-                       select="concat($script2, ' return false;')"/>
-      </xsl:for-each>
-    </xsl:if>
-  </xsl:template>
 
 </xsl:stylesheet>

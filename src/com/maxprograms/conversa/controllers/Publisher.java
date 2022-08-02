@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -135,7 +135,7 @@ public class Publisher {
 				}
 				break;
 			default:
-				String path = System.getProperty("user.dir") + File.separator + "fop-2.5" + File.separator;
+				String path = System.getProperty("user.dir") + File.separator + "fop-2.7" + File.separator;
 				System.setProperty("FOP_HOME", path);
 				String javaHome = System.getProperty("user.dir") + File.separator + "jre";
 				System.setProperty("JAVA_HOME", javaHome);
@@ -243,7 +243,7 @@ public class Publisher {
 		// XSL-FO
 		//
 
-		if (publication.isXSL_FO()) {
+		if (publication.isXSLFO()) {
 			logger.setStage("Generating XSL-FO");
 			File folder = new File(outFolder, "fo");
 			if (!folder.exists()) {
@@ -1042,7 +1042,7 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
+			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
 				argsBuilder.append("-p", key, custom.get(key));
 			}
 		}

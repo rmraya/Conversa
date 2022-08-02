@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2020 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -700,7 +700,7 @@
 
   <xsl:param name="messageFileNames"
     select="'cs', 'de', 'en', 'es', 'fr', 'it', 'pl', 'ru', 'nn', 'nb', 'ja',
-            'tlh'"/>
+            'nl', 'tlh'"/>
 
   <xsl:template name="localize">
     <xsl:param name="message" select="''"/>

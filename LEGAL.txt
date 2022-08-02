@@ -39,7 +39,7 @@
 
       * lib/resolver.jar
 
-      * lib/saxon9.jar
+      * lib/saxon10.jar
 
       * lib/relaxng.jar
 

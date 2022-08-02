@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -38,7 +38,7 @@ import com.maxprograms.conversa.controllers.ILogger;
 
 public class LogPanel extends Composite implements ILogger {
 
-	private Display display;
+	private Display parentDisplay;
 	private Label stage;
 	private StyledText log;
 	private String home = System.getProperty("user.home"); //$NON-NLS-1$
@@ -48,13 +48,13 @@ public class LogPanel extends Composite implements ILogger {
 		super(parent, style);
 
 		setLayout(new GridLayout());
-		display = parent.getDisplay();
+		parentDisplay = parent.getDisplay();
 
 		stage = new Label(this, SWT.NONE);
 		GridData data = new GridData(GridData.FILL_HORIZONTAL);
 		data.widthHint = 300;
 		stage.setLayoutData(data);
-		stage.setBackground(display.getSystemColor(SWT.COLOR_LIST_SELECTION));
+		stage.setBackground(parentDisplay.getSystemColor(SWT.COLOR_LIST_SELECTION));
 
 		log = new StyledText(this, SWT.WRAP | SWT.READ_ONLY);
 		GridData labelData = new GridData(GridData.FILL_HORIZONTAL);
@@ -71,8 +71,8 @@ public class LogPanel extends Composite implements ILogger {
 		} else {
 			log.setText(message);
 		}
-		display.update();
-		display.sleep();
+		parentDisplay.update();
+		parentDisplay.sleep();
 	}
 
 	private String replaceAllHome(String string) {
@@ -94,7 +94,7 @@ public class LogPanel extends Composite implements ILogger {
 	@Override
 	public void setStage(String value) {
 		stage.setText(value);
-		display.update();
+		parentDisplay.update();
 	}
 
 	@Override

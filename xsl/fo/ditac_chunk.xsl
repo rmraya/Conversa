@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017-2019 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2022 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie (hussein@xmlmind.com)
 |
@@ -173,7 +173,8 @@
                           $role eq 'section8' or 
                           $role eq 'section9'">
             <xsl:variable name="preceding"
-              select="($topicInfo/preceding-sibling::*[exists(@role) and 
+              select="($topicInfo/preceding-sibling::*[empty(@role) or
+                                              (exists(@role) and 
                                                @role ne 'section1' and 
                                                @role ne 'section2' and 
                                                @role ne 'section3' and 
@@ -182,9 +183,9 @@
                                                @role ne 'section6' and 
                                                @role ne 'section7' and 
                                                @role ne 'section8' and 
-                                               @role ne 'section9'])[last()]"/>
+                                               @role ne 'section9')])[last()]"/>
             <xsl:choose>
-              <xsl:when test="exists($preceding)">
+              <xsl:when test="exists($preceding) and exists($preceding/@role)">
                 <!-- Example: chapter, glossarylist, etc. These act 
                      as a division. -->
                 <xsl:sequence select="concat($preceding/@role, '.', 

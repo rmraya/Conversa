@@ -43,17 +43,36 @@
  *
  * Licensed under MIT license.
  *
+ * XMLmind Software changes:
+ * - Comment about how to fix option wordsOnly.
+ * - Added option highlightWord.
  */
 
 jQuery.extend({
-    highlight: function (node, re, nodeName, className) {
+    highlight: function (node, re, hwRE1, hwRE2, nodeName, className) {
         if (node.nodeType === 3) {
             var match = node.data.match(re);
             if (match) {
+                var matchIndex = match.index;
+                var matchLength = match[0].length;
+
+                if (hwRE1 !== null) {
+                    var text = match.input;
+                    var matchHead = text.substring(0, matchIndex).match(hwRE1);
+                    if (matchHead !== null) {
+                        matchIndex -= matchHead[1].length;
+                    }
+                    var matchTail =
+                        text.substring(matchIndex + matchLength).match(hwRE2);
+                    if (matchTail !== null) {
+                        matchLength += matchTail[1].length;
+                    }
+                }
+                
                 var highlight = document.createElement(nodeName || 'span');
                 highlight.className = className || 'highlight';
-                var wordNode = node.splitText(match.index);
-                wordNode.splitText(match[0].length);
+                var wordNode = node.splitText(matchIndex);
+                wordNode.splitText(matchLength);
                 var wordClone = wordNode.cloneNode(true);
                 highlight.appendChild(wordClone);
                 wordNode.parentNode.replaceChild(highlight, wordNode);
@@ -63,7 +82,7 @@ jQuery.extend({
                 !/^(script|style|text|tspan|textpath)$|(^svg:)/i.test(node.tagName) && // ignore script and style nodes and also text elements found in embedded SVG.
                 !(node.tagName === nodeName.toUpperCase() && node.className === className)) { // skip if already highlighted
             for (var i = 0; i < node.childNodes.length; i++) {
-                i += jQuery.highlight(node.childNodes[i], re, nodeName, className);
+                i += jQuery.highlight(node.childNodes[i], re, hwRE1, hwRE2, nodeName, className);
             }
         }
         return 0;
@@ -82,7 +101,7 @@ jQuery.fn.unhighlight = function (options) {
 };
 
 jQuery.fn.highlight = function (words, options) {
-    var settings = { className: 'highlight', element: 'span', caseSensitive: false, wordsOnly: false };
+    var settings = { className: 'highlight', element: 'span', caseSensitive: false, wordsOnly: false, highlightWord: false  };
     jQuery.extend(settings, options);
     
     if (words.constructor === String) {
@@ -100,11 +119,32 @@ jQuery.fn.highlight = function (words, options) {
     var pattern = "(" + words.join("|") + ")";
     if (settings.wordsOnly) {
         pattern = "\\b" + pattern + "\\b";
+
+        /* What's above only works in an English text. Why that?
+           \b is short for (?:(?<!\w)(?=\w)|(?<=\w)(?!\w))
+           \w is short for [a-zA-Z_0-9]
+
+           An "internationalized version" of this would be:
+
+        var wordBoundary = "(?:(?<![\\p{L}\\p{N}_-])(?=[\\p{L}\\p{N}_-])|(?<=[\\p{L}\\p{N}_-])(?![\\p{L}\\p{N}_-]))";
+        pattern =  wordBoundary + pattern + wordBoundary;
+        flag += "u";
+        */
     }
     var re = new RegExp(pattern, flag);
-    
+
+    var hwRE1 = null;
+    var hwRE2 = null;
+    if (settings.highlightWord) {
+        try {
+            // These Unicode patterns are not supported by IE11.      
+            hwRE1 = new RegExp("([\\p{L}\\p{N}_-]+)$", "u");
+            hwRE2 = new RegExp("^([\\p{L}\\p{N}_-]+)", "u");
+        } catch (ignored) {}
+    }
+
     return this.each(function () {
-        jQuery.highlight(this, re, settings.element, settings.className);
+        jQuery.highlight(this, re, hwRE1, hwRE2, settings.element, settings.className);
     });
 };
 

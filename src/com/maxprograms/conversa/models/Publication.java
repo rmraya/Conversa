@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ public class Publication implements Serializable {
 
 	public static final int PDF = 0x1;
 	public static final int HTML = 0x2;
-	public static final int XSL_FO = 0x4;
+	public static final int XSLFO = 0x4;
 	public static final int ECLIPSE = 0x8;
 	public static final int WEB_HELP = 0x10;
 	public static final int WEB_HELP5 = 0x20;
@@ -105,8 +105,8 @@ public class Publication implements Serializable {
 		return (formats & HTML) != 0;
 	}
 
-	public boolean isXSL_FO() {
-		return (formats & XSL_FO) != 0;
+	public boolean isXSLFO() {
+		return (formats & XSLFO) != 0;
 	}
 
 	public boolean isEclipse() {

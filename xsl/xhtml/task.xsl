@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2022 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -185,6 +185,7 @@
 
   <xsl:template match="*[contains(@class,' task/stepsection ')]">
     <li>
+      <!-- Will be given class="stepsection" which has list-style-type:none. -->
       <xsl:call-template name="commonAttributes"/>
       <xsl:call-template name="namedAnchor"/>
       <xsl:apply-templates/>
@@ -199,6 +200,15 @@
         <xsl:with-param name="classPrefix" 
           select="if (@importance) then concat(@importance, '-') else ''"/>
       </xsl:call-template>
+      <xsl:if test="parent::*[contains(@class,' task/steps ')] and
+        preceding-sibling::*[1]/self::*[contains(@class,' task/stepsection ')]">
+        
+        <xsl:variable name="start"
+          select="count(preceding-sibling::*[contains(@class,' task/step ')])"/>
+        <!-- ol/li/@value is deprecated in HTML versions older than 5. Anyway
+             there is no alternative to this. -->
+        <xsl:attribute name="value" select="1 + $start" />
+      </xsl:if> 
       <xsl:call-template name="namedAnchor"/>
       <xsl:apply-templates/>
     </li>

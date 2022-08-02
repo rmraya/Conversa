@@ -20,7 +20,7 @@ See:
 Changes made by XMLmind
 -----------------------
 
-* Added src/net/sf/xslthl/ConnectorSaxonHE.java (Saxon 9.9+ Home Edition).
+* Added src/net/sf/xslthl/ConnectorSaxonHE.java (Saxon 10.8+ Home Edition).
 
 * Commented out src/net/sf/xslthl/ConnectorSaxonB.java (obsolete),
 ConnectorSaxonEE.java (commerical product).
@@ -125,7 +125,7 @@ $ diff -u Version.java.ORI Version.java
 -				}
 -			}
 -		}
-+		return "2.1.3_01";
++		return "2.1.3_13";
  	}
  }
 ------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -236,7 +236,7 @@ public class FoParametersView extends Composite {
 		footerSeparatorLabel.setText("footer-separator");
 
 		footerSeparator = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		footerSeparator.setItems(new String[] { "yes", "no" });
+		footerSeparator.setItems("yes", "no");
 
 		Label headerCenterLabel = new Label(holder, SWT.NONE);
 		headerCenterLabel.setText("header-center");
@@ -284,13 +284,13 @@ public class FoParametersView extends Composite {
 		headerSeparatorLabel.setText("header-separator");
 
 		headerSeparator = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		headerSeparator.setItems(new String[] { "yes", "no" });
+		headerSeparator.setItems("yes", "no");
 
 		Label hyphenateLabel = new Label(holder, SWT.NONE);
 		hyphenateLabel.setText("hyphenate");
 
 		hyphenate = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		hyphenate.setItems(new String[] { "yes", "no" });
+		hyphenate.setItems("yes", "no");
 
 		Label indexColumnCountLabel = new Label(holder, SWT.NONE);
 		indexColumnCountLabel.setText("index-column-count");
@@ -308,7 +308,7 @@ public class FoParametersView extends Composite {
 		justifiedLabel.setText("justified");
 
 		justified = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		justified.setItems(new String[] { "yes", "no" });
+		justified.setItems("yes", "no");
 
 		Label linkBulletLabel = new Label(holder, SWT.NONE);
 		linkBulletLabel.setText("link-bullet");
@@ -362,7 +362,7 @@ public class FoParametersView extends Composite {
 		pageOrientationLabel.setText("page-orientation");
 
 		pageOrientation = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		pageOrientation.setItems(new String[] { "portrait", "landscape" });
+		pageOrientation.setItems("portrait", "landscape");
 
 		Label pageOuterMarginLabel = new Label(holder, SWT.NONE);
 		pageOuterMarginLabel.setText("page-outer-margin");
@@ -398,39 +398,39 @@ public class FoParametersView extends Composite {
 		paperTypeLabel.setText("paper-type");
 
 		paperType = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		paperType.setItems(new String[] { "Letter", "Legal", "Ledger", "Tabloid", "A0", "A1", "A2", "A3", "A4", "A5",
+		paperType.setItems("Letter", "Legal", "Ledger", "Tabloid", "A0", "A1", "A2", "A3", "A4", "A5",
 				"A6", "A7", "A8", "A9", "A10", "B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "C0",
-				"C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10" });
+				"C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10");
 
 		Label pdfOutlineLabel = new Label(holder, SWT.NONE);
 		pdfOutlineLabel.setText("pdf-outline");
 
 		pdfOutline = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		pdfOutline.setItems(new String[] { "yes", "no" });
+		pdfOutline.setItems("yes", "no");
 
 		Label showExternalLinksLabel = new Label(holder, SWT.NONE);
 		showExternalLinksLabel.setText("show-external-links");
 
 		showExternalLinks = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		showExternalLinks.setItems(new String[] { "yes", "no" });
+		showExternalLinks.setItems("yes", "no");
 
 		Label showImageMapLinksLabel = new Label(holder, SWT.NONE);
 		showImageMapLinksLabel.setText("show-imagemap-links");
 
 		showImageMapLinks = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		showImageMapLinks.setItems(new String[] { "yes", "no" });
+		showImageMapLinks.setItems("yes", "no");
 
 		Label showLinkPageLabel = new Label(holder, SWT.NONE);
 		showLinkPageLabel.setText("show-link-page");
 
 		showLinkPage = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		showLinkPage.setItems(new String[] { "yes", "no" });
+		showLinkPage.setItems("yes", "no");
 
 		Label showXrefPageLabel = new Label(holder, SWT.NONE);
 		showXrefPageLabel.setText("show-xref-page");
 
 		showXrefPage = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		showXrefPage.setItems(new String[] { "yes", "no" });
+		showXrefPage.setItems("yes", "no");
 
 		Label titleColorLabel = new Label(holder, SWT.NONE);
 		titleColorLabel.setText("title-color");
@@ -448,7 +448,7 @@ public class FoParametersView extends Composite {
 		twoSidedLabel.setText("two-sided");
 
 		twoSided = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		twoSided.setItems(new String[] { "yes", "no" });
+		twoSided.setItems("yes", "no");
 
 		Label ulLiBulletsLabel = new Label(holder, SWT.NONE);
 		ulLiBulletsLabel.setText("ul-li-bullets");
@@ -466,7 +466,7 @@ public class FoParametersView extends Composite {
 		useMultimediaExtensionsLabel.setText("use-multimedia-extensions");
 
 		useMultimediaExtensions = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		useMultimediaExtensions.setItems(new String[] { "yes", "no" });
+		useMultimediaExtensions.setItems("yes", "no");
 
 		Label watermarkLabel = new Label(holder, SWT.NONE);
 		watermarkLabel.setText("watermark");

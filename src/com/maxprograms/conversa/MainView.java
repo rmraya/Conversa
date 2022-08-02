@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -142,28 +142,34 @@ public class MainView {
 			isMac = true;
 
 			MenuItem sysItem = getItem(systemMenu, SWT.ID_ABOUT);
-			sysItem.addSelectionListener(new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					AboutBox box = new AboutBox(shell, SWT.DIALOG_TRIM);
-					box.show();
-				}
-			});
+			if (sysItem != null) {
+				sysItem.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						AboutBox box = new AboutBox(shell, SWT.DIALOG_TRIM);
+						box.show();
+					}
+				});
+			}
 			sysItem = getItem(systemMenu, SWT.ID_QUIT);
-			sysItem.addSelectionListener(new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					shell.close();
-				}
-			});
+			if (sysItem != null) {
+				sysItem.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						shell.close();
+					}
+				});
+			}
 			sysItem = getItem(systemMenu, SWT.ID_PREFERENCES);
-			sysItem.addSelectionListener(new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					PreferencesDialog dialog = new PreferencesDialog(shell, SWT.CLOSE | SWT.RESIZE);
-					dialog.show();
-				}
-			});
+			if (sysItem != null) {
+				sysItem.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						PreferencesDialog dialog = new PreferencesDialog(shell, SWT.CLOSE | SWT.RESIZE);
+						dialog.show();
+					}
+				});
+			}
 		}
 
 		Menu bar = display.getMenuBar();

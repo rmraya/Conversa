@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -450,7 +450,7 @@ public class ConversionDialog implements ILogger {
 			formats = formats | Publication.EPUB3;
 		}
 		if (foButton.getSelection()) {
-			formats = formats | Publication.XSL_FO;
+			formats = formats | Publication.XSLFO;
 		}
 		if (webHelp5Button.getSelection()) {
 			formats = formats | Publication.WEB_HELP5;
@@ -488,7 +488,7 @@ public class ConversionDialog implements ILogger {
 		}
 		pdfButton.setSelection(data.isPDF());
 		htmlButton.setSelection(data.isHTML());
-		foButton.setSelection(data.isXSL_FO());
+		foButton.setSelection(data.isXSLFO());
 		psButton.setSelection(data.isPostScript());
 		eclipseHelpButton.setSelection(data.isEclipse());
 		webHelpButton.setSelection(data.isWebHelp());

@@ -10,7 +10,7 @@
         <pathelement location="lib/openxliff.jar"/>
         <pathelement location="lib/relaxng.jar"/>
         <pathelement location="lib/resolver.jar"/>
-        <pathelement location="lib/saxon9.jar"/>
+        <pathelement location="lib/saxon10.jar"/>
         <pathelement location="lib/snowball.jar"/>
         <pathelement location="lib/whcmin.jar"/>
         <pathelement location="lib/xslhttl.jar"/>

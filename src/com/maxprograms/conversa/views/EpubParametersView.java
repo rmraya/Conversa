@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -92,13 +92,13 @@ public class EpubParametersView extends Composite {
 		epub2CompatibleLabel.setText("epub2-compatible");
 
 		epub2Compatible = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		epub2Compatible.setItems(new String[] { "yes", "no" });
+		epub2Compatible.setItems("yes", "no");
 
 		Label generateEpubTriggerLabel = new Label(holder, SWT.NONE);
 		generateEpubTriggerLabel.setText("generate-epub-trigger");
 
 		generateEpubTrigger = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		generateEpubTrigger.setItems(new String[] { "yes", "no" });
+		generateEpubTrigger.setItems("yes", "no");
 
 		holder.setSize(holder.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		scrolled.setSize(holder.getSize().x + 20, 450);

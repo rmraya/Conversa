@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2021 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -25,44 +25,6 @@
   <xsl:import href="cover.xsl"/>
   <xsl:import href="tocNCX.xsl"/>
   <xsl:import href="toc.xsl"/>
-
-  <!-- Overrides ========================================================= -->
-
-  <xsl:template name="otherMeta">
-    <xsl:call-template name="otherMetaImpl"/>
-
-    <xsl:choose>
-      <xsl:when test="$generate-epub-trigger eq 'yes'">
-        <xsl:for-each select="//processing-instruction('onclick')">
-          <xsl:call-template name="onclickPIToTriggers"/>
-        </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:if test="exists(//processing-instruction('onclick'))">
-          <xsl:call-template name="onclickPIScript"/>
-        </xsl:if>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <!-- Override otherAttributes -->
-  <xsl:template name="otherAttributes">
-    <xsl:param name="class" select="''"/>
-    <xsl:param name="classPrefix" select="''"/>
-    <xsl:param name="extraClasses" select="''"/>
-
-    <xsl:call-template name="otherAttributesImpl">
-      <xsl:with-param name="class" select="$class"/>
-      <xsl:with-param name="classPrefix" select="$classPrefix"/>
-      <xsl:with-param name="extraClasses" select="$extraClasses"/>
-    </xsl:call-template>
-
-    <xsl:if test="$generate-epub-trigger ne 'yes'">
-      <xsl:for-each select="processing-instruction('onclick')">
-        <xsl:call-template name="processOnclickPI"/>
-      </xsl:for-each>
-    </xsl:if>
-  </xsl:template>
 
   <!-- ditac:chunk ======================================================= -->
 
@@ -272,13 +234,6 @@
                 <xsl:text> mathml</xsl:text>
               </xsl:otherwise>
             </xsl:choose>
-          </xsl:if>
-
-          <xsl:if test="$generate-epub-trigger ne 'yes'">
-            <xsl:if test="exists($titlePage//processing-instruction('onclick'))
-                          or exists($chunk//processing-instruction('onclick'))">
-              <xsl:text> scripted</xsl:text>
-            </xsl:if>
           </xsl:if>
         </xsl:variable>
         <xsl:variable name="properties2" select="normalize-space($properties)"/>

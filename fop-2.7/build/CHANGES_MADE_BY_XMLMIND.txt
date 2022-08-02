@@ -1,0 +1,236 @@
+Compiled FOP 2.7 using Java 1.8 with the following changes. 
+
+Ran: /opt/maven/bin/mvn clean install 
+
+For that, added <skipTests> to the topmost pom.xml:
+===============================================================
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire.plugin.version}</version>
+          <configuration>
+            <skipTests>true</skipTests>
+          </configuration>
+        </plugin>
+===============================================================
+
+* InternalResourceResolver constructor is not public. 
+  This class cannot be extended to support "jar:" opaque URIs.
+
+fop-core/src/main/java/org/apache/fop/apps/io/
+===============================================================
+--- InternalResourceResolver.java.ORI   2022-01-12 12:52:47.000000000 +0100
++++ InternalResourceResolver.java       2022-04-08 11:00:37.863597181 +0200
+@@ -40,15 +40,16 @@
+  * URIs to it.
+  */
+ public class InternalResourceResolver {
+-    private final URI baseUri;
+-    private final ResourceResolver resourceResolver;
+-    private final DataURIResolver dataSchemeResolver = new DataURIResolver();
++    protected final URI baseUri;
++    protected final ResourceResolver resourceResolver;
++    protected final DataURIResolver dataSchemeResolver = new DataURIResolver();
+ 
+     /**
+      * @param baseUri the base URI from which to resolve relative URIs
+      * @param resourceResolver the resolver to delegate to
+      */
+-    InternalResourceResolver(URI baseUri, ResourceResolver resourceResolver) {
++    public InternalResourceResolver(URI baseUri,
++                                    ResourceResolver resourceResolver) {
+         this.baseUri = baseUri;
+         this.resourceResolver = resourceResolver;
+     }
+===============================================================
+
+* When generating PostScript (not PDF), 
+  NPE in PSImageHandlerSVG.getDimension for some SVG files.
+
+fop-core/src/main/java/org/apache/fop/render/ps/
+===============================================================
+--- PSImageHandlerSVG.java.ORI  2022-01-12 12:52:47.000000000 +0100
++++ PSImageHandlerSVG.java      2022-04-08 11:03:31.509386856 +0200
+@@ -40,6 +40,7 @@
+ import org.w3c.dom.Document;
+ import org.w3c.dom.Node;
+ import org.w3c.dom.NodeList;
++import org.w3c.dom.NamedNodeMap;
+ 
+ import org.apache.batik.bridge.BridgeContext;
+ import org.apache.batik.bridge.GVTBuilder;
+@@ -274,8 +275,9 @@
+     }
+ 
+     private Float getDimension(Document document, String dimension) {
+-        if (document.getFirstChild().getAttributes().getNamedItem(dimension) != null) {
+-            String width = document.getFirstChild().getAttributes().getNamedItem(dimension).getNodeValue();
++        NamedNodeMap attrs = document.getDocumentElement().getAttributes();
++        if (attrs != null && attrs.getNamedItem(dimension) != null) {
++            String width = attrs.getNamedItem(dimension).getNodeValue();
+             width = width.replaceAll("[^\\d.]", "");
+             return Float.parseFloat(width);
+         }
+===============================================================
+
+* A systemId is always expected to be absolute.
+  Anyway, without this, SVG files using markers 
+  (e.g. marker-start:url(#TriangleInM)) cannot be rendered.
+
+  Corresponds to FOP 2.0 bug #FOP-2489, marked as fixed in FOP 2.2
+  ("Fixed on the Batik side instead: 
+    http://svn.apache.org/viewvc?view=revision&revision=1687506")
+
+fop-core/src/main/java/org/apache/fop/apps/:
+===============================================================
+--- FOUserAgent.java.ORI        2022-01-12 12:52:47.000000000 +0100
++++ FOUserAgent.java    2022-04-08 11:05:41.847729728 +0200
+@@ -413,7 +413,15 @@
+         try {
+             // Have to do this so we can resolve data URIs
+             StreamSource src = new StreamSource(resourceResolver.getResource(uri));
+-            src.setSystemId(getResourceResolver().getBaseURI().toASCIIString());
++            // A systemId is always expected to be absolute.
++            // Anyway, without this, SVG files using markers 
++            // (e.g. marker-start:url(#TriangleInM)) cannot be rendered.
++
++            if (!uri.startsWith("data:")) {
++                uri = resourceResolver.getBaseURI().resolve(uri).toASCIIString();
++            }
++
++            src.setSystemId(uri);
+             return src;
+         } catch (URISyntaxException use) {
+             return null;
+===============================================================
+
+* fop-core/src/main/java/org/apache/fop/apps/FopFactoryConfig.java: changed 
+  DEFAULT_SOURCE_RESOLUTION from 72 to 120dpi (like RenderX XEP).
+===============================================================
+--- FopFactoryConfig.java.ORI   2022-01-12 12:52:47.000000000 +0100
++++ FopFactoryConfig.java       2022-04-08 11:07:31.462499193 +0200
+@@ -55,8 +55,9 @@
+     /** Defines the default page-height */
+     String DEFAULT_PAGE_HEIGHT = "11in";
+ 
+-    /** Defines the default source resolution (72dpi) for FOP */
+-    float DEFAULT_SOURCE_RESOLUTION = 72.0f; //dpi
++    /** Defines the default source resolution (72dpi) for FOP
++        (120dpi like RenderX XEP) */
++    float DEFAULT_SOURCE_RESOLUTION = 120.0f; //dpi
+ 
+     /** Defines the default target resolution (72dpi) for FOP */
+     float DEFAULT_TARGET_RESOLUTION = 72.0f; //dpi
+===============================================================
+
+* When used in the context of XMLmind Software products, something like
+  SAXTransformerFactory.newInstance() creates an instance Saxon 6.5
+  TransformerFactory.
+  
+  The problem is that the DOM builder of Saxon 6.5 is not namespace aware and
+  we really need to DOM builder which is namespace aware, otherwise SVG
+  instream-foreign-object are not properly processed.
+
+  Therefore we replace SAXTransformerFactory.newInstance() by more
+  precise DOMBuilderContentHandlerFactory.createSAXTransformerFactory(),
+  where createSAXTransformerFactory is a utility method written by us.
+
+fop-core/src/main/java/org/apache/fop/util/:
+===============================================================
+--- DOMBuilderContentHandlerFactory.java.ORI    2022-01-12 12:52:47.000000000 +0100
++++ DOMBuilderContentHandlerFactory.java        2022-04-08 11:09:38.724273176 +0200
+@@ -19,6 +19,7 @@
+ 
+ package org.apache.fop.util;
+ 
++import javax.xml.XMLConstants;
+ import javax.xml.transform.TransformerConfigurationException;
+ import javax.xml.transform.dom.DOMResult;
+ import javax.xml.transform.sax.SAXTransformerFactory;
+@@ -34,9 +35,9 @@
+  * ContentHandlerFactory which constructs ContentHandlers that build DOM Documents.
+  */
+ public class DOMBuilderContentHandlerFactory implements ContentHandlerFactory {
+-
+-    private static SAXTransformerFactory tFactory
+-            = (SAXTransformerFactory)SAXTransformerFactory.newInstance();
++    
++    private static SAXTransformerFactory tFactory =
++        createSAXTransformerFactory();
+ 
+     private String namespaceURI;
+     private DOMImplementation domImplementation;
+@@ -136,4 +137,47 @@
+ 
+     }
+ 
++    // -----------------------------------------------------------------------
++    // Utility method
++    // -----------------------------------------------------------------------
++    
++    /* 
++     * The fallback implementation class name, XSLTC. 
++     */
++    private static final String XSLTC_FACTORY =
++        "com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl";
++    
++    public static SAXTransformerFactory createSAXTransformerFactory() {
++        SAXTransformerFactory factory = null;
++        try {
++            // This method exists only as of Java 1.9.
++            java.lang.reflect.Method method =
++                SAXTransformerFactory.class.getMethod("newDefaultInstance");
++            factory = (SAXTransformerFactory) method.invoke(null);
++        } catch (Throwable ignored) {}
++
++        if (factory == null) {
++            try {
++                factory = (SAXTransformerFactory)
++                    SAXTransformerFactory.newInstance(XSLTC_FACTORY,
++                                                      /*classLoader*/ null);
++            } catch (Throwable ignored) {}
++        }
++        
++        if (factory == null) {
++            // May be an old factory like
++            // "com.icl.saxon.TransformerFactoryImpl" which does not support
++            // the factory attributes below.
++            factory = (SAXTransformerFactory)
++                SAXTransformerFactory.newInstance();
++        } else {
++            // This may prevent XML External Entity Injection (XXE) attacks
++            // (issue CVE-2017-5661).
++            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
++            factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
++        }
++
++        return factory;
++    }
++    
+ }
+===============================================================
+
+fop-core/src/main/java/org/apache/fop/fo/extensions/svg/:
+===============================================================
+--- SVGDOMContentHandlerFactory.java.ORI        2022-01-12 12:52:47.000000000 +0100
++++ SVGDOMContentHandlerFactory.java    2022-04-08 11:12:06.898483373 +0200
+@@ -35,6 +35,7 @@
+ 
+ import org.apache.fop.util.ContentHandlerFactory;
+ import org.apache.fop.util.DelegatingContentHandler;
++import org.apache.fop.util.DOMBuilderContentHandlerFactory;
+ 
+ /**
+  * ContentHandlerFactory which constructs ContentHandlers that build SVG DOM
+@@ -42,8 +43,8 @@
+  */
+ public class SVGDOMContentHandlerFactory implements ContentHandlerFactory {
+ 
+-    private static SAXTransformerFactory tFactory
+-        = (SAXTransformerFactory)SAXTransformerFactory.newInstance();
++    private static SAXTransformerFactory tFactory = 
++        DOMBuilderContentHandlerFactory.createSAXTransformerFactory();
+ 
+     /**
+      * Default Constructor.
+===============================================================

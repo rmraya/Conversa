@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 XMLmind Software. All rights reserved.
+ * Copyright (c) 2019-2021 XMLmind Software. All rights reserved.
  *
  * This file is part of the XMLmind Web Help Compiler project.
  * For conditions of distribution and use, see the accompanying LEGAL.txt file.
@@ -288,6 +288,7 @@ function addIndexEntry(entry, list) {
 
                 var link = $("<a class='wh-index-anchor'></a>");
                 link.attr("href", href);
+                link.attr("draggable", "false");
                 ++j;
                 link.text("[" + j + "]");
                 item.append(link);
@@ -297,6 +298,7 @@ function addIndexEntry(entry, list) {
 
                     var link2 = $("<a class='wh-index-anchor'></a>");
                     link2.attr("href", href2);
+                    link2.attr("draggable", "false");
                     ++j;
                     link2.text("[" + j + "]");
                     item.append(link2);

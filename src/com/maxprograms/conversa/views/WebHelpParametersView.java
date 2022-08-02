@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -92,19 +92,19 @@ public class WebHelpParametersView extends Composite {
 		whCollapseTocLabel.setText("wh-collapse-toc");
 
 		whCollapseToc = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		whCollapseToc.setItems(new String[] { "yes", "no" });
+		whCollapseToc.setItems("yes", "no");
 
 		Label whIndexNumbersLabel = new Label(holder, SWT.NONE);
 		whIndexNumbersLabel.setText("wh-index-numbers");
 
 		whIndexNumbers = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		whIndexNumbers.setItems(new String[] { "yes", "no" });
+		whIndexNumbers.setItems("yes", "no");
 
 		Label whInheritFontAndColorsLabel = new Label(holder, SWT.NONE);
 		whInheritFontAndColorsLabel.setText("wh-inherit-font-and-colors");
 
 		whInheritFontAndColors = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		whInheritFontAndColors.setItems(new String[] { "yes", "no" });
+		whInheritFontAndColors.setItems("yes", "no");
 
 		Label whJqueryLabel = new Label(holder, SWT.NONE);
 		whJqueryLabel.setText("wh-jquery");
@@ -116,19 +116,19 @@ public class WebHelpParametersView extends Composite {
 		whLocalJqueryLabel.setText("wh-local-jquery");
 
 		whLocalJquery = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		whLocalJquery.setItems(new String[] { "yes", "no" });
+		whLocalJquery.setItems("yes", "no");
 
 		Label whLayoutLabel = new Label(holder, SWT.NONE);
 		whLayoutLabel.setText("wh-layout");
 
 		whLayout = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		whLayout.setItems(new String[] { "classic", "simple" });
+		whLayout.setItems("classic", "simple");
 
 		Label whResponsiveUiLabel = new Label(holder, SWT.NONE);
 		whResponsiveUiLabel.setText("wh-responsive-ui");
 
 		whResponsiveUi = new Combo(holder, SWT.DROP_DOWN | SWT.READ_ONLY);
-		whResponsiveUi.setItems(new String[] { "yes", "no" });
+		whResponsiveUi.setItems("yes", "no");
 
 		Label whUiLanguageLabel = new Label(holder, SWT.NONE);
 		whUiLanguageLabel.setText("wh-ui-language");
@@ -140,7 +140,7 @@ public class WebHelpParametersView extends Composite {
 		whUseStemmingLabel.setText("wh-use-stemming");
 
 		whUseStemming = new Combo(holder, SWT.READ_ONLY | SWT.DROP_DOWN);
-		whUseStemming.setItems(new String[] { "yes", "no" });
+		whUseStemming.setItems("yes", "no");
 
 		Label whUserCssLabel = new Label(holder, SWT.NONE);
 		whUserCssLabel.setText("wh-user-css");

@@ -1,4 +1,4 @@
-XMLmind Web Help Compiler 3.1.0
+XMLmind Web Help Compiler 3.3.2
 -------------------------------
 
 XMLmind Web Help Compiler (whc for short) is a Java^TM component which may be
@@ -8,9 +8,9 @@ A "Web Help" is an interactive help system that can be uploaded to your web
 server or put into a shared folder, so users can access it using a web browser
 like Chrome, Firefox, Safari, Edge or Opera.
 
-More information in https://www.xmlmind.com/ditac/_whc/doc/index.html.
+More information in http://www.xmlmind.com/ditac/_whc/doc/index.html.
 
-Download whc from https://www.xmlmind.com/ditac/whc.shtml.
+Download whc from http://www.xmlmind.com/ditac/whc.shtml.
 
 ------------------------------------------------------------------------------
 

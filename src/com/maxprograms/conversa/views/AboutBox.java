@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2020 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -86,7 +86,7 @@ public class AboutBox {
 		image.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 
 		Label copyright = new Label(shell, SWT.NONE);
-		copyright.setText("Copyright \u00A9 2016-2020 Maxprograms");
+		copyright.setText("Copyright \u00A9 2016-2022 Maxprograms");
 		copyright.setAlignment(SWT.CENTER);
 		copyright.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		copyright.setBackground(display.getSystemColor(SWT.COLOR_WHITE));

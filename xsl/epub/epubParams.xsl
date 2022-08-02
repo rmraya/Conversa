@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-| Copyright (c) 2017 XMLmind Software. All rights reserved.
+| Copyright (c) 2017-2021 XMLmind Software. All rights reserved.
 |
 | Author: Hussein Shafie
 |
@@ -29,9 +29,6 @@
 
   <!-- Allowed values are 'yes' and 'no' -->
   <xsl:param name="number-toc-entries" select="'no'"/>
-
-  <!-- Applies only to EPUB3 -->
-  <xsl:param name="generate-epub-trigger" select="'yes'"/>
 
   <xsl:param name="epub2-compatible" select="'yes'"/>
 

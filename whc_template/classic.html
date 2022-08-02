@@ -9,7 +9,7 @@
 
     <link href="_wh/wh.css" rel="stylesheet" type="text/css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
             type="text/javascript" id="wh-jquery"></script>
     <script src="_wh/wh.js" type="text/javascript" charset="UTF-8"></script>
     <script defer="defer" src="_wh/search.js" 
@@ -23,39 +23,48 @@
     <div id="wh-body">
       <div id="wh-menu" class="wh-icon-menu"></div>
       <div id="wh-navigation">
-        <ul id="wh-tabs">
-          <li id="wh-toc-tab"><a href="#wh-toc-container" 
+        <ul id="wh-tabs" role="tablist">
+          <li id="wh-toc-tab" role="tab"><a href="#wh-toc-container" 
           class="wh-icon-toc"></a></li>
-          <li id="wh-index-tab"><a href="#wh-index-container" 
+          <li id="wh-index-tab" role="tab"><a href="#wh-index-container" 
           class="wh-icon-index"></a></li>
-          <li id="wh-search-tab"><a href="#wh-search-container" 
+          <li id="wh-search-tab" role="tab"><a href="#wh-search-container" 
           class="wh-icon-search"></a></li>
         </ul>
-        <div id="wh-toc-container">
+        <div id="wh-toc-container" role="tabpanel">
           <div id="wh-toc-form"><span id="wh-toc-collapse-all" 
-            class="wh-icon-collapse-all"></span><span id="wh-toc-expand-all" 
-            class="wh-icon-expand-all"></span><span 
+            class="wh-icon-collapse-all"
+            role="button"></span><span id="wh-toc-expand-all" 
+            class="wh-icon-expand-all"
+            role="button"></span><span 
             class="wh-toc-spring"></span><span id="wh-toc-previous" 
-            class="wh-icon-previous"></span><span id="wh-toc-next" 
-            class="wh-icon-next"></span><span 
+            class="wh-icon-previous"
+            role="button"></span><span id="wh-toc-next" 
+            class="wh-icon-next"
+            role="button"></span><span 
             class="wh-toc-spring"></span><span id="wh-toc-print" 
-            class="wh-icon-print"></span></div>
+            class="wh-icon-print"
+            role="button"></span></div>
           <div id="wh-toc-pane">
           </div>
         </div>
-        <div id="wh-index-container">
+        <div id="wh-index-container" role="tabpanel">
           <div id="wh-index-form"><span id="wh-index-group"><input 
           id="wh-index-field" type="text" /><span id="wh-go-page" 
-          class="wh-icon-go"></span></span></div>
+          class="wh-icon-go"
+          role="button"></span></span></div>
           <div id="wh-index-pane">
           </div>
         </div>
-        <div id="wh-search-container">
+        <div id="wh-search-container" role="tabpanel">
           <div id="wh-search-form"><span id="wh-search-group"><span 
-          id="wh-do-search" class="wh-icon-search"></span><input 
+          id="wh-do-search" class="wh-icon-search"
+          role="button"></span><input 
           id="wh-search-field" type="text" /><span id="wh-cancel-search" 
-          class="wh-icon-cancel"></span></span><span id="wh-search-highlight" 
-          class="wh-icon-highlight"></span></div>
+          class="wh-icon-cancel"
+          role="button"></span></span><span id="wh-search-highlight" 
+          class="wh-icon-highlight"
+          role="switch"></span></div>
           <div id="wh-search-pane">
             <div id="wh-search-results">
             </div>
