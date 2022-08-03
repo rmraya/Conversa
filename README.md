@@ -25,11 +25,11 @@ Ready to use installers are available at [https://www.maxprograms.com/products/c
 
 ## Building Yourself
 
-You need JAVA 11 and Apache Ant 1.10.6 or newer
+You need Java 17 and Apache Ant 1.10.12 or newer
 
 - Checkout this repository
-- Point your JAVA_HOME variabe to JDK 11
+- Point your JAVA_HOME variabe to JDK 17
 - Run `ant compile` to recompile the source code if you made changes
-- Get a JRE (Java Runtme Environment) from [AdoptOpenJDK](https://adoptopenjdk.net/) and save it in a folder named `jre`
+- Get a JRE (Java Runtme Environment) from [Adoptium](https://adoptium.net/) and save it in a folder named `jre`
 
 Use the `.bat` or `.sh` launchers included in the project to run Conversa.
