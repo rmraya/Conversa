@@ -3,4 +3,6 @@
 /jre
 /docs/out
 .scannerwork
+lib/swt.jar
 lib/conversa.jar
+.vscode/launch.json

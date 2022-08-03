@@ -65,6 +65,7 @@ public class Conversa {
 		Display.setAppVersion(Constants.VERSION);
 		display = Display.getDefault();
 		resourceManager = new ResourceManager(display);
+		System.setProperty("xml.catalog.files", System.getProperty("user.dir") + File.separator + "schema" + File.separator + "catalog.xml" );
 		try {
 			checkLock();
 			lock();

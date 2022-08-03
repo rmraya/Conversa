@@ -14,7 +14,10 @@
         <pathelement location="lib/snowball.jar"/>
         <pathelement location="lib/whcmin.jar"/>
         <pathelement location="lib/xslhttl.jar"/>
-        <pathelement location="lib/mac64/swt.jar"/>
+        <pathelement location="lib/swt.jar"/>
+        <pathelement location="lib/dtd.jar"/>
+        <pathelement location="lib/json.jar"/>
+        <pathelement location="lib/jsoup.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>

@@ -29,6 +29,7 @@ You need Java 17 and Apache Ant 1.10.12 or newer
 
 - Checkout this repository
 - Point your JAVA_HOME variabe to JDK 17
+- Copy `swt.jar` from one of the folders inside `/lib` to `/lib`
 - Run `ant compile` to recompile the source code if you made changes
 - Get a JRE (Java Runtme Environment) from [Adoptium](https://adoptium.net/) and save it in a folder named `jre`
 

@@ -144,6 +144,7 @@ public class Publisher {
 					path = path + "fop.bat";
 				} else {
 					path = path + "fop.sh";
+					new File(path).setExecutable(true);
 				}
 				if (!converter.registerFOP(path(path))) {
 					logger.displayError("Error registering internal FOP. (" + path + ")");

@@ -89,10 +89,10 @@ public class Preferences {
 			directory = System.getenv("AppData") + "\\Conversa\\"; //$NON-NLS-1$ //$NON-NLS-2$
 		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) { //$NON-NLS-1$ //$NON-NLS-2$
 			// Mac
-			directory = System.getProperty("user.home") + "/Library/Preferences/Conversa/"; //$NON-NLS-1$ //$NON-NLS-2$
+			directory = System.getProperty("user.home") + "/Library/Application Support/Conversa/"; //$NON-NLS-1$ //$NON-NLS-2$
 		} else {
 			// Linux
-			directory = System.getProperty("user.home") + "/.conversa/"; //$NON-NLS-1$ //$NON-NLS-2$
+			directory = System.getProperty("user.home") + "/.config/conversa/"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		File dir = new File(directory);
 		if (!dir.exists() && !dir.mkdirs()) {
