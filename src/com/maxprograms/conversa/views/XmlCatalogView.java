@@ -67,7 +67,7 @@ public class XmlCatalogView extends Composite {
 
 	private static Document catalogDoc;
 	protected Table catalogTable;
-	private Vector<Element> holder;
+	private List<Element> holder;
 	private int count;
 
 	public XmlCatalogView(Composite parent, int style) {
@@ -261,9 +261,9 @@ public class XmlCatalogView extends Composite {
 				catalogDoc.getRootElement().addContent("\n");
 				saveCatalog();
 				fillCatalogTable();
-			} catch (Exception e1) {
+			} catch (Exception ex) {
 				MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
-				box.setMessage(e1.getMessage());
+				box.setMessage(ex.getMessage());
 				box.open();
 			}
 		}

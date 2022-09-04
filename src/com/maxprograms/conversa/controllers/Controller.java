@@ -50,7 +50,7 @@ public class Controller {
 		publications = new JSONObject();
 		File file = new File(Preferences.getPreferencesDir(), Constants.PUBLICATIONS);
 		if (file.exists()) {
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			try (FileReader reader = new FileReader(file, StandardCharsets.UTF_8)) {
 				try (BufferedReader buffered = new BufferedReader(reader)) {
 					String line = "";

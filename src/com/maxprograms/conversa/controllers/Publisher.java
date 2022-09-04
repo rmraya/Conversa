@@ -28,8 +28,11 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.eclipse.swt.program.Program;
 import org.json.JSONException;
@@ -144,7 +147,18 @@ public class Publisher {
 						path = path + "fop.bat";
 					} else {
 						path = path + "fop.sh";
-						new File(path).setExecutable(true);
+						File fop = new File(path);
+						Set<PosixFilePermission> perms = new TreeSet<>();
+						perms.add(PosixFilePermission.OWNER_READ);
+						perms.add(PosixFilePermission.OWNER_WRITE);
+						perms.add(PosixFilePermission.OWNER_EXECUTE);
+						perms.add(PosixFilePermission.GROUP_READ);
+						perms.add(PosixFilePermission.GROUP_WRITE);
+						try {
+							Files.setPosixFilePermissions(fop.toPath(), perms);
+						} catch (IOException e) {
+							logger.displayError("Error setting permissions for FOP");
+						}
 					}
 					if (!converter.registerFOP(path(path))) {
 						logger.displayError("Error registering internal FOP. (" + path + ")");

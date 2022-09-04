@@ -30,10 +30,9 @@ module conversa {
 	exports com.maxprograms.conversa.views.resources;
 	exports com.maxprograms.widgets;
 
-	opens com.maxprograms.conversa.models to mapdb;
 	
 	requires java.base;
-	requires mapdb;
+	requires json;
 	requires java.xml;
 	requires transitive openxliff;
 	requires ditac;
