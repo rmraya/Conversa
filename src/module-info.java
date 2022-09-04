@@ -26,13 +26,17 @@ module conversa {
 	exports com.maxprograms.conversa;
 	exports com.maxprograms.conversa.models;
 	exports com.maxprograms.conversa.controllers;
-	
+	exports com.maxprograms.conversa.views;
+	exports com.maxprograms.conversa.views.resources;
+	exports com.maxprograms.widgets;
+
 	opens com.maxprograms.conversa.models to mapdb;
 	
 	requires java.base;
+	requires mapdb;
 	requires java.xml;
 	requires transitive openxliff;
 	requires ditac;
-	requires swt;
-	requires mapdb;
+	requires transitive swt;
+	
 }

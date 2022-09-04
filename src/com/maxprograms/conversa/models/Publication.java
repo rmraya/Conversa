@@ -26,6 +26,8 @@ package com.maxprograms.conversa.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.json.JSONObject;
+
 public class Publication implements Serializable {
 
 	private static final long serialVersionUID = -2931016549562401932L;
@@ -33,7 +35,7 @@ public class Publication implements Serializable {
 	private String outputFolder;
 	private String ditaval;
 	private int formats;
-	private Date lastPublised;
+	private Date lastPublished;
 
 	public static final int PDF = 0x1;
 	public static final int HTML = 0x2;
@@ -54,7 +56,25 @@ public class Publication implements Serializable {
 		this.outputFolder = outputFolder;
 		this.ditaval = ditaval;
 		this.formats = formats;
-		this.lastPublised = lastPublished;
+		this.lastPublished = lastPublished;
+	}
+
+	public Publication(JSONObject json) {
+		this.ditamap = json.getString("ditamap");
+		this.outputFolder = json.getString("outputFolder");
+		this.ditaval = json.getString("ditaval");
+		this.formats = json.getInt("formats");
+		this.lastPublished = new Date(json.getLong("lastPublished"));
+	}
+
+	public JSONObject toJSON() {
+		JSONObject json = new JSONObject();
+		json.put("ditamap", ditamap);
+		json.put("outputFolder", outputFolder);
+		json.put("ditaval", ditaval);
+		json.put("formats", formats);
+		json.put("lastPublished", lastPublished.getTime());
+		return json;
 	}
 
 	public String getDitamap() {
@@ -90,11 +110,11 @@ public class Publication implements Serializable {
 	}
 
 	public Date getLastPublised() {
-		return lastPublised;
+		return lastPublished;
 	}
 
 	public void setLastPublised(Date lastPublised) {
-		this.lastPublised = lastPublised;
+		this.lastPublished = lastPublised;
 	}
 
 	public boolean isPDF() {
