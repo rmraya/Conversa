@@ -23,11 +23,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Publication  {
+public class Publication {
 
 	private String ditamap;
 	private String outputFolder;
@@ -57,12 +60,12 @@ public class Publication  {
 		this.lastPublished = lastPublished;
 	}
 
-	public Publication(JSONObject json) {
+	public Publication(JSONObject json) throws JSONException, ParseException {
 		this.ditamap = json.getString("ditamap");
 		this.outputFolder = json.getString("outputFolder");
 		this.ditaval = json.getString("ditaval");
 		this.formats = json.getInt("formats");
-		this.lastPublished = new Date(json.getLong("lastPublished"));
+		this.lastPublished = SimpleDateFormat.getInstance().parse(json.getString("lastPublished"));
 	}
 
 	public JSONObject toJSON() {
@@ -71,7 +74,7 @@ public class Publication  {
 		json.put("outputFolder", outputFolder);
 		json.put("ditaval", ditaval);
 		json.put("formats", formats);
-		json.put("lastPublished", lastPublished.getTime());
+		json.put("lastPublished", SimpleDateFormat.getInstance().format(lastPublished));
 		return json;
 	}
 
@@ -111,8 +114,8 @@ public class Publication  {
 		return lastPublished;
 	}
 
-	public void setLastPublised(Date lastPublised) {
-		this.lastPublished = lastPublised;
+	public void setLastPublished(Date lastPublished) {
+		this.lastPublished = lastPublished;
 	}
 
 	public boolean isPDF() {

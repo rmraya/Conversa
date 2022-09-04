@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public class Licenses {
 
-    protected static final Logger LOGGER = System.getLogger(Licenses.class.getName());
+    private static Logger logger = System.getLogger(Licenses.class.getName());
 
     protected Shell shell;
     private Display display;
@@ -75,7 +75,7 @@ public class Licenses {
         try {
             conversaLink.setURL(new File("lib/licenses/conversa.txt").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label ditac = new Label(shell, SWT.NONE);
@@ -86,7 +86,7 @@ public class Licenses {
         try {
             ditacLink.setURL(new File("LEGAL/MPL-2.0.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label java = new Label(shell, SWT.NONE);
@@ -97,7 +97,7 @@ public class Licenses {
         try {
             javaLink.setURL(new File("lib/licenses/java.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label swt = new Label(shell, SWT.NONE);
@@ -108,7 +108,7 @@ public class Licenses {
         try {
             swtLink.setURL(new File("lib/licenses/EclipsePublicLicense1.0.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label openxliff = new Label(shell, SWT.NONE);
@@ -119,7 +119,7 @@ public class Licenses {
         try {
             openxliffLink.setURL(new File("lib/licenses/EclipsePublicLicense1.0.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label resolver = new Label(shell, SWT.NONE);
@@ -130,7 +130,7 @@ public class Licenses {
         try {
             resolverLink.setURL(new File("lib/licenses/Apache2.0.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label saxon = new Label(shell, SWT.NONE);
@@ -141,7 +141,7 @@ public class Licenses {
         try {
             saxonLink.setURL(new File("LEGAL/MPL-2.0.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label whc = new Label(shell, SWT.NONE);
@@ -152,7 +152,7 @@ public class Licenses {
         try {
             whcLink.setURL(new File("LEGAL/whc.LICENSE").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label xslthl = new Label(shell, SWT.NONE);
@@ -163,7 +163,7 @@ public class Licenses {
         try {
             xslthlLink.setURL(new File("LEGAL/xslthl.LICENSE").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label fop = new Label(shell, SWT.NONE);
@@ -174,7 +174,7 @@ public class Licenses {
         try {
             fopLink.setURL(new File("lib/licenses/Apache2.0.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label mapDB = new Label(shell, SWT.NONE);
@@ -185,7 +185,7 @@ public class Licenses {
         try {
             mapdbLink.setURL(new File("lib/licenses/Apache2.0.html").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label relaxng = new Label(shell, SWT.NONE);
@@ -196,7 +196,7 @@ public class Licenses {
         try {
             relaxngLink.setURL(new File("LEGAL/relaxng.LICENSE").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label snowball = new Label(shell, SWT.NONE);
@@ -207,7 +207,7 @@ public class Licenses {
         try {
             snowballLink.setURL(new File("LEGAL/snowball.LICENSE").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         Label flexmark = new Label(shell, SWT.NONE);
@@ -218,7 +218,7 @@ public class Licenses {
         try {
             flexMarkLink.setURL(new File("LEGAL/flexmark.LICENSE").toURI().toURL().toString());
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, "Error getting license", e);
+            logger.log(Level.ERROR, "Error getting license", e);
         }
 
         shell.pack();

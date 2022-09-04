@@ -59,7 +59,7 @@ import com.maxprograms.xml.XMLOutputter;
 
 public class XSLView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(XSLView.class.getName());
+	private static Logger logger = System.getLogger(XSLView.class.getName());
 
 	private CommonParametersView commonView;
 	private FoParametersView foView;
@@ -163,7 +163,7 @@ public class XSLView extends Composite {
 						box.setMessage("XSL parameters exported.");
 						box.open();
 					} catch (IOException e) {
-						LOGGER.log(Level.ERROR, "Error exporting preferences", e);
+						logger.log(Level.ERROR, "Error exporting preferences", e);
 						MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 						box.setMessage("There was an error exporting preferences.");
 						box.open();
@@ -225,7 +225,7 @@ public class XSLView extends Composite {
 					}
 					loadValues();
 				} catch (SAXException | IOException | ParserConfigurationException e) {
-					LOGGER.log(Level.ERROR, "Error importing preferences", e);
+					logger.log(Level.ERROR, "Error importing preferences", e);
 					MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 					box.setMessage("There was an error importing preferences.");
 					box.open();
@@ -266,7 +266,7 @@ public class XSLView extends Composite {
 				try {
 					Program.launch(new File("docs/xsl_parameters.pdf").toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening Reference Guide", e);
+					logger.log(Level.ERROR, "Error opening Reference Guide", e);
 					MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 					box.setMessage("Error opening Reference Guide");
 					box.open();

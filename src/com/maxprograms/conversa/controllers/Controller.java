@@ -29,6 +29,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -66,7 +67,7 @@ public class Controller {
 		}
 	}
 
-	public List<Publication> getPublications() throws JSONException, IOException {
+	public List<Publication> getPublications() throws JSONException, IOException, ParseException {
 		List<Publication> result = new ArrayList<>();
 		Set<String> set = publications.keySet();
 		Iterator<String> it = set.iterator();
@@ -83,7 +84,7 @@ public class Controller {
 	}
 
 	public void addPublication(Publication pub) throws IOException, JSONException {
-		pub.setLastPublised(new Date());
+		pub.setLastPublished(new Date());
 		publications.put(pub.getDitamap(), pub.toJSON());
 		File file = new File(Preferences.getPreferencesDir(), Constants.PUBLICATIONS);
 		try (FileOutputStream out = new FileOutputStream(file)) {

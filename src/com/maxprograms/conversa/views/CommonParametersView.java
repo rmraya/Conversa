@@ -45,7 +45,7 @@ import com.maxprograms.utils.Preferences;
 
 public class CommonParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(CommonParametersView.class.getName());
+	private static  Logger logger = System.getLogger(CommonParametersView.class.getName());
 	public static final String PARAMS = "Common";
 
 	private Combo appendixNumberFormat;
@@ -312,7 +312,7 @@ public class CommonParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -353,8 +353,8 @@ public class CommonParametersView extends Composite {
 			watermarkImage.setText(prefs.get(PARAMS, "watermark-image", ""));
 			xrefAutoText.setText(prefs.get(PARAMS, "xref-auto-text", "number"));
 			xslResourcesDirectory.setText(prefs.get(PARAMS, "xsl-resources-directory", "resources/"));
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -394,7 +394,7 @@ public class CommonParametersView extends Composite {
 			values.put("xsl-resources-directory", xslResourcesDirectory.getText());
 			prefs.save(PARAMS, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving defaults", e);
+			logger.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();

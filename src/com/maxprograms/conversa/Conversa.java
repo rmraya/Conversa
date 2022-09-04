@@ -58,7 +58,7 @@ public class Conversa {
 	private static ResourceManager resourceManager;
 	private static Display display;
 
-	protected static final Logger LOGGER = System.getLogger(Conversa.class.getName());
+	private static Logger logger = System.getLogger(Conversa.class.getName());
 
 	public static void main(String[] args) {
 		Display.setAppName("Conversa");
@@ -77,14 +77,14 @@ public class Conversa {
 			}
 			unlock();
 		} catch (Exception e) {
-			LOGGER.log(Level.ERROR, "Error starting conversa", e);
+			logger.log(Level.ERROR, "Error starting conversa", e);
 			try {
 				File log = new File(Preferences.getPreferencesDir().getParentFile(), "Conversa_error.log");
 				try (PrintStream stream = new PrintStream(log)) {
 					e.printStackTrace(stream);
 				}
 			} catch (Exception e2) {
-				LOGGER.log(Level.ERROR, "Error writing log", e2);
+				logger.log(Level.ERROR, "Error writing log", e2);
 			}
 		}
 	}

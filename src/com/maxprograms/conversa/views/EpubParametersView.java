@@ -45,7 +45,7 @@ import com.maxprograms.utils.Preferences;
 
 public class EpubParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(EpubParametersView.class.getName());
+	private static Logger logger = System.getLogger(EpubParametersView.class.getName());
 	public static final String PARAMS = "Epub";
 
 	protected boolean restoringDefaults;
@@ -126,7 +126,7 @@ public class EpubParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -144,7 +144,7 @@ public class EpubParametersView extends Composite {
 			epub2Compatible.setText(prefs.get(PARAMS, "epub2-compatible", "yes"));
 			generateEpubTrigger.setText(prefs.get(PARAMS, "generate-epub-trigger", "yes"));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -161,7 +161,7 @@ public class EpubParametersView extends Composite {
 			values.put("generate-epub-trigger", generateEpubTrigger.getText());
 			prefs.save(PARAMS, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving defaults", e);
+			logger.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();

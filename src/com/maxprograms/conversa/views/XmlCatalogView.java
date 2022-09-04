@@ -63,7 +63,7 @@ import com.maxprograms.xml.XMLOutputter;
 
 public class XmlCatalogView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(XmlCatalogView.class.getName());
+	private static Logger logger = System.getLogger(XmlCatalogView.class.getName());
 
 	private static Document catalogDoc;
 	protected Table catalogTable;
@@ -81,7 +81,7 @@ public class XmlCatalogView extends Composite {
 		try {
 			loadCatalogue(Conversa.getCatalogFile());
 		} catch (SAXException | IOException | ParserConfigurationException e1) {
-			LOGGER.log(Level.ERROR, "Error loading catalog", e1);
+			logger.log(Level.ERROR, "Error loading catalog", e1);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage("There was an error loading catalog.");
 			box.open();
@@ -102,7 +102,7 @@ public class XmlCatalogView extends Composite {
 		try {
 			fillCatalogTable();
 		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error loading catalog", e);
+			logger.log(Level.ERROR, "Error loading catalog", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage("There was an error loading catalog.");
 			box.open();
@@ -223,7 +223,7 @@ public class XmlCatalogView extends Composite {
 			saveCatalog();
 			fillCatalogTable();
 		} catch (Exception e1) {
-			LOGGER.log(Level.ERROR, "Error saving catalog", e1);
+			logger.log(Level.ERROR, "Error saving catalog", e1);
 			MessageBox ebox = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			ebox.setMessage("There was an error saving catalog.");
 			ebox.open();

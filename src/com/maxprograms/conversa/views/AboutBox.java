@@ -26,6 +26,7 @@ package com.maxprograms.conversa.views;
 import java.text.MessageFormat;
 import java.lang.System.Logger.Level;
 import java.io.File;
+import java.io.IOException;
 import java.lang.System.Logger;
 
 import org.eclipse.swt.SWT;
@@ -49,7 +50,7 @@ import com.maxprograms.utils.Preferences;
 
 public class AboutBox {
 
-	protected static final Logger LOGGER = System.getLogger(AboutBox.class.getName());
+	private static Logger logger = System.getLogger(AboutBox.class.getName());
 
 	protected Shell shell;
 	private Display display;
@@ -115,8 +116,8 @@ public class AboutBox {
 			Label userData = new Label(systemTab, SWT.NONE);
 			MessageFormat mf4 = new MessageFormat("Data Folder: {0}");
 			userData.setText(mf4.format(new Object[] { Preferences.getPreferencesDir() }));
-		} catch (Exception e) {
-			LOGGER.log(Level.ERROR, "Error getting preferences dir", e);
+		} catch (IllegalArgumentException | IOException e) {
+			logger.log(Level.ERROR, "Error getting preferences dir", e);
 		}
 
 		Composite bottom = new Composite(shell, SWT.NONE);

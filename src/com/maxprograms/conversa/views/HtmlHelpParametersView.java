@@ -44,7 +44,7 @@ import com.maxprograms.utils.Preferences;
 
 public class HtmlHelpParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(HtmlHelpParametersView.class.getName());
+	private static Logger logger = System.getLogger(HtmlHelpParametersView.class.getName());
 	public static final String PARAMS = "HtmlHelp";
 
 	protected boolean restoringDefaults;
@@ -120,7 +120,7 @@ public class HtmlHelpParametersView extends Composite {
 			values.put("hhx-basename", hhxBasename.getText());
 			prefs.save(PARAMS, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving values", e);
+			logger.log(Level.ERROR, "Error saving values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -134,7 +134,7 @@ public class HtmlHelpParametersView extends Composite {
 			hhpTemplate.setText(prefs.get(PARAMS, "hhp-template", "template.hhp"));
 			hhxBasename.setText(prefs.get(PARAMS, "hhx-basename", "index.hhx"));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -147,7 +147,7 @@ public class HtmlHelpParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();

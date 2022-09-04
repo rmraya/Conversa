@@ -44,7 +44,7 @@ import com.maxprograms.utils.Preferences;
 
 public class EclipseHelpParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(EclipseHelpParametersView.class.getName());
+	private static Logger logger = System.getLogger(EclipseHelpParametersView.class.getName());
 	public static final String PARAMS = "EclipseHelp";
 
 	protected boolean restoringDefaults;
@@ -147,7 +147,7 @@ public class EclipseHelpParametersView extends Composite {
 			values.put("plugin-version", pluginVersion.getText());
 			prefs.save(PARAMS, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving defaults", e);
+			logger.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -164,7 +164,7 @@ public class EclipseHelpParametersView extends Composite {
 			pluginTocBasename.setText(prefs.get(PARAMS, "plugin-toc-basename", "toc.xml"));
 			pluginVersion.setText(prefs.get(PARAMS, "plugin-version", "1.0.0"));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -177,7 +177,7 @@ public class EclipseHelpParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();

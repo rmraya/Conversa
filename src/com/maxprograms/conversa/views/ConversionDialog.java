@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +61,7 @@ import com.maxprograms.widgets.LogPanel;
 
 public class ConversionDialog implements ILogger {
 
-	protected static final Logger LOGGER = System.getLogger(ConversionDialog.class.getName());
+	private static Logger logger = System.getLogger(ConversionDialog.class.getName());
 
 	protected Shell shell;
 	private Display display;
@@ -119,8 +120,8 @@ public class ConversionDialog implements ILogger {
 							openButton.getSelection() ? "Yes" : "No");
 					preferences.save("ConversionDialog", "showLog",
 							showLog.getSelection() ? "Yes" : "No");
-				} catch (IOException e) {
-					LOGGER.log(Level.ERROR, "Error saving loation", e);
+				} catch (IOException | JSONException e) {
+					logger.log(Level.ERROR, "Error saving location", e);
 				}
 			}
 		});
@@ -157,7 +158,7 @@ public class ConversionDialog implements ILogger {
 						File f = new File(mapText.getText());
 						fd.setFileName(f.getName());
 						fd.setFilterPath(f.getParent());
-					} catch (Exception e) {
+					} catch (NullPointerException e) {
 						// do nothing
 					}
 				}
@@ -197,7 +198,7 @@ public class ConversionDialog implements ILogger {
 					try {
 						File f = new File(outputText.getText());
 						dialog.setFilterPath(f.getParent());
-					} catch (Exception e) {
+					} catch (NullPointerException e) {
 						// do nothing
 					}
 				}
@@ -233,7 +234,7 @@ public class ConversionDialog implements ILogger {
 						File f = new File(valText.getText());
 						fd.setFileName(f.getName());
 						fd.setFilterPath(f.getParent());
-					} catch (Exception e) {
+					} catch (NullPointerException e) {
 						// do nothing
 					}
 				}
@@ -314,7 +315,7 @@ public class ConversionDialog implements ILogger {
 			openButton.setSelection("Yes".equals(preferences.get("ConversionDialog", "openFiles", "Yes")));
 			showLog.setSelection("Yes".equals(preferences.get("ConversionDialog", "showLog", "Yes")));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+			logger.log(Level.ERROR, "Error saving preferences", e);
 		}
 
 		logPanel = new LogPanel(shell, SWT.BORDER);
@@ -383,7 +384,7 @@ public class ConversionDialog implements ILogger {
 					}
 					val = v.getAbsolutePath();
 				} else {
-					val = null;
+					val = "";
 				}
 				int formats = getFormats();
 				if (formats == 0) {
@@ -515,6 +516,7 @@ public class ConversionDialog implements ILogger {
 				htmlHelpButton.setEnabled(false);
 			}
 		} catch (IOException | JSONException ex) {
+			logger.log(Level.ERROR, ex);
 			MessageBox box = new MessageBox(shell, SWT.OK | SWT.ICON_WARNING);
 			box.setMessage("Error checking enabled output formats.");
 			box.open();
@@ -581,9 +583,11 @@ public class ConversionDialog implements ILogger {
 				try {
 					Conversa.getController().addPublication(pub);
 					Conversa.getMainView().loadPublications();
-				} catch (JSONException | IOException e) {
+				} catch (JSONException | IOException | ParseException e) {
+					logger.log(Level.ERROR, e);
 					MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
 					box.setMessage(e.getMessage());
+					box.open();
 				}
 				if (showLog.getSelection()) {
 					ConsoleView console = new ConsoleView(shell, SWT.CLOSE | SWT.RESIZE);

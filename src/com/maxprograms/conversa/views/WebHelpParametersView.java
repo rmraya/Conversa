@@ -45,7 +45,7 @@ import com.maxprograms.utils.Preferences;
 
 public class WebHelpParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(WebHelpParametersView.class.getName());
+	private static Logger logger = System.getLogger(WebHelpParametersView.class.getName());
 	public static final String PARAMS = "WebHelp";
 
 	protected boolean restoringDefaults;
@@ -230,7 +230,7 @@ public class WebHelpParametersView extends Composite {
 			values.put("whc-toc-basename", whcTocBasename.getText());
 			prefs.save(PARAMS, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving defaults", e);
+			logger.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -256,7 +256,7 @@ public class WebHelpParametersView extends Composite {
 			whcIndexBasename.setText(prefs.get(PARAMS, "whc-index-basename", "whc_index.xml"));
 			whcTocBasename.setText(prefs.get(PARAMS, "whc-toc-basename", "whc_toc.xml"));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -269,7 +269,7 @@ public class WebHelpParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();

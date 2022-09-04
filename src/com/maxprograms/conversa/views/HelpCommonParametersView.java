@@ -44,7 +44,7 @@ import com.maxprograms.utils.Preferences;
 
 public class HelpCommonParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(HelpCommonParametersView.class.getName());
+	private static Logger logger = System.getLogger(HelpCommonParametersView.class.getName());
 	public static final String PARAMS = "HelpCommon";
 
 	protected boolean restoringDefaults;
@@ -111,7 +111,7 @@ public class HelpCommonParametersView extends Composite {
 			values.put("number-toc-entries", numberTocEntries.getText());
 			prefs.save(PARAMS, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving defaults", e);
+			logger.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -124,7 +124,7 @@ public class HelpCommonParametersView extends Composite {
 			addTocRoot.setText(prefs.get(PARAMS, "add-toc-root", "yes"));
 			numberTocEntries.setText(prefs.get(PARAMS, "number-toc-entries", "yes"));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -137,7 +137,7 @@ public class HelpCommonParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();

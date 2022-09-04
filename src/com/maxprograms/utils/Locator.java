@@ -34,7 +34,7 @@ import org.json.JSONObject;
 
 public class Locator {
 
-	protected static final Logger LOGGER = System.getLogger(Locator.class.getName());
+	private static Logger logger = System.getLogger(Locator.class.getName());
 
 	private Locator() {
 		// don't instantiate this class
@@ -49,7 +49,7 @@ public class Locator {
 				shell.setLocation(location);
 			}
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error setting location", e);
+			logger.log(Level.ERROR, "Error setting location", e);
 		}
 	}
 
@@ -67,7 +67,7 @@ public class Locator {
 				shell.setSize(650, 550);
 			}
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error setting position", e);
+			logger.log(Level.ERROR, "Error setting position", e);
 		}
 	}
 
@@ -85,7 +85,7 @@ public class Locator {
 				shell.setSize(defaultSize);
 			}
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error setting position", e);
+			logger.log(Level.ERROR, "Error setting position", e);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class Locator {
 			values.put("Height", "" + shell.getSize().y);
 			Preferences.getInstance().save(type, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving location", e);
+			logger.log(Level.ERROR, "Error saving location", e);
 		}
 	}
 

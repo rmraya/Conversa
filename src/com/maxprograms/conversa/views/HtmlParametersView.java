@@ -46,7 +46,7 @@ import com.maxprograms.utils.Preferences;
 
 public class HtmlParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(HtmlParametersView.class.getName());
+	private static Logger logger = System.getLogger(HtmlParametersView.class.getName());
 	public static final String PARAMS = "Html";
 
 	private Combo addIndexToc;
@@ -272,7 +272,7 @@ public class HtmlParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -308,7 +308,7 @@ public class HtmlParametersView extends Composite {
 			screenResolution.setText(prefs.get(PARAMS, "screen-resolution", "96"));
 			xhtmlMimeType.setText(prefs.get(PARAMS, "xhtml-mime-type", "text/html"));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -341,7 +341,7 @@ public class HtmlParametersView extends Composite {
 			values.put("xhtml-mime-type", xhtmlMimeType.getText());
 			prefs.save(PARAMS, values);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving values", e);
+			logger.log(Level.ERROR, "Error saving values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();

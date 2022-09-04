@@ -50,9 +50,8 @@ public class Preferences {
 	private Preferences() throws IOException, JSONException {
 		File file = new File(getPreferencesDir(), Constants.PREFERENCES);
 		if (!file.exists()) {
-			json = new JSONObject();
 			try (FileOutputStream out = new FileOutputStream(file)) {
-				out.write(json.toString().getBytes(StandardCharsets.UTF_8));
+				out.write(new JSONObject().toString().getBytes(StandardCharsets.UTF_8));
 			}
 		}
 		StringBuffer sb = new StringBuffer();

@@ -29,15 +29,19 @@ import java.io.InputStream;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.Collator;
 import java.text.MessageFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
@@ -67,6 +71,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.json.JSONException;
+import org.xml.sax.SAXException;
 
 import com.maxprograms.conversa.controllers.Controller;
 import com.maxprograms.conversa.models.Publication;
@@ -83,7 +88,7 @@ import com.maxprograms.xml.SAXBuilder;
 
 public class MainView {
 
-	protected static final Logger LOGGER = System.getLogger(MainView.class.getName());
+	private static Logger logger = System.getLogger(MainView.class.getName());
 
 	private Display display;
 	protected Shell shell;
@@ -234,7 +239,7 @@ public class MainView {
 				try {
 					Program.launch(new File("docs/conversa.pdf").toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening help file", e);
+					logger.log(Level.ERROR, "Error opening help file", e);
 					MessageBox box = new MessageBox(shell, SWT.ICON_WARNING | SWT.OK);
 					box.setMessage("There was an error opening help file.");
 					box.open();
@@ -301,9 +306,11 @@ public class MainView {
 				}
 				try {
 					loadPublications();
-				} catch (JSONException | IOException ex) {
+				} catch (JSONException | IOException | ParseException ex) {
+					logger.log(Level.ERROR, ex);
 					MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
 					box.setMessage(ex.getMessage());
+					box.open();
 				}
 			}
 		};
@@ -359,7 +366,7 @@ public class MainView {
 								dialog.setMap(f);
 								dialog.show();
 							}
-						} catch (Exception e) {
+						} catch (SAXException | IOException | ParserConfigurationException | URISyntaxException e) {
 							// do nothing
 						}
 					}
@@ -385,9 +392,11 @@ public class MainView {
 						Publication p = (Publication) table.getSelection()[0].getData("publication");
 						Conversa.getController().removePublication(p);
 						loadPublications();
-					} catch (JSONException | IOException e) {
+					} catch (JSONException | IOException | ParseException e) {
+						logger.log(Level.ERROR, e);
 						MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
 						box.setMessage(e.getMessage());
+						box.open();
 					}
 				}
 			}
@@ -395,9 +404,11 @@ public class MainView {
 
 		try {
 			loadPublications();
-		} catch (JSONException | IOException e) {
+		} catch (JSONException | IOException | ParseException e) {
+			logger.log(Level.ERROR, e);
 			MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
+			box.open();
 		}
 	}
 
@@ -482,7 +493,7 @@ public class MainView {
 				try {
 					Program.launch(new File("docs/conversa.pdf").toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening help", e);
+					logger.log(Level.ERROR, "Error opening help", e);
 					MessageBox box = new MessageBox(shell, SWT.ICON_WARNING | SWT.OK);
 					box.setMessage("There was an error opening help file.");
 					box.open();
@@ -498,7 +509,7 @@ public class MainView {
 				try {
 					Program.launch(new File("docs/manual.pdf").toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening help", e);
+					logger.log(Level.ERROR, "Error opening help", e);
 					MessageBox box = new MessageBox(shell, SWT.ICON_WARNING | SWT.OK);
 					box.setMessage("There was an error opening help file.");
 					box.open();
@@ -603,6 +614,7 @@ public class MainView {
 			}
 		} catch (Exception e) {
 			if (!silent) {
+				logger.log(Level.ERROR, e);
 				MessageBox box = new MessageBox(shell, SWT.ICON_WARNING | SWT.OK);
 				box.setMessage("Unable to check for updates.");
 				box.open();
@@ -619,7 +631,7 @@ public class MainView {
 		return null;
 	}
 
-	public void loadPublications() throws JSONException, IOException {
+	public void loadPublications() throws JSONException, IOException, ParseException {
 		Cursor arrow = shell.getCursor();
 		Cursor wait = new Cursor(display, SWT.CURSOR_WAIT);
 		shell.setCursor(wait);

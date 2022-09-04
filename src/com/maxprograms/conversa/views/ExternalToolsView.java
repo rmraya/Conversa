@@ -48,7 +48,7 @@ import com.maxprograms.utils.Preferences;
 
 public class ExternalToolsView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(ExternalToolsView.class.getName());
+	private static Logger logger = System.getLogger(ExternalToolsView.class.getName());
 
 	private Button fopRadio;
 	private Button otherFopRadio;
@@ -250,7 +250,7 @@ public class ExternalToolsView extends Composite {
 				try {
 					saveSettings();
 				} catch (Exception e) {
-					LOGGER.log(Level.ERROR, "Error saving preferences", e);
+					logger.log(Level.ERROR, "Error saving preferences", e);
 					MessageBox box = new MessageBox(getShell(), SWT.OK | SWT.ICON_ERROR);
 					box.setMessage("There was an error saving preferences.");
 					box.open();
@@ -287,7 +287,7 @@ public class ExternalToolsView extends Composite {
 			xmlMindText.setText(preferences.get("foProcessor", "XMFC", ""));
 			mhcText.setText(preferences.get("foProcessor", "MHC", ""));
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading preferences", e);
+			logger.log(Level.ERROR, "Error loading preferences", e);
 			MessageBox box = new MessageBox(getShell(), SWT.OK | SWT.ICON_ERROR);
 			box.setMessage("There was an error getting preferences.");
 			box.open();

@@ -58,7 +58,7 @@ import com.xmlmind.util.Console.MessageType;
 
 public class Publisher {
 
-	protected static final Logger LOGGER = System.getLogger(Publisher.class.getName());
+	private static  Logger logger = System.getLogger(Publisher.class.getName());
 
 	private static String defaultFoProcessor;
 	private static String externalFop;
@@ -73,7 +73,7 @@ public class Publisher {
 		// do not instantiate
 	}
 
-	public static void convert(Publication publication, boolean openFiles, AsyncLogger logger) {
+	public static void convert(Publication publication, boolean openFiles, AsyncLogger aLogger) {
 		StyleSheetCache cache = new StyleSheetCache();
 
 		log = new StringBuilder();
@@ -83,20 +83,20 @@ public class Publisher {
 			public void showMessage(String message, MessageType messageType) {
 				log.append(message + "\n");
 				if (messageType.equals(MessageType.ERROR)) {
-					logger.logError(message);
+					aLogger.logError(message);
 				}
 				if (messageType.equals(MessageType.INFO)) {
-					logger.log(message);
+					aLogger.log(message);
 				}
 				if (messageType.equals(MessageType.WARNING)) {
-					logger.log(message);
+					aLogger.log(message);
 				}
 			}
 		};
 
 		Converter converter = new Converter(cache, console);
 
-		logger.setStage("Loading Settings");
+		aLogger.setStage("Loading Settings");
 
 		loadSettings();
 
@@ -106,10 +106,10 @@ public class Publisher {
 			outFolder.mkdirs();
 		}
 		File outFile = null;
-		File ditaval = publication.getDitaval() != null ? new File(publication.getDitaval()) : null;
+		File ditaval = publication.getDitaval().isEmpty() ? null : new File(publication.getDitaval());
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -117,23 +117,23 @@ public class Publisher {
 		// PDF
 		//
 		if (publication.isPDF()) {
-			logger.setStage("Generating PDF");
+			aLogger.setStage("Generating PDF");
 			switch (defaultFoProcessor) {
 				case "XEP":
 					if (!converter.registerXEP(path(xepPath))) {
-						logger.displayError("Error registering XEP.");
+						aLogger.displayError("Error registering XEP.");
 						return;
 					}
 					break;
 				case "AH":
 					if (!converter.registerAHF(path(ahPath))) {
-						logger.displayError("Error registering Antenna House.");
+						aLogger.displayError("Error registering Antenna House.");
 						return;
 					}
 					break;
 				case "externalFOP":
 					if (!converter.registerFOP(path(externalFop))) {
-						logger.displayError("Error registering FOP.");
+						aLogger.displayError("Error registering FOP.");
 						return;
 					}
 					break;
@@ -157,11 +157,12 @@ public class Publisher {
 						try {
 							Files.setPosixFilePermissions(fop.toPath(), perms);
 						} catch (IOException e) {
-							logger.displayError("Error setting permissions for FOP");
+							logger.log(Level.ERROR, e);
+							aLogger.displayError("Error setting permissions for FOP");
 						}
 					}
 					if (!converter.registerFOP(path(path))) {
-						logger.displayError("Error registering internal FOP. (" + path + ")");
+						aLogger.displayError("Error registering internal FOP. (" + path + ")");
 						return;
 					}
 			}
@@ -184,25 +185,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating PDF.");
+				aLogger.displayError("Error generating PDF.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening PDF", e);
+					logger.log(Level.ERROR, "Error opening PDF", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -211,7 +212,7 @@ public class Publisher {
 		//
 
 		if (publication.isHTML()) {
-			logger.setStage("Generating HTML");
+			aLogger.setStage("Generating HTML");
 			File folder = new File(outFolder, "html");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -232,25 +233,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating HTML.");
+				aLogger.displayError("Error generating HTML.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening HTML", e);
+					logger.log(Level.ERROR, "Error opening HTML", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -259,7 +260,7 @@ public class Publisher {
 		//
 
 		if (publication.isXSLFO()) {
-			logger.setStage("Generating XSL-FO");
+			aLogger.setStage("Generating XSL-FO");
 			File folder = new File(outFolder, "fo");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -279,25 +280,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating XSL-FO.");
+				aLogger.displayError("Error generating XSL-FO.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening XSL-FO", e);
+					logger.log(Level.ERROR, "Error opening XSL-FO", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -306,7 +307,7 @@ public class Publisher {
 		//
 
 		if (publication.isPostScript()) {
-			logger.setStage("Generating PostScript");
+			aLogger.setStage("Generating PostScript");
 			File folder = new File(outFolder, "ps");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -326,25 +327,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating PostScript.");
+				aLogger.displayError("Error generating PostScript.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening PostScript file", e);
+					logger.log(Level.ERROR, "Error opening PostScript file", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -353,7 +354,7 @@ public class Publisher {
 		//
 
 		if (publication.isEclipse()) {
-			logger.setStage("Generating Eclipse Help");
+			aLogger.setStage("Generating Eclipse Help");
 			File folder = new File(outFolder, "eclipse");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -383,25 +384,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating Eclipse Help.");
+				aLogger.displayError("Error generating Eclipse Help.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.getParentFile().toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening Eclipse Help", e);
+					logger.log(Level.ERROR, "Error opening Eclipse Help", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -410,7 +411,7 @@ public class Publisher {
 		//
 
 		if (publication.isWebHelp()) {
-			logger.setStage("Generating Web Help");
+			aLogger.setStage("Generating Web Help");
 			File folder = new File(outFolder, "webhelp");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -433,25 +434,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating Web Help.");
+				aLogger.displayError("Error generating Web Help.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening Web Help", e);
+					logger.log(Level.ERROR, "Error opening Web Help", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -460,7 +461,7 @@ public class Publisher {
 		//
 
 		if (publication.isWebHelp5()) {
-			logger.setStage("Generating Web Help HTML 5");
+			aLogger.setStage("Generating Web Help HTML 5");
 			File folder = new File(outFolder, "webhelp5");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -483,25 +484,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating Web Help HTML 5.");
+				aLogger.displayError("Error generating Web Help HTML 5.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening Web Help HTML 5", e);
+					logger.log(Level.ERROR, "Error opening Web Help HTML 5", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -510,7 +511,7 @@ public class Publisher {
 		//
 
 		if (publication.isHTMLHelp()) {
-			logger.setStage("Generating HTML Help");
+			aLogger.setStage("Generating HTML Help");
 			File folder = new File(outFolder, "htmlhelp");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -534,25 +535,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating HTML Help.");
+				aLogger.displayError("Error generating HTML Help.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening HTML Help", e);
+					logger.log(Level.ERROR, "Error opening HTML Help", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -561,7 +562,7 @@ public class Publisher {
 		//
 
 		if (publication.isDocx()) {
-			logger.setStage("Generating DOCX");
+			aLogger.setStage("Generating DOCX");
 			File folder = new File(outFolder, "docx");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -582,25 +583,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating DOCX.");
+				aLogger.displayError("Error generating DOCX.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening Docx", e);
+					logger.log(Level.ERROR, "Error opening Docx", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -609,7 +610,7 @@ public class Publisher {
 		//
 
 		if (publication.isRTF()) {
-			logger.setStage("Generating RTF");
+			aLogger.setStage("Generating RTF");
 			File folder = new File(outFolder, "rtf");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -630,25 +631,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating RTF.");
+				aLogger.displayError("Error generating RTF.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening RTF", e);
+					logger.log(Level.ERROR, "Error opening RTF", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -657,7 +658,7 @@ public class Publisher {
 		//
 
 		if (publication.isODT()) {
-			logger.setStage("Generating ODT");
+			aLogger.setStage("Generating ODT");
 			File folder = new File(outFolder, "odt");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -678,25 +679,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating ODT.");
+				aLogger.displayError("Error generating ODT.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening ODT", e);
+					logger.log(Level.ERROR, "Error opening ODT", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -705,7 +706,7 @@ public class Publisher {
 		//
 
 		if (publication.isEPUB2()) {
-			logger.setStage("Generating EPUB 2");
+			aLogger.setStage("Generating EPUB 2");
 			File folder = new File(outFolder, "epub");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -728,25 +729,25 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating EPUB 2.");
+				aLogger.displayError("Error generating EPUB 2.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening EPUB 2", e);
+					logger.log(Level.ERROR, "Error opening EPUB 2", e);
 				}
 			}
 		}
 
-		if (logger.isCancelled()) {
-			logger.displayError("Process cancelled.");
+		if (aLogger.isCancelled()) {
+			aLogger.displayError("Process cancelled.");
 			return;
 		}
 
@@ -755,7 +756,7 @@ public class Publisher {
 		//
 
 		if (publication.isEPUB3()) {
-			logger.setStage("Generating EPUB 3");
+			aLogger.setStage("Generating EPUB 3");
 			File folder = new File(outFolder, "epub3");
 			if (!folder.exists()) {
 				folder.mkdirs();
@@ -778,23 +779,23 @@ public class Publisher {
 
 			console.showMessage("Parameters:", MessageType.INFO);
 			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			LOGGER.log(Level.INFO, argsBuilder.toString());
+			logger.log(Level.INFO, argsBuilder.toString());
 			console.showMessage("", MessageType.INFO);
 
 			int result = converter.run(argsBuilder.getArguments());
 			if (result != 0) {
-				logger.displayError("Error generating EPUB 3.");
+				aLogger.displayError("Error generating EPUB 3.");
 				return;
 			}
 			if (openFiles) {
 				try {
 					Program.launch(outFile.toURI().toURL().toString());
 				} catch (MalformedURLException e) {
-					LOGGER.log(Level.ERROR, "Error opening EPUB 3", e);
+					logger.log(Level.ERROR, "Error opening EPUB 3", e);
 				}
 			}
 		}
-		logger.displaySuccess("Done!");
+		aLogger.displaySuccess("Done!");
 	}
 
 	private static void getWebHelpParameters(ArgumentsBuilder argsBuilder) {
@@ -820,7 +821,7 @@ public class Publisher {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(WebHelpParametersView.PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error retrieving preferences", e);
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		if (custom.keySet().isEmpty()) {
 			return;
@@ -845,8 +846,8 @@ public class Publisher {
 		try {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(EpubParametersView.PARAMS);
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error retrieving preferences", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		if (custom.keySet().isEmpty()) {
 			return;
@@ -873,8 +874,8 @@ public class Publisher {
 		try {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(EclipseHelpParametersView.PARAMS);
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error retrieving preferences", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		if (custom.keySet().isEmpty()) {
 			return;
@@ -898,8 +899,8 @@ public class Publisher {
 		try {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(HtmlHelpParametersView.PARAMS);
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		if (custom.keySet().isEmpty()) {
 			return;
@@ -980,8 +981,8 @@ public class Publisher {
 		try {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(FoParametersView.PARAMS);
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		if (custom.keySet().isEmpty()) {
 			return;
@@ -1004,8 +1005,8 @@ public class Publisher {
 		try {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(HelpCommonParametersView.PARAMS);
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		if (custom.keySet().isEmpty()) {
 			return;
@@ -1048,8 +1049,8 @@ public class Publisher {
 		try {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(HtmlParametersView.PARAMS);
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
@@ -1098,8 +1099,8 @@ public class Publisher {
 		try {
 			Preferences preferences = Preferences.getInstance();
 			custom = preferences.get(CommonParametersView.PARAMS);
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+		} catch (IOException | JSONException e) {
+			logger.log(Level.ERROR, "Error retrieving preferences", e);
 		}
 		if (custom.keySet().isEmpty()) {
 			return;
@@ -1132,7 +1133,7 @@ public class Publisher {
 			xfcPath = preferences.get("foProcessor", "XMFC", "");
 			pluginId = preferences.get(EclipseHelpParametersView.PARAMS, "plugin-id", "");
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading preferences", e);
+			logger.log(Level.ERROR, "Error loading preferences", e);
 		}
 	}
 

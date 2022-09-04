@@ -45,7 +45,7 @@ import com.maxprograms.utils.Preferences;
 
 public class FoParametersView extends Composite {
 
-	protected static final Logger LOGGER = System.getLogger(FoParametersView.class.getName());
+	private static Logger logger = System.getLogger(FoParametersView.class.getName());
 	public static final String PARAMS = "XSL-FO";
 
 	protected boolean restoringDefaults;
@@ -560,7 +560,7 @@ public class FoParametersView extends Composite {
 			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error loading defaults", e);
+			logger.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -635,7 +635,7 @@ public class FoParametersView extends Composite {
 			watermark.setText(prefs.get(PARAMS, "watermark", "all"));
 			xfcRenderAsTable.setText(prefs.get(PARAMS, "xfc-render-as-table", "note"));
 		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error loading values", e);
+			logger.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
@@ -706,7 +706,7 @@ public class FoParametersView extends Composite {
 			defaults.put("xfc-render-as-table", xfcRenderAsTable.getText());
 			prefs.save(PARAMS, defaults);
 		} catch (IOException | JSONException e) {
-			LOGGER.log(Level.ERROR, "Error saving defaults", e);
+			logger.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
 			box.open();
