@@ -23,70 +23,55 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.controllers;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOError;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.mapdb.DB;
-import org.mapdb.DBMaker;
-import org.mapdb.HTreeMap;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import com.maxprograms.conversa.Constants;
 import com.maxprograms.conversa.models.Publication;
 import com.maxprograms.utils.Preferences;
 
 public class Controller {
 
-	private DB mapdb;
-	private HTreeMap<String, Publication> hashmap;
+	JSONObject publications;
 
 	public Controller() throws IOException {
-		File out = new File(Preferences.getPreferencesDir(), "Publications");
-		try {
-			mapdb = DBMaker.newFileDB(out).closeOnJvmShutdown().asyncWriteEnable().make();
-		} catch (IOError ex) {
-			if (out.exists()) {
-				try {
-					Files.delete(Paths.get(out.toURI()));
-					File p = new File(Preferences.getPreferencesDir(), "Publications" + ".p"); //$NON-NLS-1$
-					if (p.exists()) {
-						Files.delete(Paths.get(p.toURI()));
+		publications = new JSONObject();
+		File file = new File(Preferences.getPreferencesDir(), Constants.PUBLICATIONS);
+		if (file.exists()) {
+			StringBuffer sb = new StringBuffer();
+			try (FileReader reader = new FileReader(file, StandardCharsets.UTF_8)) {
+				try (BufferedReader buffered = new BufferedReader(reader)) {
+					String line = "";
+					while ((line = buffered.readLine()) != null) {
+						if (!sb.isEmpty()) {
+							sb.append('\n');
+						}
+						sb.append(line);
 					}
-					File t = new File(Preferences.getPreferencesDir(), "Publications" + ".t"); //$NON-NLS-1$
-					if (t.exists()) {
-						Files.delete(Paths.get(t.toURI()));
-					}
-					mapdb = DBMaker.newFileDB(out).closeOnJvmShutdown().asyncWriteEnable().make();
-				} catch (IOError ex2) {
-					throw new IOException(ex2.getMessage());
 				}
-			} else {
-				throw new IOException(ex.getMessage());
 			}
-		}
-		hashmap = mapdb.getHashMap("publications"); //$NON-NLS-1$
-	}
-
-	public void close() {
-		if (mapdb != null) {
-			mapdb.commit();
-			mapdb.compact();
-			mapdb.close();
+			publications = new JSONObject(sb.toString());
 		}
 	}
 
-	public List<Publication> getPublications() {
+	public List<Publication> getPublications() throws JSONException, IOException {
 		List<Publication> result = new ArrayList<>();
-		Set<String> set = hashmap.keySet();
+		Set<String> set = publications.keySet();
 		Iterator<String> it = set.iterator();
 		while (it.hasNext()) {
-			Publication p = hashmap.get(it.next());
+			Publication p = new Publication(publications.getJSONObject(it.next()));
 			File map = new File(p.getDitamap());
 			if (map.exists()) {
 				result.add(p);
@@ -97,15 +82,21 @@ public class Controller {
 		return result;
 	}
 
-	public void addPublication(Publication pub) {
+	public void addPublication(Publication pub) throws IOException, JSONException {
 		pub.setLastPublised(new Date());
-		hashmap.put(pub.getDitamap(), pub);
-		mapdb.commit();
+		publications.put(pub.getDitamap(), pub.toJSON());
+		File file = new File(Preferences.getPreferencesDir(), Constants.PUBLICATIONS);
+		try (FileOutputStream out = new FileOutputStream(file)) {
+			out.write(publications.toString(2).getBytes(StandardCharsets.UTF_8));
+		}
 	}
 
-	public void removePublication(Publication p) {
-		hashmap.remove(p.getDitamap());
-		mapdb.commit();
+	public void removePublication(Publication p) throws IOException, JSONException {
+		publications.remove(p.getDitamap());
+		File file = new File(Preferences.getPreferencesDir(), Constants.PUBLICATIONS);
+		try (FileOutputStream out = new FileOutputStream(file)) {
+			out.write(publications.toString(2).getBytes(StandardCharsets.UTF_8));
+		}
 	}
 
 }

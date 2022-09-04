@@ -25,10 +25,10 @@ package com.maxprograms.conversa.views;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.Date;
 import java.util.List;
-import java.lang.System.Logger.Level;
-import java.lang.System.Logger;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -47,8 +47,8 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.json.JSONException;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.conversa.Conversa;
 import com.maxprograms.conversa.controllers.ILogger;
 import com.maxprograms.conversa.controllers.Publisher;
@@ -114,9 +114,10 @@ public class ConversionDialog implements ILogger {
 			public void handleEvent(Event arg0) {
 				Locator.remember(shell, "ConversionDialog");
 				try {
-					Preferences.getInstance(Constants.PREFERENCES).save("ConversionDialog", "openFiles",
+					Preferences preferences = Preferences.getInstance();
+					preferences.save("ConversionDialog", "openFiles",
 							openButton.getSelection() ? "Yes" : "No");
-					Preferences.getInstance(Constants.PREFERENCES).save("ConversionDialog", "showLog",
+					preferences.save("ConversionDialog", "showLog",
 							showLog.getSelection() ? "Yes" : "No");
 				} catch (IOException e) {
 					LOGGER.log(Level.ERROR, "Error saving loation", e);
@@ -309,11 +310,10 @@ public class ConversionDialog implements ILogger {
 		showLog.setText("Show Log on Success");
 
 		try {
-			openButton.setSelection("Yes".equals(
-					Preferences.getInstance(Constants.PREFERENCES).get("ConversionDialog", "openFiles", "Yes")));
-			showLog.setSelection("Yes"
-					.equals(Preferences.getInstance(Constants.PREFERENCES).get("ConversionDialog", "showLog", "Yes")));
-		} catch (IOException e) {
+			Preferences preferences = Preferences.getInstance();
+			openButton.setSelection("Yes".equals(preferences.get("ConversionDialog", "openFiles", "Yes")));
+			showLog.setSelection("Yes".equals(preferences.get("ConversionDialog", "showLog", "Yes")));
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error saving preferences", e);
 		}
 
@@ -503,7 +503,7 @@ public class ConversionDialog implements ILogger {
 
 	public void checkEnabledFormats() {
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences preferences = Preferences.getInstance();
 			String xmfc = preferences.get("foProcessor", "XMFC", "");
 			if (xmfc.equals("")) {
 				rtfButton.setEnabled(false);
@@ -514,7 +514,7 @@ public class ConversionDialog implements ILogger {
 			if (mhc.equals("")) {
 				htmlHelpButton.setEnabled(false);
 			}
-		} catch (Exception ex) {
+		} catch (IOException | JSONException ex) {
 			MessageBox box = new MessageBox(shell, SWT.OK | SWT.ICON_WARNING);
 			box.setMessage("Error checking enabled output formats.");
 			box.open();
@@ -578,8 +578,13 @@ public class ConversionDialog implements ILogger {
 			@Override
 			public void run() {
 				shell.removeListener(SWT.Close, closeListener);
-				Conversa.getController().addPublication(pub);
-				Conversa.getMainView().loadPublications();
+				try {
+					Conversa.getController().addPublication(pub);
+					Conversa.getMainView().loadPublications();
+				} catch (JSONException | IOException e) {
+					MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
+					box.setMessage(e.getMessage());
+				}
 				if (showLog.getSelection()) {
 					ConsoleView console = new ConsoleView(shell, SWT.CLOSE | SWT.RESIZE);
 					console.showMessage(Publisher.getLog());

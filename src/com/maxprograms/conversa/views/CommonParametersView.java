@@ -24,10 +24,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa.views;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.lang.System.Logger.Level;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -40,8 +38,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.utils.Preferences;
 
 public class CommonParametersView extends Composite {
@@ -310,9 +309,9 @@ public class CommonParametersView extends Composite {
 	protected void loadDefaults() {
 		restoringDefaults = true;
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -325,7 +324,7 @@ public class CommonParametersView extends Composite {
 
 	protected void loadValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			appendixNumberFormat.setText(prefs.get(PARAMS, "appendix-number-format", "A"));
 			causeNumberFormat.setText(prefs.get(PARAMS, "cause-number-format", "A"));
 			centerText.setText(prefs.get(PARAMS, "center", ""));
@@ -364,8 +363,8 @@ public class CommonParametersView extends Composite {
 
 	protected void saveValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
-			Map<String, String> values = new HashMap<>();
+			Preferences prefs = Preferences.getInstance();
+			JSONObject values = new JSONObject();
 			values.put("appendix-number-format", appendixNumberFormat.getText());
 			values.put("cause-number-format", causeNumberFormat.getText());
 			values.put("center", centerText.getText());
@@ -394,7 +393,7 @@ public class CommonParametersView extends Composite {
 			values.put("xref-auto-text", xrefAutoText.getText());
 			values.put("xsl-resources-directory", xslResourcesDirectory.getText());
 			prefs.save(PARAMS, values);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());

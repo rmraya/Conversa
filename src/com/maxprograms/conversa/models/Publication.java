@@ -23,14 +23,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.models;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.json.JSONObject;
 
-public class Publication implements Serializable {
+public class Publication  {
 
-	private static final long serialVersionUID = -2931016549562401932L;
 	private String ditamap;
 	private String outputFolder;
 	private String ditaval;
@@ -109,7 +107,7 @@ public class Publication implements Serializable {
 		this.formats = formats;
 	}
 
-	public Date getLastPublised() {
+	public Date getLastPublished() {
 		return lastPublished;
 	}
 
@@ -168,5 +166,4 @@ public class Publication implements Serializable {
 	public boolean isPostScript() {
 		return (formats & POSTSCRIPT) != 0;
 	}
-
 }

@@ -24,10 +24,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa.views;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.lang.System.Logger.Level;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -40,8 +38,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.utils.Preferences;
 
 public class WebHelpParametersView extends Composite {
@@ -212,8 +211,8 @@ public class WebHelpParametersView extends Composite {
 
 	protected void saveValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
-			Map<String, String> values = new HashMap<>();
+			Preferences prefs = Preferences.getInstance();
+			JSONObject values = new JSONObject();
 			values.put("wh-collapse-toc", whCollapseToc.getText());
 			values.put("wh-index-numbers", whIndexNumbers.getText());
 			values.put("wh-inherit-font-and-colors", whInheritFontAndColors.getText());
@@ -230,7 +229,7 @@ public class WebHelpParametersView extends Composite {
 			values.put("whc-index-basename", whcIndexBasename.getText());
 			values.put("whc-toc-basename", whcTocBasename.getText());
 			prefs.save(PARAMS, values);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -240,7 +239,7 @@ public class WebHelpParametersView extends Composite {
 
 	protected void loadValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			whCollapseToc.setText(prefs.get(PARAMS, "wh-collapse-toc", "yes"));
 			whIndexNumbers.setText(prefs.get(PARAMS, "wh-index-numbers", "no"));
 			whInheritFontAndColors.setText(prefs.get(PARAMS, "wh-inherit-font-and-colors", "yes"));
@@ -256,7 +255,7 @@ public class WebHelpParametersView extends Composite {
 			whUserResources.setText(prefs.get(PARAMS, "wh-user-resources", ""));
 			whcIndexBasename.setText(prefs.get(PARAMS, "whc-index-basename", "whc_index.xml"));
 			whcTocBasename.setText(prefs.get(PARAMS, "whc-toc-basename", "whc_toc.xml"));
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -267,9 +266,9 @@ public class WebHelpParametersView extends Composite {
 	protected void loadDefaults() {
 		restoringDefaults = true;
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());

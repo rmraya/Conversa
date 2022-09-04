@@ -24,7 +24,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -35,8 +38,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.lang.System.Logger.Level;
-import java.lang.System.Logger;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
@@ -65,6 +66,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.json.JSONException;
 
 import com.maxprograms.conversa.controllers.Controller;
 import com.maxprograms.conversa.models.Publication;
@@ -72,7 +74,6 @@ import com.maxprograms.conversa.views.AboutBox;
 import com.maxprograms.conversa.views.ConversionDialog;
 import com.maxprograms.conversa.views.PreferencesDialog;
 import com.maxprograms.utils.Locator;
-import com.maxprograms.utils.Preferences;
 import com.maxprograms.widgets.CustomBar;
 import com.maxprograms.widgets.CustomItem;
 import com.maxprograms.xml.Catalog;
@@ -115,16 +116,6 @@ public class MainView {
 			@Override
 			public void handleEvent(Event arg0) {
 				Locator.remember(shell, "MainView");
-				if (controller != null) {
-					controller.close();
-				}
-
-				try {
-					Preferences.getInstance(Constants.PREFERENCES).close();
-				} catch (Exception e) {
-					LOGGER.log(Level.ERROR, "Error saving preferences", e);
-				}
-
 			}
 		});
 		shell.addListener(SWT.Resize, new Listener() {
@@ -302,11 +293,18 @@ public class MainView {
 				}
 				TableColumn column = (TableColumn) e.widget;
 				table.setSortColumn(column);
-				if (column == mapColumn)
+				if (column == mapColumn) {
 					sortField = 0;
-				if (column == dateColumn)
+				}
+				if (column == dateColumn) {
 					sortField = 1;
-				loadPublications();
+				}
+				try {
+					loadPublications();
+				} catch (JSONException | IOException ex) {
+					MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
+					box.setMessage(ex.getMessage());
+				}
 			}
 		};
 
@@ -383,14 +381,24 @@ public class MainView {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
 				if (table.getSelectionCount() == 1) {
-					Publication p = (Publication) table.getSelection()[0].getData("publication");
-					Conversa.getController().removePublication(p);
-					loadPublications();
+					try {
+						Publication p = (Publication) table.getSelection()[0].getData("publication");
+						Conversa.getController().removePublication(p);
+						loadPublications();
+					} catch (JSONException | IOException e) {
+						MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
+						box.setMessage(e.getMessage());
+					}
 				}
 			}
 		});
 
-		loadPublications();
+		try {
+			loadPublications();
+		} catch (JSONException | IOException e) {
+			MessageBox box = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
+			box.setMessage(e.getMessage());
+		}
 	}
 
 	protected void fixColumns() {
@@ -611,7 +619,7 @@ public class MainView {
 		return null;
 	}
 
-	public void loadPublications() {
+	public void loadPublications() throws JSONException, IOException {
 		Cursor arrow = shell.getCursor();
 		Cursor wait = new Cursor(display, SWT.CURSOR_WAIT);
 		shell.setCursor(wait);
@@ -629,14 +637,14 @@ public class MainView {
 						return collator.compare(o1.getDitamap().toLowerCase(Locale.getDefault()),
 								o2.getDitamap().toLowerCase(Locale.getDefault()));
 					}
-					return o1.getLastPublised().compareTo(o2.getLastPublised());
+					return o1.getLastPublished().compareTo(o2.getLastPublished());
 
 				}
 				if (sortField == 0) {
 					return collator.compare(o2.getDitamap().toLowerCase(Locale.getDefault()),
 							o1.getDitamap().toLowerCase(Locale.getDefault()));
 				}
-				return o2.getLastPublised().compareTo(o1.getLastPublised());
+				return o2.getLastPublished().compareTo(o1.getLastPublished());
 			}
 		});
 
@@ -645,7 +653,7 @@ public class MainView {
 		for (int i = 0; i < array.length; i++) {
 			Publication p = array[i];
 			TableItem item = new TableItem(table, SWT.NONE);
-			item.setText(new String[] { p.getDitamap(), dformat.format(p.getLastPublised()) });
+			item.setText(new String[] { p.getDitamap(), dformat.format(p.getLastPublished()) });
 			item.setData("publication", p);
 		}
 

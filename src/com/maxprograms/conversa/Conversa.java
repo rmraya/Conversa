@@ -75,7 +75,6 @@ public class Conversa {
 			if (!display.isDisposed()) {
 				display.dispose();
 			}
-			controller.close();
 			unlock();
 		} catch (Exception e) {
 			LOGGER.log(Level.ERROR, "Error starting conversa", e);

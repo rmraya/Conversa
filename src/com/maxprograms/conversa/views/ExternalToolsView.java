@@ -25,8 +25,8 @@ package com.maxprograms.conversa.views;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.System.Logger.Level;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -42,8 +42,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
+import org.json.JSONException;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.utils.Preferences;
 
 public class ExternalToolsView extends Composite {
@@ -261,7 +261,7 @@ public class ExternalToolsView extends Composite {
 
 	private void loadSettings() {
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences preferences = Preferences.getInstance();
 			String defaultProcessor = preferences.get("foProcessor", "default", "builtin-FOP");
 			switch (defaultProcessor) {
 			case "builtin-FOP":
@@ -286,7 +286,7 @@ public class ExternalToolsView extends Composite {
 			ahText.setText(preferences.get("foProcessor", "AH", ""));
 			xmlMindText.setText(preferences.get("foProcessor", "XMFC", ""));
 			mhcText.setText(preferences.get("foProcessor", "MHC", ""));
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading preferences", e);
 			MessageBox box = new MessageBox(getShell(), SWT.OK | SWT.ICON_ERROR);
 			box.setMessage("There was an error getting preferences.");
@@ -294,7 +294,7 @@ public class ExternalToolsView extends Composite {
 		}
 	}
 
-	protected void saveSettings() throws IOException {
+	protected void saveSettings() throws IOException, JSONException {
 		String defaultProcessor = "builtin-FOP";
 		if (otherFopRadio.getSelection()) {
 			defaultProcessor = "externalFop";
@@ -305,7 +305,7 @@ public class ExternalToolsView extends Composite {
 		if (ahRadio.getSelection()) {
 			defaultProcessor = "AH";
 		}
-		Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
+		Preferences preferences = Preferences.getInstance();
 		preferences.save("foProcessor", "default", defaultProcessor);
 		preferences.save("foProcessor", "externalFOP", fopText.getText());
 		preferences.save("foProcessor", "XEP", xepText.getText());

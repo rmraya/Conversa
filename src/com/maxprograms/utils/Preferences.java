@@ -23,63 +23,51 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOError;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.nio.charset.StandardCharsets;
 
-import org.mapdb.DB;
-import org.mapdb.DBMaker;
-import org.mapdb.HTreeMap;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.maxprograms.conversa.Constants;
 
 public class Preferences {
 
-	private DB mapdb;
-	private HTreeMap<String, Map<String, String>> hashmap;
-	private static Map<String, Preferences> instances;
+	private static JSONObject json;
+	private static Preferences instance;
 
-	public static Preferences getInstance(String file) throws IOException {
-		if (instances == null) {
-			instances = new HashMap<>();
-		}
-		Preferences instance = instances.get(file);
+	public static Preferences getInstance() throws IOException, JSONException {
 		if (instance == null) {
-			instance = new Preferences(file);
-			instances.put(file, instance);
+			instance = new Preferences();
 		}
 		return instance;
 	}
 
-	private Preferences(String file) throws IOException {
-		File out = new File(getPreferencesDir(), file);
-		try {
-			mapdb = DBMaker.newFileDB(out).closeOnJvmShutdown().asyncWriteEnable().make();
-		} catch (IOError ex) {
-			if (out.exists()) {
-				try {
-					Files.delete(Paths.get(out.toURI()));
-					File p = new File(getPreferencesDir(), file + ".p"); //$NON-NLS-1$
-					if (p.exists()) {
-						Files.delete(Paths.get(p.toURI()));
-					}
-					File t = new File(getPreferencesDir(), file + ".t"); //$NON-NLS-1$
-					if (t.exists()) {
-						Files.delete(Paths.get(t.toURI()));
-					}
-					mapdb = DBMaker.newFileDB(out).closeOnJvmShutdown().asyncWriteEnable().make();
-				} catch (IOError ex2) {
-					throw new IOException(ex2.getMessage());
-				}
-			} else {
-				throw new IOException(ex.getMessage());
+	private Preferences() throws IOException, JSONException {
+		File file = new File(getPreferencesDir(), Constants.PREFERENCES);
+		if (!file.exists()) {
+			JSONObject json = new JSONObject();
+			try (FileOutputStream out = new FileOutputStream(file)) {
+				out.write(json.toString().getBytes(StandardCharsets.UTF_8));
 			}
 		}
-		hashmap = mapdb.getHashMap("preferences"); //$NON-NLS-1$
+		StringBuffer sb = new StringBuffer();
+		try (FileReader reader = new FileReader(file, StandardCharsets.UTF_8)) {
+			try (BufferedReader buffered = new BufferedReader(reader)) {
+				String line = "";
+				while ((line = buffered.readLine()) != null) {
+					if (!sb.isEmpty()) {
+						sb.append('\n');
+					}
+					sb.append(line);
+				}
+			}
+		}
+		json = new JSONObject(sb.toString());
 	}
 
 	public static synchronized File getPreferencesDir() throws IOException {
@@ -101,62 +89,51 @@ public class Preferences {
 		return dir;
 	}
 
-	public synchronized void save(String group, String name, String value) {
-		Map<String, String> g = hashmap.get(group);
-		if (g == null) {
-			g = new HashMap<>();
+	public synchronized void save(String groupName, String name, String value) throws IOException, JSONException {
+		if (!json.has(groupName)) {
+			json.put(groupName, new JSONObject());
 		}
-		g.put(name, value);
-		hashmap.put(group, g);
-		mapdb.commit();
+		JSONObject group = json.getJSONObject(groupName);
+		group.put(name, value);
+		File file = new File(getPreferencesDir(), Constants.PREFERENCES);
+		try (FileOutputStream out = new FileOutputStream(file)) {
+			out.write(json.toString(2).getBytes(StandardCharsets.UTF_8));
+		}
 	}
 
-	public String get(String group, String name, String defaultValue) {
-		Map<String, String> g = hashmap.get(group);
-		if (g == null) {
-			return defaultValue;
+	public String get(String groupName, String name, String defaultValue) {
+		if (!json.has(groupName)) {
+			json.put(groupName, new JSONObject());
 		}
-		String value = g.get(name);
-		if (value == null) {
-			return defaultValue;
+		JSONObject group = json.getJSONObject(groupName);
+		if (!group.has(name)) {
+			group.put(name, defaultValue);
 		}
-		return value;
+		return group.getString(name);
 	}
 
-	public synchronized void save(String group, Map<String, String> values) {
-		Map<String, String> g = hashmap.get(group);
-		if (g != null) {
-			Set<String> keys = values.keySet();
-			Iterator<String> it = keys.iterator();
-			while (it.hasNext()) {
-				String key = it.next();
-				g.put(key, values.get(key));
+	public synchronized void save(String groupName, JSONObject values) throws IOException, JSONException {
+		json.put(groupName, values);
+		File file = new File(getPreferencesDir(), Constants.PREFERENCES);
+		try (FileOutputStream out = new FileOutputStream(file)) {
+			out.write(json.toString(2).getBytes(StandardCharsets.UTF_8));
+		}
+	}
+
+	public JSONObject get(String groupName) {
+		if (json.has(groupName)) {
+			return json.getJSONObject(groupName);
+		}
+		return new JSONObject();
+	}
+
+	public synchronized void remove(String group) throws IOException, JSONException {
+		if (json.has(group)) {
+			json.remove(group);
+			File file = new File(getPreferencesDir(), Constants.PREFERENCES);
+			try (FileOutputStream out = new FileOutputStream(file)) {
+				out.write(json.toString(2).getBytes(StandardCharsets.UTF_8));
 			}
-			hashmap.put(group, g);
-		} else {
-			hashmap.put(group, values);
 		}
-		mapdb.commit();
-	}
-
-	public Map<String, String> get(String group) {
-		Map<String, String> g = hashmap.get(group);
-		if (g == null) {
-			g = new HashMap<>();
-		}
-		return g;
-	}
-
-	public synchronized void remove(String group) {
-		Map<String, String> g = hashmap.get(group);
-		if (g != null) {
-			hashmap.remove(group);
-			mapdb.commit();
-		}
-	}
-
-	public void close() {
-		mapdb.commit();
-		mapdb.close();
 	}
 }

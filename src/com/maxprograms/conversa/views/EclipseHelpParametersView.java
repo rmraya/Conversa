@@ -24,10 +24,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa.views;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.lang.System.Logger.Level;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -39,8 +37,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.utils.Preferences;
 
 public class EclipseHelpParametersView extends Composite {
@@ -138,8 +137,8 @@ public class EclipseHelpParametersView extends Composite {
 
 	protected void saveValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
-			Map<String, String> values = new HashMap<>();
+			Preferences prefs = Preferences.getInstance();
+			JSONObject values = new JSONObject();
 			values.put("plugin-id", pluginId.getText());
 			values.put("plugin-index-basename", pluginIndexBasename.getText());
 			values.put("plugin-name", pluginName.getText());
@@ -147,7 +146,7 @@ public class EclipseHelpParametersView extends Composite {
 			values.put("plugin-toc-basename", pluginTocBasename.getText());
 			values.put("plugin-version", pluginVersion.getText());
 			prefs.save(PARAMS, values);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -157,14 +156,14 @@ public class EclipseHelpParametersView extends Composite {
 
 	protected void loadValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			pluginId.setText(prefs.get(PARAMS, "plugin-id", ""));
 			pluginIndexBasename.setText(prefs.get(PARAMS, "plugin-index-basename", "index.xml"));
 			pluginName.setText(prefs.get(PARAMS, "plugin-name", ""));
 			pluginProvider.setText(prefs.get(PARAMS, "plugin-provider", ""));
 			pluginTocBasename.setText(prefs.get(PARAMS, "plugin-toc-basename", "toc.xml"));
 			pluginVersion.setText(prefs.get(PARAMS, "plugin-version", "1.0.0"));
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -175,9 +174,9 @@ public class EclipseHelpParametersView extends Composite {
 	protected void loadDefaults() {
 		restoringDefaults = true;
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());

@@ -28,10 +28,12 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
+
+import org.eclipse.swt.program.Program;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.maxprograms.conversa.Constants;
 import com.maxprograms.conversa.models.Publication;
@@ -50,8 +52,6 @@ import com.xmlmind.ditac.convert.Converter;
 import com.xmlmind.ditac.convert.StyleSheetCache;
 import com.xmlmind.util.Console;
 import com.xmlmind.util.Console.MessageType;
-
-import org.eclipse.swt.program.Program;
 
 public class Publisher {
 
@@ -116,40 +116,40 @@ public class Publisher {
 		if (publication.isPDF()) {
 			logger.setStage("Generating PDF");
 			switch (defaultFoProcessor) {
-			case "XEP":
-				if (!converter.registerXEP(path(xepPath))) {
-					logger.displayError("Error registering XEP.");
-					return;
-				}
-				break;
-			case "AH":
-				if (!converter.registerAHF(path(ahPath))) {
-					logger.displayError("Error registering Antenna House.");
-					return;
-				}
-				break;
-			case "externalFOP":
-				if (!converter.registerFOP(path(externalFop))) {
-					logger.displayError("Error registering FOP.");
-					return;
-				}
-				break;
-			default:
-				String path = System.getProperty("user.dir") + File.separator + "fop-2.7" + File.separator;
-				System.setProperty("FOP_HOME", path);
-				String javaHome = System.getProperty("user.dir") + File.separator + "jre";
-				System.setProperty("JAVA_HOME", javaHome);
+				case "XEP":
+					if (!converter.registerXEP(path(xepPath))) {
+						logger.displayError("Error registering XEP.");
+						return;
+					}
+					break;
+				case "AH":
+					if (!converter.registerAHF(path(ahPath))) {
+						logger.displayError("Error registering Antenna House.");
+						return;
+					}
+					break;
+				case "externalFOP":
+					if (!converter.registerFOP(path(externalFop))) {
+						logger.displayError("Error registering FOP.");
+						return;
+					}
+					break;
+				default:
+					String path = System.getProperty("user.dir") + File.separator + "fop-2.7" + File.separator;
+					System.setProperty("FOP_HOME", path);
+					String javaHome = System.getProperty("user.dir") + File.separator + "jre";
+					System.setProperty("JAVA_HOME", javaHome);
 
-				if (System.getProperty("os.name").startsWith("Windows")) {
-					path = path + "fop.bat";
-				} else {
-					path = path + "fop.sh";
-					new File(path).setExecutable(true);
-				}
-				if (!converter.registerFOP(path(path))) {
-					logger.displayError("Error registering internal FOP. (" + path + ")");
-					return;
-				}
+					if (System.getProperty("os.name").startsWith("Windows")) {
+						path = path + "fop.bat";
+					} else {
+						path = path + "fop.sh";
+						new File(path).setExecutable(true);
+					}
+					if (!converter.registerFOP(path(path))) {
+						logger.displayError("Error registering internal FOP. (" + path + ")");
+						return;
+					}
 			}
 			File folder = new File(outFolder, "pdf");
 			if (!folder.exists()) {
@@ -784,7 +784,7 @@ public class Publisher {
 	}
 
 	private static void getWebHelpParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("wh-collapse-toc", "no");
 		defaults.put("wh-index-numbers", "no");
 		defaults.put("wh-inherit-font-and-colors", "yes");
@@ -800,107 +800,108 @@ public class Publisher {
 		defaults.put("wh-user-resources", "");
 		defaults.put("whc-index-basename", "whc_index.xml");
 		defaults.put("whc-toc-basename", "whc_toc.xml");
-		Map<String, String> custom = new HashMap<>();
+
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(WebHelpParametersView.PARAMS));
-		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(WebHelpParametersView.PARAMS);
+		} catch (IOException | JSONException e) {
+			LOGGER.log(Level.ERROR, "Error retrieving preferences", e);
 		}
-		if (custom.size() == 0) {
+		if (custom.keySet().isEmpty()) {
 			return;
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
 	}
 
 	private static void getEpubParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("cover-image", "");
 		defaults.put("epub-identifier", "");
 		defaults.put("epub2-compatible", "yes");
 		defaults.put("generate-epub-trigger", "yes");
-		Map<String, String> custom = new HashMap<>();
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(EpubParametersView.PARAMS));
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(EpubParametersView.PARAMS);
 		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+			LOGGER.log(Level.ERROR, "Error retrieving preferences", e);
 		}
-		if (custom.size() == 0) {
+		if (custom.keySet().isEmpty()) {
 			return;
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
 	}
 
 	private static void getEclipseHelpParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("plugin-id", "");
 		defaults.put("plugin-index-basename", "index.xml");
 		defaults.put("plugin-name", "");
 		defaults.put("plugin-provider", "");
 		defaults.put("plugin-toc-basename", "toc.xml");
 		defaults.put("plugin-version", "1.0.0");
-		Map<String, String> custom = new HashMap<>();
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(EclipseHelpParametersView.PARAMS));
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(EclipseHelpParametersView.PARAMS);
 		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error saving preferences", e);
+			LOGGER.log(Level.ERROR, "Error retrieving preferences", e);
 		}
-		if (custom.size() == 0) {
+		if (custom.keySet().isEmpty()) {
 			return;
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
 	}
 
 	private static void getHtmlHelpParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("hhc-basename", "toc.hhc");
 		defaults.put("hhp-template", "template.hhp");
 		defaults.put("hhx-basename", "index.hhx");
-		Map<String, String> custom = new HashMap<>();
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(HtmlHelpParametersView.PARAMS));
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(HtmlHelpParametersView.PARAMS);
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error saving preferences", e);
 		}
-		if (custom.size() == 0) {
+		if (custom.keySet().isEmpty()) {
 			return;
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
 	}
 
 	private static void getFOParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("base-font-size", "10pt");
 		defaults.put("body-bottom-margin", "0.5in");
 		defaults.put("body-font-family", "serif");
@@ -961,55 +962,52 @@ public class Publisher {
 		defaults.put("use-multimedia-extensions", "no");
 		defaults.put("watermark", "all");
 		defaults.put("xfc-render-as-table", "note");
-		Map<String, String> custom = new HashMap<>();
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(FoParametersView.PARAMS));
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(FoParametersView.PARAMS);
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error saving preferences", e);
 		}
-		if (custom.size() == 0) {
+		if (custom.keySet().isEmpty()) {
 			return;
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
 	}
 
 	private static void getHelpCommonParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("add-toc-root", "yes");
 		defaults.put("number-toc-entries", "yes");
-		Map<String, String> custom = new HashMap<>();
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(HelpCommonParametersView.PARAMS));
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(HelpCommonParametersView.PARAMS);
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error saving preferences", e);
 		}
-		if (custom.size() == 0) {
-			return;
-		}
-		if (custom.size() == 0) {
+		if (custom.keySet().isEmpty()) {
 			return;
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
 	}
 
 	private static void getHtmlParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("add-index-toc", "yes");
 		defaults.put("chain-pages", "none");
 		defaults.put("chain-topics", "no");
@@ -1032,10 +1030,10 @@ public class Publisher {
 		defaults.put("navigation-icon-width", "16");
 		defaults.put("screen-resolution", "96");
 		defaults.put("xhtml-mime-type", "text/html");
-		Map<String, String> custom = new HashMap<>();
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(HtmlParametersView.PARAMS));
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(HtmlParametersView.PARAMS);
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error saving preferences", e);
 		}
@@ -1043,18 +1041,17 @@ public class Publisher {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
-
 		if (!argsBuilder.containsArgument("xsl-resources-directory")) {
 			argsBuilder.append("-p", "xsl-resources-directory", "resources/");
 		}
 	}
 
 	private static void getCommonParameters(ArgumentsBuilder argsBuilder) {
-		Map<String, String> defaults = new HashMap<>();
+		JSONObject defaults = new JSONObject();
 		defaults.put("appendix-number-format", "A");
 		defaults.put("cause-number-format", "A");
 		defaults.put("center", "");
@@ -1083,22 +1080,22 @@ public class Publisher {
 		defaults.put("watermark-image", "");
 		defaults.put("xref-auto-text", "number");
 		defaults.put("xsl-resources-directory", "resources/");
-		Map<String, String> custom = new HashMap<>();
+		JSONObject custom = new JSONObject();
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
-			custom.putAll(preferences.get(CommonParametersView.PARAMS));
+			Preferences preferences = Preferences.getInstance();
+			custom = preferences.get(CommonParametersView.PARAMS);
 		} catch (IOException e) {
 			LOGGER.log(Level.ERROR, "Error saving preferences", e);
 		}
-		if (custom.size() == 0) {
+		if (custom.keySet().isEmpty()) {
 			return;
 		}
 		Set<String> keys = defaults.keySet();
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			if (custom.containsKey(key) && !defaults.get(key).equals(custom.get(key))) {
-				argsBuilder.append("-p", key, custom.get(key));
+			if (custom.has(key) && !defaults.getString(key).equals(custom.getString(key))) {
+				argsBuilder.append("-p", key, custom.getString(key));
 			}
 		}
 	}
@@ -1112,7 +1109,7 @@ public class Publisher {
 
 	private static void loadSettings() {
 		try {
-			Preferences preferences = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences preferences = Preferences.getInstance();
 			defaultFoProcessor = preferences.get("foProcessor", "default", "builtin-FOP");
 			externalFop = preferences.get("foProcessor", "externalFOP", "");
 			xepPath = preferences.get("foProcessor", "XEP", "");
@@ -1120,7 +1117,7 @@ public class Publisher {
 			hhcPath = preferences.get("foProcessor", "MHC", "");
 			xfcPath = preferences.get("foProcessor", "XMFC", "");
 			pluginId = preferences.get(EclipseHelpParametersView.PARAMS, "plugin-id", "");
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading preferences", e);
 		}
 	}

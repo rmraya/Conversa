@@ -26,14 +26,12 @@ package com.maxprograms.conversa.views;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeSet;
-import java.lang.System.Logger.Level;
-import java.lang.System.Logger;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -50,9 +48,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
+import org.json.JSONObject;
 import org.xml.sax.SAXException;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.utils.Preferences;
 import com.maxprograms.xml.Document;
 import com.maxprograms.xml.Element;
@@ -146,7 +144,7 @@ public class XSLView extends Composite {
 						Document doc = new Document(null, "xslParams", null);
 						Element root = doc.getRootElement();
 						root.addContent("\n");
-						Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+						Preferences prefs = Preferences.getInstance();
 						addElements(root, CommonParametersView.PARAMS, prefs.get(CommonParametersView.PARAMS));
 						addElements(root, FoParametersView.PARAMS, prefs.get(FoParametersView.PARAMS));
 						addElements(root, HtmlParametersView.PARAMS, prefs.get(HtmlParametersView.PARAMS));
@@ -210,13 +208,13 @@ public class XSLView extends Composite {
 						return;
 					}
 					loadDefaults();
-					Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+					Preferences prefs = Preferences.getInstance();
 					List<Element> list = root.getChildren();
 					Iterator<Element> it = list.iterator();
 					while (it.hasNext()) {
 						Element section = it.next();
 						String sectionName = section.getName();
-						Map<String, String> table = new HashMap<>();
+						JSONObject table = new JSONObject();
 						List<Element> parameters = section.getChildren();
 						Iterator<Element> p = parameters.iterator();
 						while (p.hasNext()) {
@@ -300,7 +298,7 @@ public class XSLView extends Composite {
 		helpView.loadDefaults();
 	}
 
-	protected static void addElements(Element root, String sectionName, Map<String, String> table) {
+	protected static void addElements(Element root, String sectionName, JSONObject table) {
 		Element section = new Element(sectionName);
 		root.addContent("  ");
 		root.addContent(section);
@@ -310,7 +308,7 @@ public class XSLView extends Composite {
 		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
-			String value = table.get(key);
+			String value = table.getString(key);
 			Element param = new Element("param");
 			param.setAttribute("name", key);
 			param.setText(value);

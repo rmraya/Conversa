@@ -24,10 +24,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa.views;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.lang.System.Logger.Level;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -39,8 +37,9 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.utils.Preferences;
 
 public class HelpCommonParametersView extends Composite {
@@ -106,12 +105,12 @@ public class HelpCommonParametersView extends Composite {
 
 	protected void saveValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
-			Map<String, String> values = new HashMap<>();
+			Preferences prefs = Preferences.getInstance();
+			JSONObject values = new JSONObject();
 			values.put("add-toc-root", addTocRoot.getText());
 			values.put("number-toc-entries", numberTocEntries.getText());
 			prefs.save(PARAMS, values);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -121,10 +120,10 @@ public class HelpCommonParametersView extends Composite {
 
 	protected void loadValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			addTocRoot.setText(prefs.get(PARAMS, "add-toc-root", "yes"));
 			numberTocEntries.setText(prefs.get(PARAMS, "number-toc-entries", "yes"));
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading values", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -135,9 +134,9 @@ public class HelpCommonParametersView extends Composite {
 	protected void loadDefaults() {
 		restoringDefaults = true;
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());

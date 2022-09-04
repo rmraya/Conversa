@@ -24,10 +24,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa.views;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.lang.System.Logger.Level;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -40,8 +38,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import com.maxprograms.conversa.Constants;
 import com.maxprograms.utils.Preferences;
 
 public class FoParametersView extends Composite {
@@ -558,9 +557,9 @@ public class FoParametersView extends Composite {
 	protected void loadDefaults() {
 		restoringDefaults = true;
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			prefs.remove(PARAMS);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error loading defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
@@ -573,7 +572,7 @@ public class FoParametersView extends Composite {
 
 	protected void loadValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
+			Preferences prefs = Preferences.getInstance();
 			baseFontSize.setText(prefs.get(PARAMS, "base-font-size", "10pt"));
 			bodyBottomMargin.setText(prefs.get(PARAMS, "body-bottom-margin", "0.5in"));
 			bodyFontFamily.setText(prefs.get(PARAMS, "body-font-family", "serif"));
@@ -645,8 +644,8 @@ public class FoParametersView extends Composite {
 
 	protected void saveValues() {
 		try {
-			Preferences prefs = Preferences.getInstance(Constants.PREFERENCES);
-			Map<String, String> defaults = new HashMap<>();
+			Preferences prefs = Preferences.getInstance();
+			JSONObject defaults = new JSONObject();
 			defaults.put("base-font-size", baseFontSize.getText());
 			defaults.put("body-bottom-margin", bodyBottomMargin.getText());
 			defaults.put("body-font-family", bodyFontFamily.getText());
@@ -706,7 +705,7 @@ public class FoParametersView extends Composite {
 			defaults.put("watermark", watermark.getText());
 			defaults.put("xfc-render-as-table", xfcRenderAsTable.getText());
 			prefs.save(PARAMS, defaults);
-		} catch (IOException e) {
+		} catch (IOException | JSONException e) {
 			LOGGER.log(Level.ERROR, "Error saving defaults", e);
 			MessageBox box = new MessageBox(getShell(), SWT.ICON_ERROR | SWT.OK);
 			box.setMessage(e.getMessage());
