@@ -59,9 +59,9 @@ public class CustomItem extends Composite {
 		defaultForeground = parent.getForeground();
 		defaultBackground = parent.getBackground();
 		GridLayout layout = new GridLayout(2, false);
-		layout.marginWidth = 2;
-		layout.marginHeight = 3;
-		layout.horizontalSpacing = 1;
+		layout.marginWidth = 4;
+		layout.marginHeight = 4;
+		layout.horizontalSpacing = 4;
 		setLayout(layout);
 
 		if ((style & SWT.DROP_DOWN) > 0) {
