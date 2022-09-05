@@ -30,7 +30,7 @@ public class Constants {
 	}
 
 	public static final String VERSION = "2.0.0";
-	public static final String BUILD = "20220904_1109";
+	public static final String BUILD = "20220905_1135";
 	public static final String PREFERENCES = "preferences.json";
 	public static final String PUBLICATIONS = "publications.json";
 

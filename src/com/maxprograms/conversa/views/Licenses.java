@@ -24,13 +24,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa.views;
 
 import java.io.File;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
-import java.net.MalformedURLException;
-
-import com.maxprograms.conversa.Conversa;
-import com.maxprograms.utils.Locator;
-import com.maxprograms.widgets.CustomLink;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -40,9 +33,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-public class Licenses {
+import com.maxprograms.conversa.Conversa;
+import com.maxprograms.utils.Locator;
+import com.maxprograms.widgets.CustomLink;
 
-    private static Logger logger = System.getLogger(Licenses.class.getName());
+public class Licenses {
 
     protected Shell shell;
     private Display display;
@@ -72,154 +67,98 @@ public class Licenses {
 
         CustomLink conversaLink = new CustomLink(shell, SWT.NONE);
         conversaLink.setText("MIT License");
-        try {
-            conversaLink.setURL(new File("lib/licenses/conversa.txt").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        conversaLink.setURL(new File("lib/licenses/conversa.txt").getAbsolutePath());
 
         Label ditac = new Label(shell, SWT.NONE);
         ditac.setText("DITA Converter");
 
         CustomLink ditacLink = new CustomLink(shell, SWT.NONE);
         ditacLink.setText("Mozilla Public License, version 2.0");
-        try {
-            ditacLink.setURL(new File("LEGAL/MPL-2.0.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        ditacLink.setURL(new File("LEGAL/MPL-2.0.html").getAbsolutePath());
 
         Label java = new Label(shell, SWT.NONE);
         java.setText("Java Runtime Environment");
 
         CustomLink javaLink = new CustomLink(shell, SWT.NONE);
         javaLink.setText("GPL2 With Classpath Exception");
-        try {
-            javaLink.setURL(new File("lib/licenses/java.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        javaLink.setURL(new File("lib/licenses/java.html").getAbsolutePath());
 
         Label swt = new Label(shell, SWT.NONE);
         swt.setText("SWT");
 
         CustomLink swtLink = new CustomLink(shell, SWT.NONE);
         swtLink.setText("Eclipse Public License Version 1.0");
-        try {
-            swtLink.setURL(new File("lib/licenses/EclipsePublicLicense1.0.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        swtLink.setURL(new File("lib/licenses/EclipsePublicLicense1.0.html").getAbsolutePath());
 
         Label openxliff = new Label(shell, SWT.NONE);
         openxliff.setText("OpenXLIFF");
 
         CustomLink openxliffLink = new CustomLink(shell, SWT.NONE);
         openxliffLink.setText("Eclipse Public License Version 1.0");
-        try {
-            openxliffLink.setURL(new File("lib/licenses/EclipsePublicLicense1.0.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        openxliffLink.setURL(new File("lib/licenses/EclipsePublicLicense1.0.html").getAbsolutePath());
 
         Label resolver = new Label(shell, SWT.NONE);
         resolver.setText("Apache XML Resolver");
 
         CustomLink resolverLink = new CustomLink(shell, SWT.NONE);
         resolverLink.setText("Apache License 2.0");
-        try {
-            resolverLink.setURL(new File("lib/licenses/Apache2.0.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        resolverLink.setURL(new File("lib/licenses/Apache2.0.html").getAbsolutePath());
 
         Label saxon = new Label(shell, SWT.NONE);
         saxon.setText("Saxon HE");
 
         CustomLink saxonLink = new CustomLink(shell, SWT.NONE);
         saxonLink.setText("Mozilla Public License, version 2.0");
-        try {
-            saxonLink.setURL(new File("LEGAL/MPL-2.0.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        saxonLink.setURL(new File("LEGAL/MPL-2.0.html").getAbsolutePath());
 
         Label whc = new Label(shell, SWT.NONE);
         whc.setText("Web Help Compiler");
 
         CustomLink whcLink = new CustomLink(shell, SWT.NONE);
         whcLink.setText("MIT License");
-        try {
-            whcLink.setURL(new File("LEGAL/whc.LICENSE").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        whcLink.setURL(new File("LEGAL/whc.LICENSE").getAbsolutePath());
 
         Label xslthl = new Label(shell, SWT.NONE);
         xslthl.setText("XSLT Syntax Highlighting");
 
         CustomLink xslthlLink = new CustomLink(shell, SWT.NONE);
         xslthlLink.setText("zlib/libpng License");
-        try {
-            xslthlLink.setURL(new File("LEGAL/xslthl.LICENSE").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        xslthlLink.setURL(new File("LEGAL/xslthl.LICENSE").getAbsolutePath());
 
         Label fop = new Label(shell, SWT.NONE);
         fop.setText("Apache FOP 2.3");
 
         CustomLink fopLink = new CustomLink(shell, SWT.NONE);
         fopLink.setText("Apache License 2.0");
-        try {
-            fopLink.setURL(new File("lib/licenses/Apache2.0.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        fopLink.setURL(new File("lib/licenses/Apache2.0.html").getAbsolutePath());
 
         Label mapDB = new Label(shell, SWT.NONE);
         mapDB.setText("MapDB");
 
         CustomLink mapdbLink = new CustomLink(shell, SWT.NONE);
         mapdbLink.setText("Apache License 2.0");
-        try {
-            mapdbLink.setURL(new File("lib/licenses/Apache2.0.html").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        mapdbLink.setURL(new File("lib/licenses/Apache2.0.html").getAbsolutePath());
 
         Label relaxng = new Label(shell, SWT.NONE);
         relaxng.setText("Jing");
 
         CustomLink relaxngLink = new CustomLink(shell, SWT.NONE);
         relaxngLink.setText("Jing Copying Conditions");
-        try {
-            relaxngLink.setURL(new File("LEGAL/relaxng.LICENSE").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        relaxngLink.setURL(new File("LEGAL/relaxng.LICENSE").getAbsolutePath());
 
         Label snowball = new Label(shell, SWT.NONE);
         snowball.setText("Snowball");
 
         CustomLink snowballLink = new CustomLink(shell, SWT.NONE);
         snowballLink.setText("BSD License");
-        try {
-            snowballLink.setURL(new File("LEGAL/snowball.LICENSE").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        snowballLink.setURL(new File("LEGAL/snowball.LICENSE").getAbsolutePath());
 
         Label flexmark = new Label(shell, SWT.NONE);
         flexmark.setText("flexmark-java");
 
         CustomLink flexMarkLink = new CustomLink(shell, SWT.NONE);
         flexMarkLink.setText("BSD License");
-        try {
-            flexMarkLink.setURL(new File("LEGAL/flexmark.LICENSE").toURI().toURL().toString());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, "Error getting license", e);
-        }
+        flexMarkLink.setURL(new File("LEGAL/flexmark.LICENSE").getAbsolutePath());
 
         shell.pack();
     }

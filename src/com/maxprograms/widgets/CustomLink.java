@@ -71,9 +71,8 @@ public class CustomLink {
 
 	protected void displayLink() {
 		try {
-			HTMLViewer viewer = new HTMLViewer(link.getShell());
+			HTMLViewer viewer = new HTMLViewer(link.getShell(), url);
 			viewer.setTitle(link.getText());
-			viewer.display(url);
 			viewer.show();
 		} catch (Exception e) {
 			Logger logger = System.getLogger(CustomLink.class.getName());

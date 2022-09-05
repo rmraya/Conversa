@@ -23,21 +23,25 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import org.eclipse.swt.browser.Browser;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.SWTError;
-import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
+import org.jsoup.Jsoup;
 
 import com.maxprograms.conversa.Conversa;
 import com.maxprograms.utils.Locator;
@@ -46,9 +50,8 @@ public class HTMLViewer extends Dialog {
 
 	protected Shell shell;
 	private Display display;
-	private Browser browser;
 
-	public HTMLViewer(Shell parent) throws IOException {
+	public HTMLViewer(Shell parent, String page) throws IOException {
 		super(parent, SWT.NONE);
 		shell = new Shell(parent, SWT.CLOSE | SWT.TITLE | SWT.MODELESS | SWT.BORDER | SWT.RESIZE);
 		if (File.separator.equals("\\")) {
@@ -59,40 +62,13 @@ public class HTMLViewer extends Dialog {
 			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
 		}
 		display = shell.getDisplay();
-		GridLayout layout = new GridLayout();
-		layout.marginHeight = 0;
-		layout.marginWidth = 0;
-		shell.setLayout(layout);
+		shell.setLayout(new FillLayout());
 		shell.addListener(SWT.Close, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
 				Locator.remember(shell, "HTMLViewer");
 			}
 		});
-
-		try {
-			if (File.separator.equals("/")) {
-				browser = new Browser(shell, SWT.WEBKIT);
-			} else {
-				browser = new Browser(shell, SWT.NONE);
-			}
-		} catch (SWTError e) {
-			String message = "";
-			if (File.separator.equals("/")) {
-				if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-					// Mac
-					message = "Error embedding browser. Check Safari's configuration.";
-				} else {
-					// Linux
-					message = "Error embedding browser. WebKitGTK+ 1.2.x is required.";
-				}
-			} else {
-				message = "Error embedding browser.";
-			}
-
-			throw new IOException(message);
-		}
-		browser.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
 
 		shell.addKeyListener(new KeyListener() {
 
@@ -108,6 +84,33 @@ public class HTMLViewer extends Dialog {
 				}
 			}
 		});
+
+		if (System.getProperty("file.separator").equals("/")
+				&& !System.getProperty("os.name").toLowerCase().startsWith("mac")) {
+			StyledText text = new StyledText(shell, SWT.V_SCROLL | SWT.H_SCROLL | SWT.MULTI);
+			text.setEditable(false);
+			text.setMargins(12, 12, 12, 12);
+			text.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
+			text.setAlwaysShowScrollBars(true);
+
+			StringBuilder sb = new StringBuilder();
+			try (FileReader reader = new FileReader(new File(page), StandardCharsets.UTF_8)) {
+				try (BufferedReader buffer = new BufferedReader(reader)) {
+					String line = "";
+					while ((line = buffer.readLine()) != null) {
+						if (!sb.isEmpty()) {
+							sb.append('\n');
+						}
+						sb.append(line);
+					}
+				}
+			}
+			text.setText(Jsoup.parse(sb.toString()).wholeText());
+		} else {
+			Browser browser = new Browser(shell, SWT.NONE);
+			browser.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
+			browser.setUrl(new File(page).toURI().toURL().toString());
+		}
 	}
 
 	public void show() {
@@ -120,11 +123,8 @@ public class HTMLViewer extends Dialog {
 		}
 	}
 
-	public void display(String string) {
-		browser.setUrl(string);
-	}
-
 	public void setTitle(String title) {
 		shell.setText(title);
 	}
+
 }
