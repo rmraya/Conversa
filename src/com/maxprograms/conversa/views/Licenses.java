@@ -126,7 +126,7 @@ public class Licenses {
         xslthlLink.setURL(new File("LEGAL/xslthl.LICENSE").getAbsolutePath());
 
         Label fop = new Label(shell, SWT.NONE);
-        fop.setText("Apache FOP 2.3");
+        fop.setText("Apache FOP 2.7");
 
         CustomLink fopLink = new CustomLink(shell, SWT.NONE);
         fopLink.setText("Apache License 2.0");
