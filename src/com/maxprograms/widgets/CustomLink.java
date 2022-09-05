@@ -23,16 +23,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.widgets;
 
-import java.lang.System.Logger.Level;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 
 import com.maxprograms.conversa.views.HTMLViewer;
 
@@ -40,9 +40,9 @@ public class CustomLink {
 
 	Label link;
 	private String url;
-	private Composite parent;
+	private Shell parent;
 
-	public CustomLink(Composite parent, int style) {
+	public CustomLink(Shell parent, int style) {
 
 		link = new Label(parent, style);
 
@@ -71,7 +71,7 @@ public class CustomLink {
 
 	protected void displayLink() {
 		try {
-			HTMLViewer viewer = new HTMLViewer(link.getShell(), url);
+			HTMLViewer viewer = new HTMLViewer(parent, url);
 			viewer.setTitle(link.getText());
 			viewer.show();
 		} catch (Exception e) {
