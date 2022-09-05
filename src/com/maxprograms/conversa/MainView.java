@@ -37,7 +37,6 @@ import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -116,20 +115,8 @@ public class MainView {
 			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
 		}
 
-		shell.addListener(SWT.Close, new Listener() {
-
-			@Override
-			public void handleEvent(Event arg0) {
-				Locator.remember(shell, "MainView");
-			}
-		});
-		shell.addListener(SWT.Resize, new Listener() {
-
-			@Override
-			public void handleEvent(Event arg0) {
-				fixColumns();
-			}
-		});
+		shell.addListener(SWT.Close, event -> Locator.remember(shell, "MainView"));
+		shell.addListener(SWT.Resize, event -> fixColumns());
 
 		systemMenu = display.getSystemMenu();
 
@@ -640,24 +627,20 @@ public class MainView {
 
 		Publication[] array = publications.toArray(new Publication[publications.size()]);
 		final Collator collator = Collator.getInstance(Locale.getDefault());
-		Arrays.sort(array, new Comparator<Publication>() {
-
-			@Override
-			public int compare(Publication o1, Publication o2) {
-				if (table.getSortDirection() == SWT.UP) {
-					if (sortField == 0) {
-						return collator.compare(o1.getDitamap().toLowerCase(Locale.getDefault()),
-								o2.getDitamap().toLowerCase(Locale.getDefault()));
-					}
-					return o1.getLastPublished().compareTo(o2.getLastPublished());
-
-				}
+		Arrays.sort(array, (o1, o2) -> {
+			if (table.getSortDirection() == SWT.UP) {
 				if (sortField == 0) {
-					return collator.compare(o2.getDitamap().toLowerCase(Locale.getDefault()),
-							o1.getDitamap().toLowerCase(Locale.getDefault()));
+					return collator.compare(o1.getDitamap().toLowerCase(Locale.getDefault()),
+							o2.getDitamap().toLowerCase(Locale.getDefault()));
 				}
-				return o2.getLastPublished().compareTo(o1.getLastPublished());
+				return o1.getLastPublished().compareTo(o2.getLastPublished());
+
 			}
+			if (sortField == 0) {
+				return collator.compare(o2.getDitamap().toLowerCase(Locale.getDefault()),
+						o1.getDitamap().toLowerCase(Locale.getDefault()));
+			}
+			return o2.getLastPublished().compareTo(o1.getLastPublished());
 		});
 
 		table.removeAll();

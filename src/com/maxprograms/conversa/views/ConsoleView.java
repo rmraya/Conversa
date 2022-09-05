@@ -23,15 +23,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-
-import java.io.File;
 
 import com.maxprograms.conversa.Conversa;
 import com.maxprograms.utils.Locator;
@@ -51,13 +49,7 @@ public class ConsoleView {
 		} else {
 			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
 		}
-		shell.addListener(SWT.Close, new Listener() {
-
-			@Override
-			public void handleEvent(Event arg0) {
-				Locator.remember(shell, "ConsoleView");
-			}
-		});
+		shell.addListener(SWT.Close, event -> Locator.remember(shell, "ConsoleView"));
 		styled = new StyledText(shell, SWT.READ_ONLY | SWT.V_SCROLL | SWT.H_SCROLL);
 		styled.setLayoutData(new GridData(GridData.FILL_BOTH));
 	}

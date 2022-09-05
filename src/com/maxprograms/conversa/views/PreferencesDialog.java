@@ -23,6 +23,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -32,11 +34,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-
-import java.io.File;
 
 import com.maxprograms.conversa.Conversa;
 import com.maxprograms.utils.Locator;
@@ -60,13 +58,7 @@ public class PreferencesDialog {
 		shellLayout.marginHeight = 0;
 		shellLayout.marginWidth = 0;
 		shell.setLayout(shellLayout);
-		shell.addListener(SWT.Close, new Listener() {
-
-			@Override
-			public void handleEvent(Event arg0) {
-				Locator.remember(shell, "PreferencesDialog");
-			}
-		});
+		shell.addListener(SWT.Close, event-> Locator.remember(shell, "PreferencesDialog"));
 		display = shell.getDisplay();
 
 		CTabFolder folder = new CTabFolder(shell, SWT.BORDER);

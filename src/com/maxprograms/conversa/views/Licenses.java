@@ -28,9 +28,7 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import com.maxprograms.conversa.Conversa;
@@ -54,13 +52,7 @@ public class Licenses {
         } else {
             shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
         }
-        shell.addListener(SWT.Close, new Listener() {
-
-            @Override
-            public void handleEvent(Event arg0) {
-                Locator.remember(shell, "Licenses");
-            }
-        });
+        shell.addListener(SWT.Close, event -> Locator.remember(shell, "Licenses"));
 
         Label conversa = new Label(shell, SWT.NONE);
         conversa.setText("Conversa DITA Publisher");

@@ -37,7 +37,7 @@ import com.maxprograms.conversa.Constants;
 
 public class Preferences {
 
-	private static JSONObject json;
+	private JSONObject json;
 	private static Preferences instance;
 
 	public static Preferences getInstance() throws IOException, JSONException {
@@ -54,7 +54,7 @@ public class Preferences {
 				out.write(new JSONObject().toString().getBytes(StandardCharsets.UTF_8));
 			}
 		}
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		try (FileReader reader = new FileReader(file, StandardCharsets.UTF_8)) {
 			try (BufferedReader buffered = new BufferedReader(reader)) {
 				String line = "";

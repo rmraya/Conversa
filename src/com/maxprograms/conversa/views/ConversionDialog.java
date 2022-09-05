@@ -109,20 +109,16 @@ public class ConversionDialog implements ILogger {
 		shellLayout.marginWidth = 0;
 		shellLayout.marginHeight = 0;
 		shell.setLayout(shellLayout);
-		shell.addListener(SWT.Close, new Listener() {
-
-			@Override
-			public void handleEvent(Event arg0) {
-				Locator.remember(shell, "ConversionDialog");
-				try {
-					Preferences preferences = Preferences.getInstance();
-					preferences.save("ConversionDialog", "openFiles",
-							openButton.getSelection() ? "Yes" : "No");
-					preferences.save("ConversionDialog", "showLog",
-							showLog.getSelection() ? "Yes" : "No");
-				} catch (IOException | JSONException e) {
-					logger.log(Level.ERROR, "Error saving location", e);
-				}
+		shell.addListener(SWT.Close, event -> {
+			Locator.remember(shell, "ConversionDialog");
+			try {
+				Preferences preferences = Preferences.getInstance();
+				preferences.save("ConversionDialog", "openFiles",
+						openButton.getSelection() ? "Yes" : "No");
+				preferences.save("ConversionDialog", "showLog",
+						showLog.getSelection() ? "Yes" : "No");
+			} catch (IOException | JSONException e) {
+				logger.log(Level.ERROR, "Error saving location", e);
 			}
 		});
 		display = shell.getDisplay();
@@ -420,6 +416,7 @@ public class ConversionDialog implements ILogger {
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 				// do nothing
 			}
+
 		});
 
 		checkEnabledFormats();

@@ -23,11 +23,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
-import java.text.MessageFormat;
-import java.lang.System.Logger.Level;
 import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.text.MessageFormat;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,10 +37,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import com.maxprograms.conversa.Constants;
@@ -70,13 +68,7 @@ public class AboutBox {
 		shellLayout.marginWidth = 0;
 		shellLayout.marginHeight = 0;
 		shell.setLayout(shellLayout);
-		shell.addListener(SWT.Close, new Listener() {
-
-			@Override
-			public void handleEvent(Event arg0) {
-				Locator.remember(shell, "AboutBox");
-			}
-		});
+		shell.addListener(SWT.Close, event -> Locator.remember(shell, "AboutBox"));
 		display = shell.getDisplay();
 		shell.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 
@@ -130,15 +122,14 @@ public class AboutBox {
 
 		Button licensesButton = new Button(bottom, SWT.PUSH);
 		licensesButton.setText("Licenses");
-		licensesButton.addSelectionListener(new SelectionAdapter(){
-		
+		licensesButton.addSelectionListener(new SelectionAdapter() {
+
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				Licenses licenses = new Licenses(shell, SWT.DIALOG_TRIM);
 				licenses.show();
 			}
 		});
-		
 
 		shell.pack();
 	}

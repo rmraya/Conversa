@@ -28,9 +28,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import org.eclipse.swt.browser.Browser;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -38,8 +38,6 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.jsoup.Jsoup;
 
@@ -63,12 +61,7 @@ public class HTMLViewer extends Dialog {
 		}
 		display = shell.getDisplay();
 		shell.setLayout(new FillLayout());
-		shell.addListener(SWT.Close, new Listener() {
-			@Override
-			public void handleEvent(Event event) {
-				Locator.remember(shell, "HTMLViewer");
-			}
-		});
+		shell.addListener(SWT.Close, event -> Locator.remember(shell, "HTMLViewer"));
 
 		shell.addKeyListener(new KeyListener() {
 
