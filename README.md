@@ -30,6 +30,8 @@ You need Java 17 and Apache Ant 1.10.12 or newer
 - Checkout this repository
 - Point your JAVA_HOME variabe to JDK 17
 - Copy `swt.jar` from one of the folders inside `/lib` to `/lib`
+- Download `ditac plus fop` package from [http://xmlmind.com/ditac/download.shtml](http://xmlmind.com/ditac/download.shtml)
+- Unzip the downloaded package into a folder named `ditac`
 - Run `ant compile` to recompile the source code if you made changes
 - Get a JRE (Java Runtme Environment) from [Adoptium](https://adoptium.net/) and save it in a folder named `jre`
 

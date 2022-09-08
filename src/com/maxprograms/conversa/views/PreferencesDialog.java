@@ -23,8 +23,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
-import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -46,19 +44,13 @@ public class PreferencesDialog {
 
 	public PreferencesDialog(Shell parent, int style) {
 		shell = new Shell(parent, style);
-		if (File.separator.equals("\\")) {
-			shell.setImage(Conversa.getResourcemanager().getWinLogo());
-		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-			shell.setImage(Conversa.getResourcemanager().getMacLogo());
-		} else {
-			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
-		}
+		shell.setImage(Conversa.getResourcemanager().getLogo());
 		shell.setText("Preferences");
 		GridLayout shellLayout = new GridLayout();
 		shellLayout.marginHeight = 0;
 		shellLayout.marginWidth = 0;
 		shell.setLayout(shellLayout);
-		shell.addListener(SWT.Close, event-> Locator.remember(shell, "PreferencesDialog"));
+		shell.addListener(SWT.Close, event -> Locator.remember(shell, "PreferencesDialog"));
 		display = shell.getDisplay();
 
 		CTabFolder folder = new CTabFolder(shell, SWT.BORDER);

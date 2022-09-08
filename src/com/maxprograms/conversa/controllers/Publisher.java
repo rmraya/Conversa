@@ -25,14 +25,14 @@ package com.maxprograms.conversa.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.attribute.PosixFilePermission;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.eclipse.swt.program.Program;
 import org.json.JSONException;
@@ -51,14 +51,10 @@ import com.maxprograms.conversa.views.WebHelpParametersView;
 import com.maxprograms.utils.ArgumentsBuilder;
 import com.maxprograms.utils.Preferences;
 import com.maxprograms.widgets.AsyncLogger;
-import com.xmlmind.ditac.convert.Converter;
-import com.xmlmind.ditac.convert.StyleSheetCache;
-import com.xmlmind.util.Console;
-import com.xmlmind.util.Console.MessageType;
 
 public class Publisher {
 
-	private static  Logger logger = System.getLogger(Publisher.class.getName());
+	private static Logger logger = System.getLogger(Publisher.class.getName());
 
 	private static String defaultFoProcessor;
 	private static String externalFop;
@@ -74,28 +70,24 @@ public class Publisher {
 	}
 
 	public static void convert(Publication publication, boolean openFiles, AsyncLogger aLogger) {
-		StyleSheetCache cache = new StyleSheetCache();
+
+		String commandLine = "";
+		File userDir = new File(System.getProperty("user.dir"));
+		File ditacFolder = new File(userDir, "ditac");
+		File ditacBin = new File(ditacFolder, "bin");
+		if (!ditacBin.exists()) {
+			aLogger.displayError("ditac is not installed.");
+			return;
+		}
+		if (File.separatorChar == '/') {
+			File ditac = new File(ditacBin, "ditac");
+			commandLine = ditac.getAbsolutePath();
+		} else {
+			File ditac = new File(ditacBin, "ditac.bat");
+			commandLine = ditac.getAbsolutePath();
+		}
 
 		log = new StringBuilder();
-
-		Console console = new Console() {
-			@Override
-			public void showMessage(String message, MessageType messageType) {
-				log.append(message + "\n");
-				if (messageType.equals(MessageType.ERROR)) {
-					aLogger.logError(message);
-				}
-				if (messageType.equals(MessageType.INFO)) {
-					aLogger.log(message);
-				}
-				if (messageType.equals(MessageType.WARNING)) {
-					aLogger.log(message);
-				}
-			}
-		};
-
-		Converter converter = new Converter(cache, console);
-
 		aLogger.setStage("Loading Settings");
 
 		loadSettings();
@@ -118,60 +110,29 @@ public class Publisher {
 		//
 		if (publication.isPDF()) {
 			aLogger.setStage("Generating PDF");
+			ArgumentsBuilder argsBuilder = new ArgumentsBuilder();
+
 			switch (defaultFoProcessor) {
 				case "XEP":
-					if (!converter.registerXEP(path(xepPath))) {
-						aLogger.displayError("Error registering XEP.");
-						return;
-					}
+					argsBuilder.append("-xep");
+					argsBuilder.append(path(xepPath));
 					break;
 				case "AH":
-					if (!converter.registerAHF(path(ahPath))) {
-						aLogger.displayError("Error registering Antenna House.");
-						return;
-					}
+					argsBuilder.append("-ahf");
+					argsBuilder.append(path(ahPath));
 					break;
 				case "externalFOP":
-					if (!converter.registerFOP(path(externalFop))) {
-						aLogger.displayError("Error registering FOP.");
-						return;
-					}
+					argsBuilder.append("-fop");
+					argsBuilder.append(path(externalFop));
 					break;
 				default:
-					String path = System.getProperty("user.dir") + File.separator + "fop-2.7" + File.separator;
-					System.setProperty("FOP_HOME", path);
-					String javaHome = System.getProperty("user.dir") + File.separator + "jre";
-					System.setProperty("JAVA_HOME", javaHome);
-
-					if (System.getProperty("os.name").startsWith("Windows")) {
-						path = path + "fop.bat";
-					} else {
-						path = path + "fop.sh";
-						File fop = new File(path);
-						Set<PosixFilePermission> perms = new TreeSet<>();
-						perms.add(PosixFilePermission.OWNER_READ);
-						perms.add(PosixFilePermission.OWNER_WRITE);
-						perms.add(PosixFilePermission.OWNER_EXECUTE);
-						perms.add(PosixFilePermission.GROUP_READ);
-						perms.add(PosixFilePermission.GROUP_WRITE);
-						try {
-							Files.setPosixFilePermissions(fop.toPath(), perms);
-						} catch (IOException e) {
-							logger.log(Level.ERROR, e);
-							aLogger.displayError("Error setting permissions for FOP");
-						}
-					}
-					if (!converter.registerFOP(path(path))) {
-						aLogger.displayError("Error registering internal FOP. (" + path + ")");
-						return;
-					}
+					// use fop as configured in ditac
 			}
 			File folder = new File(outFolder, "pdf");
 			if (!folder.exists()) {
 				folder.mkdirs();
 			}
 			outFile = new File(folder, inFile.getName().substring(0, inFile.getName().lastIndexOf('.')) + ".pdf");
-			ArgumentsBuilder argsBuilder = new ArgumentsBuilder();
 			argsBuilder.append("-v");
 			argsBuilder.append("-f", "pdf");
 			getCommonParameters(argsBuilder);
@@ -183,12 +144,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating PDF.");
 				return;
@@ -231,12 +187,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating HTML.");
 				return;
@@ -278,12 +229,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating XSL-FO.");
 				return;
@@ -325,12 +271,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating PostScript.");
 				return;
@@ -382,12 +323,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating Eclipse Help.");
 				return;
@@ -432,12 +368,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating Web Help.");
 				return;
@@ -482,12 +413,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating Web Help HTML 5.");
 				return;
@@ -533,12 +459,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating HTML Help.");
 				return;
@@ -581,12 +502,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating DOCX.");
 				return;
@@ -629,12 +545,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating RTF.");
 				return;
@@ -677,12 +588,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating ODT.");
 				return;
@@ -727,12 +633,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating EPUB 2.");
 				return;
@@ -777,12 +678,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			console.showMessage("Parameters:", MessageType.INFO);
-			console.showMessage(argsBuilder.toString(), MessageType.INFO);
-			logger.log(Level.INFO, argsBuilder.toString());
-			console.showMessage("", MessageType.INFO);
-
-			int result = converter.run(argsBuilder.getArguments());
+			int result = run(commandLine, argsBuilder, outFolder);
 			if (result != 0) {
 				aLogger.displayError("Error generating EPUB 3.");
 				return;
@@ -796,6 +692,25 @@ public class Publisher {
 			}
 		}
 		aLogger.displaySuccess("Done!");
+	}
+
+	private static int run(String command, ArgumentsBuilder argsBuilder, File outputFolder) {
+		List<String> params = new ArrayList<>();
+		params.add(command);
+		params.addAll(argsBuilder.getArguments());
+
+		try {
+			File log = new File(outputFolder, "ditac.log");
+			ProcessBuilder pb = new ProcessBuilder(params);
+			pb.redirectErrorStream(true);
+			pb.redirectOutput(Redirect.appendTo(log));
+			Process p = pb.start();
+			p.waitFor();
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+			return 1;
+		}
+		return 0;
 	}
 
 	private static void getWebHelpParameters(ArgumentsBuilder argsBuilder) {
@@ -1115,11 +1030,14 @@ public class Publisher {
 		}
 	}
 
-	private static String path(String p) {
+	private static String path(String path) {
 		if (File.separatorChar != '/') {
-			return p.replace('/', File.separatorChar);
+			return path.replace('/', File.separatorChar);
 		}
-		return p;
+		if (path.indexOf(' ') != -1) {
+			return "\"" + path + "\'";
+		}
+		return path;
 	}
 
 	private static void loadSettings() {

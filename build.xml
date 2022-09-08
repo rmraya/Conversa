@@ -4,16 +4,8 @@
 	<property name="source" value="11" />
 	<property name="build.compiler" value="javac10+" />
 	<path id="Conversa.classpath">
-		<pathelement location="lib/ditac.jar" />
-		<pathelement location="lib/flexmark.jar" />
 		<pathelement location="lib/mapdb.jar" />
 		<pathelement location="lib/openxliff.jar" />
-		<pathelement location="lib/relaxng.jar" />
-		<pathelement location="lib/resolver.jar" />
-		<pathelement location="lib/saxon10.jar" />
-		<pathelement location="lib/snowball.jar" />
-		<pathelement location="lib/whcmin.jar" />
-		<pathelement location="lib/xslhttl.jar" />
 		<pathelement location="lib/swt.jar" />
 		<pathelement location="lib/dtd.jar" />
 		<pathelement location="lib/json.jar" />

@@ -107,13 +107,7 @@ public class MainView {
 		shellLayout.marginWidth = 0;
 		shellLayout.marginHeight = 0;
 		shell.setLayout(shellLayout);
-		if (File.separator.equals("\\")) {
-			shell.setImage(Conversa.getResourcemanager().getWinLogo());
-		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-			shell.setImage(Conversa.getResourcemanager().getMacLogo());
-		} else {
-			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
-		}
+		shell.setImage(Conversa.getResourcemanager().getLogo());
 
 		shell.addListener(SWT.Close, event -> Locator.remember(shell, "MainView"));
 		shell.addListener(SWT.Resize, event -> fixColumns());

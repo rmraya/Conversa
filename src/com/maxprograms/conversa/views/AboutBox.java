@@ -23,7 +23,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
@@ -55,13 +54,8 @@ public class AboutBox {
 
 	public AboutBox(Shell parent, int style) {
 		shell = new Shell(parent, style);
-		if (File.separator.equals("\\")) {
-			shell.setImage(Conversa.getResourcemanager().getWinLogo());
-		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-			shell.setImage(Conversa.getResourcemanager().getMacLogo());
-		} else {
-			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
-		}
+		shell.setImage(Conversa.getResourcemanager().getLogo());
+		
 		MessageFormat mf = new MessageFormat("Version {0} - Build {1}");
 		shell.setText(mf.format(new Object[] { Constants.VERSION, Constants.BUILD }));
 		GridLayout shellLayout = new GridLayout();

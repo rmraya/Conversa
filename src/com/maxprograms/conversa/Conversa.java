@@ -29,14 +29,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.RandomAccessFile;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
-import java.lang.System.Logger.Level;
-import java.lang.System.Logger;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -65,7 +65,8 @@ public class Conversa {
 		Display.setAppVersion(Constants.VERSION);
 		display = Display.getDefault();
 		resourceManager = new ResourceManager(display);
-		System.setProperty("xml.catalog.files", System.getProperty("user.dir") + File.separator + "schema" + File.separator + "catalog.xml" );
+		System.setProperty("xml.catalog.files",
+				System.getProperty("user.dir") + File.separator + "schema" + File.separator + "catalog.xml");
 		try {
 			checkLock();
 			lock();
@@ -165,13 +166,7 @@ public class Conversa {
 					try (FileLock newlock = oldchannel.tryLock()) {
 						if (newlock == null) {
 							Shell shell = new Shell(display);
-							if (File.separator.equals("\\")) {
-								shell.setImage(getResourcemanager().getWinLogo());
-							} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-								shell.setImage(getResourcemanager().getMacLogo());
-							} else {
-								shell.setImage(getResourcemanager().getLinuxLogo());
-							}
+							shell.setImage(Conversa.getResourcemanager().getLogo());
 							MessageBox box = new MessageBox(shell, SWT.ICON_WARNING);
 							box.setText("Conversa DITA Publisher");
 							box.setMessage("An instance of this application is already running.");

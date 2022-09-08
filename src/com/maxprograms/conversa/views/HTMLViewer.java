@@ -52,13 +52,7 @@ public class HTMLViewer extends Dialog {
 	public HTMLViewer(Shell parent, String page) throws IOException {
 		super(parent, SWT.NONE);
 		shell = new Shell(parent, SWT.CLOSE | SWT.TITLE | SWT.MODELESS | SWT.BORDER | SWT.RESIZE);
-		if (File.separator.equals("\\")) {
-			shell.setImage(Conversa.getResourcemanager().getWinLogo());
-		} else if (System.getProperty("os.name").startsWith("Mac")) {
-			shell.setImage(Conversa.getResourcemanager().getMacLogo());
-		} else {
-			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
-		}
+		shell.setImage(Conversa.getResourcemanager().getLogo());
 		display = shell.getDisplay();
 		shell.setLayout(new FillLayout());
 		shell.addListener(SWT.Close, event -> Locator.remember(shell, "HTMLViewer"));

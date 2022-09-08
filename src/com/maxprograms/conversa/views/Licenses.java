@@ -45,13 +45,7 @@ public class Licenses {
         shell.setText("Licenses");
         display = shell.getDisplay();
         shell.setLayout(new GridLayout(2, false));
-        if (File.separator.equals("\\")) {
-            shell.setImage(Conversa.getResourcemanager().getWinLogo());
-        } else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-            shell.setImage(Conversa.getResourcemanager().getMacLogo());
-        } else {
-            shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
-        }
+        shell.setImage(Conversa.getResourcemanager().getLogo());
         shell.addListener(SWT.Close, event -> Locator.remember(shell, "Licenses"));
 
         Label conversa = new Label(shell, SWT.NONE);

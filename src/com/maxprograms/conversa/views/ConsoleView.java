@@ -23,8 +23,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
-import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.layout.GridData;
@@ -42,13 +40,7 @@ public class ConsoleView {
 	public ConsoleView(Shell parent, int style) {
 		shell = new Shell(parent, style);
 		shell.setLayout(new GridLayout());
-		if (File.separator.equals("\\")) {
-			shell.setImage(Conversa.getResourcemanager().getWinLogo());
-		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-			shell.setImage(Conversa.getResourcemanager().getMacLogo());
-		} else {
-			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
-		}
+		shell.setImage(Conversa.getResourcemanager().getLogo());
 		shell.addListener(SWT.Close, event -> Locator.remember(shell, "ConsoleView"));
 		styled = new StyledText(shell, SWT.READ_ONLY | SWT.V_SCROLL | SWT.H_SCROLL);
 		styled.setLayoutData(new GridData(GridData.FILL_BOTH));

@@ -23,6 +23,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views.resources;
 
+import java.io.File;
+
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
@@ -43,21 +45,31 @@ public class ResourceManager {
 		this.display = display;
 	}
 
-	public Image getWinLogo() {
+	public Image getLogo() {
+		if (File.separator.equals("\\")) {
+			return getWinLogo();
+		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
+			return getMacLogo();
+		} else {
+			return getLinuxLogo();
+		}
+	}
+
+	private Image getWinLogo() {
 		if (winLogo == null) {
 			winLogo = new Image(display, ResourceManager.class.getResourceAsStream("winLogo.png")); //$NON-NLS-1$
 		}
 		return winLogo;
 	}
 
-	public Image getLinuxLogo() {
+	private Image getLinuxLogo() {
 		if (linuxLogo == null) {
 			linuxLogo = new Image(display, ResourceManager.class.getResourceAsStream("linuxLogo.png")); //$NON-NLS-1$
 		}
 		return linuxLogo;
 	}
 
-	public Image getMacLogo() {
+	private Image getMacLogo() {
 		if (macLogo == null) {
 			macLogo = new Image(display, ResourceManager.class.getResourceAsStream("macLogo.png")); //$NON-NLS-1$
 		}

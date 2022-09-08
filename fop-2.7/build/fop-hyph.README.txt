@@ -1,5 +1,0 @@
-The project ‘Objects For Formatting Objects’ (OFFO) hosts hyphenation pattern files in the XML format used by the Formatting Object Processor Apache Fop.
-
-Version 2.2 (22 February 2016): Updated TeX UTF-8 hyphenation patterns. Added patterns for languages Occitan (oc) and Classical Latin (la_CL).
-
-http://offo.sourceforge.net/index.html

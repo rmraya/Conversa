@@ -50,11 +50,15 @@ public class ArgumentsBuilder {
 		arguments.add(string3);
 	}
 
-	public String[] getArguments() {
+	public String[] getArgumentsArray() {
 		if (arguments.isEmpty()) {
 			return new String[] {};
 		}
 		return arguments.toArray(new String[arguments.size()]);
+	}
+
+	public List<String> getArguments() {
+		return arguments;
 	}
 
 	@Override

@@ -97,13 +97,7 @@ public class ConversionDialog implements ILogger {
 
 	public ConversionDialog(Shell parent, int style) {
 		shell = new Shell(parent, style);
-		if (File.separator.equals("\\")) {
-			shell.setImage(Conversa.getResourcemanager().getWinLogo());
-		} else if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {
-			shell.setImage(Conversa.getResourcemanager().getMacLogo());
-		} else {
-			shell.setImage(Conversa.getResourcemanager().getLinuxLogo());
-		}
+		shell.setImage(Conversa.getResourcemanager().getLogo());
 		shell.setText("Publish DITA Map");
 		GridLayout shellLayout = new GridLayout();
 		shellLayout.marginWidth = 0;
