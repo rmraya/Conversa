@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project basedir="." default="compile" name="Conversa">
-	<property name="target" value="11" />
-	<property name="source" value="11" />
+	<property name="target" value="17" />
+	<property name="source" value="17" />
 	<property name="build.compiler" value="javac10+" />
 	<path id="Conversa.classpath">
 		<pathelement location="lib/mapdb.jar" />
@@ -31,4 +31,11 @@
 		<javac srcdir="src" destdir="bin" classpathref="Conversa.classpath" modulepathref="Conversa.classpath" includeAntRuntime="false" />
 		<jar destfile="lib/conversa.jar" basedir="bin" />		
 	</target>
+	<target name="link" depends="distclean,compile">
+        <description>Build Java binaries</description>
+        <link destDir="dist" modulepath="lib:${java.home}/jmods">
+            <module name="conversa" />
+        </link>
+        <delete file="dist/lib/jrt-fs.jar" />
+    </target>
 </project>
