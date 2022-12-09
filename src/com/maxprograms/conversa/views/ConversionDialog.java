@@ -92,6 +92,7 @@ public class ConversionDialog implements ILogger {
 	protected AsyncLogger alogger;
 	protected Button cancel;
 	protected boolean cancelled;
+	protected Publisher publisher;
 	protected LogPanel logPanel;
 	protected Listener closeListener;
 
@@ -116,6 +117,8 @@ public class ConversionDialog implements ILogger {
 			}
 		});
 		display = shell.getDisplay();
+
+		publisher = new Publisher();
 
 		alogger = new AsyncLogger(this);
 
@@ -400,7 +403,7 @@ public class ConversionDialog implements ILogger {
 				Thread thread = new Thread() {
 					@Override
 					public void run() {
-						Publisher.convert(pub, open, alogger);
+						publisher.convert(pub, open, alogger);
 					}
 				};
 				thread.start();
@@ -547,7 +550,7 @@ public class ConversionDialog implements ILogger {
 			public void run() {
 				shell.removeListener(SWT.Close, closeListener);
 				ConsoleView console = new ConsoleView(shell, SWT.CLOSE | SWT.RESIZE);
-				console.showMessage(Publisher.getLog());
+				console.showMessage(publisher.getLog());
 				console.show();
 				logPanel.setStage("Process Failed");
 				logPanel.log(string);
@@ -582,7 +585,7 @@ public class ConversionDialog implements ILogger {
 				}
 				if (showLog.getSelection()) {
 					ConsoleView console = new ConsoleView(shell, SWT.CLOSE | SWT.RESIZE);
-					console.showMessage(Publisher.getLog());
+					console.showMessage(publisher.getLog());
 					console.show();
 				}
 				logPanel.setStage("Process Finished");

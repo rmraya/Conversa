@@ -29,13 +29,18 @@
 		<description>Build jar file</description>
 		<delete file="lib/conversa.jar" />
 		<javac srcdir="src" destdir="bin" classpathref="Conversa.classpath" modulepathref="Conversa.classpath" includeAntRuntime="false" />
-		<jar destfile="lib/conversa.jar" basedir="bin" />		
+		<jar destfile="lib/conversa.jar" basedir="bin" />
 	</target>
 	<target name="link" depends="distclean,compile">
-        <description>Build Java binaries</description>
-        <link destDir="dist" modulepath="lib:${java.home}/jmods">
-            <module name="conversa" />
-        </link>
-        <delete file="dist/lib/jrt-fs.jar" />
-    </target>
+		<description>Build Java binaries</description>
+		<link destDir="dist" modulepath="lib:${java.home}/jmods">
+			<module name="conversa" />
+		</link>
+		<delete file="dist/lib/jrt-fs.jar" />
+		<copy file="lib/licenses/conversa.txt" todir="dist/lib" />
+		<mkdir dir="dist/docs" />
+		<copy file="docs/conversa.pdf" todir="dist/docs" />
+		<copy file="docs/manual.pdf" todir="dist/docs" />
+		<copy file="docs/xsl_parameters.pdf" todir="dist/docs" />
+	</target>
 </project>

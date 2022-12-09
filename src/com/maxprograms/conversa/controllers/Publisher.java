@@ -23,9 +23,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.controllers;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.lang.ProcessBuilder.Redirect;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
@@ -62,14 +64,14 @@ public class Publisher {
 	private static String ahPath;
 	private static String hhcPath;
 	private static String xfcPath;
-	protected static StringBuilder log;
+	protected StringBuffer log;
 	private static String pluginId;
 
-	private Publisher() {
-		// do not instantiate
+	public Publisher() {
+		log = new StringBuffer();
 	}
 
-	public static void convert(Publication publication, boolean openFiles, AsyncLogger aLogger) {
+	public void convert(Publication publication, boolean openFiles, AsyncLogger aLogger) {
 
 		String commandLine = "";
 		File userDir = new File(System.getProperty("user.dir"));
@@ -87,7 +89,6 @@ public class Publisher {
 			commandLine = ditac.getAbsolutePath();
 		}
 
-		log = new StringBuilder();
 		aLogger.setStage("Loading Settings");
 
 		loadSettings();
@@ -144,7 +145,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating PDF.");
 				return;
@@ -187,7 +188,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating HTML.");
 				return;
@@ -229,7 +230,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating XSL-FO.");
 				return;
@@ -271,7 +272,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating PostScript.");
 				return;
@@ -323,7 +324,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating Eclipse Help.");
 				return;
@@ -368,7 +369,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating Web Help.");
 				return;
@@ -413,7 +414,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating Web Help HTML 5.");
 				return;
@@ -459,7 +460,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating HTML Help.");
 				return;
@@ -502,7 +503,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating DOCX.");
 				return;
@@ -545,7 +546,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating RTF.");
 				return;
@@ -588,7 +589,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating ODT.");
 				return;
@@ -633,7 +634,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating EPUB 2.");
 				return;
@@ -678,7 +679,7 @@ public class Publisher {
 			argsBuilder.append(outFile.getAbsolutePath());
 			argsBuilder.append(inFile.getAbsolutePath());
 
-			int result = run(commandLine, argsBuilder, outFolder);
+			int result = run(commandLine, argsBuilder, aLogger);
 			if (result != 0) {
 				aLogger.displayError("Error generating EPUB 3.");
 				return;
@@ -694,17 +695,41 @@ public class Publisher {
 		aLogger.displaySuccess("Done!");
 	}
 
-	private static int run(String command, ArgumentsBuilder argsBuilder, File outputFolder) {
+	private int run(String command, ArgumentsBuilder argsBuilder, AsyncLogger logger) {
+		log.setLength(0);
 		List<String> params = new ArrayList<>();
 		params.add(command);
 		params.addAll(argsBuilder.getArguments());
+		String[] cmdArray = params.toArray(new String[params.size()]);
 
+		Iterator<String> it = params.iterator();
+		while (it.hasNext()) {
+			if (!log.isEmpty()) {
+				log.append(' ');
+			}
+			log.append(it.next());
+		}
+		log.append("\n\n");
 		try {
-			File log = new File(outputFolder, "ditac.log");
-			ProcessBuilder pb = new ProcessBuilder(params);
-			pb.redirectErrorStream(true);
-			pb.redirectOutput(Redirect.appendTo(log));
-			Process p = pb.start();
+			Process p = Runtime.getRuntime().exec(cmdArray);
+			try (InputStream input = p.getInputStream()) {
+				try (InputStreamReader reader = new InputStreamReader(input)) {
+					try (BufferedReader bReader = new BufferedReader(reader)) {
+						String line = "";
+						while ((line = bReader.readLine()) != null) {
+							if (line.startsWith("ditac: ")) {
+								line = line.substring("ditac: ".length());
+							}
+							if (line.startsWith("INFO:")) {
+								line = line.substring("INFO:".length());
+							}
+							log.append('\n');
+							log.append(line);
+							logger.log(line);
+						}
+					}
+				}
+			}
 			p.waitFor();
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
@@ -1055,7 +1080,7 @@ public class Publisher {
 		}
 	}
 
-	public static String getLog() {
+	public String getLog() {
 		return log.toString();
 	}
 }

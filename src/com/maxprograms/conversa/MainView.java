@@ -514,7 +514,7 @@ public class MainView {
 		releaseHistory.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
-				Program.launch("http://www.maxprograms.com/products/conversalog.html");
+				Program.launch("https://www.maxprograms.com/products/conversalog.html");
 			}
 		});
 
@@ -576,7 +576,7 @@ public class MainView {
 						Object[] args = { Constants.VERSION + " (" + Constants.BUILD + ")", version };
 						box.setMessage(mf.format(args));
 						if (box.open() == SWT.YES) {
-							Program.launch("http://www.maxprograms.com/downloads/");
+							Program.launch("https://www.maxprograms.com/downloads/");
 						}
 					} else {
 						if (!silent) {
