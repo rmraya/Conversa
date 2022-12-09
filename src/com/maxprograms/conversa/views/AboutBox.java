@@ -23,6 +23,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ***********************************************************************/
 package com.maxprograms.conversa.views;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
@@ -38,12 +39,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 import com.maxprograms.conversa.Constants;
 import com.maxprograms.conversa.Conversa;
 import com.maxprograms.utils.Locator;
 import com.maxprograms.utils.Preferences;
+import com.maxprograms.widgets.CustomLink;
 
 public class AboutBox {
 
@@ -55,7 +58,7 @@ public class AboutBox {
 	public AboutBox(Shell parent, int style) {
 		shell = new Shell(parent, style);
 		shell.setImage(Conversa.getResourcemanager().getLogo());
-		
+
 		MessageFormat mf = new MessageFormat("Version {0} - Build {1}");
 		shell.setText(mf.format(new Object[] { Constants.VERSION, Constants.BUILD }));
 		GridLayout shellLayout = new GridLayout();
@@ -115,13 +118,22 @@ public class AboutBox {
 		filler.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Button licensesButton = new Button(bottom, SWT.PUSH);
-		licensesButton.setText("Licenses");
+		licensesButton.setText("License");
 		licensesButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				Licenses licenses = new Licenses(shell, SWT.DIALOG_TRIM);
-				licenses.show();
+				try {
+					HTMLViewer viewer = new HTMLViewer(parent, new File("lib/licenses/conversa.txt").getAbsolutePath());
+					viewer.setTitle("Conversa License");
+					viewer.show();
+				} catch (Exception e) {
+					Logger logger = System.getLogger(CustomLink.class.getName());
+					logger.log(Level.ERROR, "Error displaying link", e);
+					MessageBox box = new MessageBox(parent.getShell(), SWT.ICON_ERROR);
+					box.setMessage(e.getMessage());
+					box.open();
+				}
 			}
 		});
 

@@ -43,10 +43,10 @@
   
   <image href="../images/convert.png" placement="break" align="center" otherprops="pdf" scale="40"/>
   
-  <p>Conversa ships with Apache FOP 2.5 to generate PDF files but you can also use 
-   <xref href="http://www.renderx.com/tools/xep.html" format="html">RenderX XEP</xref>, 
-   <xref href="http://www.antennahouse.com/antenna1/formatter/" format="html">Antenna House XSL Formatter</xref> 
-   or an external Apache FOP if you want customized PDF files.</p>
+  <p>Conversa ships with Apache FOP 2.8 to generate PDF files but you can also use <xref
+    href="http://www.renderx.com/tools/xep.html" format="html">RenderX XEP</xref>, <xref
+    href="http://www.antennahouse.com/antenna1/formatter/" format="html">Antenna House XSL
+    Formatter</xref> or an external Apache FOP if you want customized PDF files.</p>
   
   <p>Microsoft HTML Help Workshop is required to generate HTML Help in <filepath>.chm</filepath> format for Windows. 
    It can be freely downloaded from <xref href="https://www.microsoft.com/en-us/download/details.aspx?id=21138" 
