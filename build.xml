@@ -37,7 +37,8 @@
 			<module name="conversa" />
 		</link>
 		<delete file="dist/lib/jrt-fs.jar" />
-		<copy file="lib/licenses/conversa.txt" todir="dist/lib" />
+		<mkdir dir="dist/lib/licenses/" />
+		<copy file="lib/licenses/conversa.txt" todir="dist/lib/licenses/" />
 		<mkdir dir="dist/docs" />
 		<copy file="docs/conversa.pdf" todir="dist/docs" />
 		<copy file="docs/manual.pdf" todir="dist/docs" />
