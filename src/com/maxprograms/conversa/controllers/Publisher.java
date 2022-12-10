@@ -975,7 +975,7 @@ public class Publisher {
 		defaults.put("external-link-icon-width", "10");
 		defaults.put("format-to-type", "");
 		defaults.put("generator-info", "Conversa " + Constants.VERSION);
-		defaults.put("ignore-navigation-links", "auto"); // TODO redefine in web help
+		defaults.put("ignore-navigation-links", "auto"); // redefine in web help
 		defaults.put("javascripts", "");
 		defaults.put("mathjax", "no");
 		defaults.put("mathjax-url", "");

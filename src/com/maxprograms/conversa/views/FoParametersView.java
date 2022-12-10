@@ -613,9 +613,9 @@ public class FoParametersView extends Composite {
 			noteIconWidth.setText(prefs.get(PARAMS, "note-icon-width", "7mm"));
 			pageBottomMargin.setText(prefs.get(PARAMS, "page-bottom-margin", "0.5in"));
 			pageHeight.setText(prefs.get(PARAMS, "page-height", ""));
-			pageInnerMargin.setText(prefs.get(PARAMS, "page-inner-margin", "1.25in")); // TODO depends on two-sided
+			pageInnerMargin.setText(prefs.get(PARAMS, "page-inner-margin", "1.25in")); // depends on two-sided
 			pageOrientation.setText(prefs.get(PARAMS, "page-orientation", "portrait"));
-			pageOuterMargin.setText(prefs.get(PARAMS, "page-outer-margin", "1in")); // TODO depends on two-sided
+			pageOuterMargin.setText(prefs.get(PARAMS, "page-outer-margin", "1in")); // depends on two-sided
 			pageRefAfter.setText(prefs.get(PARAMS, "page-ref-after", ""));
 			pageRefBefore.setText(prefs.get(PARAMS, "page-ref-before", ""));
 			pageTopMargin.setText(prefs.get(PARAMS, "page-top-margin", "0.5in"));
