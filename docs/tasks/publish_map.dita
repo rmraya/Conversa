@@ -11,12 +11,10 @@
                 <cmd>In <uicontrol>File</uicontrol> menu select <uicontrol>Publish DITA Map</uicontrol>
                     <indexterm>Publish DITA MAP dialog</indexterm> or 
                     click the <image href="../images/publish_button.png" height="16"/>  button in the toolbar.</cmd>
-                <stepresult>The following dialog appears: 
-                    <image href="../images/publish.png" placement="break" otherprops="html" align="center">
+                <stepresult>The following dialog appears: <image href="../images/publish.png"
+                        placement="break" align="center" scalefit="yes">
                         <alt>Publish DITA Map Dialog</alt>
                     </image>
-                    <image href="../images/publish.png" placement="break" otherprops="pdf"
-                        scale="50" align="center"/>
                 </stepresult>
             </step>
             <step>

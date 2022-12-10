@@ -4,14 +4,12 @@
  <title>Help Parameters</title>
  <shortdesc></shortdesc>
  <conbody>
-  <p>To access the configuration options for Web Help, HTML Help and Eclipse help, select the
-    <uicontrol>Help Systems</uicontrol> option in the <uicontrol>XSL Parameters</uicontrol> tab of
-   the <uicontrol>Preferences</uicontrol> dialog.</p>
-  
-  <image href="../images/help_params.png" align="center" otherprops="html">
-   <alt><uicontrol>Preferences</uicontrol> dialog showing the options for <uicontrol>Help
-     Systems</uicontrol></alt>
-  </image>
-  <image href="../images/help_params.png" align="center" otherprops="pdf" scale="50"/>
- </conbody>
+    <p>To access the configuration options for Web Help, HTML Help and Eclipse help, select the
+        <uicontrol>Help Systems</uicontrol> option in the <uicontrol>XSL Parameters</uicontrol> tab
+      of the <uicontrol>Preferences</uicontrol> dialog.</p>
+    <image href="../images/help_params.png" align="center" scalefit="yes">
+      <alt><uicontrol>Preferences</uicontrol> dialog showing the options for <uicontrol>Help
+          Systems</uicontrol></alt>
+    </image>
+  </conbody>
 </concept>

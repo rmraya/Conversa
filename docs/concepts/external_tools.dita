@@ -15,10 +15,9 @@
    </ul>
    <p>Use the <uicontrol>External Tools</uicontrol> tab of the <uicontrol>Preferences</uicontrol>
     dialog to configure the default XSLT engine.</p>
-   <image href="../images/third_party.png" align="center" otherprops="html">
+   <image href="../images/third_party.png" align="center" scalefit="yes">
     <alt>Preferences dialog showing the <uicontrol>External Tools</uicontrol> tab</alt>
    </image>
-   <image href="../images/third_party.png" align="center" otherprops="pdf" scale="50"/>
   </section>
   
   <section>

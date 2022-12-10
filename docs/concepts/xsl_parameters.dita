@@ -3,12 +3,14 @@
 <concept id="Untitled3">
  <title>XSL Stylesheet Parameters</title>
  <conbody>
-  <p>You can pass parameters to the XSL stylesheets shipped with Conversa to customize the appearance of your publications.</p>
-  <p>Select the <uicontrol>XSL Parameters</uicontrol> tab in the <uicontrol>Preferences</uicontrol> dialog to adjust your stylesheets.</p>
-  <image href="../images/xsl_params.png" align="center" otherprops="html">
-   <alt><uicontrol>Preferences</uicontrol> dialog showing the <uicontrol>XSL Parameters</uicontrol> tab</alt>
+  <p>You can pass parameters to the XSL stylesheets shipped with Conversa to customize the
+   appearance of your publications.</p>
+  <p>Select the <uicontrol>XSL Parameters</uicontrol> tab in the <uicontrol>Preferences</uicontrol>
+   dialog to adjust your stylesheets.</p>
+  <image href="../images/xsl_params.png" align="center" scalefit="yes">
+   <alt><uicontrol>Preferences</uicontrol> dialog showing the <uicontrol>XSL Parameters</uicontrol>
+    tab</alt>
   </image>
-  <image href="../images/xsl_params.png" align="center" otherprops="pdf" scale="50"/>
   <p>Use the <uicontrol>Export XSL Parameters</uicontrol> button to save the current set parameters
    to an XML file and the <uicontrol>Import XSL Parameters</uicontrol> button to restore a set of
    customized settings at any time. </p>
