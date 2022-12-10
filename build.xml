@@ -43,8 +43,5 @@
 		<copy file="docs/conversa.pdf" todir="dist/docs" />
 		<copy file="docs/manual.pdf" todir="dist/docs" />
 		<copy file="docs/xsl_parameters.pdf" todir="dist/docs" />
-		<copy todir="dist/schema">
-			<fileset dir="schema" />
-		</copy>
 	</target>
 </project>

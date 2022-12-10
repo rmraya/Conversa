@@ -571,8 +571,11 @@ public class MainView {
 					String version = new String(array).trim();
 					if (!version.equals(Constants.VERSION + " (" + Constants.BUILD + ")")) {
 						MessageBox box = new MessageBox(shell, SWT.ICON_QUESTION | SWT.YES | SWT.NO);
-						MessageFormat mf = new MessageFormat("Installed version is: {0}\n"
-								+ "Available version is: {1}\n" + "\n" + "Visit download site?");
+						MessageFormat mf = new MessageFormat("""
+Installed version is: {0}
+Available version is: {1}
+
+Visit download site?""");
 						Object[] args = { Constants.VERSION + " (" + Constants.BUILD + ")", version };
 						box.setMessage(mf.format(args));
 						if (box.open() == SWT.YES) {

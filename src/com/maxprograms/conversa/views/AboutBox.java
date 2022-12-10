@@ -46,7 +46,6 @@ import com.maxprograms.conversa.Constants;
 import com.maxprograms.conversa.Conversa;
 import com.maxprograms.utils.Locator;
 import com.maxprograms.utils.Preferences;
-import com.maxprograms.widgets.CustomLink;
 
 public class AboutBox {
 
@@ -128,8 +127,7 @@ public class AboutBox {
 					viewer.setTitle("Conversa License");
 					viewer.show();
 				} catch (Exception e) {
-					Logger logger = System.getLogger(CustomLink.class.getName());
-					logger.log(Level.ERROR, "Error displaying link", e);
+					logger.log(Level.ERROR, "Error displaying license content", e);
 					MessageBox box = new MessageBox(parent.getShell(), SWT.ICON_ERROR);
 					box.setMessage(e.getMessage());
 					box.open();

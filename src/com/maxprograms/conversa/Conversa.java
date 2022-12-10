@@ -24,7 +24,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 package com.maxprograms.conversa;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -106,7 +105,11 @@ public class Conversa {
 		File preferencesFolder = Preferences.getPreferencesDir();
 		File catalogFolder = new File(preferencesFolder, "schema");
 		if (!catalogFolder.exists()) {
-			copyFolder(new File("schema"), catalogFolder);
+			File ditac = new File("ditac");
+			if (!ditac.exists()) {
+				throw new IOException("ditac is not installed");
+			}
+			copyFolder(new File(ditac, "schema"), catalogFolder);
 		}
 		File catalog = new File(catalogFolder, "catalog.xml");
 		return catalog.getAbsolutePath();
@@ -131,15 +134,7 @@ public class Conversa {
 		if (!target.getParentFile().exists()) {
 			target.getParentFile().mkdirs();
 		}
-		try (FileInputStream in = new FileInputStream(source)) {
-			try (FileOutputStream output = new FileOutputStream(target)) {
-				byte[] buf = new byte[1024];
-				int len;
-				while ((len = in.read(buf)) > 0) {
-					output.write(buf, 0, len);
-				}
-			}
-		}
+		Files.copy(source.toPath(), target.toPath());
 	}
 
 	private static void lock() throws IOException {
