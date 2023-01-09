@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2023 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,8 +29,8 @@ public class Constants {
 		// do not instantiate
 	}
 
-	public static final String VERSION = "2.0.0";
-	public static final String BUILD = "20221210_0741";
+	public static final String VERSION = "2.1.0";
+	public static final String BUILD = "20230109_0810";
 	public static final String PREFERENCES = "preferences.json";
 	public static final String PUBLICATIONS = "publications.json";
 

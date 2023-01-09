@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2023 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -700,7 +700,6 @@ public class Publisher {
 		List<String> params = new ArrayList<>();
 		params.add(command);
 		params.addAll(argsBuilder.getArguments());
-		String[] cmdArray = params.toArray(new String[params.size()]);
 
 		Iterator<String> it = params.iterator();
 		while (it.hasNext()) {
@@ -711,7 +710,10 @@ public class Publisher {
 		}
 		log.append("\n\n");
 		try {
-			Process p = Runtime.getRuntime().exec(cmdArray);
+			ProcessBuilder pbuilder = new ProcessBuilder();
+			pbuilder.redirectErrorStream(true);
+			pbuilder.command(params);
+			Process p = pbuilder.start();
 			try (InputStream input = p.getInputStream()) {
 				try (InputStreamReader reader = new InputStreamReader(input)) {
 					try (BufferedReader bReader = new BufferedReader(reader)) {

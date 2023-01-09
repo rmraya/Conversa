@@ -13,28 +13,15 @@
                                         href="https://raw.githubusercontent.com/rmraya/Conversa/master/LICENSE"
                                         format="html" scope="external">MIT License</xref></li>
                 </ul>
-                <p><b>OpenXLIFF Filters</b></p>
+                <p><b>XMLJava</b></p>
                 <ul>
-                        <li>Available from <xref
-                                        href="https://www.maxprograms.com/products/openxliff.html"
+                        <li>Available from <xref href="https://github.com/rmraya/XMLJava"
                                         scope="external" format="html"
-                                        >https://www.maxprograms.com/products/openxliff.html</xref></li>
+                                        >https://github.com/rmraya/XMLJava</xref></li>
                         <li>Published under <xref
                                         href="https://www.eclipse.org/org/documents/epl-v10.html"
                                         format="html" scope="external">Eclipse Public License
                                         1.0</xref></li>
-                </ul>
-                <p><b>DTDParser</b></p>
-                <ul>
-                        <li>Formerly available from <xref href="http://wutka.com/dtdparser.html"
-                                        format="html" scope="external"
-                                        >http://wutka.com/dtdparser.html</xref></li>
-                        <li>Published under two licenses: <xref
-                                        href="https://raw.githubusercontent.com/rmraya/OpenXLIFF/master/licenses/dtd/ASL_LICENSE"
-                                        format="html" scope="external">Apache Style License</xref>
-                                and <xref
-                                        href="https://raw.githubusercontent.com/rmraya/OpenXLIFF/master/licenses/dtd/LICENSE"
-                                        format="html" scope="external">LGPL 2.1</xref></li>
                 </ul>
                 <p><b>JSON-java</b></p>
                 <ul>
@@ -52,14 +39,6 @@
                         <li>Published under <xref
                                         href="https://raw.githubusercontent.com/rmraya/OpenXLIFF/master/licenses/jsoup/LICENSE"
                                         format="html" scope="external">MIT License</xref></li>
-                </ul>
-                <p><b>MapDB</b></p>
-                <ul>
-                        <li>Available from <xref href="https://mapdb.org/" format="html"
-                                        scope="external">https://mapdb.org</xref></li>
-                        <li>Published under <xref
-                                        href="https://raw.githubusercontent.com/rmraya/OpenXLIFF/master/licenses/mapdb/LICENSE"
-                                        format="html" scope="external">Apache License</xref></li>
                 </ul>
                 <p><b>Java</b></p>
                 <ul>

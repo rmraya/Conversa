@@ -6,12 +6,12 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/rmraya/Documents/GitHub/Conversa/lib/dtd.jar">
+	<classpathentry kind="lib" path="/Users/rmraya/Documents/GitHub/Conversa/lib/swt.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/rmraya/Documents/GitHub/Conversa/lib/json.jar">
+	<classpathentry kind="lib" path="lib/xmljava.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -21,17 +21,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/rmraya/Documents/GitHub/Conversa/lib/mapdb.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/rmraya/Documents/GitHub/Conversa/lib/openxliff.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/rmraya/Documents/GitHub/Conversa/lib/swt.jar">
+	<classpathentry kind="lib" path="lib/json.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

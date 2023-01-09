@@ -1,6 +1,6 @@
 /*********************************************************************** 
 
-Copyright (c) 2016-2022 - Maxprograms,  http://www.maxprograms.com/
+Copyright (c) 2016-2023 - Maxprograms,  http://www.maxprograms.com/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
