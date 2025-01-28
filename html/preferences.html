@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Preferences</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../css/dark.css">
+</head>
+
+<body>
+    <table style="height: 100vh;">
+        <tr>
+            <td class="leftside">
+                <div class="toprow">
+                    <a id="externalTools" class="selectedTab"><span>External Tools</span></a>
+                    <a id="xmlCatalog"><span>XML Catalog</span></a>
+                    <a id="xslParameters"><span>XSL Parameters</span></a>
+                </div>
+            </td>
+            <td class="fill_width" style="padding-bottom: 8px;">
+                <div class="tabContent" id="external">
+                    <h3 style="padding: 0px 8px; margin: 0px;">Default XSL-FO Processor for PDF</h3>
+
+                    <div class="paddedArea">
+                        <table class="bordered fill_width">
+                        </table>
+                    </div>
+                    <h3 style="padding: 0px 8px; margin: 0px;">External Tools</h3>
+                    <div class="paddedArea">
+                        <table class="bordered fill_width">
+                            <tr>
+                                <td class="noWrap middle"><label for="apache">External Apache FOP</label></td>
+                                <td class="fill_width middle"><input id="apache" type="text" class="fill_width"></td>
+                                <td class="middle"><button id="browseDITAVAL">Browse...</button></td>
+                            </tr>
+                            <tr>
+                                <td class="noWrap middle"><label for="renderx">RenderX XEP</label></td>
+                                <td class="fill_width middle"><input id="renderx" type="text" class="fill_width"></td>
+                                <td class="middle"><button id="browseDITAVAL">Browse...</button></td>
+                            </tr>
+                            <tr>
+                                <td class="noWrap middle"><label for="antenna">Antenna House XSL Formatter</label></td>
+                                <td class="fill_width middle"><input id="antenna" type="text" class="fill_width"></td>
+                                <td class="middle"><button id="browseDITAVAL">Browse...</button></td>
+                            </tr>
+                            <tr>
+                                <td class="noWrap middle"><label for="xmlmind">XMLmind XSL-FO Converter</label></td>
+                                <td class="fill_width middle"><input id="xmlmind" type="text" class="fill_width"></td>
+                                <td class="middle"><button id="browseDITAVAL">Browse...</button></td>
+                            </tr>
+                            <tr>
+                                <td class="noWrap middle"><label for="microsoft">Microsoft Help Compiler</label></td>
+                                <td class="fill_width middle"><input id="microsoft" type="text" class="fill_width"></td>
+                                <td class="middle"><button id="browseDITAVAL">Browse...</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="hiddenTab" id="xml">
+
+                </div>
+
+                <div class="hiddenTab" id="xsl">
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
