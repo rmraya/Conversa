@@ -301,7 +301,7 @@ button:disabled {
 	margin: 0 !important;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	height: calc(100% - 16px);
 }
 
 .rightSide {
@@ -447,37 +447,7 @@ svg {
 	stroke-width: 0.3;
 }
 
-.selectedTab {
-	background: var(--gray130);
-	border-radius: 4px;
 
-}
-
-.selectedTab a span {
-	color: var(--themePrimary);
-	fill: var(--themePrimary);
-	stroke: var(--themePrimary);
-}
-
-.selectedTab a svg {
-	color: var(--themePrimary);
-	fill: var(--themePrimary);
-	stroke: var(--themePrimary);
-}
-
-.selectedTab:hover {
-	color: var(--gray10);
-	fill: var(--gray10);
-	stroke: var(--gray10);
-}
-
-.tabContent {
-	display: block;
-}
-
-.hiddenTab {
-	display: none;
-}
 
 .appStatus {
 	position: fixed;
@@ -604,25 +574,12 @@ th {
 	white-space: nowrap;
 }
 
-.selectedTab {
-	background: var(--gray150);
-	color: var(--gray10);
-	border-left: 1px solid var(--gray150) !important;
-	border-right: 1px solid var(--gray150) !important;
-	border-radius: 4px 4px 0px 0px;
-}
-
 .tab:hover {
 	color: var(--themePrimary);
 	fill: var(--themePrimary);
 	stroke: var(--themePrimary);
 }
 
-.selectedTab:hover {
-	color: var(--themePrimary);
-	fill: var(--themePrimary);
-	stroke: var(--themePrimary);
-}
 
 .tab a {
 	color: inherit;
@@ -636,6 +593,37 @@ th {
 	color: inherit;
 	fill: inherit;
 	stroke: inherit;
+}
+
+.selectedTab {
+	background: var(--gray130);
+	border-radius: 4px;
+}
+
+.selectedTab a span {
+	color: var(--themePrimary);
+	fill: var(--themePrimary);
+	stroke: var(--themePrimary);
+}
+
+.selectedTab a svg {
+	color: var(--themePrimary);
+	fill: var(--themePrimary);
+	stroke: var(--themePrimary);
+}
+
+.selectedTab:hover {
+	color: var(--gray10);
+	fill: var(--gray10);
+	stroke: var(--gray10);
+}
+
+.tabContent {
+	display: block;
+}
+
+.hiddenTab {
+	display: none;
 }
 
 .bordered {

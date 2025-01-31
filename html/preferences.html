@@ -9,19 +9,38 @@
 <body>
     <table style="height: 100vh;">
         <tr>
-            <td class="leftside">
+            <td class="leftSide">
                 <div class="toprow">
                     <a id="externalTools" class="selectedTab"><span>External Tools</span></a>
                     <a id="xmlCatalog"><span>XML Catalog</span></a>
                     <a id="xslParameters"><span>XSL Parameters</span></a>
                 </div>
             </td>
-            <td class="fill_width" style="padding-bottom: 8px;">
-                <div class="tabContent" id="external">
+
+            <td class="fill_width">
+
+                <!--
+                <div id="externalTab">
                     <h3 style="padding: 0px 8px; margin: 0px;">Default XSL-FO Processor for PDF</h3>
 
                     <div class="paddedArea">
                         <table class="bordered fill_width">
+                            <tr>
+                                <td class="fill_width"><input id="builtApache" type="radio" class="middle"><label
+                                        for="builtApache">Built-in Apache FOP</label></td>
+                            </tr>
+                            <tr>
+                                <td class="fill_width"><input id="externalApache" type="radio" class="middle"><label
+                                        for="externalApache">External Apache FOP</label></td>
+                            </tr>
+                            <tr>
+                                <td class="fill_width"><input id="renderxXEP" type="radio" class="middle"><label
+                                        for="renderxXEP">RenderX XEP</label></td>
+                            </tr>
+                            <tr>
+                                <td class="fill_width"><input id="antennaXSL" type="radio" class="middle"><label
+                                        for="antennaXSL">Antenna House XSL Formatter</label></td>
+                            </tr>
                         </table>
                     </div>
                     <h3 style="padding: 0px 8px; margin: 0px;">External Tools</h3>
@@ -55,17 +74,98 @@
                         </table>
                     </div>
                 </div>
+-->
 
-                <div class="hiddenTab" id="xml">
+                <!--
+                <div id="catalogTab">
+                    <table class="fill_width">
+                        <thead>
+                            <th>Url</th>
+                        </thead>
+                        <tbody class="stripes">
+                            <tr>
+                                <td>Catalog 1</td>
+                            </tr>
+                            <tr>
+                                <td>Catalog 2</td>
+                            </tr>
+                            <tr>
+                                <td>Catalog 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="buttonArea">
+                        <button id="addCatalog">Add Catalog Entry</button>
+                        <button id="removeCatalog">Remove Catalog Entry</button>
+                    </div>
+                </div>
+-->
 
+
+                <div id="xslTab">
+                    <table style="height: 100vh;">
+                        <tr>
+                            <td class="leftSide" style="padding: none;">
+                                <div class="toprow">
+                                    <a id="commonTab" class="selectedTab"><span>Common</span></a>
+                                    <a id="xsl-foTab"><span>XSL-FO</span></a>
+                                    <a id="htmlTab"><span>HTML</span></a>
+                                    <a id="epubTab"><span>EPUB</span></a>
+                                    <a id="helpTab"><span>Help Systems</span></a>
+                                </div>
+                            </td>
+                            <td class="fill_width">
+
+                                <div id="commonParameters">
+                                    <h3 style="padding: 0px 8px; margin: 0px;">Parameters common to all stylesheets</h3>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                            <td class="noWrap middle"><label
+                                                    for="microsoft">appendix-number-format</label></td>
+                                            <td class="fill_width middle"><input id="microsoft" type="select"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                    </table>
+                                    <div>
+                                        <button id="export">Export XSL Parameters</button>
+                                        <button id="import">Import XSL Parameters</button>
+                                        <button id="default">Load Default Values</button>
+                                        <button id="reference">Show Reference Guide</button>
+                                    </div>
+                                </div>
+
+<!--
+
+                                <div id="xsl-foParameters">
+
+                                </div>
+
+                                <div id="htmlParameters">
+
+                                </div>
+
+                                <div id="epubParameters">
+
+                                </div>
+
+                                <div id="helpParameters">
+
+                                </div>
+
+-->
+
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
-                <div class="hiddenTab" id="xsl">
+                
 
-                </div>
             </td>
         </tr>
     </table>
+
 </body>
 
 </html>
