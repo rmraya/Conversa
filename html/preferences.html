@@ -11,7 +11,8 @@
         <tr>
             <td class="leftSide">
                 <div class="toprow">
-                    <a id="externalButton" onclick="show('externalTools')" class="selectedTab"><span>External Tools</span></a>
+                    <a id="externalButton" onclick="show('externalTools')" class="selectedTab"><span>External
+                            Tools</span></a>
                     <a id="catalogButton" onclick="show('xmlCatalog')"><span>XML Catalog</span></a>
                     <a id="parametersButton" onclick="show('xslParameters')"><span>XSL Parameters</span></a>
                 </div>
@@ -105,7 +106,8 @@
                         <tr>
                             <td class="leftSide" style="padding: none;">
                                 <div class="toprow">
-                                    <a id="commonButton" onclick="parameters('commonTab')" class="selectedTab"><span>Common</span></a>
+                                    <a id="commonButton" onclick="parameters('commonTab')"
+                                        class="selectedTab"><span>Common</span></a>
                                     <a id="xsl-foButton" onclick="parameters('xsl-foTab')"><span>XSL-FO</span></a>
                                     <a id="htmlButton" onclick="parameters('htmlTab')"><span>HTML</span></a>
                                     <a id="epubButton" onclick="parameters('epubTab')"><span>EPUB</span></a>
@@ -118,14 +120,204 @@
                                     <h3 style="padding: 0px 8px; margin: 0px;">Parameters common to all stylesheets</h3>
                                     <table>
                                         <tr>
-                                            <td>
                                             <td class="noWrap middle"><label
-                                                    for="microsoft">appendix-number-format</label></td>
-                                            <td class="fill_width middle"><input id="microsoft" type="select"
+                                                    for="appendix-number-format">appendix-number-format</label></td>
+                                            <td class="fill_width middle"><select id="appendix-number-format">
+                                                    <option value="A">A</option>
+                                                    <option value="|">|</option>
+                                                    <option value="i">i</option>
+                                                    <option value="a">a</option>
+                                                    <option value="1">1</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="cause-number-format">cause-number-format</label></td>
+                                            <td class="fill_width middle"><select id="cause-number-format">
+                                                    <option value="A">A</option>
+                                                    <option value="|">|</option>
+                                                    <option value="i">i</option>
+                                                    <option value="a">a</option>
+                                                    <option value="1">1</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="center">center</label></td>
+                                            <td class="fill_width middle"><input id="center" type="text"
                                                     class="fill_width"></td>
                                         </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="equation-number-after">equation-number-after</label></td>
+                                            <td class="fill_width middle"><input id="equation-number-after" type="text"
+                                                    value=")" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="equation-number-before">equation-number-before</label></td>
+                                            <td class="fill_width middle"><input id="equation-number-before" type="text"
+                                                    value="(" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="extended-toc">extended-toc</label>
+                                            </td>
+                                            <td class="fill_width middle"><select id="extended-toc">
+                                                    <option value="frontmatter">frontmatter</option>
+                                                    <option value="backmatter">backmatter</option>
+                                                    <option value="both">both</option>
+                                                    <option value="none">none</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="external-resource-base">external-resource-base</label></td>
+                                            <td class="fill_width middle"><input id="external-resource-base" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="highlight-source">highlight-source</label></td>
+                                            <td class="fill_width middle"><select id="highlight-source">
+                                                    <option value="yes">yes</option>
+                                                    <option value="no">no</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="index-range-separator">index-range-separator</label></td>
+                                            <td class="fill_width middle"><input id="index-range-separator" type="text"
+                                                    value="#x2013;" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="link-auto-text">link-auto-text</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="link-auto-text" type="text"
+                                                    value="number text" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="note-icon-list">note-icon-list</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="note-icon-list" type="text"
+                                                    value="attention caution danger fastpath important note notes remember restriction tip"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="number">number</label></td>
+                                            <td class="fill_width middle"><input id="number" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="number-separator1">number-separator1</label></td>
+                                            <td class="fill_width middle"><input id="number-separator1" type="text"
+                                                    value="." class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="number-separator2">number-separator2</label></td>
+                                            <td class="fill_width middle"><input id="number-separator2" type="text"
+                                                    value="-" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="mark-important-steps">mark-important-steps</label></td>
+                                            <td class="fill_width middle"><select id="mark-important-steps">
+                                                    <option value="no">no</option>
+                                                    <option value="yes">yes</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="part-number-format">part-number-format</label></td>
+                                            <td class="fill_width middle"><select id="part-number-format">
+                                                    <option value="|">|</option>
+                                                    <option value="A">A</option>
+                                                    <option value="i">i</option>
+                                                    <option value="a">a</option>
+                                                    <option value="1">1</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="prepend-chapter-to-section-number">prepend-chapter-to-section-number</label>
+                                            </td>
+                                            <td class="fill_width middle"><select
+                                                    id="prepend-chapter-to-section-number">
+                                                    <option value="no">no</option>
+                                                    <option value="yes">yes</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="remedy-number-format">remedy-number-format</label></td>
+                                            <td class="fill_width middle"><select id="remedy-number-format">
+                                                    <option value="A">A</option>
+                                                    <option value="|">|</option>
+                                                    <option value="i">i</option>
+                                                    <option value="a">a</option>
+                                                    <option value="1">1</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="show-draft-comments">show-draft-comments</label></td>
+                                            <td class="fill_width middle"><select id="show-draft-comments">
+                                                    <option value="no">no</option>
+                                                    <option value="yes">yes</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="troubleSolution-number-format">troubleSolution-number-format</label>
+                                            </td>
+                                            <td class="fill_width middle"><select id="troubleSolution-number-format">
+                                                    <option value="1">1</option>
+                                                    <option value="A">A</option>
+                                                    <option value="|">|</option>
+                                                    <option value="i">i</option>
+                                                    <option value="a">a</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="title-after">title-after</label></td>
+                                            <td class="fill_width middle"><input id="title-after" type="text" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="title-page">title-page</label></td>
+                                            <td class="fill_width middle"><input id="title-page" type="text" value="auto" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="title-prefix-separator1">title-prefix-separator1</label></td>
+                                            <td class="fill_width middle"><input id="title-prefix-separator1" type="text" value="." class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="use-note-icon">use-note-icon</label></td>
+                                            <td class="fill_width middle"><select id="use-note-icon">
+                                                    <option value="no">no</option>
+                                                    <option value="yes">yes</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="watermark-image">watermark-image</label></td>
+                                            <td class="fill_width middle"><input id="watermark-image" type="text" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="xref-auto-text">xref-auto-text</label></td>
+                                            <td class="fill_width middle"><input id="xref-auto-text" type="text" value="number" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="xref-resources-directory">xref-resources-directory</label></td>
+                                            <td class="fill_width middle"><input id="xref-resources-directory" type="text" value="resources/" class="fill_width"></td>
+                                        </tr>
                                     </table>
-                                    <div>
+                                    <div class="buttonArea">
                                         <button id="export">Export XSL Parameters</button>
                                         <button id="import">Import XSL Parameters</button>
                                         <button id="default">Load Default Values</button>
@@ -187,7 +379,7 @@
                     </table>
                 </div>
 
-                
+
 
             </td>
         </tr>
