@@ -879,25 +879,53 @@
                                 </div>
 
                                 <div id="epubParameters" class="hidden">
-                                    <h3 style="padding: 0px 8px; margin: 0px;">EPUB Parameters</h3>
+                                    <h3 style="padding: 0px 8px; margin: 0px;">Parameters specific to the stylesheets that generate EPUB</h3>
                                     <table>
                                         <tr>
                                             <td class="noWrap middle"><label
-                                                    for="microsoft">appendix-number-format</label></td>
-                                            <td class="fill_width middle"><input id="microsoft" type="select"
+                                                    for="cover-image">cover-image</label></td>
+                                            <td class="fill_width middle"><input id="cover-image" type="text"
                                                     class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="epub-identifier">epub-identifier</label></td>
+                                            <td class="fill_width middle"><input id="epub-identifier" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="epub2-compatible">epub2-compatible</label></td>
+                                            <td class="fill_width middle"><select id="epub2-compatible">
+                                                    <option value="yes">yes</option>
+                                                    <option value="no">no</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="generate-epub-trigger">generate-epub-trigger</label></td>
+                                            <td class="fill_width middle"><select id="generate-epub-trigger">
+                                                    <option value="yes">yes</option>
+                                                    <option value="no">no</option>
+                                                </select></td>
                                         </tr>
                                     </table>
                                 </div>
 
                                 <div id="helpParameters" class="hidden">
-                                    <h3 style="padding: 0px 8px; margin: 0px;">Help Parameters</h3>
+                                    <h3 style="padding: 0px 8px; margin: 0px;">Parameters specific to the stylesheets that generate Web Help, HTML Help, Eclipse Help and EPUB</h3>
                                     <table>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="microsoft">appendix-number-format</label></td>
-                                            <td class="fill_width middle"><input id="microsoft" type="select"
-                                                    class="fill_width"></td>
+                                            <td class="noWrap middle"><label for="add-toc-root">add-toc-root</label></td>
+                                            <td class="fill_width middle"><select id="add-toc-root">
+                                                    <option value="yes">yes</option>
+                                                    <option value="no">no</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="number-toc-entries">number-toc-entries</label></td>
+                                            <td class="fill_width middle"><select id="number-toc-entries">
+                                                    <option value="yes">yes</option>
+                                                    <option value="no">no</option>
+                                                </select></td>
                                         </tr>
                                     </table>
                                 </div>
