@@ -321,12 +321,6 @@
                                                     type="text" value="resources/" class="fill_width"></td>
                                         </tr>
                                     </table>
-                                    <div class="buttonArea">
-                                        <button id="export">Export XSL Parameters</button>
-                                        <button id="import">Import XSL Parameters</button>
-                                        <button id="default">Load Default Values</button>
-                                        <button id="reference">Show Reference Guide</button>
-                                    </div>
                                 </div>
 
 
@@ -665,24 +659,23 @@
                                                 </select></td>
                                         </tr>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="show-link-page">show-link-page</label></td>
+                                            <td class="noWrap middle"><label for="show-link-page">show-link-page</label>
+                                            </td>
                                             <td class="fill_width middle"><select id="show-link-page">
                                                     <option value="no">no</option>
                                                     <option value="yes">yes</option>
                                                 </select></td>
                                         </tr>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="show-xref-page">show-xref-page</label></td>
+                                            <td class="noWrap middle"><label for="show-xref-page">show-xref-page</label>
+                                            </td>
                                             <td class="fill_width middle"><select id="show-xref-page">
                                                     <option value="no">no</option>
                                                     <option value="yes">yes</option>
                                                 </select></td>
                                         </tr>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="title-color">title-color</label></td>
+                                            <td class="noWrap middle"><label for="title-color">title-color</label></td>
                                             <td class="fill_width middle"><input id="title-color" type="text"
                                                     value="black" class="fill_width"></td>
                                         </tr>
@@ -693,16 +686,15 @@
                                                     value="sans-serif" class="fill_width"></td>
                                         </tr>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="two-sided">two-sided</label></td>
+                                            <td class="noWrap middle"><label for="two-sided">two-sided</label></td>
                                             <td class="fill_width middle"><select id="two-sided">
                                                     <option value="no">no</option>
                                                     <option value="yes">yes</option>
                                                 </select></td>
                                         </tr>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="ul-li-bullets">ul-li-bullets</label></td>
+                                            <td class="noWrap middle"><label for="ul-li-bullets">ul-li-bullets</label>
+                                            </td>
                                             <td class="fill_width middle"><input id="ul-li-bullets" type="text"
                                                     value="#x2022; #x2013;" class="fill_width"></td>
                                         </tr>
@@ -714,17 +706,17 @@
                                         </tr>
                                         <tr>
                                             <td class="noWrap middle"><label
-                                                    for="use-multimedia-extensions">use-multimedia-extensions</label></td>
+                                                    for="use-multimedia-extensions">use-multimedia-extensions</label>
+                                            </td>
                                             <td class="fill_width middle"><select id="use-multimedia-extensions">
                                                     <option value="no">no</option>
                                                     <option value="yes">yes</option>
                                                 </select></td>
                                         </tr>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="watermark">watermark</label></td>
-                                            <td class="fill_width middle"><input id="watermark" type="text"
-                                                    value="all" class="fill_width"></td>
+                                            <td class="noWrap middle"><label for="watermark">watermark</label></td>
+                                            <td class="fill_width middle"><input id="watermark" type="text" value="all"
+                                                    class="fill_width"></td>
                                         </tr>
                                         <tr>
                                             <td class="noWrap middle"><label
@@ -733,22 +725,155 @@
                                                     value="note" class="fill_width"></td>
                                         </tr>
                                     </table>
-                                    <div class="buttonArea">
-                                        <button id="exportXSL">Export XSL Parameters</button>
-                                        <button id="importXSL">Import XSL Parameters</button>
-                                        <button id="defaultXSL">Load Default Values</button>
-                                        <button id="referenceXSL">Show Reference Guide</button>
-                                    </div>
                                 </div>
 
                                 <div id="htmlParameters" class="hidden">
-                                    <h3 style="padding: 0px 8px; margin: 0px;">HTML Parameters</h3>
+                                    <h3 style="padding: 0px 8px; margin: 0px;">Parameters common to the stylesheets that
+                                        generate XHTML or HTML</h3>
                                     <table>
                                         <tr>
-                                            <td class="noWrap middle"><label
-                                                    for="microsoft">appendix-number-format</label></td>
-                                            <td class="fill_width middle"><input id="microsoft" type="select"
+                                            <td class="noWrap middle"><label for="add-index-toc">add-index-toc</label>
+                                            </td>
+                                            <td class="fill_width middle"><select id="add-index-toc">
+                                                    <option value="yes">yes</option>
+                                                    <option value="no">no</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="chain-pages">chain-pages</label></td>
+                                            <td class="fill_width middle"><select id="chain-pages">
+                                                    <option value="none">none</option>
+                                                    <option value="top">top</option>
+                                                    <option value="bottom">bottom</option>
+                                                    <option value="both">both</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="chain-topics">chain-topics</label>
+                                            </td>
+                                            <td class="fill_width middle"><select id="chain-topics">
+                                                    <option value="no">no</option>
+                                                    <option value="yes">yes</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="css">css</label></td>
+                                            <td class="fill_width middle"><input id="css" type="text"
                                                     class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="cssResourceName">cssResourceName</label></td>
+                                            <td class="fill_width middle"><input id="cssResourceName" type="text"
+                                                    value="base.css" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="custom-css">custom-css</label></td>
+                                            <td class="fill_width middle"><input id="custom-css" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="default-table-width">default-table-width</label></td>
+                                            <td class="fill_width middle"><input id="default-table-width" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="external-link-icon-height">external-link-icon-height</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="external-link-icon-height"
+                                                    type="text" value="10" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="external-link-icon-name">external-link-icon-name</label></td>
+                                            <td class="fill_width middle"><input id="external-link-icon-name"
+                                                    type="text" value="new_window.png" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="external-link-icon-width">external-link-icon-width</label></td>
+                                            <td class="fill_width middle"><input id="external-link-icon-width"
+                                                    type="text" value="10" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="format-to-type">format-to-type</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="format-to-type" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="generator-info">generator-info</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="generator-info" type="text"
+                                                    value="Conversa 2.1.0" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label
+                                                    for="ignore-navigation-links">ignore-navigation-links</label></td>
+                                            <td class="fill_width middle"><select id="ignore-navigation-links">
+                                                    <option value="auto">auto</option>
+                                                    <option value="yes">yes</option>
+                                                    <option value="no">no</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="javascripts">javascripts</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="javascripts" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="mathjax">mathjax</label></td>
+                                            <td class="fill_width middle"><select id="mathjax">
+                                                    <option value="no">no</option>
+                                                    <option value="auto">auto</option>
+                                                    <option value="yes">yes</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="mathjax-url">mathjax-url</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="mathjax-url" type="text"
+                                                    class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="mark-external-links">mark-external-links</label></td>
+                                            <td class="fill_width middle"><select id="mark-external-links">
+                                                    <option value="no">no</option>
+                                                    <option value="yes">yes</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="navigation-icon-height">navigation-icon-height</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="navigation-icon-height" type="text"
+                                                    value="16" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="navigation-icon-suffix">navigation-icon-suffix</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="navigation-icon-suffix" type="text"
+                                                    value=".png" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="navigation-icon-width">navigation-icon-width</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="navigation-icon-width" type="text"
+                                                    value="16" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="screen-resolution">screen-resolution</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="screen-resolution" type="text"
+                                                    value="96" class="fill_width"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="noWrap middle"><label for="xhtml-mime-type">xhtml-mime-type</label>
+                                            </td>
+                                            <td class="fill_width middle"><input id="xhtml-mime-type" type="text"
+                                                    value="text/html" class="fill_width"></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -777,9 +902,19 @@
                                     </table>
                                 </div>
 
+                                <div class="buttonArea">
+                                    <button id="export">Export XSL Parameters</button>
+                                    <button id="import">Import XSL Parameters</button>
+                                    <button id="default">Load Default Values</button>
+                                    <button id="reference">Show Reference Guide</button>
+                                </div>
+
                             </td>
                         </tr>
+
+
                     </table>
+
                 </div>
 
 
